@@ -1,8 +1,9 @@
 <?php
-
+use yii\helpers\Html;
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'OndeTem?! Admin';
+
 ?>
 <div class="site-index">
 
