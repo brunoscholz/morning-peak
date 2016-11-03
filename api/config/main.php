@@ -1,4 +1,6 @@
 <?php
+// https://morning-peak-11460.herokuapp.com/
+
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
