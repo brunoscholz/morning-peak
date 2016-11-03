@@ -25,15 +25,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'type',
             //'icon',
-            [
-            'attribute'=>'icon',
-            'label'=>'Icon',
-            'format'=>'html',
-            'content' => function($data) {
-                //var_dump($data);
-                $url = 'data:image/gif;base64,' . $data->icon;
-                return Html::img($url, ['alt'=>'yii']);
-            }],
+                [
+                    'attribute'=>'icon',
+                    'label'=>'Icon',
+                    'format'=>'html',
+                    'content' => function($data) {
+                        //var_dump($data);
+                        $url = 'data:image/gif;base64,' . $data->icon;
+                        return Html::img($url, ['alt'=>'yii']);
+                    }
+                ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

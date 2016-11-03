@@ -21,14 +21,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'itemId',
-            'sku',
-            'categoryId',
-            'description',
             'title',
-            // 'keywords',
+            'sku',
+            [
+            'attribute'=>'categoryId',
+            'label'=>'Categoria',
+            'format'=>'html',
+            'content' => function($data) {
+                return $data->category->name;
+            }],
+            'description',
+            'keywords',
             // 'photoSrc',
-            // 'status',
+            'status',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -35,11 +35,55 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                [   'class' => 'yii\rest\UrlRule',
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/relationship',
+                    'tokens' => [
+                        '{id}' => '<relationshipId:\\w+>',
+                    ],
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/transaction',
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/loyalty',
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/category',
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/offer',
                     'tokens' => [
                         '{id}' => '<offerId:\\w+>',
                     ],
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/buyer',
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/seller',
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/action-relationship',
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/follow-fact',
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/comment-fact',
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/review-fact',
                 ]
             ],
         ],

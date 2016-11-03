@@ -2,21 +2,22 @@
 
 namespace api\modules\v1\controllers;
 
-use yii\rest\ActiveController;
 use yii\db\Query;
+use yii\rest\Serializer;
+use api\modules\v1\models\Category;
 
-/**
- * Offer Controller API
- *
- * @author Bruno Scholz <brunoscholz@yahoo.de>
- */
-class OfferController extends ActiveController
+class CategoryController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\Offer';
+    public $modelClass = 'api\modules\v1\models\Category';
+    public $serializer = [
+        'class' => 'yii\rest\Serializer',
+        'collectionEnvelope' => 'cats',
+    ];
 
     public function actions()
     {
         $actions = parent::actions();
+        unset($actions['delete'], $actions['create']);
         // will override return data on the index action
         unset($actions['index']);
         //$actions['index']['prepareDataProvider'] = [new app/models/Post(), 'getAllPost'];
@@ -28,39 +29,18 @@ class OfferController extends ActiveController
         $params=$_REQUEST;
         $filter=array();
         $sort="";
-        $page=1;
-        $limit=10;
-
-        if(isset($params['limit']))
-            $limit=$params['limit'];
-
-        $offset=$limit*($page-1);
-
-        if(isset($params['sort']))
-        {
-            $sort=$params['sort'];
-            if(isset($params['order']))
-            {  
-                if($params['order']=="false")
-                    $sort.=" desc";
-                else
-                    $sort.=" asc";
-            }
-        }
 
         $query=new Query;
-        $query->offset($offset)
-            ->limit($limit)
-            ->from('tbl_offer')
+        $query->offset(0)
+            ->from('tbl_category')
             ->orderBy($sort)
             ->select("*");
 
         $command = $query->createCommand();
         $models = $command->queryAll();
- 
         $totalItems=$query->count();
         $this->setHeader(200);
-        echo json_encode(array('status'=>1,'data'=>$models,'count'=>$totalItems)); //,JSON_PRETTY_PRINT
+        echo json_encode(array('status'=>1,'data'=>$models,'count'=>$totalItems));
     }
 
     private function setHeader($status)
