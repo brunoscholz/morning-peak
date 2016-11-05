@@ -30,11 +30,25 @@ class CategoryController extends \yii\rest\ActiveController
         $filter=array();
         $sort="";
 
+        /* Filter elements */
+		if(isset($params['q']))
+		{
+			$filter=(array)json_decode($params['q']);
+		}
+
         $query=new Query;
         $query->offset(0)
             ->from('tbl_category')
             ->orderBy($sort)
             ->select("*");
+
+        if(isset($filter['parentId']))
+            $query->andFilterWhere(['like', 'parentId', $filter['parentId']]);
+        if(isset($filter['categoryId']))
+            $query->andFilterWhere(['like', 'categoryId', $filter['categoryId']]);
+        if(isset($filter['name']))
+            $query->andFilterWhere(['like', 'name', $filter['name']]);
+
 
         $command = $query->createCommand();
         $models = $command->queryAll();

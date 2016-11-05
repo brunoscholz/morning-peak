@@ -26,6 +26,17 @@ class Item extends \yii\db\ActiveRecord
         return '{{%item}}';
     }
 
+    public function fields()
+    {
+        $fields = parent::fields();
+        return $fields;
+    }
+
+    public function extraFields()
+    {
+        return ['category'];
+    }
+
     /**
      * @inheritdoc
      */
@@ -56,5 +67,13 @@ class Item extends \yii\db\ActiveRecord
             'photoSrc' => 'Photo Src',
             'status' => 'Status',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['categoryId' => 'categoryId']);
     }
 }
