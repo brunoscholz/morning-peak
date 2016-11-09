@@ -59,4 +59,30 @@ class Relationship extends \yii\db\ActiveRecord
             'loyaltyId' => 'Loyalty ID',
         ];
     }
+
+    public function getLoyalty()
+    {
+        return $this->hasOne(Loyalty::className(), ['loyaltyId' => 'loyaltyId'])
+            ->with(['buyer', 'transaction']);
+    }
+
+    public function getOffer()
+    {
+        return $this->hasOne(Offer::className(), ['offerId' => 'offerId']);
+    }
+
+    public function getDate()
+    {
+        return $this->hasOne(Date::className(), ['dateId' => 'dateId']);
+    }
+
+    public function getSeller()
+    {
+        return $this->hasOne(Seller::className(), ['sellerId' => 'sellerId']);
+    }
+
+    public function getBuyer()
+    {
+        return $this->hasOne(Buyer::className(), ['buyerId' => 'buyerId']);
+    }
 }

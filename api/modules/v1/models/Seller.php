@@ -73,4 +73,23 @@ class Seller extends \yii\db\ActiveRecord
             'paymentOptions' => 'Payment Options',
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['userId' => 'userId']);
+    }
+
+    public function getReviewFacts()
+    {
+        return $this->hasMany(ReviewFact::className(), ['sellerId' => 'sellerId']);
+    }
+
+    public function getReviews()
+    {
+        return $this->hasMany(Review::className(), ['reviewId' => 'reviewId'])
+            ->via('reviewFacts');
+    }
 }

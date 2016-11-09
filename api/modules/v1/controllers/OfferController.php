@@ -2,24 +2,24 @@
 
 namespace api\modules\v1\controllers;
 
-use api\modules\v1\models\Offer;
-use yii\rest\ActiveController;
 use yii\db\Query;
+use api\modules\v1\models\Offer;
 
 /**
  * Offer Controller API
  *
  * @author Bruno Scholz <brunoscholz@yahoo.de>
  */
-class OfferController extends ActiveController
+class OfferController extends \yii\rest\ActiveController
 {
     public $modelClass = 'api\modules\v1\models\Offer';
 
     public function actions()
     {
         $actions = parent::actions();
+        unset($actions['delete']);
         // will override return data on the index action
-        unset($actions['index']);
+        unset($actions['index'], $actions['create']);
         //$actions['index']['prepareDataProvider'] = [new app/models/Post(), 'getAllPost'];
         return $actions;
     }
@@ -34,8 +34,6 @@ class OfferController extends ActiveController
         $select = "*";
         $ftFilters = array();
 
-        // l: limit
-        // fo: findOne
         if(isset($params['l']))
         {
             $limit = $params['l'];
@@ -82,12 +80,12 @@ class OfferController extends ActiveController
 
         $data = Offer::find()
             ->joinwith([
-                'seller',
                 'policy',
                 'shipping',
-                'item' => function ($query) {
-                    $query->with('category');
-                }])
+                'seller',
+                'item',
+                //'reviews'
+            ])
             ->offset($offset)
             ->orderBy($sort)
             ->select($select);
@@ -120,32 +118,39 @@ class OfferController extends ActiveController
         $models = array('status'=>1,'count'=>0);
 
         // batch query with eager loading
-        $offers = array();
-        foreach ($data->each() as $offer) {
-            $of = $offer->attributes;
+        $modelsArray = array();
+        foreach ($data->each() as $model)
+        {
+            $of = $model->attributes;
             unset($of['itemId'], $of['sellerId'], $of['policyId'], $of['shippingId']);
-            $seller = $offer->seller->attributes;
-            $policy = $offer->policy->attributes;
-            $shipping = $offer->shipping->attributes;
-            $cat = $offer->item->category->attributes;
-            $item = $offer->item->attributes;
+            $seller = $model->seller->attributes;
+            $policy = $model->policy->attributes;
+            $shipping = $model->shipping->attributes;
+            $cat = $model->item->category->attributes;
+            $item = $model->item->attributes;
             unset($item['categoryId']);
-
             $item['category'] = $cat;
+            
+            $reviews = array();
+            foreach($model->reviews as $rev)
+            {
+                $reviews[] = $rev->attributes;
+            }
+
             $of['seller'] = $seller;
             $of['policy'] = $policy;
             $of['shipping'] = $shipping;
             $of['item'] = $item;
+            $of['reviews'] = $reviews;
 
-            $offers[] = $of;
+            $modelsArray[] = $of;
         }
 
-        $models['data'] = $offers;
-        $models['count'] = count($offers);
+        $models['data'] = $modelsArray;
+        $models['count'] = count($modelsArray);
 
         $this->setHeader(200);
         echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-        die();
     }
 
     private function setHeader($status)

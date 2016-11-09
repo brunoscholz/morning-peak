@@ -9,18 +9,13 @@ use api\modules\v1\models\Category;
 class CategoryController extends \yii\rest\ActiveController
 {
     public $modelClass = 'api\modules\v1\models\Category';
-    public $serializer = [
-        'class' => 'yii\rest\Serializer',
-        'collectionEnvelope' => 'cats',
-    ];
 
     public function actions()
     {
         $actions = parent::actions();
-        unset($actions['delete'], $actions['create']);
+        unset($actions['delete']);
         // will override return data on the index action
-        unset($actions['index']);
-        //$actions['index']['prepareDataProvider'] = [new app/models/Post(), 'getAllPost'];
+        unset($actions['index'], $actions['create']);
         return $actions;
     }
 
@@ -65,6 +60,9 @@ class CategoryController extends \yii\rest\ActiveController
         header($status_header);
         header('Content-type: ' . $content_type);
         header('X-Powered-By: ' . "OndeTem <ondetem.com.br>");
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST');
+        header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
     }
     
     private function _getStatusCodeMessage($status)

@@ -48,4 +48,9 @@ class CommentFact extends \yii\db\ActiveRecord
             'commentId' => 'Comment ID',
         ];
     }
+
+    public function getComment()
+    {
+        return $this->hasOne(Comment::className(), ['commentId' => 'commentId']);
+    }
 }

@@ -53,7 +53,8 @@ class Offer extends \yii\db\ActiveRecord
             'item',
             'seller',
             'shipping',
-            'policy'
+            'policy',
+            'reviews'
         ];
     }
 
@@ -68,7 +69,7 @@ class Offer extends \yii\db\ActiveRecord
             [['imageHashes', 'keywords'], 'string'],
             [['offerId', 'itemId', 'sellerId', 'policyId', 'shippingId'], 'string', 'max' => 21],
             [['description'], 'string', 'max' => 255],
-            [['condition', 'status'], 'string', 'max' => 3],
+            [['itemCondition', 'status'], 'string', 'max' => 3],
             [['itemId'], 'exist', 'skipOnError' => true, 'targetClass' => Item::className(), 'targetAttribute' => ['itemId' => 'itemId']],
             [['policyId'], 'exist', 'skipOnError' => true, 'targetClass' => Policy::className(), 'targetAttribute' => ['policyId' => 'policyId']],
             [['shippingId'], 'exist', 'skipOnError' => true, 'targetClass' => Shipping::className(), 'targetAttribute' => ['shippingId' => 'shippingId']],
@@ -92,7 +93,7 @@ class Offer extends \yii\db\ActiveRecord
             'description' => 'Description',
             'imageHashes' => 'Image Hashes',
             'keywords' => 'Keywords',
-            'condition' => 'Condition',
+            'itemCondition' => 'Condition',
             'status' => 'Status',
         ];
     }
@@ -115,6 +116,18 @@ class Offer extends \yii\db\ActiveRecord
 
     public function getSeller()
     {
-        return $this->hasOne(Seller::className(), ['sellerId' => 'sellerId']);
+        return $this->hasOne(Seller::className(), ['sellerId' => 'sellerId'])
+            ->with(['user', 'reviews']);
     }
+
+    public function getReviews()
+    {
+        return $this->hasMany(ReviewFact::className(), ['offerId' => 'offerId']);
+    }
+
+    /*public function getReviews()
+    {
+        return $this->hasMany(Review::className(), ['reviewId' => 'reviewId'])
+            ->via('reviewFacts');
+    }*/
 }

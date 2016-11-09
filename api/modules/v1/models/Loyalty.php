@@ -55,4 +55,14 @@ class Loyalty extends \yii\db\ActiveRecord
             'status' => 'Status',
         ];
     }
+
+    public function getBuyer()
+    {
+        return $this->hasOne(Buyer::className(), ['buyerId' => 'buyerId']);
+    }
+
+    public function getTransaction()
+    {
+        return $this->hasOne(Transaction::className(), ['transactionId' => 'transactionId']);
+    }
 }

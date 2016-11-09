@@ -29,10 +29,10 @@ class AssetToken extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'name', 'description', 'expirationPeriod'], 'required'],
+            [['tokenId', 'name', 'description', 'expirationPeriod'], 'required'],
             [['description'], 'string'],
             [['fund', 'expirationPeriod'], 'integer'],
-            [['id'], 'string', 'max' => 21],
+            [['tokenId'], 'string', 'max' => 21],
             [['name'], 'string', 'max' => 16],
         ];
     }
@@ -43,7 +43,7 @@ class AssetToken extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'tokenId' => 'ID',
             'name' => 'Name',
             'description' => 'Description',
             'fund' => 'Fund',

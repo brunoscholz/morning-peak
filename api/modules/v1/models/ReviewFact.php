@@ -57,4 +57,20 @@ class ReviewFact extends \yii\db\ActiveRecord
             'rating' => 'Rating',
         ];
     }
+
+    public function getCommentFacts()
+    {
+        return $this->hasMany(CommentFact::className(), ['reviewFactId' => 'reviewFactId']);
+    }
+
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['commentId' => 'commentId'])
+            ->via('commentFacts');
+    }
+
+    public function getReview()
+    {
+        return $this->hasOne(Review::className(), ['reviewId' => 'reviewId']);
+    }
 }
