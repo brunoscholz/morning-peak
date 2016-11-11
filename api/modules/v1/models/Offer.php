@@ -118,19 +118,19 @@ class Offer extends \yii\db\ActiveRecord
     public function getSeller()
     {
         return $this->hasOne(Seller::className(), ['sellerId' => 'sellerId'])
-            ->with(['user', 'reviews']);
-    }
-
-    public function getReviewFacts()
-    {
-        return $this->hasMany(ReviewFact::className(), ['offerId' => 'offerId']);
+            ->with(['user', 'picture', 'reviews']);
     }
 
     public function getReviews()
     {
+        return $this->hasMany(ReviewFact::className(), ['offerId' => 'offerId']);
+    }
+
+    /*public function getReviews()
+    {
         return $this->hasMany(Review::className(), ['reviewId' => 'reviewId'])
             ->via('reviewFacts');
-    }
+    }*/
 
     /**
      * @return \yii\db\ActiveQuery
