@@ -41,13 +41,12 @@ class Item extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['categoryId', 'description', 'title', 'keywords', 'photoSrc', 'status'], 'required'],
-            [['status'], 'integer'],
+            [['categoryId', 'description', 'title', 'status'], 'required'],
             [['itemId', 'sku', 'categoryId'], 'string', 'max' => 21],
             [['description', 'title'], 'string', 'max' => 40],
             [['keywords', 'photoSrc'], 'string', 'max' => 255],
             [['categoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['categoryId' => 'categoryId']],
-            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],
+            //[['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],
         ];
     }
 

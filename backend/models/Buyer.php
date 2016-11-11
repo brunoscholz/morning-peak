@@ -3,20 +3,24 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%buyer}}".
  *
  * @property string $buyerId
  * @property string $userId
+ * @property string $pictureId
  * @property string $about
- * @property string $birthday
+ * @property string $dob
  * @property string $firstname
  * @property string $lastname
  * @property string $gender
  * @property string $email
  * @property string $title
  * @property string $website
+ * @property float $coinsBalance
  * @property string $url_facebook
  * @property string $url_googleplus
  * @property string $url_flickr
@@ -32,6 +36,12 @@ use Yii;
 class Buyer extends \yii\db\ActiveRecord
 {
     /**
+     * @var UploadedFile[]
+     */
+    public $imageCover;
+    public $imageThumb;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -45,14 +55,30 @@ class Buyer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['buyerId', 'userId', 'about', 'birthday', 'firstname', 'lastname', 'gender', 'email', 'title', 'website', 'url_facebook', 'url_googleplus', 'url_flickr', 'url_linkedin', 'url_twitter', 'url_vimeo', 'url_youtube', 'url_instagram'], 'required'],
-            [['buyerId', 'userId', 'birthday'], 'string', 'max' => 21],
+            [['dob', 'name', 'gender', 'email'], 'required'],
+            [['buyerId', 'userId', 'dob'], 'string', 'max' => 21],
             [['about'], 'string', 'max' => 420],
-            [['firstname', 'lastname'], 'string', 'max' => 40],
+            [['name'], 'string', 'max' => 80],
             [['gender'], 'string', 'max' => 3],
-            [['email', 'website', 'url_facebook', 'url_googleplus', 'url_flickr', 'url_linkedin', 'url_twitter', 'url_vimeo', 'url_youtube', 'url_instagram'], 'string', 'max' => 60],
+            [['email', 'website'], 'string', 'max' => 60],
             [['title'], 'string', 'max' => 10],
+            [['status'], 'string', 'max' => 3],
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
+            [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
+            [['imageCover'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
+            [['imageThumb'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'createdAt',
+                'updatedAtAttribute' => 'updatedAt',
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 
@@ -64,22 +90,20 @@ class Buyer extends \yii\db\ActiveRecord
         return [
             'buyerId' => 'Buyer ID',
             'userId' => 'User ID',
+            'pictureId' => 'Picture',
             'about' => 'About',
-            'birthday' => 'Birthday',
-            'firstname' => 'Firstname',
-            'lastname' => 'Lastname',
+            'dob' => 'Birthday',
+            'name' => 'Name',
             'gender' => 'Gender',
             'email' => 'Email',
             'title' => 'Title',
             'website' => 'Website',
-            'url_facebook' => 'Url Facebook',
-            'url_googleplus' => 'Url Googleplus',
-            'url_flickr' => 'Url Flickr',
-            'url_linkedin' => 'Url Linkedin',
-            'url_twitter' => 'Url Twitter',
-            'url_vimeo' => 'Url Vimeo',
-            'url_youtube' => 'Url Youtube',
-            'url_instagram' => 'Url Instagram',
+            'coinsBalance' => 'Coins Balance',
+            'createdAt' => 'Data Criação',
+            'updatedAt' => 'Data Atualização',
+            'status' => 'Status',
+            'imageCover' => 'Capa',
+            'imageThumb' => 'Avatar',
         ];
     }
 
@@ -94,8 +118,65 @@ class Buyer extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getPicture()
+    {
+        return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getLoyalties()
     {
         return $this->hasMany(Loyalty::className(), ['buyerId' => 'buyerId']);
     }
+
+    /*public function upload()
+    {
+        if ($this->validate()) {
+            //$imagePath = '/root/path/to/image/folder/';
+            $i = 0;
+            $d = time().uniqid(rand());
+            
+            if(isset($this->imageCover) && !empty($this->imageCover))
+            {
+                // generate a unique file name to prevent duplicate filenames
+                $model->image_web_filename = Yii::$app->security->generateRandomString().".{$ext}";
+                // the path to save file, you can set an uploadPath
+                // in Yii::$app->params (as used in example below)                       
+                Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/status/';
+                $path = Yii::$app->params['uploadPath'] . $model->image_web_filename;
+
+                $name = 'uploads/userpics/' . $this->pictureId . $d . '_1.' . $this->imageCover->extension;
+                $this->cover = $name;
+                $this->imageCover->saveAs($name);
+            }
+
+            if(isset($this->imageThumb) && !empty($this->imageThumb))
+            {
+                $name = 'uploads/userpics/' . $this->pictureId . $d . '_2.' . $this->imageThumb->extension;
+                $this->thumbnail = $name;
+                $this->imageThumb->saveAs($name);
+            }
+
+            /*if(isset($this->imageLarge) && !empty($this->imageLarge))
+            {
+                $name = 'uploads/userpics/' . $this->pictureId . $d . '_3.' . $this->imageLarge->extension;
+                $this->large = $name;
+                $this->imageLarge->saveAs($name);
+            }
+
+            if(isset($this->imageMedium) && !empty($this->imageMedium))
+            {
+                $name = 'uploads/userpics/' . $this->pictureId . $d . '_4.' . $this->imageMedium->extension;
+                $this->medium = $name;
+                $this->imageMedium->saveAs($name);
+            }*
+
+            $this->save();
+            return true;
+        } else {
+            return false;
+        }
+    }*/
 }

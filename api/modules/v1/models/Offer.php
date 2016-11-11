@@ -3,6 +3,7 @@
 namespace api\modules\v1\models;
 
 use Yii;
+use \backend\models\Picture;
 
 /**
  * Offer Model
@@ -120,14 +121,22 @@ class Offer extends \yii\db\ActiveRecord
             ->with(['user', 'reviews']);
     }
 
-    public function getReviews()
+    public function getReviewFacts()
     {
         return $this->hasMany(ReviewFact::className(), ['offerId' => 'offerId']);
     }
 
-    /*public function getReviews()
+    public function getReviews()
     {
         return $this->hasMany(Review::className(), ['reviewId' => 'reviewId'])
             ->via('reviewFacts');
-    }*/
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPicture()
+    {
+        return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
+    }
 }

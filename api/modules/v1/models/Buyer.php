@@ -4,6 +4,8 @@ namespace api\modules\v1\models;
 
 use Yii;
 use \yii\db\ActiveRecord;
+use \backend\models\Picture;
+
 /**
  * Buyer Model
  * This is the model class for table "{{%buyer}}".
@@ -34,14 +36,15 @@ class Buyer extends ActiveRecord
     public function rules()
     {
         return [
-            [['buyerId', 'userId', 'about', 'birthday', 'firstname', 'lastname', 'gender', 'email', 'title', 'website', 'url_facebook', 'url_googleplus', 'url_flickr', 'url_linkedin', 'url_twitter', 'url_vimeo', 'url_youtube', 'url_instagram'], 'required'],
-            [['buyerId', 'userId', 'birthday'], 'string', 'max' => 21],
+            [['buyerId', 'userId', 'about', 'dob', 'name', 'gender', 'email', 'title', 'website'], 'required'],
+            [['buyerId', 'userId', 'dob'], 'string', 'max' => 21],
             [['about'], 'string', 'max' => 420],
-            [['firstname', 'lastname'], 'string', 'max' => 40],
-            [['gender'], 'string', 'max' => 3],
-            [['email', 'website', 'url_facebook', 'url_googleplus', 'url_flickr', 'url_linkedin', 'url_twitter', 'url_vimeo', 'url_youtube', 'url_instagram'], 'string', 'max' => 60],
+            [['name'], 'string', 'max' => 80],
+            [['gender', 'status'], 'string', 'max' => 3],
+            [['email', 'website'], 'string', 'max' => 60],
             [['title'], 'string', 'max' => 10],
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
+            [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
         ];
     }
 
@@ -53,22 +56,16 @@ class Buyer extends ActiveRecord
         return [
             'buyerId' => 'Buyer ID',
             'userId' => 'User ID',
+            'pictureId' => 'Picture',
             'about' => 'About',
-            'birthday' => 'Birthday',
-            'firstname' => 'Firstname',
-            'lastname' => 'Lastname',
+            'dob' => 'Birthday',
+            'name' => 'Name',
             'gender' => 'Gender',
             'email' => 'Email',
             'title' => 'Title',
             'website' => 'Website',
-            'url_facebook' => 'Url Facebook',
-            'url_googleplus' => 'Url Googleplus',
-            'url_flickr' => 'Url Flickr',
-            'url_linkedin' => 'Url Linkedin',
-            'url_twitter' => 'Url Twitter',
-            'url_vimeo' => 'Url Vimeo',
-            'url_youtube' => 'Url Youtube',
-            'url_instagram' => 'Url Instagram',
+            'coinsBalance' => 'Coins Balance',
+            'status' => 'Status',
         ];
     }
 
@@ -78,6 +75,14 @@ class Buyer extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['userId' => 'userId']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPicture()
+    {
+        return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
     }
 
     /**

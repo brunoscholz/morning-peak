@@ -36,6 +36,23 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        /*'assetManager' => [
+            'bundles' => [
+                'dmstr\web\AdminLteAsset'
+                ],
+            ],
+        ],*/
+        
+        'view' => [
+            'theme' => [
+                'basePath' => '@app/themes/grape',
+                'baseUrl' => '@web/themes/grape',
+                'pathMap' => [
+                    //'@app/views' => '@app/themes/grape',
+                    '@app/views' => '@app/themes/grape/views/',
+                ],
+            ],
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,

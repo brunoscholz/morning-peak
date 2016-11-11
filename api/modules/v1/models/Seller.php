@@ -3,6 +3,7 @@
 namespace api\modules\v1\models;
 
 use Yii;
+use \backend\models\Picture;
 
 /**
  * This is the model class for table "{{%seller}}".
@@ -46,6 +47,7 @@ class Seller extends \yii\db\ActiveRecord
             [['name', 'email', 'website', 'url_youtube'], 'string', 'max' => 60],
             [['hours', 'categories', 'paymentOptions'], 'string', 'max' => 255],
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
+            [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
         ];
     }
 
@@ -57,17 +59,11 @@ class Seller extends \yii\db\ActiveRecord
         return [
             'sellerId' => 'Seller ID',
             'userId' => 'User ID',
+            'pictureId' => 'Picture',
             'about' => 'About',
             'name' => 'Name',
             'email' => 'Email',
             'website' => 'Website',
-            'facebookSocialId' => 'Facebook Social ID',
-            'twitterSocialId' => 'Twitter Social ID',
-            'instagramSocialId' => 'Instagram Social ID',
-            'snapchatSocialId' => 'Snapchat Social ID',
-            'linkedinSocialId' => 'Linkedin Social ID',
-            'githubSocialId' => 'Github Social ID',
-            'url_youtube' => 'Url Youtube',
             'hours' => 'Hours',
             'categories' => 'Categories',
             'paymentOptions' => 'Payment Options',
@@ -80,6 +76,11 @@ class Seller extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['userId' => 'userId']);
+    }
+
+    public function getPicture()
+    {
+        return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
     }
 
     public function getReviewFacts()

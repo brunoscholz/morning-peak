@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * SellerController implements the CRUD actions for Seller model.
@@ -65,28 +66,44 @@ class SellerController extends Controller
     {
         $model = new Seller();
 
-        var_dump(Yii::$app->request->post());
-
+        $loggedUser = Yii::$app->user->identity;
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->sellerId = \backend\models\User::generateId();
-            $model->paymentOptions = implode(",", $model->paymentOptions);
+            $model->userId = $loggedUser->userId;
 
-            if($model->save())
+            $payList = Yii::$app->request->post()['Seller']['paymentOptions'];
+            $model->paymentOptions = implode(",", $payList);
+            $model->status = 'ATV';
+
+            $picModel = new \backend\models\Picture();
+            $picModel->pictureId = \backend\models\User::generateId();
+            $model->pictureId = $picModel->pictureId;
+
+            $picModel->imageCover = UploadedFile::getInstance($model, 'imageCover');
+            $picModel->imageThumb = UploadedFile::getInstance($model, 'imageThumb');
+            $picModel->status = 'ATV';
+
+
+            if ($picModel->upload())
+                $picModel->imageCover = null;
+                $picModel->imageThumb = null;
+
+            if($model->save() && $picModel->save())
                 return $this->redirect(['view', 'id' => $model->sellerId]);
 
+
         } else {
-
-            if (isset(Yii::$app->session['userData']))
-            {
-                $id = Yii::$app->session['userData'];
-                $model->userId = $id;
-            }
-
             return $this->render('create', [
                 'model' => $model,
             ]);
         }
+
+            /*if (isset(Yii::$app->session['userData']))
+            {
+                $id = Yii::$app->session['userData'];
+                $model->userId = $id;
+            }*/
     }
 
     /**

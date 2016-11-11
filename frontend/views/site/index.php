@@ -1,53 +1,94 @@
 <?php
 
 /* @var $this yii\web\View */
+use yii\helpers\Html;
+use yii\helpers\Url;
+use frontend\assets\GrapeAsset;
 
-$this->title = 'My Yii Application';
+$bundle = GrapeAsset::register($this);
+
+$this->title = 'OndeTem?!';
 ?>
-<div class="site-index">
+    <!-- header start -->
+    <?= $this->render('_header', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- header end -->
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+    <!-- banner start -->
+    <?= $this->render('_banner', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- banner end -->
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+    <!-- intro start -->
+    <?= $this->render('_intro', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- intro end -->
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+    <!-- feature start -->
+    <?= $this->render('_feature', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- feature end -->
 
-    <div class="body-content">
+    <!-- description start -->
+    <?= $this->render('_description', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- description end-->
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+    <!-- video start -->
+    <?= $this->render('_video', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- video end -->
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+    <!-- screenshot start -->
+    <?= $this->render('_screenshot', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- screenshot end -->
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+    <!-- review start -->
+    <?= $this->render('_review', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- review end -->
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+    <!-- price start -->
+    <?= $this->render('_price', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- price end -->
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+    <!-- download start -->
+    <?= $this->render('_download', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- download end -->
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+    <!-- support start -->
+    <?= $this->render('_support', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- support end -->
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
+    <!-- subscription start -->
+    <?= $this->render('_subscription', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- subscription end -->
 
-    </div>
-</div>
+    <!-- contact start -->
+    <?= $this->render('_contact', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- contact end -->
+
+    <!-- footer start -->
+    <?= $this->render('_footer', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) ?>
+    <!-- footer end -->

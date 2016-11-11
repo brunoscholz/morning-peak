@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * OfferController implements the CRUD actions for Offer model.
@@ -64,9 +65,41 @@ class OfferController extends Controller
     public function actionCreate()
     {
         $model = new Offer();
+        $modelItem = new \backend\models\Item();
+        $postData = Yii::$app->request->post();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->offerId]);
+        if ($model->load($postData) && $modelItem->load($postData)) {
+            $modelItem->itemId = \backend\models\User::generateId();
+            $modelItem->sku = \backend\models\User::getToken(12);
+            $modelItem->status = 'PEN';
+
+            $picModel = new \backend\models\Picture();
+            $picModel->pictureId = \backend\models\User::generateId();
+
+            $picModel->imageCover = UploadedFile::getInstance($model, 'imageCover');
+            $picModel->imageThumb = UploadedFile::getInstance($model, 'imageThumb');
+            $picModel->status = 'ATV';
+
+            if ($picModel->upload()) {
+                $picModel->imageCover = null;
+                $picModel->imageThumb = null;
+            }
+
+            $model->offerId = \backend\models\User::generateId();
+            $model->itemId = $modelItem->itemId;
+            $model->pictureId = $picModel->pictureId;
+            $model->sellerId = 'vW8wrgSIKukU78XxxhgGs';
+
+            if($modelItem->validate() && $picModel->validate() && $model->validate()) {
+                if($modelItem->save() && $picModel->save() && $model->save())
+                    return $this->redirect(['view', 'id' => $model->offerId]);
+            }
+            else {
+                print_r($model->getErrors());
+                print_r($picModel->getErrors());
+                print_r($modelItem->getErrors());
+            }
+
         } else {
             return $this->render('create', [
                 'model' => $model,

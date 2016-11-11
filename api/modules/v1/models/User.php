@@ -46,6 +46,15 @@ class User extends \yii\db\ActiveRecord
         return '{{%user}}';
     }
 
+    // explicitly list every field, best used when you want to make sure the changes
+    // in your DB table or model attributes do not cause your field changes (to keep API backward compatibility).
+    public function fields()
+    {
+        $fields = parent::fields();
+        unset($fields['password'], $fields['passwordStrategy'], $fields['resetToken'], $fields['salt'], $fields['activation_key'], $fields['validation_key']);
+        return $fields;
+    }
+
     /**
      * @inheritdoc
      */

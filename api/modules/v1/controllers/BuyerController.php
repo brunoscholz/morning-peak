@@ -75,6 +75,7 @@ class BuyerController extends \yii\rest\ActiveController
         $data = Buyer::find()
             ->joinwith([
                 'user',
+                'picture',
                 'loyalties'
                 ])
             ->offset($offset)
@@ -84,15 +85,19 @@ class BuyerController extends \yii\rest\ActiveController
         if($limit > 0)
             $data->limit($limit);
 
+        if(isset($filter['userId']))
+            $data->andFilterWhere(['like binary', 'tbl_user.userId', $filter['userId']]);
+
         $models = array('status'=>1,'count'=>0);
 
         // batch query with eager loading
         $modelsArray = array();
         foreach ($data->each() as $model) {
             $of = $model->attributes;
-            unset($of['userId']);
+            unset($of['userId'], $of['pictureId']);
             $user = $model->user->attributes;
-            $loyalties = array()
+            $pics = $model->picture->attributes;
+            $loyalties = array();
             foreach($model->loyalties as $loy)
             {
                 $tmp = $loy->attributes;
@@ -100,6 +105,7 @@ class BuyerController extends \yii\rest\ActiveController
             }
 
             $of['user'] = $user;
+            $of['picture'] = $pics;
             $of['loyalties'] = $loyalties;
 
             $modelsArray[] = $of;

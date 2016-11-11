@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Category */
+/* @var $model backend\models\Category */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php $dataCategory=ArrayHelper::map(\app\models\Category::find()->asArray()->all(), 'categoryId', 'name'); ?>
+    <?php $dataCategory=ArrayHelper::map(\backend\models\Category::find()->asArray()->all(), 'categoryId', 'name'); ?>
 
     <?= $form->field($model, 'parentId')->dropDownList(
         $dataCategory,

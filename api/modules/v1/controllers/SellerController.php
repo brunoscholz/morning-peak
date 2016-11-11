@@ -75,6 +75,7 @@ class SellerController extends \yii\rest\ActiveController
         $data = Seller::find()
             ->joinwith([
                 'user',
+                'picture',
                 'reviews'
                 ])
             ->offset($offset)
@@ -84,17 +85,19 @@ class SellerController extends \yii\rest\ActiveController
         if($limit > 0)
             $data->limit($limit);
 
+        if(isset($filter['userId']))
+            $data->andFilterWhere(['like binary', 'tbl_user.userId', $filter['userId']]);
+
         $models = array('status'=>1,'count'=>0);
 
         // batch query with eager loading
         $modelsArray = array();
-        foreach ($data->each() as $model)
-        {
+        foreach ($data->each() as $model) {
             $of = $model->attributes;
-            unset($of['userId']);
+            unset($of['userId'], $of['pictureId']);
             $user = $model->user->attributes;
+            $pics = $model->picture->attributes;
             $reviews = array();
-
             foreach($model->reviews as $rev)
             {
                 $tmp = $rev->attributes;
@@ -102,6 +105,7 @@ class SellerController extends \yii\rest\ActiveController
             }
 
             $of['user'] = $user;
+            $of['picture'] = $pics;
             $of['reviews'] = $reviews;
 
             $modelsArray[] = $of;

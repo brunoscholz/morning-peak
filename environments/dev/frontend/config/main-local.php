@@ -20,6 +20,8 @@ if (!YII_ENV_TEST) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
     ];
+
+    //$config['components']['assetManager']['forceCopy'] = true;
 }
 
 return $config;

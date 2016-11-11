@@ -66,7 +66,7 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->categoryId = \app\models\User::generateId();
+            $model->categoryId = \backend\models\User::generateId();
 
             if($model->save())
                 return $this->redirect(['view', 'id' => $model->categoryId]);

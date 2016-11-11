@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%offer}}".
@@ -14,9 +16,9 @@ use Yii;
  * @property double $pricePerUnit
  * @property double $discountPerUnit
  * @property string $description
- * @property string $imageHashes
+ * @property string $pictureId
  * @property string $keywords
- * @property string $condition
+ * @property string $itemCondition
  * @property string $status
  *
  * @property Shipping $shipping
@@ -26,6 +28,12 @@ use Yii;
  */
 class Offer extends \yii\db\ActiveRecord
 {
+    /**
+     * @var UploadedFile[]
+     */
+    public $imageCover;
+    public $imageThumb;
+
     /**
      * @inheritdoc
      */
@@ -40,16 +48,31 @@ class Offer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['itemId', 'policyId', 'shippingId', 'pricePerUnit', 'description', 'imageHashes', 'keywords', 'condition'], 'required'],
+            [['itemId', 'policyId', 'pricePerUnit', 'description', 'itemCondition'], 'required'],
             [['pricePerUnit', 'discountPerUnit'], 'number'],
-            [['imageHashes', 'keywords'], 'string'],
             [['offerId', 'itemId', 'policyId', 'shippingId'], 'string', 'max' => 21],
             [['description'], 'string', 'max' => 255],
-            [['condition', 'status'], 'string', 'max' => 3],
+            [['itemCondition', 'status'], 'string', 'max' => 3],
             [['shippingId'], 'exist', 'skipOnError' => true, 'targetClass' => Shipping::className(), 'targetAttribute' => ['shippingId' => 'shippingId']],
             [['itemId'], 'exist', 'skipOnError' => true, 'targetClass' => Item::className(), 'targetAttribute' => ['itemId' => 'itemId']],
             [['sellerId'], 'exist', 'skipOnError' => true, 'targetClass' => Seller::className(), 'targetAttribute' => ['sellerId' => 'sellerId']],
             [['policyId'], 'exist', 'skipOnError' => true, 'targetClass' => Policy::className(), 'targetAttribute' => ['policyId' => 'policyId']],
+            [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
+            //[['imageHashes', 'keywords'], 'string'],
+            [['imageCover'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
+            [['imageThumb'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'createdAt',
+                'updatedAtAttribute' => 'updatedAt',
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 
@@ -62,14 +85,17 @@ class Offer extends \yii\db\ActiveRecord
             'offerId' => 'ID Oferta',
             'itemId' => 'ID Item',
             'sellerId' => 'ID Prestadora',
-            'policyId' => 'ID Termos',
+            'policyId' => 'Termos de Uso',
             'shippingId' => 'ID Entrega',
+            'pictureId' => 'PictureID',
             'pricePerUnit' => 'Preço por Unidade',
             'discountPerUnit' => 'Desconto por Unidade',
             'description' => 'Descrição',
-            'imageHashes' => 'Imagens',
+            //'imageHashes' => 'Imagens',
             'keywords' => 'Palavras Chave',
-            'condition' => 'Condição',
+            'itemCondition' => 'Condição',
+            'createdAt' => 'Data Criação',
+            'updatedAt' => 'Data Atualização',
             'status' => 'Status',
         ];
     }
@@ -104,5 +130,10 @@ class Offer extends \yii\db\ActiveRecord
     public function getPolicy()
     {
         return $this->hasOne(Policy::className(), ['policyId' => 'policyId']);
+    }
+
+    public function getPicture()
+    {
+        return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
     }
 }

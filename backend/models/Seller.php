@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%seller}}".
@@ -30,6 +32,12 @@ use Yii;
 class Seller extends \yii\db\ActiveRecord
 {
     /**
+     * @var UploadedFile[]
+     */
+    public $imageCover;
+    public $imageThumb;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -43,12 +51,28 @@ class Seller extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['about', 'name', 'email', 'paymentOptions'], 'required'],
-            [['sellerId', 'userId', 'facebookSocialId', 'twitterSocialId', 'instagramSocialId', 'snapchatSocialId', 'linkedinSocialId', 'githubSocialId'], 'string', 'max' => 21],
+            [['about', 'name', 'email'], 'required'],
+            [['sellerId', 'userId'], 'string', 'max' => 21],
             [['about'], 'string', 'max' => 420],
-            [['name', 'email', 'website', 'url_youtube'], 'string', 'max' => 60],
+            [['name', 'email', 'website'], 'string', 'max' => 60],
             [['hours', 'categories'], 'string', 'max' => 255],
+            [['status'], 'string', 'max' => 3],
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
+            [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
+            [['imageCover'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
+            [['imageThumb'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'createdAt',
+                'updatedAtAttribute' => 'updatedAt',
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 
@@ -60,20 +84,19 @@ class Seller extends \yii\db\ActiveRecord
         return [
             'sellerId' => 'ID Empresa',
             'userId' => 'UserID',
+            'pictureId' => 'PictureID',
             'about' => 'Sobre',
             'name' => 'Nome Fantasia',
-            'email' => 'Email',
+            'email' => 'Email Contato (pode ser o mesmo do cadastro)',
             'website' => 'Website',
-            'facebookSocialId' => 'Facebook Social ID',
-            'twitterSocialId' => 'Twitter Social ID',
-            'instagramSocialId' => 'Instagram Social ID',
-            'snapchatSocialId' => 'Snapchat Social ID',
-            'linkedinSocialId' => 'Linkedin Social ID',
-            'githubSocialId' => 'Github Social ID',
-            'url_youtube' => 'Url Youtube',
             'hours' => 'Horário de Funcionamento',
             'categories' => 'Categorias',
             'paymentOptions' => 'Opções de Pagamento',
+            'createdAt' => 'Data Criação',
+            'updatedAt' => 'Data Atualização',
+            'status' => 'Status',
+            'imageCover' => 'Capa',
+            'imageThumb' => 'Avatar',
         ];
     }
 
@@ -91,5 +114,13 @@ class Seller extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['userId' => 'userId']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPicture()
+    {
+        return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
     }
 }

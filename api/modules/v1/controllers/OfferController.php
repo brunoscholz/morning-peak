@@ -80,11 +80,12 @@ class OfferController extends \yii\rest\ActiveController
 
         $data = Offer::find()
             ->joinwith([
+                'reviews',
                 'policy',
                 'shipping',
                 'seller',
                 'item',
-                //'reviews'
+                'picture'
             ])
             ->offset($offset)
             ->orderBy($sort)
@@ -99,12 +100,12 @@ class OfferController extends \yii\rest\ActiveController
             $data->andFilterWhere(['like', 'itemId', $filter['itemId']]);
         if(isset($filter['sellerId']))
             $data->andFilterWhere(['like', 'sellerId', $filter['sellerId']]);
-        if(isset($filter['shippingId']))
+        /*if(isset($filter['shippingId']))
             $data->andFilterWhere(['like', 'shippingId', $filter['shippingId']]);
         if(isset($filter['condition']))
             $data->andFilterWhere(['like', 'condition', $filter['condition']]);
         if(isset($filter['status']))
-            $data->andFilterWhere(['like', 'status', $filter['status']]);
+            $data->andFilterWhere(['like', 'status', $filter['status']]);*/
 
         if(isset($filter['categoryId']))
             $data->andFilterWhere(['like binary', 'tbl_item.categoryId', $filter['categoryId']]);
@@ -117,20 +118,24 @@ class OfferController extends \yii\rest\ActiveController
 
         $models = array('status'=>1,'count'=>0);
 
+        // var_dump($data->all());
+        // die();
+
         // batch query with eager loading
         $modelsArray = array();
         foreach ($data->each() as $model)
         {
             $of = $model->attributes;
-            unset($of['itemId'], $of['sellerId'], $of['policyId'], $of['shippingId']);
+            unset($of['itemId'], $of['sellerId'], $of['policyId'], $of['shippingId'], $of['pictureId']);
             $seller = $model->seller->attributes;
             $policy = $model->policy->attributes;
             $shipping = $model->shipping->attributes;
             $cat = $model->item->category->attributes;
             $item = $model->item->attributes;
+            $pics = $model->picture->attributes;
             unset($item['categoryId']);
             $item['category'] = $cat;
-            
+
             $reviews = array();
             foreach($model->reviews as $rev)
             {
@@ -142,6 +147,7 @@ class OfferController extends \yii\rest\ActiveController
             $of['shipping'] = $shipping;
             $of['item'] = $item;
             $of['reviews'] = $reviews;
+            $of['picture'] = $pics;
 
             $modelsArray[] = $of;
         }
