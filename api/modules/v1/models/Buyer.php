@@ -3,7 +3,6 @@
 namespace api\modules\v1\models;
 
 use Yii;
-use \yii\db\ActiveRecord;
 use \backend\models\Picture;
 
 /**
@@ -12,7 +11,7 @@ use \backend\models\Picture;
  *
  * @author Bruno Scholz <brunoscholz@yahoo.de>
  */
-class Buyer extends ActiveRecord
+class Buyer extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -77,17 +76,11 @@ class Buyer extends ActiveRecord
         return $this->hasOne(User::className(), ['userId' => 'userId']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getPicture()
     {
         return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getLoyalties()
     {
         return $this->hasMany(Loyalty::className(), ['buyerId' => 'buyerId']);

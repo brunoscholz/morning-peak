@@ -48,7 +48,7 @@ class Offer extends \yii\db\ActiveRecord
         ];*/
     }
 
-    public function extraFields()
+    /*public function extraFields()
     {
         return [
             'item',
@@ -57,7 +57,7 @@ class Offer extends \yii\db\ActiveRecord
             'policy',
             'reviews'
         ];
-    }
+    }*/
 
     /**
      * @inheritdoc
@@ -101,8 +101,8 @@ class Offer extends \yii\db\ActiveRecord
 
     public function getItem()
     {
-        return $this->hasOne(Item::className(), ['itemId' => 'itemId'])
-            ->with('category');
+        return $this->hasOne(Item::className(), ['itemId' => 'itemId']);
+            //->with('category');
     }
 
     public function getPolicy()
@@ -117,20 +117,14 @@ class Offer extends \yii\db\ActiveRecord
 
     public function getSeller()
     {
-        return $this->hasOne(Seller::className(), ['sellerId' => 'sellerId'])
-            ->with(['user', 'picture', 'reviews']);
+        return $this->hasOne(Seller::className(), ['sellerId' => 'sellerId']);
+            //->with(['user', 'picture', 'reviews']);
     }
 
     public function getReviews()
     {
         return $this->hasMany(ReviewFact::className(), ['offerId' => 'offerId']);
     }
-
-    /*public function getReviews()
-    {
-        return $this->hasMany(Review::className(), ['reviewId' => 'reviewId'])
-            ->via('reviewFacts');
-    }*/
 
     /**
      * @return \yii\db\ActiveQuery

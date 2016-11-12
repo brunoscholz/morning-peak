@@ -6,24 +6,10 @@ use Yii;
 use \backend\models\Picture;
 
 /**
+ * Seller Model
  * This is the model class for table "{{%seller}}".
  *
- * @property string $sellerId
- * @property string $userId
- * @property string $about
- * @property string $name
- * @property string $email
- * @property string $website
- * @property string $facebookSocialId
- * @property string $twitterSocialId
- * @property string $instagramSocialId
- * @property string $snapchatSocialId
- * @property string $linkedinSocialId
- * @property string $githubSocialId
- * @property string $url_youtube
- * @property string $hours
- * @property string $categories
- * @property string $paymentOptions
+ * @author Bruno Scholz <brunoscholz@yahoo.de>
  */
 class Seller extends \yii\db\ActiveRecord
 {
@@ -33,6 +19,14 @@ class Seller extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return '{{%seller}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function primaryKey()
+    {
+        return ['sellerId'];
     }
 
     /**
@@ -83,14 +77,14 @@ class Seller extends \yii\db\ActiveRecord
         return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
     }
 
-    public function getReviewFacts()
+    /*public function getReviewFacts()
     {
         return $this->hasMany(ReviewFact::className(), ['sellerId' => 'sellerId']);
-    }
+    }*/
 
     public function getReviews()
     {
-        return $this->hasMany(Review::className(), ['reviewId' => 'reviewId'])
-            ->via('reviewFacts');
+        return $this->hasMany(ReviewFact::className(), ['sellerId' => 'sellerId']);
+            //->via('reviewFacts');
     }
 }

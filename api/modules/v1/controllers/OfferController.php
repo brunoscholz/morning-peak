@@ -27,9 +27,8 @@ class OfferController extends \yii\rest\ActiveController
         $data = RestUtils::getQuery($_REQUEST, Offer::find());
 
         $models = array('status'=>1,'count'=>0);
-
         $modelsArray = array();
-        // batch query with eager loading
+
         foreach ($data->each() as $model)
         {
             $of = $model->attributes;

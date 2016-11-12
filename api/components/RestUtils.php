@@ -28,22 +28,28 @@ class RestUtils
                 $attr = $data->$key->attributes;
                 foreach ($value as $k => $v) {
                     unset($attr[$k]);
-                    $attr[$v] = RestUtils::getAttributes($data->$key->$v);
+                    $attr[$v] = RestUtils::getAttributes($data->$key->$v, $v);
                 }
                 $temp[$key] = $attr;
             }
             else {
-                $temp[$value] = RestUtils::getAttributes($data->$value);
+                $temp[$value] = RestUtils::getAttributes($data->$value, $value);
             }
         }
         return $temp;
     }
 
-    public static function getAttributes($values) {
-    	if(is_array($values))
-	        return $values;
-	    else
-	        return $values->attributes;
+    // $name was added here for security reasons...
+    public static function getAttributes($values, $name) {
+		if(!is_array($values)) {
+			$values = $values->attributes;
+		}
+
+    	if($name === "user") {
+			unset($values['password'], $values['passwordStrategy'], $values['resetToken'], $values['salt'], $values['activation_key'], $values['validation_key'], $values['requiresNewPassword'], $values['publicKey']);
+    	}
+
+        return $values;
     }
 
     /**

@@ -89,7 +89,7 @@ return [
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => 'v1/user',
+                    'controller' => 'v1/auth',
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
