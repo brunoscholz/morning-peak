@@ -1,6 +1,6 @@
 <?php
 
-namespace api\modules\v1\models;
+namespace backend\models;
 
 use Yii;
 
@@ -28,7 +28,8 @@ class Review extends \yii\db\ActiveRecord
     {
         return [
             [['reviewId', 'title', 'body'], 'required'],
-            [['reviewId', 'body'], 'string'],
+            [['body'], 'string'],
+            [['reviewId'], 'string', 'max' => 21],
             [['title'], 'string', 'max' => 40],
         ];
     }

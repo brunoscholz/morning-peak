@@ -24,7 +24,7 @@ class BuyerController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        $data = RestUtils::getQuery($_REQUEST, Buyer::find());
+        $data = RestUtils::getQuery(\Yii::$app->request->get(), Buyer::find());
 
         $models = array('status'=>1,'count'=>0);
         $modelsArray = array();
@@ -39,11 +39,10 @@ class BuyerController extends \yii\rest\ActiveController
 
         foreach ($data->each() as $model)
         {
-            $of = $model->attributes;
-            unset($of['userId'], $of['pictureId']);
-
-            $of = array_merge($of, RestUtils::loadQueryIntoVar($model, $this->getResponseScope()));
-            $modelsArray[] = $of;
+            $temp = RestUtils::loadQueryIntoVar($model);
+            $revs = RestUtils::loadQueryIntoVar($model->reviews);
+            $temp['reviews'] = $revs;
+            $modelsArray[] = $temp;
         }
 
         $models['data'] = $modelsArray;
@@ -62,14 +61,6 @@ class BuyerController extends \yii\rest\ActiveController
                     'application/json' => \yii\web\Response::FORMAT_JSON,
                 ],
             ],
-        ];
-    }
-
-    function getResponseScope() {
-        return [
-            'user',
-            'picture',
-            'loyalties'
         ];
     }
 }

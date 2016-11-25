@@ -5,6 +5,7 @@ namespace api\modules\v1\controllers;
 use yii\db\Query;
 use api\modules\v1\models\Offer;
 use api\components\RestUtils;
+use yii\helpers\ArrayHelper;
 
 /**
  * Offer Controller API
@@ -24,18 +25,46 @@ class OfferController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        $data = RestUtils::getQuery($_REQUEST, Offer::find());
+        $data = RestUtils::getQuery(\Yii::$app->request->get(), Offer::find());
+
+        $data->joinWith([
+            'item'
+        ]);
+
+        $data->select([
+            'tbl_offer.*',
+            'tbl_item.itemId as it_itemId',
+            'tbl_item.sku',
+            'tbl_item.categoryId',
+            'tbl_item.description as it_description',
+            'tbl_item.title as it_title',
+            'tbl_item.keywords as it_keywords',
+            'tbl_item.photoSrc as it_photoSrc',
+            'tbl_item.status as it_status',
+        ]);
+
+        //print_r($data->createCommand()->getRawSql());
 
         $models = array('status'=>1,'count'=>0);
         $modelsArray = array();
 
         foreach ($data->each() as $model)
         {
+            //var_dump($model);
+            //var_dump($model->reviews);
+            //var_dump(ArrayHelper::toArray($model, $this->getResponseScope(), true));
+            $temp = RestUtils::loadQueryIntoVar($model);
+            $revs = RestUtils::loadQueryIntoVar($model->reviews);
+            $temp['reviews'] = $revs;
+            /*var_dump($temp);
+
+            die();
+
             $of = $model->attributes;
             unset($of['itemId'], $of['sellerId'], $of['policyId'], $of['shippingId'], $of['pictureId']);
 
-            $of = array_merge($of, RestUtils::loadQueryIntoVar($model, $this->getResponseScope()));
-            $modelsArray[] = $of;
+            $of = array_merge($of, RestUtils::loadQueryIntoVar($model, $this->getResponseScope()));*/
+            $modelsArray[] = $temp;
         }
 
         $models['data'] = $modelsArray;
@@ -54,23 +83,6 @@ class OfferController extends \yii\rest\ActiveController
                     'application/json' => \yii\web\Response::FORMAT_JSON,
                 ],
             ],
-        ];
-    }
-
-    function getResponseScope() {
-        return [
-            'seller' => [
-                'userId' => 'user',
-                'pictureId' => 'picture',
-                'reviews',
-            ],
-            'policy',
-            'shipping',
-            'item' => [
-                'categoryId' => 'category'
-            ],
-            'picture',
-            'reviews'
         ];
     }
 }

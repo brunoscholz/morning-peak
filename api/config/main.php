@@ -51,6 +51,7 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/loyalty',
+                    'pluralize' => false
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
@@ -74,6 +75,11 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/action-relationship',
+                    'extraPatterns' => [
+                        'POST create-review' => 'create-review',
+                        'POST create-comment' => 'create-comment',
+                        'POST create-follow' => 'create-follow',
+                    ]
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
@@ -90,10 +96,22 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/auth',
+                    'pluralize' => false,
+                    'only' => ['signup', 'signin', 'logout', 'forgot-password','settings'],
+                    'extraPatterns' => [
+                        'POST signin' => 'signin',
+                        'POST signup' => 'signup',
+                        'GET logout/<id:\w+>' => 'logout',
+                        'POST forgot-password' => 'forgot-password',
+                        'GET,POST settings/<id:\w+>' => 'settings',
+                        //'DELETE logout/<id:\d+>' => 'logout',
+                        'PUT,PATCH change-password/<id:\d+>' => 'change-password'
+                    ],
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/search',
+                    'pluralize' => false
                 ]
             ],
         ],

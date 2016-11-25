@@ -24,20 +24,10 @@ class CategoryController extends \yii\rest\ActiveController
         $models = array('status'=>1,'count'=>0);
         $modelsArray = array();
 
-        /*if(isset($filter['parentId']))
-            $query->andFilterWhere(['like', 'parentId', $filter['parentId']]);
-        if(isset($filter['categoryId']))
-            $query->andFilterWhere(['like', 'categoryId', $filter['categoryId']]);
-        if(isset($filter['name']))
-            $query->andFilterWhere(['like', 'name', $filter['name']]);*/
-
         foreach ($data->each() as $model)
         {
-            $of = $model->attributes;
-            unset($of['userId'], $of['pictureId']);
-
-            $of = array_merge($of, RestUtils::loadQueryIntoVar($model, $this->getResponseScope()));
-            $modelsArray[] = $of;
+            $temp = RestUtils::loadQueryIntoVar($model);
+            $modelsArray[] = $temp;
         }
 
         $models['data'] = $modelsArray;
@@ -56,12 +46,6 @@ class CategoryController extends \yii\rest\ActiveController
                     'application/json' => \yii\web\Response::FORMAT_JSON,
                 ],
             ],
-        ];
-    }
-
-    function getResponseScope() {
-        return [
-            
         ];
     }
 }

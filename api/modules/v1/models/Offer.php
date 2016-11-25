@@ -13,6 +13,8 @@ use \backend\models\Picture;
  */
 class Offer extends \yii\db\ActiveRecord
 {
+    const STATUS_ACTIVE = "ATV";
+
     /**
      * @inheritdoc
      */
@@ -48,16 +50,15 @@ class Offer extends \yii\db\ActiveRecord
         ];*/
     }
 
-    /*public function extraFields()
+    public function extraFields()
     {
         return [
             'item',
             'seller',
             'shipping',
             'policy',
-            'reviews'
         ];
-    }*/
+    }
 
     /**
      * @inheritdoc

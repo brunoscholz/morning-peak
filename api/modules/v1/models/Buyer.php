@@ -85,4 +85,9 @@ class Buyer extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Loyalty::className(), ['buyerId' => 'buyerId']);
     }
+
+    public function getReviews()
+    {
+        return $this->hasMany(ReviewFact::className(), ['buyerId' => 'buyerId']);
+    }
 }

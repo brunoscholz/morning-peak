@@ -33,11 +33,10 @@ class SellerController extends \yii\rest\ActiveController
 
         foreach ($data->each() as $model)
         {
-            $of = $model->attributes;
-            unset($of['userId'], $of['pictureId']);
-
-            $of = array_merge($of, RestUtils::loadQueryIntoVar($model, $this->getResponseScope()));
-            $modelsArray[] = $of;
+            $temp = RestUtils::loadQueryIntoVar($model);
+            $revs = RestUtils::loadQueryIntoVar($model->reviews);
+            $temp['reviews'] = $revs;
+            $modelsArray[] = $temp;
         }
 
         $models['data'] = $modelsArray;

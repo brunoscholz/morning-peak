@@ -21,36 +21,75 @@ class RestUtils
      * set of functions to get attributes from objects and return an array
      * to be converted into a JSON response
      */
-	public static function loadQueryIntoVar($data, $scope) {
+
+    // adds data attributes and relations to an array
+    // the relations are based on the scope sttructure
+    public static function loadQueryIntoVar($data) {
+        if (is_array($data))
+            $arrayMode = TRUE;
+        else {
+            $data = array($data);
+            $arrayMode = FALSE;
+        }
+
+        $result = array();
+        foreach ($data as $model) {
+            if($model === null)
+                continue;
+            $attributes = $model->getAttributes($model->fields());
+            $relations = array();
+            foreach (RestUtils::getRelations($model) as $key => $related) {
+                $relations[$related] = RestUtils::loadQueryIntoVar($model->$related);    
+            }
+            $all = array_merge($attributes, $relations);
+
+            if ($arrayMode)
+                array_push($result, $all);
+            else
+                $result = $all;
+        }
+        return $result;
+    }
+
+    public static function getRelations($class)
+    {
+      if (is_subclass_of($class, 'yii\db\ActiveRecord')) {
+
+        $tableSchema = $class::getTableSchema();
+
+        $foreignKeys = $tableSchema->foreignKeys;
+        $relations = array();
+
+        foreach ($foreignKeys as $key => $value) {
+            $splitedNames = explode('_', $value[0]);
+
+          foreach ($splitedNames as $name) {
+            //echo $key . ": " . $name . "\n";
+              $relations[$key] = $name; //ucfirst($name);
+          }
+        }
+
+        return $relations;
+      }
+    }
+
+    /*public static function loadQueryIntoVar_OLD_AND_NOT_RECURSIVE($data, $scope) {
         $temp = array();
         foreach ($scope as $key => $value) {
             if(is_array($value)) {
                 $attr = $data->$key->attributes;
                 foreach ($value as $k => $v) {
                     unset($attr[$k]);
-                    $attr[$v] = RestUtils::getAttributes($data->$key->$v, $v);
+                    $attr[$v] = RestUtils::getAttributes2($data->$key->$v, $v);
                 }
                 $temp[$key] = $attr;
             }
             else {
-                $temp[$value] = RestUtils::getAttributes($data->$value, $value);
+                $temp[$value] = RestUtils::getAttributes2($data->$value, $value);
             }
         }
         return $temp;
-    }
-
-    // $name was added here for security reasons...
-    public static function getAttributes($values, $name) {
-		if(!is_array($values)) {
-			$values = $values->attributes;
-		}
-
-    	if($name === "user") {
-			unset($values['password'], $values['passwordStrategy'], $values['resetToken'], $values['salt'], $values['activation_key'], $values['validation_key'], $values['requiresNewPassword'], $values['publicKey']);
-    	}
-
-        return $values;
-    }
+    }*/
 
     /**
      * Treats the request and returns a query ready to execute
@@ -105,7 +144,7 @@ class RestUtils
         // q: Filter elements
         if(isset($params['q']))
         {
-            $filter = (array)json_decode($params['q']);
+            $filter = (array)json_decode($params['q'], true);
         }
 
         $query->offset($offset)
@@ -128,8 +167,22 @@ class RestUtils
         	if(strpos($field, "."))
         		$field = "tbl_" . $field;
 
-        	$query->andFilterWhere([$info['test'], $field, $info['value']]);
+        	if (isset($info['test']))
+        		$query->andFilterWhere([$info['test'], $field, $info['value']]);
+        	else
+        		$query->andFilterWhere(['like', $field, $info]);
         }
+
+        return $query;
+    }
+
+    public static function getSearch($term, $fields, $query)
+    {
+        foreach ($fields as $field)
+            if(strpos($field, "."))
+                $field = "tbl_" . $field;
+
+            $query->andFilterWhere(['like', $field, $term]);
 
         return $query;
     }
@@ -147,24 +200,82 @@ class RestUtils
         header('Content-type: ' . $content_type);
         header('X-Powered-By: ' . "OndeTem <ondetem.com.br>");
         header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: GET, POST');
+        header('Access-Control-Allow-Methods: GET,PUT,POST,OPTIONS');
         header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+        header('Access-Control-Max-Age: 86400');
     }
 
-    /**
-     * apparentely not needed in controller behavior
-     */
-    	/*'corsFilter' =>
-            [
-                'class' => \yii\filters\Cors::className(),
-                'cors' => [
-                    'Origin' => ['*'],
-                    'Access-Control-Request-Method' => [],
-                    'Access-Control-Request-Headers' => [],
-                    'Access-Control-Allow-Credentials' => null,
-                    'Access-Control-Max-Age' => 0,
-                    'Access-Control-Expose-Headers' => [],
-                ]
-            ],*/
+    public static function sendResult($code, $models)
+    {
+        RestUtils::setHeader($code);
+        return json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    }
+
+    public static function generateId()
+    {
+        //md5(uniqid($name, true));
+        return RestUtils::getToken(21);
+    }
+
+    public static function generateSalt()
+    {
+        return RestUtils::getToken(64);
+    }
+
+    /*public function validatePassword($password)
+    {
+        $hashedPass = RestUtils::hashPassword($password, $this->salt);
+        return $hashedPass === $this->password;
+    }
+
+    public static function hashPassword($password, $salt)
+    {
+        return md5($salt . $password);
+    }
+
+    public static function generateActivationKey()
+    {
+        return RestUtils::getToken(8);
+    }
+
+    public static function generateValidationKey($key, $email, $id)
+    {
+        return  md5($key . $email . $id);
+    }
+
+    public function verifyKeys($activationKey)
+    {
+        return $this->validation_key === md5($activationKey . $this->email . $this->userId);
+    }*/
+
+    static function crypto_rand_secure($min, $max)
+    {
+        $range = $max - $min;
+        if ($range < 1) return $min; // not so random...
+        $log = ceil(log($range, 2));
+        $bytes = (int) ($log / 8) + 1; // length in bytes
+        $bits = (int) $log + 1; // length in bits
+        $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+        do {
+            $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
+            $rnd = $rnd & $filter; // discard irrelevant bits
+        } while ($rnd >= $range);
+        return $min + $rnd;
+    }
+
+    public static function getToken($length)
+    {
+        $token = "";
+        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+        $codeAlphabet.= "0123456789";
+        $max = strlen($codeAlphabet);
+
+        for ($i=0; $i < $length; $i++) {
+            $token .= $codeAlphabet[RestUtils::crypto_rand_secure(0, $max)];
+        }
+
+        return $token;
+    }
 }
 

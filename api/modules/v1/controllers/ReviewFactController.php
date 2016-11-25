@@ -4,6 +4,9 @@ namespace api\modules\v1\controllers;
 
 use yii\db\Query;
 use api\modules\v1\models\ReviewFact;
+use api\modules\v1\models\Review;
+use api\components\RestUtils;
+use yii\filters\VerbFilter;
 
 class ReviewFactController extends \yii\rest\ActiveController
 {
@@ -12,133 +15,90 @@ class ReviewFactController extends \yii\rest\ActiveController
     public function actions()
     {
         $actions = parent::actions();
-        unset($actions['delete']);
-        // will override return data on the index action
-        unset($actions['index'], $actions['create']);
+        unset($actions['index'], $actions['create'], $actions['delete']);
         return $actions;
+    }
+
+    public function beforeAction($action)
+    {
+        if (in_array($action->id, ['create'])) {
+            $this->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
     }
 
     public function actionIndex()
     {
-        $params=$_REQUEST;
-        $filter=array();
-        $sort="";
-        $page=1;
-        $limit=0;
-        $select = "*";
-        $ftFilters = array();
-
-        if(isset($params['l']))
-        {
-            $limit = $params['l'];
-            if(isset($params['fo']))
-                $limit = 1;
-        }
-
-        $offset=$limit*($page-1);
-
-        // f: field set for select
-        if(isset($params['f']))
-            $select = $params['f'];
-
-        // s: sortOrder
-        if(isset($params['s']))
-        {
-            $so = (array)json_decode($params['s']);
-            $sort = $so['field'];
-
-            if(isset($so['order']))
-            {
-                if($so['order'] == "false" || $so['order'] == "desc")
-                    $sort.=" desc";
-                else
-                    $sort.=" asc";
-            }
-        }
-
-        // ft: from-to's
-        if(isset($params['ft']))
-        {
-            $ft = (array)json_decode($params['ft']);
-            foreach ($ft as $v)
-            {
-                $ftFilters[$v['field']] = array('from' => $v['low'], 'to' => $v['high']);
-            }
-        }
-
-        // q: Filter elements
-        if(isset($params['q']))
-        {
-            $filter = (array)json_decode($params['q']);
-        }
-
-        $data = ReviewFact::find()
-            ->joinwith([
-                'review',
-                'comments'
-                ])
-            ->offset($offset)
-            ->orderBy($sort)
-            ->select($select);
-
-        if($limit > 0)
-            $data->limit($limit);
+        $data = RestUtils::getQuery(\Yii::$app->request->get(), ReviewFact::find());
 
         $models = array('status'=>1,'count'=>0);
-
-        // batch query with eager loading
         $modelsArray = array();
-        foreach ($data->each() as $model) {
-            $of = $model->attributes;
-            unset($of['sellerId'], $of['reviewId']);
-            $review = $model->review->attributes;
-            $comments = array();
 
-            foreach($model->comments as $com)
-            {
-                $tmp = $com->attributes;
-                $comments[] = $tmp;
-            }
-
-            $of['review'] = $review;
-            $of['comments'] = $comments;
-
-            $modelsArray[] = $of;
+        foreach ($data->each() as $model)
+        {
+            $temp = RestUtils::loadQueryIntoVar($model);
+            unset($temp['reviewId']);
+            // $revs = RestUtils::loadQueryIntoVar($model->reviews);
+            // $temp['reviews'] = $revs;
+            $modelsArray[] = $temp;
         }
 
         $models['data'] = $modelsArray;
         $models['count'] = count($modelsArray);
 
-        $this->setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        RestUtils::setHeader(200);
+        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 
-    private function setHeader($status)
-    {
-        $status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);
-        $content_type="application/json; charset=utf-8";
+    public function actionCreate() {
+        //print_r(\Yii::$app->request->post());
 
-        header($status_header);
-        header('Content-type: ' . $content_type);
-        header('X-Powered-By: ' . "OndeTem <ondetem.com.br>");
-        header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: GET, POST');
-        header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-    }
-    
-    private function _getStatusCodeMessage($status)
-    {
-        $codes = Array(
-        200 => 'OK',
-        400 => 'Bad Request',
-        401 => 'Unauthorized',
-        402 => 'Payment Required',
-        403 => 'Forbidden',
-        404 => 'Not Found',
-        500 => 'Internal Server Error',
-        501 => 'Not Implemented',
-        );
-        return (isset($codes[$status])) ? $codes[$status] : '';
+        $params = \Yii::$app->request->post();
+
+        $model = new ReviewFact();
+
+        $model->reviewFactId = RestUtils::generateId();
+        $model->actionId = 1;
+        $model->buyerId = "n6cXcvhdOKc8oog48uBDb";
+        $model->sellerId = $params['sellerId'];
+        $model->offerId = $params['offerId'];
+        $model->grades = "grades";
+        $model->rating = $params['rating'];
+
+        $rev = new Review();
+        $rev->reviewId = RestUtils::generateId();
+        $rev->title = $params['review']['title'];
+        $rev->body = $params['review']['body'];
+
+        $models = array('status'=>1,'count'=>0);
+
+        if(!$rev->validate()) {
+            $models['data']['review'] = $rev->getErrors();
+            $models['status'] = 5;
+            RestUtils::setHeader(500);
+            echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+            die();
+        }
+        
+        if($rev->save())
+            $models['data']['review'] = 'saved';
+
+        $model->reviewId = $rev->reviewId;
+        if(!$model->validate()) {
+            $models['data']['reviewFact'] = $model->getErrors();
+            $models['status'] = 6;
+            RestUtils::setHeader(500);
+            echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+            die();
+        }
+
+        if($model->save()) {
+            $models['data']['reviewFact'] = 'saved';
+            $models['status'] = 1;
+            RestUtils::setHeader(200);
+        }
+
+        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 
     public function behaviors() {
@@ -150,18 +110,33 @@ class ReviewFactController extends \yii\rest\ActiveController
                     'application/json' => \yii\web\Response::FORMAT_JSON,
                 ],
             ],
-            'corsFilter' =>
-            [
-                'class' => \yii\filters\Cors::className(),
-                'cors' => [
-                    'Origin' => ['*'],
-                    'Access-Control-Request-Method' => [],
-                    'Access-Control-Request-Headers' => [],
-                    'Access-Control-Allow-Credentials' => null,
-                    'Access-Control-Max-Age' => 0,
-                    'Access-Control-Expose-Headers' => [],
-                ]
-            ],
         ];
     }
+
+    protected function verbs() {
+        return [
+            'index' => ['GET', 'HEAD'],
+            'view' => ['GET', 'HEAD'],
+            'create' => ['POST'],
+            'update' => ['PUT', 'PATCH'],
+            'delete' => ['DELETE'],
+        ];
+    }
+
+//curl -i -H "Accept:application/json" -H "Content-Type:application/json"  -XPOST "http://localhost:8100/v1/review-facts" -d '{"action":"addReview","offerId":"TDh7O1NJPqfCgoECYnEau","buyerId":"logged","sellerId":"vW8wrgSIKukU78XxxhgGs","review":{"title":"titulo","body":"conteudo do corpo"},"rating":3408}'
+
+/*
+http://api.ondetem.tk/v1/review-facts
+{
+  "action":"addReview",
+  "offerId":"TDh7O1NJPqfCgoECYnEau",
+  "buyerId":"logged",
+  "sellerId":"vW8wrgSIKukU78XxxhgGs",
+  "review": {
+    "title":"Nada demais",
+    "body":"Vou ficar parecendo o rothbard!!!"
+  },
+  "rating":3408
+}
+*/
 }
