@@ -97,10 +97,11 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/auth',
                     'pluralize' => false,
-                    'only' => ['signup', 'signin', 'logout', 'forgot-password','settings'],
+                    'only' => ['signup', 'signin', 'logout', 'forgot-password','settings', 'seller-register'],
                     'extraPatterns' => [
                         'POST signin' => 'signin',
                         'POST signup' => 'signup',
+                        'POST seller-register' => 'seller-register',
                         'GET logout/<id:\w+>' => 'logout',
                         'POST forgot-password' => 'forgot-password',
                         'GET,POST settings/<id:\w+>' => 'settings',

@@ -35,7 +35,7 @@ class Buyer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['buyerId', 'userId', 'about', 'dob', 'name', 'gender', 'email', 'title', 'website'], 'required'],
+            [['buyerId', 'userId', 'name', 'email'], 'required'],
             [['buyerId', 'userId', 'dob'], 'string', 'max' => 21],
             [['about'], 'string', 'max' => 420],
             [['name'], 'string', 'max' => 80],
@@ -62,10 +62,25 @@ class Buyer extends \yii\db\ActiveRecord
             'gender' => 'Gender',
             'email' => 'Email',
             'title' => 'Title',
+            'phone' => 'Phone',
             'website' => 'Website',
             'coinsBalance' => 'Coins Balance',
             'status' => 'Status',
         ];
+    }
+
+    public static function findById($id)
+    {
+        return static::find()
+            ->where(['like binary', 'buyerId', $id])
+            ->one();
+    }
+
+    public static function findByUserId($id)
+    {
+        return static::find()
+            ->where(['like binary', 'userId', $id])
+            ->one();
     }
 
     /**

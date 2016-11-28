@@ -222,6 +222,21 @@ class RestUtils
         return RestUtils::getToken(64);
     }
 
+    public static function hashPassword($password, $salt)
+    {
+        return md5($salt . $password);
+    }
+
+    public static function generateActivationKey()
+    {
+        return RestUtils::getToken(8);
+    }
+
+    public static function generateValidationKey($key, $email, $id)
+    {
+        return  md5($key . $email . $id);
+    }
+
     /*public function validatePassword($password)
     {
         $hashedPass = RestUtils::hashPassword($password, $this->salt);

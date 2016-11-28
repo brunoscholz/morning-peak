@@ -11,7 +11,7 @@ use Yii;
  * @property string $name
  * @property string $description
  * @property string $fund
- * @property integer $expirationPeriod
+ * @property integer $expires
  */
 class AssetToken extends \yii\db\ActiveRecord
 {
@@ -29,11 +29,11 @@ class AssetToken extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tokenId', 'name', 'description', 'expirationPeriod'], 'required'],
-            [['description'], 'string'],
-            [['fund', 'expirationPeriod'], 'integer'],
+            [['tokenId', 'name', 'description', 'expires'], 'required'],
+            [['description'], 'string', 'max' => 40 ],
+            [['fund', 'expires'], 'integer'],
             [['tokenId'], 'string', 'max' => 21],
-            [['name'], 'string', 'max' => 16],
+            [['name'], 'string', 'max' => 4],
         ];
     }
 
@@ -47,7 +47,14 @@ class AssetToken extends \yii\db\ActiveRecord
             'name' => 'Name',
             'description' => 'Description',
             'fund' => 'Fund',
-            'expirationPeriod' => 'Expiration Period',
+            'expires' => 'Expiration Period',
         ];
+    }
+
+    public static function findByCode($id)
+    {
+        return static::find()
+            ->where(['like binary', 'name', $id])
+            ->one();
     }
 }

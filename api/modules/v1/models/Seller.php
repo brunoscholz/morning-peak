@@ -13,6 +13,11 @@ use \backend\models\Picture;
  */
 class Seller extends \yii\db\ActiveRecord
 {
+    const STATUS_ACTIVE = 'ACT';
+    const STATUS_NOT_VERIFIED = 'PEN';
+    const STATUS_WAITING_PAY = 'PAY';
+    const STATUS_BANNED = 'BAN';
+
     /**
      * @inheritdoc
      */
@@ -35,7 +40,7 @@ class Seller extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sellerId', 'userId', 'about', 'name', 'email', 'website', 'facebookSocialId', 'twitterSocialId', 'instagramSocialId', 'snapchatSocialId', 'linkedinSocialId', 'githubSocialId', 'url_youtube', 'hours', 'categories', 'paymentOptions'], 'required'],
+            [['sellerId', 'userId', 'name', 'email', 'phone'], 'required'],
             [['sellerId', 'userId', 'facebookSocialId', 'twitterSocialId', 'instagramSocialId', 'snapchatSocialId', 'linkedinSocialId', 'githubSocialId'], 'string', 'max' => 21],
             [['about'], 'string', 'max' => 420],
             [['name', 'email', 'website', 'url_youtube'], 'string', 'max' => 60],

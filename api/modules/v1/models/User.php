@@ -41,9 +41,13 @@ use yii\web\IdentityInterface;
  
 class User extends \yii\db\ActiveRecord
 {
-    const ROLE_USER = 10;
-    const ROLE_MODERATOR = 20;
-    const ROLE_ADMIN = 30;
+    const ROLE_USER = 'regular';
+    const ROLE_SALES = 'salesman';
+    const ROLE_ADMIN = 'administrator';
+
+    const STATUS_ACTIVE = 'ACT';
+    const STATUS_NOT_VERIFIED = 'PEN';
+    const STATUS_BANNED = 'BAN';
 
     /**
      * @inheritdoc
@@ -68,7 +72,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'email', 'about', 'password', 'vendor', 'visibility'], 'required'],
+            [['username', 'email', 'password', 'vendor'], 'required'],
             [['role'], 'string'],
             [['vendor'], 'integer'],
             [['lastLogin', 'createdAt', 'updatedAt'], 'safe'],
@@ -142,5 +146,10 @@ class User extends \yii\db\ActiveRecord
     public static function hashPassword($password, $salt)
     {
         return md5($salt . $password);
+    }
+
+    public function verifyKeys($activationKey)
+    {
+        return $this->validation_key === md5($activationKey . $this->email . $this->userId);
     }
 }

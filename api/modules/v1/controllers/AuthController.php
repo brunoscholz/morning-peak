@@ -2,10 +2,14 @@
 
 namespace api\modules\v1\controllers;
 
+use yii\swiftmailer\Mailer;
 use yii\db\Query;
 use api\modules\v1\models\Buyer;
+use api\modules\v1\models\Seller;
 use api\modules\v1\models\User;
 use api\modules\v1\models\AuthToken;
+use api\modules\v1\models\AssetToken;
+use api\modules\v1\models\Transaction;
 use api\components\RestUtils;
 
 class AuthController extends \yii\rest\ActiveController
@@ -110,21 +114,175 @@ class AuthController extends \yii\rest\ActiveController
     public function actionSignup()
     {
     	$params = \Yii::$app->request->post();
+    	$models = array('status'=>500);
 
-        $models = array('status'=>1,'email'=>'');
-        $models['data'] = 'Done! Check your email';
-        RestUtils::setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    	// facebook, twitter, g+
+
+    	$user = new User();
+    	$user->userId = RestUtils::generateId();
+    	$user->email = $params['username'];
+    	$salt = RestUtils::generateSalt();
+    	$user->salt = $salt;
+    	$user->password = User::hashPassword($params['password'], $salt);
+    	$user->status = User::STATUS_ACTIVE;
+
+    	$user->role = User::ROLE_USER;
+    	$user->vendor = 0;
+    	$user->visibility = "NOR";
+
+    	$buyer = new Buyer();
+    	$buyer->buyerId = RestUtils::generateId();
+    	$buyer->userId = $user->userId;
+    	$buyer->name = $params['name'];
+    	$buyer->email = $user->email;
+    	$buyer->status = "INC";
+
+
+        //$models['data'] = 'Done! Check your email';
+        $models['data'] = [$user, $buyer];
+        var_dump($models);
+        die();
+
+        //echo RestUtils::sendResult($models['status'], $models);
+    }
+
+    public function actionSocialConnect()
+    {
+    	$params = \Yii::$app->request->post();
+    	$models = array('status'=>500);
+
+    	if(isset($params['facebook'])){}
+    }
+
+    public function actionSellerRegister()
+    {
+ 	   	$params = \Yii::$app->request->post();
+    	$models = array('status'=>500);
+
+    	$user = new User();
+    	$user->userId = RestUtils::generateId();
+    	$user->email = $params['email'];
+    	$user->role = User::ROLE_USER;
+    	$user->vendor = 1;
+    	$user->visibility = "NOR";
+    	$user->activation_key = RestUtils::generateActivationKey();
+        $user->validation_key = RestUtils::generateValidationKey($user->activation_key, $user->email, $user->userId);
+    	$user->status = User::STATUS_NOT_VERIFIED;
+
+    	$buyer = new Buyer();
+    	$buyer->buyerId = RestUtils::generateId();
+    	$buyer->userId = $user->userId;
+    	$buyer->name = $params['name'];
+    	$buyer->email = $user->email;
+    	$buyer->status = "INC";
+
+    	// register the new seller
+    	$seller = new Seller();
+    	$seller->sellerId = RestUtils::generateId();
+    	$seller->userId = $user->userId;
+    	$seller->name = $params['name'];
+    	$seller->email = $user->email;
+    	//$seller->phone = $params{'phone'};
+    	//$seller->website = $params['website'];
+    	$seller->hours = $params['hours'];
+    	$seller->createdAt = date('Y-m-d\TH:i:s');
+    	$seller->status = Seller::STATUS_NOT_VERIFIED;
+
+    	// picture
+
+    	$salesman = Buyer::findByUserId($params['salesman']);
+
+    	// credit salesman user with sales token
+    	$tx = new Transaction();
+    	$tx->transactionId = RestUtils::generateId();
+    	$tx->senderId = 'zZN6prD6rzxEhg8sDQz1j'; // robot for token creation
+    	$tx->recipientId = $salesman->userId;
+    	$tx->type = 0;
+    	$tx->amount = 1;
+    	$tx->fee = 0;
+    	$tx->timestamp = date('Y-m-d\TH:i:s');
+    	$tx->senderPublicKey = 'aaa';
+    	$tx->signature = 'aaa';
+    	$tx->tokenId = AssetToken::findByCode('COIN')->tokenId;
+    	$tx->save();
+
+    	var_dump($tx);
+    	die();
+
+    	$data = array();
+    	$data['key'] = $user->activation_key;
+    	$data['seller'] = $seller;
+    	$data['salesman'] = $salesman;
+    	$data['disclaimer'] = 'Em caso de dúvidas, envie um email para vendas@ondetem-gn.com.br';
+
+    	// send email to seller with confirmation token and link to backend\create
+    	$mail = \Yii::$app->mailer->compose('sellerActivationKey-html', [
+    		'data' => $data
+		])
+		    ->setFrom('vendas@ondetem.tk')
+		    ->setTo($user->email)
+		    ->setSubject('OndeTem?! Ativação de Cadastro');
+
+		/*try { $mail->send(); }
+        catch(\Swift_SwiftException $exception) {
+        	$models['error'] = 'Can sent mail due to the following exception '. $exception;
+        }
+        finally {
+        	$models['status'] = 200;
+        	$models['data'] = 'Empresa cadastrada com sucesso';
+        }*/
+
+        $models['user'] = $user;
+    	$models['buyer'] = $buyer;
+    	$models['seller'] = $seller;
+    	$models['tx'] = $tx;
+
+		echo RestUtils::sendResult($models['status'], $models);	
     }
 
     public function actionLogout($id)
-    {
-    	$params = \Yii::$app->request->get();
+    {}
 
-        $models = array('status'=>1,'count'=>0);
-        $models['data'] = 'Logged out ' . date('Y-m-d h:i:s');
-        RestUtils::setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    public function actionMailTest()
+    {
+    	// $this->redirect(<contoroller>/<action>)
+    	$params = \Yii::$app->request->get();
+    	$models = array('status'=>500);
+
+    	/*Yii::$app->mailer->compose([
+		    'html' => 'contact-html',
+		    'text' => 'contact-text',
+		]);*/
+
+		$models['disclaimer'] = 'Em caso de dúvidas, envie um email para qualeh@ondetem-gn.com.br';
+		$models['message'] = 'Teste de email para contato conosco. Pode ser o <b>código</b> de verificação, ou confimação de cadastro na newsletter. Qualquer coisa vale!';
+
+		$user = array();
+		$user['name'] = 'Bruno';
+
+    	$mail = \Yii::$app->mailer->compose('testEmail-html', [
+    		'data' => $models,
+    		'user' => $user
+		])
+		    ->setFrom('vendas@ondetem.tk')
+		    ->setTo('luk_gazber@hotmail.com')
+		    ->setSubject('Messagem de Teste');
+
+		try
+        {
+            $mail->send();
+        }
+        catch(\Swift_SwiftException $exception)
+        {
+        	$models['error'] = 'Can sent mail due to the following exception '. $exception;
+        }
+        finally
+        {
+        	$models['status'] = 200;
+        	$models['data'] = 'Email enviado com sucesso';
+        }
+
+		echo RestUtils::sendResult($models['status'], $models);
     }
 
     public function actionForgetPassword() {}

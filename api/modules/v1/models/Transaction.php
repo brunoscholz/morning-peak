@@ -35,14 +35,15 @@ class Transaction extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['transactionId', 'type', 'senderId', 'senderPublicKey', 'amount', 'fee', 'timestamp', 'signature', 'relationshipId'], 'required'],
-            [['type', 'amount', 'fee', 'timestamp', 'relationshipId'], 'integer'],
-            [['transactionId', 'senderId', 'recipientId', 'tokenId'], 'string', 'max' => 21],
+            [['transactionId', 'senderId', 'amount', 'fee', 'timestamp'], 'required'],
+            [['amount', 'fee'], 'integer'],
+            [['transactionId', 'senderId', 'recipientId', 'tokenId', 'relationshipId'], 'string', 'max' => 21],
             [['senderPublicKey'], 'string', 'max' => 64],
             [['signature'], 'string', 'max' => 128],
+            [['timestamp'], 'safe'],
             [['tokenId'], 'exist', 'skipOnError' => true, 'targetClass' => AssetToken::className(), 'targetAttribute' => ['tokenId' => 'tokenId']],
-            [['senderId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'senderId']],
-            [['recipientId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'recipientId']],
+            [['senderId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['senderId' => 'userId']],
+            [['recipientId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['recipientId' => 'userId']],
         ];
     }
 
@@ -73,11 +74,13 @@ class Transaction extends \yii\db\ActiveRecord
 
     public function getSender()
     {
-        return $this->hasOne(User::className(), ['userId' => 'senderId'])->from(['sender' => User::tableName()]);
+        return $this->hasOne(User::className(), ['senderId' => 'userId'])
+            ->from(['sender' => User::tableName()]);
     }
 
     public function getRecipient()
     {
-        return $this->hasOne(User::className(), ['userId' => 'recipientId'])->from(['recipient' => User::tableName()]);
+        return $this->hasOne(User::className(), ['recipientId' => 'userId'])
+            ->from(['recipient' => User::tableName()]);
     }
 }
