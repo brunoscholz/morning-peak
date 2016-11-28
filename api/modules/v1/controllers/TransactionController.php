@@ -21,7 +21,7 @@ class TransactionController extends \yii\rest\ActiveController
     {
         $data = RestUtils::getQuery(\Yii::$app->request->get(), Transaction::find());
 
-        $models = array('status'=>1,'count'=>0);
+        $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 
         foreach ($data->each() as $model)
@@ -33,8 +33,7 @@ class TransactionController extends \yii\rest\ActiveController
         $models['data'] = $modelsArray;
         $models['count'] = count($modelsArray);
 
-        RestUtils::setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo RestUtils::sendResult($models['status'], $models);
     }
 
     public function actionCreate()

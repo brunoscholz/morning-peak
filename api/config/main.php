@@ -7,6 +7,11 @@ $params = array_merge(
     require(__DIR__ . '/params.php')
 );
 
+use \yii\web\Request;
+
+$frontEndBaseUrl = str_replace('/api/web', '/frontend/web', (new Request)->getBaseUrl());
+$backEndBaseUrl = str_replace('/api/web', '/backend/web', (new Request)->getBaseUrl());
+
 return [
     'id' => 'app-api',
     'basePath' => dirname(__DIR__),
@@ -71,6 +76,9 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/seller',
+                    'extraPatterns' => [
+                        'GET catalog/<id:\w+>' => 'catalog',
+                    ]
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
@@ -129,6 +137,18 @@ return [
                      'encodeOptions' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
                 ],
             ],
+        ],
+        'urlManagerBackEnd' => [
+            'class' => 'yii\web\urlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'baseUrl' => $backEndBaseUrl,
+        ],
+        'urlManagerFrontEnd' => [
+            'class' => 'yii\web\urlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'baseUrl' => $frontEndBaseUrl,
         ],
     ],
     'params' => $params,

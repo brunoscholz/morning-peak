@@ -40,10 +40,10 @@ class Seller extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sellerId', 'userId', 'name', 'email', 'phone'], 'required'],
-            [['sellerId', 'userId', 'facebookSocialId', 'twitterSocialId', 'instagramSocialId', 'snapchatSocialId', 'linkedinSocialId', 'githubSocialId'], 'string', 'max' => 21],
+            [['sellerId', 'userId', 'name', 'email', 'phone', 'cellphone'], 'required'],
+            [['sellerId', 'userId'], 'string', 'max' => 21],
             [['about'], 'string', 'max' => 420],
-            [['name', 'email', 'website', 'url_youtube'], 'string', 'max' => 60],
+            [['name', 'email', 'website'], 'string', 'max' => 60],
             [['hours', 'categories', 'paymentOptions'], 'string', 'max' => 255],
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
             [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
@@ -62,11 +62,18 @@ class Seller extends \yii\db\ActiveRecord
             'about' => 'About',
             'name' => 'Name',
             'email' => 'Email',
+            'phone' => 'Phone',
+            'cellphone' => 'Cell Phone',
             'website' => 'Website',
             'hours' => 'Hours',
             'categories' => 'Categories',
             'paymentOptions' => 'Payment Options',
         ];
+    }
+
+    public function getOffers()
+    {
+        return $this->hasMany(Offer::className(), ['sellerId' => 'sellerId']);
     }
 
     /**

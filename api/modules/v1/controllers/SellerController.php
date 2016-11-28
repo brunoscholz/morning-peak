@@ -4,6 +4,7 @@ namespace api\modules\v1\controllers;
 
 use yii\db\Query;
 use api\modules\v1\models\Seller;
+use api\modules\v1\models\Offer;
 use api\components\RestUtils;
 
 /**
@@ -24,9 +25,9 @@ class SellerController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        $data = RestUtils::getQuery($_REQUEST, Seller::find());
+        $data = RestUtils::getQuery(\Yii::$app->request->get(), Seller::find());
 
-        $models = array('status'=>1,'count'=>0);
+        $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 
         //$data->andFilterWhere(['like binary', 'tbl_user.userId', $filter['userId']]);
@@ -42,8 +43,28 @@ class SellerController extends \yii\rest\ActiveController
         $models['data'] = $modelsArray;
         $models['count'] = count($modelsArray);
 
-        RestUtils::setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo RestUtils::sendResult($models['status'], $models);
+    }
+
+    public function actionCatalog($id)
+    {
+        $models = ['status'=>500, 'count'=>0];
+        $seller = Seller::findOne($id);
+
+        $modelsArray = [];
+        foreach ($seller->offers as $model)
+        {
+            $temp = RestUtils::loadQueryIntoVar($model);
+            $pic = $temp['picture'];
+            //unset($temp['seller']);
+            $temp['seller'] = null;
+            $modelsArray[] = $temp;
+        }
+
+        $models['data'] = $modelsArray;
+        $models['count'] = count($modelsArray);
+
+        echo RestUtils::sendResult($models['status'], $models);
     }
 
     public function behaviors() {

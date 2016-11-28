@@ -32,11 +32,11 @@ class Loyalty extends \yii\db\ActiveRecord
     {
         return [
             [['loyaltyId', 'buyerId', 'actionId', 'ruleId', 'points', 'transactionId', 'status'], 'required'],
-            [['points'], 'integer'],
-            [['loyaltyId', 'buyerId', 'actionId', 'ruleId', 'transactionId'], 'string', 'max' => 21],
+            [['actionId', 'points'], 'integer'],
+            [['loyaltyId', 'buyerId', 'ruleId', 'transactionId'], 'string', 'max' => 21],
             [['status'], 'string', 'max' => 3],
             [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
-            [['transactionId'], 'exist', 'skipOnError' => true, 'targetClass' => Transactions::className(), 'targetAttribute' => ['transactionId' => 'transactionId']],
+            [['transactionId'], 'exist', 'skipOnError' => true, 'targetClass' => Transaction::className(), 'targetAttribute' => ['transactionId' => 'transactionId']],
         ];
     }
 

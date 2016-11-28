@@ -21,6 +21,9 @@ use Yii;
  */
 class Transaction extends \yii\db\ActiveRecord
 {
+    const TX_SALE = 0;
+    const TX_TRADE = 200;
+
     /**
      * @inheritdoc
      */
@@ -36,7 +39,7 @@ class Transaction extends \yii\db\ActiveRecord
     {
         return [
             [['transactionId', 'senderId', 'amount', 'fee', 'timestamp'], 'required'],
-            [['amount', 'fee'], 'integer'],
+            [['type', 'amount', 'fee'], 'integer'],
             [['transactionId', 'senderId', 'recipientId', 'tokenId', 'relationshipId'], 'string', 'max' => 21],
             [['senderPublicKey'], 'string', 'max' => 64],
             [['signature'], 'string', 'max' => 128],

@@ -41,9 +41,13 @@ use yii\web\IdentityInterface;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
-    const ROLE_USER = 10;
-    const ROLE_MODERATOR = 20;
-    const ROLE_ADMIN = 30;
+    const ROLE_USER = 'regular';
+    const ROLE_SALES = 'salesman';
+    const ROLE_ADMIN = 'administrator';
+
+    const STATUS_ACTIVE = 'ACT';
+    const STATUS_NOT_VERIFIED = 'PEN';
+    const STATUS_BANNED = 'BAN';
 
     /**
      * @inheritdoc
@@ -59,7 +63,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'email', 'about', 'password', 'vendor', 'visibility'], 'required'],
+            [['email', 'vendor'], 'required'],
             [['role'], 'string'],
             [['vendor'], 'integer'],
             [['createdAt', 'updatedAt'], 'safe'],
@@ -112,6 +116,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public static function findIdentity($id)
     {
         return static::findOne($id);
+    }
+
+    public static function findById($id)
+    {
+        return static::find()
+            ->where(['like binary', 'userId', $id])
+            ->one();
     }
 
     public static function findIdentityByAccessToken($token, $type = null)

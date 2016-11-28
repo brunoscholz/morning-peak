@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -20,13 +21,31 @@ class UserController extends Controller
     public function behaviors()
     {
         return [
+            /*'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['validate'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                ],
+            ],*/
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'validate/<key:\w+>' => ['GET'],
                 ],
             ],
         ];
+    }
+
+    public function actions()
+    {
+        $actions = parent::actions();
+        //$actions['validate'] = ['GET'];
+        return $actions;
     }
 
     /**
@@ -85,11 +104,15 @@ class UserController extends Controller
             ]);
         }
     }
-
-    public function actionValidate($id, $key)
+//http://admin.ondetem.com.br/user/validate?key=NQzx8v7RpOpanUFgzUlbdhzQfSBnG
+    public function actionValidate($key)
     {
+        $id = substr($key, 8);
+        $realKey = substr($key, 0, 8);
+
         $model = $this->findModel($id);
-        if($model->verifyKeys($key))
+
+        if($model->verifyKeys($realKey))
         {
             $model->status = "ATV";
             if($model->save())
@@ -149,7 +172,7 @@ class UserController extends Controller
         if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('Essa página não existe!!!');
         }
     }
 }

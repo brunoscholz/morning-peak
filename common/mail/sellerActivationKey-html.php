@@ -5,7 +5,8 @@ use yii\helpers\Url;
 /* @var $this \yii\web\View view component instance */
 /* @var $message \yii\mail\BaseMessage instance of newly created mail message */
 
-$activationLink = Yii::$app->urlManager->createAbsoluteUrl(['backend/user/validate', ['id' => $data['seller']->sellerId, 'key' => $data['key']]]);
+//$activationLink = Yii::$app->urlManagerBackEnd->createAbsoluteUrl(['user/validate', 'key' => $data['key']]);
+$activationLink = "http://backend.ondetem.tk/user/validate?key=" . $data['key'];
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -14,7 +15,7 @@ $activationLink = Yii::$app->urlManager->createAbsoluteUrl(['backend/user/valida
 <title>OndeTem?</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet" type='text/css'>
-<style type="text/css">body{color: #34b483;}.social{display: table;margin: 0 auto;}.social ul{padding: 0px;margin: 16px 0 0 0;text-align:center;}.social ul li{display: inline;}.social ul li a{display: inline-block;margin: 5px;text-align: center;}.social img{width: 35px;}.newsletter{background-color: rgba(0, 0, 0, 0.8);padding: 25px 0;max-width: 800px;margin: 0 auto;border-radius: 20px 20px;text-align: center;box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);}h1 {font-size: 38px;line-height: 52px;font-style: normal;font-weight: 900;font-family: "Lato";letter-spacing: 2.5px;margin: 0 auto;position: relative;text-align: center;}h2{font-size: 30px;line-height: 36px;font-weight: 400;font-style: normal;font-family: "Poiret One", cursive;margin: 0 auto;position: relative;text-align: center;}.banner{margin-top: 20px;background-image: url("http://ondetem.tk/mail/polygon-back.png");padding: 40px 0;background-size: cover;}.banner h1{color: #f3f2f3;text-transform: none;}.content{padding: 40px 0;max-width: 400px;margin: 0 auto;text-align: center;font-weight: 400;font-size: 24px;}.disclaimer{font-weight: 400;font-size: 16px;color: #777;}.copyright{font-weight: 600;font-size: 18px;}.logo svg {height: 175px; fill: #34b483;}h1.logo{overflow: hidden;text-align: center;}h1.logo:before,h1.logo:after {background-color: #34b483;content: "";display: inline-block;height: 5px;position: relative;vertical-align: middle;width: 50%;}h1.logo:before {right: 0.5em;margin-left: -50%;}h1.logo:after {left: 0.5em;margin-right: -50%;}</style>
+<style type="text/css">body{color: #34b483;}.social{display: table;margin: 0 auto;}.social ul{padding: 0px;margin: 16px 0 0 0;text-align:center;}.social ul li{display: inline;}.social ul li a{display: inline-block;margin: 5px;text-align: center;}.social img{width: 35px;}.newsletter{background-color: rgba(0, 0, 0, 0.8);padding: 25px 0;max-width: 800px;margin: 0 auto;border-radius: 20px 20px;text-align: center;box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);}h1 {font-size: 38px;line-height: 52px;font-style: normal;font-weight: 900;font-family: "Lato";letter-spacing: 2.5px;margin: 0 auto;position: relative;text-align: center;}h2{font-size: 30px;line-height: 36px;font-weight: 400;font-style: normal;font-family: "Poiret One", cursive;margin: 0 auto;position: relative;text-align: center;}.banner{margin-top: 20px;background-image: url("http://ondetem.tk/mail/polygon-back.png");padding: 40px 0;background-size: cover;}.banner h1{color: #f3f2f3;text-transform: none;}.content{padding: 40px 20px;/*max-width: 400px;*/margin: 0 auto;text-align: center;font-weight: 400;font-size: 24px;}.disclaimer{font-weight: 400;font-size: 16px;color: #777;}.copyright{font-weight: 600;font-size: 18px;}.logo svg {height: 175px; fill: #34b483;}h1.logo{overflow: hidden;text-align: center;}h1.logo:before,h1.logo:after {background-color: #34b483;content: "";display: inline-block;height: 5px;position: relative;vertical-align: middle;width: 50%;}h1.logo:before {right: 0.5em;margin-left: -50%;}h1.logo:after {left: 0.5em;margin-right: -50%;}</style>
 </head>
 <body>
     <?php $this->beginBody() ?>
@@ -54,7 +55,6 @@ $activationLink = Yii::$app->urlManager->createAbsoluteUrl(['backend/user/valida
                 <div class="col s12">
                     <div class="col s6">
                         <p>Seu empreendimento foi cadastrado por <?= $data['salesman']->name ?>.</p>
-                        <p>Seu código de ativação de cadastro na OndeTem? é <b style="font-size: 2em;"><?= $data['key'] ?></b>.</p>
                         <p>Agora, é só seguir o link abaixo para ativar sua conta e continuar seu cadastro:</p>
                         <p><?= Html::a(Html::encode($activationLink), $activationLink) ?></p>
                     </div>

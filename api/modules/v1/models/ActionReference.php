@@ -46,4 +46,11 @@ class ActionReference extends \yii\db\ActiveRecord
             'actionType' => 'Action Type',
         ];
     }
+
+    public static function findByType($id)
+    {
+        return static::find()
+            ->where(['like binary', 'actionType', $id])
+            ->one();
+    }
 }

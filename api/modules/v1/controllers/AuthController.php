@@ -10,6 +10,9 @@ use api\modules\v1\models\User;
 use api\modules\v1\models\AuthToken;
 use api\modules\v1\models\AssetToken;
 use api\modules\v1\models\Transaction;
+use api\modules\v1\models\Loyalty;
+use api\modules\v1\models\Relationship;
+use api\modules\v1\models\ActionReference;
 use api\components\RestUtils;
 
 class AuthController extends \yii\rest\ActiveController
@@ -42,7 +45,7 @@ class AuthController extends \yii\rest\ActiveController
     			// 404
     			$models['status'] = AuthToken::TOKEN_MISSING;
     		}
-	   		elseif(strtotime($auth->expires) < strtotime(date('Y-m-d\TH:i:s')))
+	   		elseif(strtotime($auth->expires) < strtotime(date('Y-m-d H:i:s')))
     		{
     			// 401
     			$models['status'] = AuthToken::TOKEN_EXPIRED;
@@ -55,7 +58,7 @@ class AuthController extends \yii\rest\ActiveController
 	    			$models['status'] = 200;
 	    			// change last login in user table
 	    			$user = User::findById($auth->userId);
-	    			$user->lastLogin = date('Y-m-d\TH:i:s');
+	    			$user->lastLogin = date('Y-m-d H:i:s');
 	    			$user->save();
 	    			$models['data'] = [RestUtils::loadQueryIntoVar($user)];
 	    		}
@@ -167,6 +170,7 @@ class AuthController extends \yii\rest\ActiveController
     	$user->visibility = "NOR";
     	$user->activation_key = RestUtils::generateActivationKey();
         $user->validation_key = RestUtils::generateValidationKey($user->activation_key, $user->email, $user->userId);
+    	$user->createdAt = date('Y-m-d\TH:i:s');
     	$user->status = User::STATUS_NOT_VERIFIED;
 
     	$buyer = new Buyer();
@@ -174,6 +178,7 @@ class AuthController extends \yii\rest\ActiveController
     	$buyer->userId = $user->userId;
     	$buyer->name = $params['name'];
     	$buyer->email = $user->email;
+    	$buyer->createdAt = date('Y-m-d\TH:i:s');
     	$buyer->status = "INC";
 
     	// register the new seller
@@ -182,7 +187,8 @@ class AuthController extends \yii\rest\ActiveController
     	$seller->userId = $user->userId;
     	$seller->name = $params['name'];
     	$seller->email = $user->email;
-    	//$seller->phone = $params{'phone'};
+    	$seller->phone = $params['phone'];
+    	$seller->cellphone = $params['cellphone'];
     	//$seller->website = $params['website'];
     	$seller->hours = $params['hours'];
     	$seller->createdAt = date('Y-m-d\TH:i:s');
@@ -190,12 +196,12 @@ class AuthController extends \yii\rest\ActiveController
 
     	// picture
 
-    	$salesman = Buyer::findByUserId($params['salesman']);
+    	$salesman = Buyer::findById($params['salesman']);
 
     	// credit salesman user with sales token
     	$tx = new Transaction();
     	$tx->transactionId = RestUtils::generateId();
-    	$tx->senderId = 'zZN6prD6rzxEhg8sDQz1j'; // robot for token creation
+    	$tx->senderId = $user->userId;//'zZN6prD6rzxEhg8sDQz1j'; // robot for token creation
     	$tx->recipientId = $salesman->userId;
     	$tx->type = 0;
     	$tx->amount = 1;
@@ -203,14 +209,27 @@ class AuthController extends \yii\rest\ActiveController
     	$tx->timestamp = date('Y-m-d\TH:i:s');
     	$tx->senderPublicKey = 'aaa';
     	$tx->signature = 'aaa';
-    	$tx->tokenId = AssetToken::findByCode('COIN')->tokenId;
-    	$tx->save();
+    	$tx->tokenId = AssetToken::findByCode('SALE')->tokenId;
 
-    	var_dump($tx);
-    	die();
+    	// credited to salesperson
+    	$loyal = new Loyalty();
+    	$loyal->loyaltyId = RestUtils::generateId();
+    	$loyal->buyerId = $salesman->buyerId;
+    	$loyal->actionId = ActionReference::findByType('sell')->actionReferenceId;
+    	$loyal->ruleId = "Sales in Loci";
+    	$loyal->points = 1;
+    	$loyal->transactionId = $tx->transactionId;
+    	$loyal->status = 'PEN';
+
+    	$rel = new Relationship();
+    	$rel->relationshipId = RestUtils::generateId();
+    	$rel->dateId = date('Y-m-d\TH:i:s');
+    	$rel->sellerId = $seller->sellerId;
+    	$rel->buyerId = $salesman->buyerId;
+    	$rel->loyaltyId = $loyal->loyaltyId;
 
     	$data = array();
-    	$data['key'] = $user->activation_key;
+    	$data['key'] = $user->activation_key . $user->userId;
     	$data['seller'] = $seller;
     	$data['salesman'] = $salesman;
     	$data['disclaimer'] = 'Em caso de dúvidas, envie um email para vendas@ondetem-gn.com.br';
@@ -220,24 +239,55 @@ class AuthController extends \yii\rest\ActiveController
     		'data' => $data
 		])
 		    ->setFrom('vendas@ondetem.tk')
-		    ->setTo($user->email)
+		    ->setTo('brunoscholz@yahoo.de')
 		    ->setSubject('OndeTem?! Ativação de Cadastro');
 
-		/*try { $mail->send(); }
-        catch(\Swift_SwiftException $exception) {
-        	$models['error'] = 'Can sent mail due to the following exception '. $exception;
-        }
-        finally {
-        	$models['status'] = 200;
-        	$models['data'] = 'Empresa cadastrada com sucesso';
-        }*/
+		if($user->validate() || $buyer->validate() || $seller->validate() || $tx->validate() || $loyal->validate() || $rel->validate())
+		{
+			$user->save();
+			$buyer->save();
+			$seller->save();
+			$tx->save();
+			$loyal->save();
+			$rel->save();
+			$models['user'] = $user->errors;
+	    	$models['buyer'] = $buyer->errors;
+	    	$models['seller'] = $seller->errors;
+	    	$models['tx'] = $tx->errors;
+	    	$models['loyalty'] = $loyal->errors;
+	    	$models['rel'] = $rel->errors;
 
-        $models['user'] = $user;
-    	$models['buyer'] = $buyer;
-    	$models['seller'] = $seller;
-    	$models['tx'] = $tx;
+	    	$models['status'] = 200;
 
-		echo RestUtils::sendResult($models['status'], $models);	
+			try { $mail->send(); }
+	        catch(\Swift_SwiftException $exception) {
+	        	$models['mailerror'] = 'Can sent mail due to the following exception '. $exception;
+	        }
+	        finally {
+	        	$models['status'] = 200;
+	        	$models['data'] = 'Empresa cadastrada com sucesso';
+	        }
+
+	        /*$models['user'] = $user->attributes;
+	    	$models['buyer'] = $buyer->attributes;
+	    	$models['seller'] = $seller->attributes;
+	    	$models['tx'] = $tx->attributes;
+	    	$models['loyalty'] = $loyal->attributes;
+	    	$models['rel'] = $rel->attributes;*/
+			echo RestUtils::sendResult($models['status'], $models);
+		}
+		else
+		{
+			$models['user'] = $user->errors;
+	    	$models['buyer'] = $buyer->errors;
+	    	$models['seller'] = $seller->errors;
+	    	$models['tx'] = $tx->errors;
+	    	$models['loyalty'] = $loyal->errors;
+	    	$models['rel'] = $rel->errors;
+	    	$models['status'] = 500;
+			echo RestUtils::sendResult($models['status'], $models);
+		}
+
     }
 
     public function actionLogout($id)
