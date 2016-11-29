@@ -8,8 +8,10 @@ use api\components\RestUtils;
 use yii\helpers\ArrayHelper;
 
 /**
- * Offer Controller API
- *
+ * OfferController API (extends \yii\rest\ActiveController)
+ * OfferController is the core controller since everything revolves around offers.
+ * It returns info about offers with sellers, pictures, items, etc.
+ * @return [status,data,count,[error]]
  * @author Bruno Scholz <brunoscholz@yahoo.de>
  */
 class OfferController extends \yii\rest\ActiveController
@@ -45,7 +47,7 @@ class OfferController extends \yii\rest\ActiveController
 
         //print_r($data->createCommand()->getRawSql());
 
-        $models = array('status'=>1,'count'=>0);
+        $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 
         foreach ($data->each() as $model)
@@ -70,8 +72,7 @@ class OfferController extends \yii\rest\ActiveController
         $models['data'] = $modelsArray;
         $models['count'] = count($modelsArray);
 
-        RestUtils::setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo RestUtils::sendResult($models['status'], $models);
     }
 
     public function behaviors() {

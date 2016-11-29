@@ -6,6 +6,12 @@ use yii\db\Query;
 use api\modules\v1\models\FollowFact;
 use api\components\RestUtils;
 
+/**
+ * FollowFactController API (extends \yii\rest\ActiveController)
+ * FollowFactController is responsible for present the objects followed by an user
+ * @return [status,data,count,[error]]
+ * @author Bruno Scholz <brunoscholz@yahoo.de>
+ */
 class FollowFactController extends \yii\rest\ActiveController
 {
     public $modelClass = 'api\modules\v1\models\FollowFact';
@@ -21,7 +27,7 @@ class FollowFactController extends \yii\rest\ActiveController
     {
         $data = RestUtils::getQuery(\Yii::$app->request->get(), FollowFact::find());
 
-        $models = array('status'=>1,'count'=>0);
+        $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 
         foreach ($data->each() as $model)
@@ -33,8 +39,7 @@ class FollowFactController extends \yii\rest\ActiveController
         $models['data'] = $modelsArray;
         $models['count'] = count($modelsArray);
 
-        RestUtils::setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo RestUtils::sendResult($models['status'], $models);
     }
 
     public function actionCreate() {

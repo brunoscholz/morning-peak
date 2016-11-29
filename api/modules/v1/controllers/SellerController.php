@@ -8,8 +8,9 @@ use api\modules\v1\models\Offer;
 use api\components\RestUtils;
 
 /**
- * Seller Controller API
- *
+ * SellerController API (extends \yii\rest\ActiveController)
+ * SellerController has all the information about seller (customer) users.
+ * @return [status,data,count,[error]]
  * @author Bruno Scholz <brunoscholz@yahoo.de>
  */
 class SellerController extends \yii\rest\ActiveController
@@ -76,14 +77,6 @@ class SellerController extends \yii\rest\ActiveController
                     'application/json' => \yii\web\Response::FORMAT_JSON,
                 ],
             ],
-        ];
-    }
-
-    function getResponseScope() {
-        return [
-            'user',
-            'picture',
-            'reviews'
         ];
     }
 }

@@ -27,6 +27,14 @@ class SocialAccount extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['socialId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

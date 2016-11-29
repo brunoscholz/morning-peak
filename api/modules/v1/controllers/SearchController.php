@@ -7,9 +7,14 @@ use api\modules\v1\models\Offer;
 use api\modules\v1\models\Seller;
 use api\modules\v1\models\Buyer;
 use api\components\RestUtils;
-
 //use api\modules\v1\models\Geography;
 
+/**
+ * SearchController API (extends \yii\rest\ActiveController)
+ * SearchController returns offers and users that match the search term.
+ * @return [status,data,count,[error]]
+ * @author Bruno Scholz <brunoscholz@yahoo.de>
+ */
 class SearchController extends \yii\rest\ActiveController
 {
 	public $modelClass = 'api\modules\v1\models\Offer';
@@ -67,15 +72,14 @@ class SearchController extends \yii\rest\ActiveController
             $buyers[] = $temp;
         }
 
-        $models = array('status'=>1,'count'=>0);
+        $models = array('status'=>200,'count'=>0);
 
         $models['data']['offers'] = $offers;
         $models['data']['sellers'] = $sellers;
         $models['data']['buyers'] = $buyers;
         $models['count'] = count($offers) + count($sellers) + count($buyers);
 
-        RestUtils::setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo RestUtils::sendResult($models['status'], $models);
     }
 
     public function behaviors() {
@@ -88,28 +92,5 @@ class SearchController extends \yii\rest\ActiveController
                 ],
             ],
         ];
-    }
-
-    function getResponseScope($n) {
-        $scopes = [
-            'seller' => ['user', 'picture', 'reviews'],
-            'buyer' => ['user', 'picture', 'loyalties'],
-            'offer' => [
-                'seller' => [
-                    'userId' => 'user',
-                    'pictureId' => 'picture',
-                    'reviews',
-                ],
-                'policy',
-                'shipping',
-                'item' => [
-                    'categoryId' => 'category'
-                ],
-                'picture',
-                'reviews'
-            ]
-        ];
-
-        return $scopes[$n];
     }
 }

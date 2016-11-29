@@ -27,6 +27,14 @@ class Shipping extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['shippingId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

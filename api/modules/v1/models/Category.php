@@ -20,7 +20,15 @@ class Category extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tbl_category';
+        return '{{%category}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function primaryKey()
+    {
+        return ['categoryId'];
     }
 
     /**

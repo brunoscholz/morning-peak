@@ -26,6 +26,14 @@ class FollowFact extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['followFactId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

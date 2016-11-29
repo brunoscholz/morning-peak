@@ -30,6 +30,14 @@ class Date extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['dateId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

@@ -25,6 +25,14 @@ class CommentFact extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['commentFactId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

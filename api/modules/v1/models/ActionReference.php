@@ -25,6 +25,14 @@ class ActionReference extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['actionReferenceId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

@@ -6,6 +6,13 @@ use yii\db\Query;
 use api\modules\v1\models\Relationship;
 use api\components\RestUtils;
 
+/**
+ * RelationshipController API (extends \yii\rest\ActiveController)
+ * RelationshipController holds information about everything done by a user:
+ * visit page, marked offer, share, buy, sell, etc.
+ * @return [status,data,count,[error]]
+ * @author Bruno Scholz <brunoscholz@yahoo.de>
+ */
 class RelationshipController extends \yii\rest\ActiveController
 {
     public $modelClass = 'api\modules\v1\models\Relationship';
@@ -33,8 +40,7 @@ class RelationshipController extends \yii\rest\ActiveController
         $models['data'] = $modelsArray;
         $models['count'] = count($modelsArray);
 
-        RestUtils::setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo RestUtils::sendResult($models['status'], $models);
     }
 
     public function actionCreate()

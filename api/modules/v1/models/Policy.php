@@ -24,6 +24,14 @@ class Policy extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['policyId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

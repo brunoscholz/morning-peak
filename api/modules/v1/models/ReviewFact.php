@@ -28,6 +28,14 @@ class ReviewFact extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['reviewFactId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

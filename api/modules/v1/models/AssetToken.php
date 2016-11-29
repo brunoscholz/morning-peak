@@ -26,6 +26,14 @@ class AssetToken extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['tokenId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

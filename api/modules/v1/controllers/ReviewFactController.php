@@ -8,6 +8,12 @@ use api\modules\v1\models\Review;
 use api\components\RestUtils;
 use yii\filters\VerbFilter;
 
+/**
+ * ReviewFactController API (extends \yii\rest\ActiveController)
+ * ReviewFactController holds all info about reviews
+ * @return [status,data,count,[error]]
+ * @author Bruno Scholz <brunoscholz@yahoo.de>
+ */
 class ReviewFactController extends \yii\rest\ActiveController
 {
     public $modelClass = 'api\modules\v1\models\ReviewFact';
@@ -46,8 +52,7 @@ class ReviewFactController extends \yii\rest\ActiveController
         $models['data'] = $modelsArray;
         $models['count'] = count($modelsArray);
 
-        RestUtils::setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo RestUtils::sendResult($models['status'], $models);
     }
 
     public function actionCreate() {
@@ -74,9 +79,8 @@ class ReviewFactController extends \yii\rest\ActiveController
 
         if(!$rev->validate()) {
             $models['data']['review'] = $rev->getErrors();
-            $models['status'] = 5;
-            RestUtils::setHeader(500);
-            echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+            $models['status'] = 500;
+            echo RestUtils::sendResult($models['status'], $models);
             die();
         }
         
@@ -86,19 +90,17 @@ class ReviewFactController extends \yii\rest\ActiveController
         $model->reviewId = $rev->reviewId;
         if(!$model->validate()) {
             $models['data']['reviewFact'] = $model->getErrors();
-            $models['status'] = 6;
-            RestUtils::setHeader(500);
-            echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+            $models['status'] = 500;
+            echo RestUtils::sendResult($models['status'], $models);
             die();
         }
 
         if($model->save()) {
             $models['data']['reviewFact'] = 'saved';
             $models['status'] = 1;
-            RestUtils::setHeader(200);
         }
 
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo RestUtils::sendResult($models['status'], $models);
     }
 
     public function behaviors() {

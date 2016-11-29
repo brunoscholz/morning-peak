@@ -57,6 +57,14 @@ class User extends \yii\db\ActiveRecord
         return '{{%user}}';
     }
 
+    /**
+     * @inheritdoc
+     */
+    public static function primaryKey()
+    {
+        return ['userId'];
+    }
+
     // explicitly list every field, best used when you want to make sure the changes
     // in your DB table or model attributes do not cause your field changes (to keep API backward compatibility).
     public function fields()
@@ -151,5 +159,10 @@ class User extends \yii\db\ActiveRecord
     public function verifyKeys($activationKey)
     {
         return $this->validation_key === md5($activationKey . $this->email . $this->userId);
+    }
+
+    public function getTransactions()
+    {
+        //return $this->hasMany(Transaction::className(), ['userId' => 'senderId']);
     }
 }

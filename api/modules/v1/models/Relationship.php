@@ -29,6 +29,14 @@ class Relationship extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['relationshipId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

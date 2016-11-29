@@ -25,6 +25,14 @@ class PaymentLookup extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['paymentId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

@@ -4,8 +4,15 @@ namespace api\modules\v1\controllers;
 
 use yii\db\Query;
 use api\modules\v1\models\Transaction;
+use api\modules\v1\models\User;
 use api\components\RestUtils;
 
+/**
+ * TransactionController API (extends \yii\rest\ActiveController)
+ * TransactionController used as timestamp for user actions, holds the amounts of internal coin trades
+ * @return [status,data,count,[error]]
+ * @author Bruno Scholz <brunoscholz@yahoo.de>
+ */
 class TransactionController extends \yii\rest\ActiveController
 {
     public $modelClass = 'api\modules\v1\models\Transaction';

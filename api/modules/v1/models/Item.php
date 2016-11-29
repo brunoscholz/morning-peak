@@ -26,6 +26,14 @@ class Item extends \yii\db\ActiveRecord
         return '{{%item}}';
     }
 
+    /**
+     * @inheritdoc
+     */
+    public static function primaryKey()
+    {
+        return ['itemId'];
+    }
+
     public function fields()
     {
         $fields = parent::fields();

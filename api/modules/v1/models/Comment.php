@@ -25,6 +25,14 @@ class Comment extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['commentId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

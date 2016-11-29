@@ -12,6 +12,14 @@ use api\modules\v1\models\Transaction;
 use api\modules\v1\models\ActionRelationship;
 use api\components\RestUtils;
 
+/**
+ * ActionRelationshipController API (extends \yii\rest\ActiveController)
+ * ActionRelationshipController has the goal of register and create the "social" actions.
+ * - review, comment, and follow
+ *
+ * @return [status,data,count,[error]]
+ * @author Bruno Scholz <brunoscholz@yahoo.de>
+ */
 class ActionRelationshipController extends \yii\rest\ActiveController
 {
     public $modelClass = 'api\modules\v1\models\ActionRelationship';
@@ -27,7 +35,7 @@ class ActionRelationshipController extends \yii\rest\ActiveController
     {
         $data = RestUtils::getQuery(\Yii::$app->request->get(), ActionRelationship::find());
 
-        $models = array('status'=>1,'count'=>0);
+        $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 
         foreach ($data->each() as $model)
@@ -39,8 +47,7 @@ class ActionRelationshipController extends \yii\rest\ActiveController
         $models['data'] = $modelsArray;
         $models['count'] = count($modelsArray);
 
-        RestUtils::setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo RestUtils::sendResult($models['status'], $models);
     }
 
     public function actionCreateReview()

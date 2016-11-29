@@ -28,6 +28,14 @@ class Geography extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['geographyId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

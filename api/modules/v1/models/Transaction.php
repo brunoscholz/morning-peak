@@ -2,10 +2,8 @@
 
 namespace api\modules\v1\models;
 
-use Yii;
-
 /**
- * This is the model class for table "{{%transactions}}".
+ * This is the model class for transactions.
  *
  * @property string $transactionId
  * @property string $type
@@ -16,8 +14,9 @@ use Yii;
  * @property string $fee
  * @property string $timestamp
  * @property string $signature
- * @property string $token
- * @property integer $relationshipId
+ * @property string $tokenId
+ * @property string $relationshipId
+ * @author Bruno Scholz <brunoscholz@yahoo.de>
  */
 class Transaction extends \yii\db\ActiveRecord
 {
@@ -29,7 +28,15 @@ class Transaction extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%transactions}}';
+        return '{{%transaction}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function primaryKey()
+    {
+        return ['transactionId'];
     }
 
     /**
@@ -40,10 +47,11 @@ class Transaction extends \yii\db\ActiveRecord
         return [
             [['transactionId', 'senderId', 'amount', 'fee', 'timestamp'], 'required'],
             [['type', 'amount', 'fee'], 'integer'],
+            [['timestamp'], 'safe'],
             [['transactionId', 'senderId', 'recipientId', 'tokenId', 'relationshipId'], 'string', 'max' => 21],
             [['senderPublicKey'], 'string', 'max' => 64],
             [['signature'], 'string', 'max' => 128],
-            [['timestamp'], 'safe'],
+            [['relationshipId'], 'exist', 'skipOnError' => true, 'targetClass' => Relationship::className(), 'targetAttribute' => ['relationshipId' => 'relationshipId']],
             [['tokenId'], 'exist', 'skipOnError' => true, 'targetClass' => AssetToken::className(), 'targetAttribute' => ['tokenId' => 'tokenId']],
             [['senderId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['senderId' => 'userId']],
             [['recipientId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['recipientId' => 'userId']],
@@ -65,25 +73,46 @@ class Transaction extends \yii\db\ActiveRecord
             'fee' => 'Fee',
             'timestamp' => 'Timestamp',
             'signature' => 'Signature',
-            'tokenId' => 'Token',
+            'tokenId' => 'Token ID',
             'relationshipId' => 'Relationship ID',
         ];
     }
 
+    /**
+     * @method getToken()
+     * Transaction relation with assetToken
+     */
     public function getToken()
     {
         return $this->hasOne(AssetToken::className(), ['tokenId' => 'tokenId']);
     }
 
+    /**
+     * @method getRelationship()
+     * Transaction relation with relationship
+     */
+    public function getRelationship()
+    {
+        return $this->hasOne(Relationship::className(), ['relationshipId' => 'relationshipId']);
+    }
+
+    /**
+     * @method getSender()
+     * The sender of the amount
+     */
     public function getSender()
     {
-        return $this->hasOne(User::className(), ['senderId' => 'userId'])
+        return $this->hasOne(User::className(), ['userId' => 'senderId'])
             ->from(['sender' => User::tableName()]);
     }
 
+    /**
+     * @method getRecipient()
+     * The recipient of the amount
+     */
     public function getRecipient()
     {
-        return $this->hasOne(User::className(), ['recipientId' => 'userId'])
+        return $this->hasOne(User::className(), ['userId' => 'recipientId'])
             ->from(['recipient' => User::tableName()]);
     }
 }

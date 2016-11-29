@@ -26,6 +26,14 @@ class ReferenceTransaction extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['referenceTransactionId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

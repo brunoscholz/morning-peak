@@ -6,6 +6,12 @@ use yii\db\Query;
 use api\modules\v1\models\Loyalty;
 use api\components\RestUtils;
 
+/**
+ * LoyaltyController API (extends \yii\rest\ActiveController)
+ * LoyaltyController has all the informations about balance and transactions made by a given user
+ * @return [status,data,count,[error]]
+ * @author Bruno Scholz <brunoscholz@yahoo.de>
+ */
 class LoyaltyController extends \yii\rest\ActiveController
 {
     public $modelClass = 'api\modules\v1\models\Loyalty';
@@ -19,9 +25,22 @@ class LoyaltyController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        $data = RestUtils::getQuery(\Yii::$app->request->get(), Loyalty::find());
+        $params = \Yii::$app->request->get();
+        $data = RestUtils::getQuery($params, Loyalty::find());
 
-        $models = array('status'=>1,'count'=>0);
+        $data->joinWith([
+            'buyer',
+            'transaction',
+            'token'
+        ]);
+
+        $cur = 'COIN';
+        if(isset($params['token']) && !empty($params['token']))
+            $cur = strtoupper($params['token']);
+        
+        $data->andWhere(['like', 'tbl_asset_token.name', $cur]);
+
+        $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 
         foreach ($data->each() as $model)
@@ -33,8 +52,7 @@ class LoyaltyController extends \yii\rest\ActiveController
         $models['data'] = $modelsArray;
         $models['count'] = count($modelsArray);
 
-        RestUtils::setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo RestUtils::sendResult($models['status'], $models);
     }
 
     public function behaviors() {

@@ -63,12 +63,15 @@ class RestUtils
         foreach ($foreignKeys as $key => $value) {
             $splitedNames = explode('_', $value[0]);
 
-          foreach ($splitedNames as $name) {
-            //echo $key . ": " . $name . "\n";
-              $relations[$key] = $name; //ucfirst($name);
-          }
-        }
+            if(array_key_exists("senderId",$value))
+                $splitedNames = ['sender'];
+            elseif(array_key_exists("recipientId",$value))
+                $splitedNames = ['recipient'];
 
+            foreach ($splitedNames as $name) {
+                $relations[$key] = $name; //ucfirst($name);
+            }
+        }
         return $relations;
       }
     }

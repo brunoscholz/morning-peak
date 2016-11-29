@@ -15,10 +15,25 @@ use api\modules\v1\models\Relationship;
 use api\modules\v1\models\ActionReference;
 use api\components\RestUtils;
 
+/**
+ * AuthController API (extends \yii\rest\ActiveController)
+ * AuthController is the controller responsible for doing the access verifications.
+ * and create basic, activation dependent, new models for users
+ * @return [status,data,count,[error]]
+ * @author Bruno Scholz <brunoscholz@yahoo.de>
+ */
 class AuthController extends \yii\rest\ActiveController
 {
+    /**
+     * @internal typical override of ActiveController 
+     *
+     */
     public $modelClass = 'api\modules\v1\models\Buyer';
 
+    /**
+     * @internal typical override of ActiveController 
+     *
+     */
     public function actions()
     {
         $actions = parent::actions();
@@ -26,7 +41,16 @@ class AuthController extends \yii\rest\ActiveController
         return $actions;
     }
 
-    // zZN6prD6rzxEhg8sDQz1j
+    /**
+     * POST /auth/signin
+     * If token is received, it is verified against authToken table and if not expired, returns ok to login
+     *
+     * If username and password are received, it verifies the password against the user table. If everything is ok, it creates a authToken and returns it
+     *
+     * @example {token:NkhEQ0RSd2dV:bWx1NzlEUHNnMUc1Tk5pa3hDTGlqcE1JNzd3RHE5NnFh}
+     * @example { username:user@mailserver.com, password:strongpass }
+     * @return json @see api\modules\v1\models\AuthToken for the statuses
+     */
     public function actionSignin()
     {
     	$params = \Yii::$app->request->post();
@@ -110,10 +134,15 @@ class AuthController extends \yii\rest\ActiveController
 			}
 		}
 
-        //$models['data'] = 'Logged in ' . date('Y-m-d h:i:s');
         echo RestUtils::sendResult($models['status'], $models);
     }
 
+    /**
+     * POST /auth/signup
+     *
+     * Receives the user info
+     * 
+     */
     public function actionSignup()
     {
     	$params = \Yii::$app->request->post();
@@ -149,6 +178,14 @@ class AuthController extends \yii\rest\ActiveController
         //echo RestUtils::sendResult($models['status'], $models);
     }
 
+    /**
+     * POST /auth/social-connect
+     *
+     * Receives the user's social info
+     * If user exists updates the info and creates a socialAccount register
+     * If not, sign up the user with the info provided
+     * 
+     */
     public function actionSocialConnect()
     {
     	$params = \Yii::$app->request->post();
@@ -157,6 +194,15 @@ class AuthController extends \yii\rest\ActiveController
     	if(isset($params['facebook'])){}
     }
 
+    /**
+     * POST /auth/seller-register
+     *
+     * Receives the new seller (customer) info and the salesperson who made the contact
+     * Creates the user, buyer, and seller models
+     * Creates a transaction with 1 SALE coin to the salesperson
+     * Sends an email to the new seller (customer) with information about activating the account
+     * 
+     */
     public function actionSellerRegister()
     {
  	   	$params = \Yii::$app->request->post();
@@ -290,9 +336,35 @@ class AuthController extends \yii\rest\ActiveController
 
     }
 
-    public function actionLogout($id)
-    {}
+    /**
+     * POST /auth/forget-password
+     * Receives the email of the user and sends an email with instructions to change the current password
+     * 
+     */
+    public function actionForgetPassword() {}
 
+    /**
+     * POST /auth/settings
+     * Receives the info to change the users preferences
+     *
+     */
+    public function actionSettings() {}
+
+    /**
+     * GET /auth/logout/{id}
+     *
+     * Not used
+     * @return null 
+     */
+    public function actionLogout($id)
+    {
+        return null;
+    }
+
+    /**
+     * @internal for test purposes
+     *
+     */
     public function actionMailTest()
     {
     	// $this->redirect(<contoroller>/<action>)
@@ -314,7 +386,7 @@ class AuthController extends \yii\rest\ActiveController
     		'data' => $models,
     		'user' => $user
 		])
-		    ->setFrom('vendas@ondetem.tk')
+		    ->setFrom('vendas@ondetem-gn.com.br')
 		    ->setTo('luk_gazber@hotmail.com')
 		    ->setSubject('Messagem de Teste');
 
@@ -335,10 +407,10 @@ class AuthController extends \yii\rest\ActiveController
 		echo RestUtils::sendResult($models['status'], $models);
     }
 
-    public function actionForgetPassword() {}
-
-    public function actionSettings() {}
-
+    /**
+     * @internal typical override of ActiveController 
+     *
+     */
     public function behaviors() {
         return
         [

@@ -7,8 +7,9 @@ use api\modules\v1\models\Buyer;
 use api\components\RestUtils;
 
 /**
- * Buyer Controller API
- *
+ * BuyerController API (extends \yii\rest\ActiveController)
+ * BuyerController is responsible for present the normal user's info
+ * @return [status,data,count,[error]]
  * @author Bruno Scholz <brunoscholz@yahoo.de>
  */
 class BuyerController extends \yii\rest\ActiveController
@@ -26,7 +27,7 @@ class BuyerController extends \yii\rest\ActiveController
     {
         $data = RestUtils::getQuery(\Yii::$app->request->get(), Buyer::find());
 
-        $models = array('status'=>1,'count'=>0);
+        $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 
         /*->joinwith([
@@ -48,8 +49,7 @@ class BuyerController extends \yii\rest\ActiveController
         $models['data'] = $modelsArray;
         $models['count'] = count($modelsArray);
 
-        RestUtils::setHeader(200);
-        echo json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo RestUtils::sendResult($models['status'], $models);
     }
 
     public function behaviors() {

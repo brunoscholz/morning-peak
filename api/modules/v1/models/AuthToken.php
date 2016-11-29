@@ -33,6 +33,14 @@ class AuthToken extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['authTokenId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

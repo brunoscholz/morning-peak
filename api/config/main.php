@@ -15,7 +15,7 @@ $backEndBaseUrl = str_replace('/api/web', '/backend/web', (new Request)->getBase
 return [
     'id' => 'app-api',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'v1'], //, 'docGenerator'
     'modules' => [
         // can be versioned and updated
         'v1' => [
@@ -105,11 +105,12 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/auth',
                     'pluralize' => false,
-                    'only' => ['signup', 'signin', 'logout', 'forgot-password','settings', 'seller-register'],
+                    'only' => ['signup', 'signin', 'logout', 'forgot-password','settings', 'seller-register', 'social-connect'],
                     'extraPatterns' => [
                         'POST signin' => 'signin',
                         'POST signup' => 'signup',
                         'POST seller-register' => 'seller-register',
+                        'POST social-connect' => 'social-connect',
                         'GET logout/<id:\w+>' => 'logout',
                         'POST forgot-password' => 'forgot-password',
                         'GET,POST settings/<id:\w+>' => 'settings',
@@ -150,6 +151,13 @@ return [
             'showScriptName' => false,
             'baseUrl' => $frontEndBaseUrl,
         ],
+        /*'docGenerator' =>[
+            'class' => 'eold\apidocgen\src\ApiDocGenerator',
+            'isActive'=>true,                      // Flag to set plugin active
+            'versionRegexFind'=>'/(\w+)(\d+)/i',   // regex used in preg_replace function to find Yii api version format (usually 'v1', 'vX') ... 
+            'versionRegexReplace'=>'${2}.0.0',     // .. and replace it in Apidoc format (usually 'x.x.x')
+            'docDataAlias'=>'@runtime/data_path'   // Folder to save output. make sure is writable. 
+        ],*/
     ],
     'params' => $params,
 ];

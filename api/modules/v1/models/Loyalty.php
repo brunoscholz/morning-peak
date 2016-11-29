@@ -28,6 +28,14 @@ class Loyalty extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['loyaltyId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -64,5 +72,11 @@ class Loyalty extends \yii\db\ActiveRecord
     public function getTransaction()
     {
         return $this->hasOne(Transaction::className(), ['transactionId' => 'transactionId']);
+    }
+
+    public function getToken()
+    {
+        return $this->hasOne(AssetToken::className(), ['tokenId' => 'tokenId'])
+            ->via('transaction');
     }
 }
