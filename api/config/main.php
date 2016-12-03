@@ -56,7 +56,10 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/loyalty',
-                    'pluralize' => false
+                    'pluralize' => false,
+                    'extraPatterns' => [
+                        'GET balance' => 'balance'
+                    ],
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
@@ -92,6 +95,10 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/follow-fact',
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/favorite-fact',
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',

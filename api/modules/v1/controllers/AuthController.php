@@ -28,7 +28,7 @@ class AuthController extends \yii\rest\ActiveController
      * @internal typical override of ActiveController 
      *
      */
-    public $modelClass = 'api\modules\v1\models\Buyer';
+    public $modelClass = 'api\modules\v1\models\User';
 
     /**
      * @internal typical override of ActiveController 
@@ -84,7 +84,10 @@ class AuthController extends \yii\rest\ActiveController
 	    			$user = User::findById($auth->userId);
 	    			$user->lastLogin = date('Y-m-d H:i:s');
 	    			$user->save();
-	    			$models['data'] = [RestUtils::loadQueryIntoVar($user)];
+
+                    $temp = RestUtils::loadQueryIntoVar($user);
+                    $temp['sellers'] = RestUtils::loadQueryIntoVar($user->sellers);
+	    			$models['data'] = [$temp];
 	    		}
 	    		else
 	    		{
@@ -358,6 +361,14 @@ class AuthController extends \yii\rest\ActiveController
      */
     public function actionLogout($id)
     {
+        //echo RestUtils::generateId();
+        $pass = '1234abcd';
+        $salt = 'Inwv27j6evr1sSxs83Pem6ePRvycZJmJDpI8XrsvTi02wmVkmrSXv2uzPnCYy8cC';
+        $hash = md5($salt . $pass);
+
+        var_dump($hash);
+
+        //return $hashedPass === $this->password;
         return null;
     }
 

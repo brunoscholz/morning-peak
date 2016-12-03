@@ -22,12 +22,6 @@ use yii\web\IdentityInterface;
  * @property string $salt
  * @property string $activation_key
  * @property string $validation_key
- * @property string $facebookSocialId
- * @property string $twitterSocialId
- * @property string $instagramSocialId
- * @property string $snapchatSocialId
- * @property string $linkedinSocialId
- * @property string $githubSocialId
  * @property string $avatar
  * @property string $paletteId
  * @property string $publicKey
@@ -84,12 +78,13 @@ class User extends \yii\db\ActiveRecord
             [['role'], 'string'],
             [['vendor'], 'integer'],
             [['lastLogin', 'createdAt', 'updatedAt'], 'safe'],
-            [['userId', 'username', 'facebookSocialId', 'twitterSocialId', 'instagramSocialId', 'snapchatSocialId', 'linkedinSocialId', 'githubSocialId', 'paletteId'], 'string', 'max' => 21],
+            [['userId', 'username', 'paletteId'], 'string', 'max' => 21],
             [['email', 'avatar'], 'string', 'max' => 60],
             [['about', 'password', 'resetToken', 'salt', 'validation_key', 'publicKey'], 'string', 'max' => 255],
             [['lastLoginIp'], 'string', 'max' => 32],
             [['activation_key'], 'string', 'max' => 128],
             [['visibility', 'status'], 'string', 'max' => 3],
+            [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
         ];
     }
 
@@ -113,12 +108,6 @@ class User extends \yii\db\ActiveRecord
             'salt' => 'Salt',
             'activation_key' => 'Chave de Ativação',
             'validation_key' => 'Chave de Validação',
-            'facebookSocialId' => 'Facebook Social ID',
-            'twitterSocialId' => 'Twitter Social ID',
-            'instagramSocialId' => 'Instagram Social ID',
-            'snapchatSocialId' => 'Snapchat Social ID',
-            'linkedinSocialId' => 'Linkedin Social ID',
-            'githubSocialId' => 'Github Social ID',
             'avatar' => 'Avatar',
             'paletteId' => 'ID Paleta',
             'publicKey' => 'Public Key',
@@ -159,6 +148,16 @@ class User extends \yii\db\ActiveRecord
     public function verifyKeys($activationKey)
     {
         return $this->validation_key === md5($activationKey . $this->email . $this->userId);
+    }
+
+    public function getBuyer()
+    {
+        return $this->hasOne(Buyer::className(), ['buyerId' => 'buyerId']);
+    }
+
+    public function getSellers()
+    {
+        return $this->hasMany(Seller::className(), ['userId' => 'userId']);
     }
 
     public function getTransactions()

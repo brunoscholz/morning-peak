@@ -12,7 +12,7 @@ use Yii;
  * @property string $offerId
  * @property string $sellerId
  * @property string $reviewId
- * @property string $grades
+ * @property string $date
  * @property double $rating
  */
 class ReviewFact extends \yii\db\ActiveRecord
@@ -39,16 +39,15 @@ class ReviewFact extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['reviewFactId', 'actionId', 'reviewId', 'grades', 'rating'], 'required'],
+            [['reviewFactId', 'actionId', 'reviewId', 'date', 'rating'], 'required'],
             [['actionId'], 'integer'],
             [['rating'], 'number'],
+            [['reviewFactId', 'date'], 'safe'],
             [['reviewFactId', 'offerId', 'sellerId', 'reviewId'], 'string', 'max' => 21],
-            [['grades'], 'string', 'max' => 255],
             [['sellerId'], 'exist', 'skipOnError' => true, 'targetClass' => Seller::className(), 'targetAttribute' => ['sellerId' => 'sellerId']],
             [['offerId'], 'exist', 'skipOnError' => true, 'targetClass' => Offer::className(), 'targetAttribute' => ['offerId' => 'offerId']],
             [['reviewId'], 'exist', 'skipOnError' => true, 'targetClass' => Review::className(), 'targetAttribute' => ['reviewId' => 'reviewId']],
             [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
-            [['reviewFactId', 'grades'], 'safe'],
         ];
     }
 
@@ -63,7 +62,7 @@ class ReviewFact extends \yii\db\ActiveRecord
             'offerId' => 'Offer ID',
             'sellerId' => 'Seller ID',
             'reviewId' => 'Review ID',
-            'grades' => 'Grades',
+            'date' => 'Date',
             'rating' => 'Rating',
         ];
     }
@@ -96,6 +95,6 @@ class ReviewFact extends \yii\db\ActiveRecord
 
     public function getOffer()
     {
-        return null;
+        return $this->hasOne(Offer::className(), ['offerId' => 'offerId']);
     }
 }

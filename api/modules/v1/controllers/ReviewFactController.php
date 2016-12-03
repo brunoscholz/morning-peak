@@ -37,15 +37,22 @@ class ReviewFactController extends \yii\rest\ActiveController
     {
         $data = RestUtils::getQuery(\Yii::$app->request->get(), ReviewFact::find());
 
-        $models = array('status'=>1,'count'=>0);
+        $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 
         foreach ($data->each() as $model)
         {
             $temp = RestUtils::loadQueryIntoVar($model);
             unset($temp['reviewId']);
-            // $revs = RestUtils::loadQueryIntoVar($model->reviews);
-            // $temp['reviews'] = $revs;
+
+            $rate = $temp['rating'];
+            $rating = array();
+            $rating['grade'] = $rate - floor($rate/100) * 100;
+
+            $rating['attendance'] = floor(floor($rate/100)/10);
+            $rating['price'] = floor($rate/100) - $rating['attendance']*10;
+
+            $temp['rating'] = $rating;
             $modelsArray[] = $temp;
         }
 

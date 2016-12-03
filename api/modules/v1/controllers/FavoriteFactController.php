@@ -3,19 +3,18 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\Relationship;
+use api\modules\v1\models\FavoriteFact;
 use api\components\RestUtils;
 
 /**
- * RelationshipController API (extends \yii\rest\ActiveController)
- * RelationshipController holds information about everything done by a user:
- * visit page, marked offer, share, buy, sell, etc.
+ * FavoriteFactController API (extends \yii\rest\ActiveController)
+ * FavoriteFactController is responsible for present the list of offers followed by an user
  * @return [status,data,count,[error]]
  * @author Bruno Scholz <brunoscholz@yahoo.de>
  */
-class RelationshipController extends \yii\rest\ActiveController
+class FavoriteFactController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\Relationship';
+    public $modelClass = 'api\modules\v1\models\FavoriteFact';
 
     public function actions()
     {
@@ -26,7 +25,12 @@ class RelationshipController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        $data = RestUtils::getQuery(\Yii::$app->request->get(), Relationship::find());
+        $data = RestUtils::getQuery(\Yii::$app->request->get(), FavoriteFact::find());
+
+        /*$data->joinWith([
+            'buyer',
+            'offer'
+        ]);*/
 
         $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
@@ -43,14 +47,13 @@ class RelationshipController extends \yii\rest\ActiveController
         echo RestUtils::sendResult($models['status'], $models);
     }
 
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $params = \Yii::$app->request->post();
 
         var_dump($params);
         die();
 
-        $model = new Relationship();
+        $model = new FavoriteFact();
     }
 
     public function behaviors() {

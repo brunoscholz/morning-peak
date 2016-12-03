@@ -57,7 +57,30 @@ class OfferController extends \yii\rest\ActiveController
             //var_dump(ArrayHelper::toArray($model, $this->getResponseScope(), true));
             $temp = RestUtils::loadQueryIntoVar($model);
             $revs = RestUtils::loadQueryIntoVar($model->reviews);
-            $temp['reviews'] = $revs;
+
+            $i = 0;
+            $sum = 0;
+            $newReviews = array();
+            foreach ($revs as $review)
+            {
+                $rate = $review['rating'];
+                $rating = array();
+                $rating['grade'] = $rate - floor($rate/100) * 100;
+
+                $rating['attendance'] = floor(floor($rate/100)/10);
+                $rating['price'] = floor($rate/100) - $rating['attendance']*10;
+
+                $review['rating'] = $rating;
+                $newReviews[] = $review;
+                $sum += $rating['grade'];
+                $i++;
+            }
+            // let rate = this.rating + this.attendance * 1000 + this.price * 100;
+            // let decimal = rate - (Math.floor(rate / 100) * 100);
+            // return decimal;
+
+            $temp['reviews'] = $newReviews;
+            $temp['avgRating'] = ($i > 0) ? $sum / $i : 0;
             /*var_dump($temp);
 
             die();

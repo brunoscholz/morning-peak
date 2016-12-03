@@ -32473,3 +32473,1575 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1480377868.048
     'REQUEST_TIME' => 1480377868
 ]
+2016-11-30 13:31:55 [::1][-][-][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Request.php:193
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(82): yii\web\Request->resolve()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#3 {main}
+2016-11-30 13:31:53 [::1][-][-][info][application] $_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '63680'
+    'REDIRECT_URL' => '/v1/auth/signin'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/v1/auth/signin'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480509111.494
+    'REQUEST_TIME' => 1480509111
+]
+2016-11-30 19:59:50 [::1][-][-][error][yii\base\ErrorException:4] exception 'yii\base\ErrorException' with message 'syntax error, unexpected '$modelsArray' (T_VARIABLE)' in C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\AuthController.php:379
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(634): ::spl_autoload_call()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(634): ::class_exists()
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(592): yii\base\Module->createControllerByID()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(584): yii\base\Module->createController()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(518): yii\base\Module->createController()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction()
+#6 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#8 {main}
+2016-11-30 19:59:49 [::1][-][-][info][application] $_GET = [
+    'id' => 'oksfaoksof'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '62939'
+    'REDIRECT_URL' => '/v1/auth/logout/oksfaoksof'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/v1/auth/logout/oksfaoksof'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480532389.929
+    'REQUEST_TIME' => 1480532389
+]
+2016-11-30 20:00:01 [::1][-][-][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Trying to get property of non-object' in C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\AuthController.php:377
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): ::call_user_func_array:{C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php:57}()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams()
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#6 {main}
+2016-11-30 20:00:00 [::1][-][-][info][application] $_GET = [
+    'id' => 'oksfaoksof'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '62962'
+    'REDIRECT_URL' => '/v1/auth/logout/oksfaoksof'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/v1/auth/logout/oksfaoksof'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480532400.915
+    'REQUEST_TIME' => 1480532400
+]
+2016-11-30 20:02:02 [::1][-][-][error][yii\base\UnknownPropertyException] exception 'yii\base\UnknownPropertyException' with message 'Getting unknown property: api\modules\v1\models\Seller::user' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Component.php:145
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BaseActiveRecord.php(286): yii\base\Component->__get('user')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\components\RestUtils.php(42): yii\db\BaseActiveRecord->__get('user')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\AuthController.php(377): api\components\RestUtils::loadQueryIntoVar(Array)
+#3 [internal function]: api\modules\v1\controllers\AuthController->actionLogout('oksfaoksof')
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#6 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('logout', Array)
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/auth/logout', Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#10 {main}
+2016-11-30 20:02:01 [::1][-][-][info][application] $_GET = [
+    'id' => 'oksfaoksof'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '63214'
+    'REDIRECT_URL' => '/v1/auth/logout/oksfaoksof'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/v1/auth/logout/oksfaoksof'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480532521.882
+    'REQUEST_TIME' => 1480532521
+]
+2016-12-01 20:49:35 [::1][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tbl_loyalty.userId' in 'where clause'' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php:900
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(900): PDOStatement->execute()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(349): yii\db\Command->queryInternal('')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\Command->query()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php(47): yii\db\BatchQueryResult->rewind()
+#6 [internal function]: api\modules\v1\controllers\LoyaltyController->actionIndex()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/loyalty/inde...', Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#13 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tbl_loyalty.userId' in 'where clause'
+The SQL being executed was: SELECT * FROM `tbl_loyalty` LEFT JOIN `tbl_user` ON `tbl_loyalty`.`userId` = `tbl_user`.`userId` LEFT JOIN `tbl_transaction` ON `tbl_loyalty`.`transactionId` = `tbl_transaction`.`transactionId` LEFT JOIN `tbl_asset_token` ON `tbl_transaction`.`tokenId` = `tbl_asset_token`.`tokenId` WHERE (`tbl_loyalty`.`userId` LIKE BINARY 'zZN6prD6rzxEhg8sDQz1j') AND (`tbl_asset_token`.`name` LIKE '%COIN%')' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Schema.php:637
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(915): yii\db\Schema->convertException(Object(PDOException), 'SELECT * FROM `...')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(349): yii\db\Command->queryInternal('')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\Command->query()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php(47): yii\db\BatchQueryResult->rewind()
+#6 [internal function]: api\modules\v1\controllers\LoyaltyController->actionIndex()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/loyalty/inde...', Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#13 {main}
+Additional Information:
+Array
+(
+    [0] => 42S22
+    [1] => 1054
+    [2] => Unknown column 'tbl_loyalty.userId' in 'where clause'
+)
+
+2016-12-01 20:49:35 [::1][-][-][info][application] $_GET = [
+    'q' => '{\"loyalty.userId\":{\"test\":\"like binary\",\"value\":\"zZN6prD6rzxEhg8sDQz1j\"}}'
+    'token' => 'COIN'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '51374'
+    'REDIRECT_QUERY_STRING' => 'q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}&token=COIN'
+    'REDIRECT_URL' => '/v1/loyalty'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}&token=COIN'
+    'REQUEST_URI' => '/v1/loyalty?q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}&token=COIN'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480621775.36
+    'REQUEST_TIME' => 1480621775
+]
+2016-12-01 20:52:49 [::1][-][-][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined index: token' in C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php:41
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): ::call_user_func_array:{C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php:57}()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams()
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#6 {main}
+2016-12-01 20:52:49 [::1][-][-][info][application] $_GET = [
+    'q' => '{\"loyalty.userId\":{\"test\":\"like binary\",\"value\":\"zZN6prD6rzxEhg8sDQz1j\"}}'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '51762'
+    'REDIRECT_QUERY_STRING' => 'q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}'
+    'REDIRECT_URL' => '/v1/loyalty'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}'
+    'REQUEST_URI' => '/v1/loyalty?q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480621969.129
+    'REQUEST_TIME' => 1480621969
+]
+2016-12-01 20:53:02 [::1][-][-][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined index: token' in C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php:41
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): ::call_user_func_array:{C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php:57}()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams()
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#6 {main}
+2016-12-01 20:53:02 [::1][-][-][info][application] $_GET = [
+    'q' => '{\"loyalty.userId\":{\"test\":\"like binary\",\"value\":\"zZN6prD6rzxEhg8sDQz1j\"}}'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '51788'
+    'REDIRECT_QUERY_STRING' => 'q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}'
+    'REDIRECT_URL' => '/v1/loyalty'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}'
+    'REQUEST_URI' => '/v1/loyalty?q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480621982.455
+    'REQUEST_TIME' => 1480621982
+]
+2016-12-01 20:53:45 [::1][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tbl_loyalty.userId' in 'where clause'' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php:900
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(900): PDOStatement->execute()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(349): yii\db\Command->queryInternal('')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\Command->query()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php(49): yii\db\BatchQueryResult->rewind()
+#6 [internal function]: api\modules\v1\controllers\LoyaltyController->actionIndex()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/loyalty/inde...', Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#13 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tbl_loyalty.userId' in 'where clause'
+The SQL being executed was: SELECT * FROM `tbl_loyalty` LEFT JOIN `tbl_user` ON `tbl_loyalty`.`userId` = `tbl_user`.`userId` LEFT JOIN `tbl_transaction` ON `tbl_loyalty`.`transactionId` = `tbl_transaction`.`transactionId` LEFT JOIN `tbl_asset_token` ON `tbl_transaction`.`tokenId` = `tbl_asset_token`.`tokenId` WHERE `tbl_loyalty`.`userId` LIKE BINARY 'zZN6prD6rzxEhg8sDQz1j'' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Schema.php:637
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(915): yii\db\Schema->convertException(Object(PDOException), 'SELECT * FROM `...')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(349): yii\db\Command->queryInternal('')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\Command->query()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php(49): yii\db\BatchQueryResult->rewind()
+#6 [internal function]: api\modules\v1\controllers\LoyaltyController->actionIndex()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/loyalty/inde...', Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#13 {main}
+Additional Information:
+Array
+(
+    [0] => 42S22
+    [1] => 1054
+    [2] => Unknown column 'tbl_loyalty.userId' in 'where clause'
+)
+
+2016-12-01 20:53:44 [::1][-][-][info][application] $_GET = [
+    'q' => '{\"loyalty.userId\":{\"test\":\"like binary\",\"value\":\"zZN6prD6rzxEhg8sDQz1j\"}}'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '51877'
+    'REDIRECT_QUERY_STRING' => 'q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}'
+    'REDIRECT_URL' => '/v1/loyalty'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}'
+    'REQUEST_URI' => '/v1/loyalty?q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480622024.972
+    'REQUEST_TIME' => 1480622024
+]
+2016-12-01 21:29:59 [::1][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tbl_loyalty.userId' in 'where clause'' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php:900
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(900): PDOStatement->execute()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(349): yii\db\Command->queryInternal('')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\Command->query()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php(48): yii\db\BatchQueryResult->rewind()
+#6 [internal function]: api\modules\v1\controllers\LoyaltyController->actionIndex()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/loyalty/inde...', Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#13 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tbl_loyalty.userId' in 'where clause'
+The SQL being executed was: SELECT * FROM `tbl_loyalty` LEFT JOIN `tbl_transaction` ON `tbl_loyalty`.`transactionId` = `tbl_transaction`.`transactionId` LEFT JOIN `tbl_asset_token` ON `tbl_transaction`.`tokenId` = `tbl_asset_token`.`tokenId` WHERE `tbl_loyalty`.`userId` LIKE BINARY 'zZN6prD6rzxEhg8sDQz1j'' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Schema.php:637
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(915): yii\db\Schema->convertException(Object(PDOException), 'SELECT * FROM `...')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(349): yii\db\Command->queryInternal('')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\Command->query()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php(48): yii\db\BatchQueryResult->rewind()
+#6 [internal function]: api\modules\v1\controllers\LoyaltyController->actionIndex()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/loyalty/inde...', Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#13 {main}
+Additional Information:
+Array
+(
+    [0] => 42S22
+    [1] => 1054
+    [2] => Unknown column 'tbl_loyalty.userId' in 'where clause'
+)
+
+2016-12-01 21:29:59 [::1][-][-][info][application] $_GET = [
+    'q' => '{\"loyalty.userId\":{\"test\":\"like binary\",\"value\":\"zZN6prD6rzxEhg8sDQz1j\"}}'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '56420'
+    'REDIRECT_QUERY_STRING' => 'q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}'
+    'REDIRECT_URL' => '/v1/loyalty'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}'
+    'REQUEST_URI' => '/v1/loyalty?q={%22loyalty.userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22zZN6prD6rzxEhg8sDQz1j%22}}'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480624199.904
+    'REQUEST_TIME' => 1480624199
+]
+2016-12-01 23:24:25 [::1][-][-][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined variable: data' in C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php:84
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): ::call_user_func_array:{C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php:57}()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams()
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#6 {main}
+2016-12-01 23:24:25 [::1][-][-][info][application] $_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '61360'
+    'REDIRECT_URL' => '/v1/loyalty'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/v1/loyalty'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480631065.078
+    'REQUEST_TIME' => 1480631065
+]
+2016-12-01 23:26:31 [::1][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '` LIKE BINARY 'zZN6prD6rzxEhg8sDQz1j' then `tbl_transaction`.`amount` else 0 end' at line 1' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php:900
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(900): PDOStatement->execute()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(376): yii\db\Command->queryInternal('fetch', NULL)
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Query.php(247): yii\db\Command->queryOne()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(295): yii\db\Query->one(NULL)
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php(85): yii\db\ActiveQuery->one()
+#5 [internal function]: api\modules\v1\controllers\LoyaltyController->actionIndex()
+#6 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/loyalty/inde...', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#12 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '` LIKE BINARY 'zZN6prD6rzxEhg8sDQz1j' then `tbl_transaction`.`amount` else 0 end' at line 1
+The SQL being executed was: SELECT sum(case when `tbl_transaction`.senderId` LIKE BINARY 'zZN6prD6rzxEhg8sDQz1j' then `tbl_transaction`.`amount` else 0 end) as TotalRed, sum(case when `tbl_transaction`.recipientId` LIKE BINARY 'zZN6prD6rzxEhg8sDQz1j' then `tbl_transaction`.`amount` else 0 end) as TotalBlue FROM `tbl_loyalty` LEFT JOIN `tbl_transaction` ON `tbl_loyalty`.`transactionId` = `tbl_transaction`.`transactionId` WHERE `tbl_transaction`.`recipientId` not like `tbl_transaction`.`senderId`' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Schema.php:637
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(915): yii\db\Schema->convertException(Object(PDOException), 'SELECT sum(case...')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(376): yii\db\Command->queryInternal('fetch', NULL)
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Query.php(247): yii\db\Command->queryOne()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(295): yii\db\Query->one(NULL)
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php(85): yii\db\ActiveQuery->one()
+#5 [internal function]: api\modules\v1\controllers\LoyaltyController->actionIndex()
+#6 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/loyalty/inde...', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#12 {main}
+Additional Information:
+Array
+(
+    [0] => 42000
+    [1] => 1064
+    [2] => You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '` LIKE BINARY 'zZN6prD6rzxEhg8sDQz1j' then `tbl_transaction`.`amount` else 0 end' at line 1
+)
+
+2016-12-01 23:26:31 [::1][-][-][info][application] $_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '61627'
+    'REDIRECT_URL' => '/v1/loyalty'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/v1/loyalty'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480631191.013
+    'REQUEST_TIME' => 1480631191
+]
+2016-12-01 23:27:10 [::1][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'transaction.senderId' in 'field list'' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php:900
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(900): PDOStatement->execute()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(376): yii\db\Command->queryInternal('fetch', NULL)
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Query.php(247): yii\db\Command->queryOne()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(295): yii\db\Query->one(NULL)
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php(85): yii\db\ActiveQuery->one()
+#5 [internal function]: api\modules\v1\controllers\LoyaltyController->actionIndex()
+#6 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/loyalty/inde...', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#12 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'transaction.senderId' in 'field list'
+The SQL being executed was: SELECT sum(case when transaction.senderId LIKE BINARY 'zZN6prD6rzxEhg8sDQz1j' then transaction.amount else 0 end) as TotalRed, sum(case when transaction.recipientId LIKE BINARY 'zZN6prD6rzxEhg8sDQz1j' then transaction.amount else 0 end) as TotalBlue FROM `tbl_loyalty` LEFT JOIN `tbl_transaction` ON `tbl_loyalty`.`transactionId` = `tbl_transaction`.`transactionId` WHERE transaction.recipientId not like transaction.senderId' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Schema.php:637
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(915): yii\db\Schema->convertException(Object(PDOException), 'SELECT sum(case...')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(376): yii\db\Command->queryInternal('fetch', NULL)
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Query.php(247): yii\db\Command->queryOne()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(295): yii\db\Query->one(NULL)
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php(85): yii\db\ActiveQuery->one()
+#5 [internal function]: api\modules\v1\controllers\LoyaltyController->actionIndex()
+#6 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/loyalty/inde...', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#12 {main}
+Additional Information:
+Array
+(
+    [0] => 42S22
+    [1] => 1054
+    [2] => Unknown column 'transaction.senderId' in 'field list'
+)
+
+2016-12-01 23:27:10 [::1][-][-][info][application] $_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '61708'
+    'REDIRECT_URL' => '/v1/loyalty'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/v1/loyalty'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480631230.758
+    'REQUEST_TIME' => 1480631230
+]
+2016-12-02 15:25:19 [::1][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'userId' in 'where clause'' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php:900
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(900): PDOStatement->execute()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(349): yii\db\Command->queryInternal('')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\Command->query()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\FavoriteFactController.php(33): yii\db\BatchQueryResult->rewind()
+#6 [internal function]: api\modules\v1\controllers\FavoriteFactController->actionIndex()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/favorite-fac...', Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#13 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'userId' in 'where clause'
+The SQL being executed was: SELECT * FROM `tbl_favoritefact` WHERE `userId` LIKE BINARY 'n6cXcvhdOKc8oog48uBDb'' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Schema.php:637
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(915): yii\db\Schema->convertException(Object(PDOException), 'SELECT * FROM `...')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(349): yii\db\Command->queryInternal('')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\Command->query()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\FavoriteFactController.php(33): yii\db\BatchQueryResult->rewind()
+#6 [internal function]: api\modules\v1\controllers\FavoriteFactController->actionIndex()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/favorite-fac...', Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#13 {main}
+Additional Information:
+Array
+(
+    [0] => 42S22
+    [1] => 1054
+    [2] => Unknown column 'userId' in 'where clause'
+)
+
+2016-12-02 15:25:19 [::1][-][-][info][application] $_GET = [
+    'q' => '{\"userId\":{\"test\":\"like binary\",\"value\":\"n6cXcvhdOKc8oog48uBDb\"}}'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '64902'
+    'REDIRECT_QUERY_STRING' => 'q={%22userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REDIRECT_URL' => '/v1/favorite-facts'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'q={%22userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REQUEST_URI' => '/v1/favorite-facts?q={%22userId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480688719.147
+    'REQUEST_TIME' => 1480688719
+]
+2016-12-02 15:31:39 [::1][-][-][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Request.php:193
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(82): yii\web\Request->resolve()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#3 {main}
+2016-12-02 15:31:39 [::1][-][-][info][application] $_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '49337'
+    'REDIRECT_URL' => '/v1/auth/signin'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/v1/auth/signin'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480689099.504
+    'REQUEST_TIME' => 1480689099
+]
+2016-12-02 15:32:41 [::1][-][-][error][yii\base\UnknownPropertyException] exception 'yii\base\UnknownPropertyException' with message 'Getting unknown property: api\modules\v1\models\Favoritefact::userId' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Component.php:145
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BaseActiveRecord.php(286): yii\base\Component->__get('userId')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Model.php(986): yii\db\BaseActiveRecord->__get('userId')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveRelationTrait.php(458): yii\base\Model->offsetGet('userId')
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(187): yii\db\ActiveQuery->filterByModels(Array)
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\QueryBuilder.php(92): yii\db\ActiveQuery->prepare(Object(yii\db\mysql\QueryBuilder))
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(319): yii\db\QueryBuilder->build(Object(yii\db\ActiveQuery))
+#6 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Query.php(247): yii\db\ActiveQuery->createCommand(NULL)
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(295): yii\db\Query->one(NULL)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveRelationTrait.php(157): yii\db\ActiveQuery->one()
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BaseActiveRecord.php(288): yii\db\ActiveQuery->findFor('buyer', Object(api\modules\v1\models\Favoritefact))
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\components\RestUtils.php(42): yii\db\BaseActiveRecord->__get('buyer')
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\FavoriteFactController.php(35): api\components\RestUtils::loadQueryIntoVar(Object(api\modules\v1\models\Favoritefact))
+#12 [internal function]: api\modules\v1\controllers\FavoriteFactController->actionIndex()
+#13 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#14 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#15 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#16 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/favorite-fac...', Array)
+#17 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#18 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#19 {main}
+2016-12-02 15:32:41 [::1][-][-][info][application] $_GET = [
+    'q' => '{\"buyerId\":{\"test\":\"like binary\",\"value\":\"n6cXcvhdOKc8oog48uBDb\"}}'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '49481'
+    'REDIRECT_QUERY_STRING' => 'q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REDIRECT_URL' => '/v1/favorite-facts'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REQUEST_URI' => '/v1/favorite-facts?q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480689161.649
+    'REQUEST_TIME' => 1480689161
+]
+2016-12-02 15:33:45 [::1][-][-][error][yii\base\InvalidParamException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: api\modules\v1\models\Favoritefact::getuser()' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Component.php:287
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BaseActiveRecord.php(1184): yii\base\Component->__call('getuser', Array)
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BaseActiveRecord.php(1184): api\modules\v1\models\Favoritefact->getuser()
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(525): yii\db\BaseActiveRecord->getRelation('user')
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(440): yii\db\ActiveQuery->joinWithRelations(Object(api\modules\v1\models\Favoritefact), Array, 'LEFT JOIN')
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(146): yii\db\ActiveQuery->buildJoinWith()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\QueryBuilder.php(92): yii\db\ActiveQuery->prepare(Object(yii\db\mysql\QueryBuilder))
+#6 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(319): yii\db\QueryBuilder->build(Object(yii\db\ActiveQuery))
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\ActiveQuery->createCommand(NULL)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\FavoriteFactController.php(37): yii\db\BatchQueryResult->rewind()
+#11 [internal function]: api\modules\v1\controllers\FavoriteFactController->actionIndex()
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#13 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#14 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#15 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/favorite-fac...', Array)
+#16 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#17 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#18 {main}
+
+Next exception 'yii\base\InvalidParamException' with message 'api\modules\v1\models\Favoritefact has no relation named "user".' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BaseActiveRecord.php:1187
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(525): yii\db\BaseActiveRecord->getRelation('user')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(440): yii\db\ActiveQuery->joinWithRelations(Object(api\modules\v1\models\Favoritefact), Array, 'LEFT JOIN')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(146): yii\db\ActiveQuery->buildJoinWith()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\QueryBuilder.php(92): yii\db\ActiveQuery->prepare(Object(yii\db\mysql\QueryBuilder))
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(319): yii\db\QueryBuilder->build(Object(yii\db\ActiveQuery))
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\ActiveQuery->createCommand(NULL)
+#6 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\FavoriteFactController.php(37): yii\db\BatchQueryResult->rewind()
+#9 [internal function]: api\modules\v1\controllers\FavoriteFactController->actionIndex()
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#13 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/favorite-fac...', Array)
+#14 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#15 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#16 {main}
+2016-12-02 15:33:45 [::1][-][-][info][application] $_GET = [
+    'q' => '{\"buyerId\":{\"test\":\"like binary\",\"value\":\"n6cXcvhdOKc8oog48uBDb\"}}'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '49609'
+    'REDIRECT_QUERY_STRING' => 'q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REDIRECT_URL' => '/v1/favorite-facts'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REQUEST_URI' => '/v1/favorite-facts?q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480689225.246
+    'REQUEST_TIME' => 1480689225
+]
+2016-12-02 15:33:54 [::1][-][-][error][yii\db\IntegrityException] exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'buyerId' in where clause is ambiguous' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php:900
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(900): PDOStatement->execute()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(349): yii\db\Command->queryInternal('')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\Command->query()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\FavoriteFactController.php(37): yii\db\BatchQueryResult->rewind()
+#6 [internal function]: api\modules\v1\controllers\FavoriteFactController->actionIndex()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/favorite-fac...', Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#13 {main}
+
+Next exception 'yii\db\IntegrityException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'buyerId' in where clause is ambiguous
+The SQL being executed was: SELECT * FROM `tbl_favoritefact` LEFT JOIN `tbl_buyer` ON `tbl_favoritefact`.`userId` = `tbl_buyer`.`buyerId` WHERE `buyerId` LIKE BINARY 'n6cXcvhdOKc8oog48uBDb'' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Schema.php:637
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(915): yii\db\Schema->convertException(Object(PDOException), 'SELECT * FROM `...')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(349): yii\db\Command->queryInternal('')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\Command->query()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\FavoriteFactController.php(37): yii\db\BatchQueryResult->rewind()
+#6 [internal function]: api\modules\v1\controllers\FavoriteFactController->actionIndex()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/favorite-fac...', Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#13 {main}
+Additional Information:
+Array
+(
+    [0] => 23000
+    [1] => 1052
+    [2] => Column 'buyerId' in where clause is ambiguous
+)
+
+2016-12-02 15:33:54 [::1][-][-][info][application] $_GET = [
+    'q' => '{\"buyerId\":{\"test\":\"like binary\",\"value\":\"n6cXcvhdOKc8oog48uBDb\"}}'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '49631'
+    'REDIRECT_QUERY_STRING' => 'q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REDIRECT_URL' => '/v1/favorite-facts'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REQUEST_URI' => '/v1/favorite-facts?q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480689234.718
+    'REQUEST_TIME' => 1480689234
+]
+2016-12-02 15:34:02 [::1][-][-][error][yii\db\IntegrityException] exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'buyerId' in where clause is ambiguous' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php:900
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(900): PDOStatement->execute()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(349): yii\db\Command->queryInternal('')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\Command->query()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\FavoriteFactController.php(38): yii\db\BatchQueryResult->rewind()
+#6 [internal function]: api\modules\v1\controllers\FavoriteFactController->actionIndex()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/favorite-fac...', Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#13 {main}
+
+Next exception 'yii\db\IntegrityException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'buyerId' in where clause is ambiguous
+The SQL being executed was: SELECT * FROM `tbl_favoritefact` LEFT JOIN `tbl_buyer` ON `tbl_favoritefact`.`userId` = `tbl_buyer`.`buyerId` LEFT JOIN `tbl_offer` ON `tbl_favoritefact`.`offerId` = `tbl_offer`.`offerId` WHERE `buyerId` LIKE BINARY 'n6cXcvhdOKc8oog48uBDb'' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Schema.php:637
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(915): yii\db\Schema->convertException(Object(PDOException), 'SELECT * FROM `...')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Command.php(349): yii\db\Command->queryInternal('')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(138): yii\db\Command->query()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(112): yii\db\BatchQueryResult->fetchData()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BatchQueryResult.php(102): yii\db\BatchQueryResult->next()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\FavoriteFactController.php(38): yii\db\BatchQueryResult->rewind()
+#6 [internal function]: api\modules\v1\controllers\FavoriteFactController->actionIndex()
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/favorite-fac...', Array)
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#13 {main}
+Additional Information:
+Array
+(
+    [0] => 23000
+    [1] => 1052
+    [2] => Column 'buyerId' in where clause is ambiguous
+)
+
+2016-12-02 15:34:02 [::1][-][-][info][application] $_GET = [
+    'q' => '{\"buyerId\":{\"test\":\"like binary\",\"value\":\"n6cXcvhdOKc8oog48uBDb\"}}'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '49647'
+    'REDIRECT_QUERY_STRING' => 'q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REDIRECT_URL' => '/v1/favorite-facts'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REQUEST_URI' => '/v1/favorite-facts?q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480689242.357
+    'REQUEST_TIME' => 1480689242
+]
+2016-12-02 15:34:18 [::1][-][-][error][yii\base\UnknownPropertyException] exception 'yii\base\UnknownPropertyException' with message 'Getting unknown property: api\modules\v1\models\Favoritefact::userId' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Component.php:145
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BaseActiveRecord.php(286): yii\base\Component->__get('userId')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Model.php(986): yii\db\BaseActiveRecord->__get('userId')
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveRelationTrait.php(458): yii\base\Model->offsetGet('userId')
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(187): yii\db\ActiveQuery->filterByModels(Array)
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\QueryBuilder.php(92): yii\db\ActiveQuery->prepare(Object(yii\db\mysql\QueryBuilder))
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(319): yii\db\QueryBuilder->build(Object(yii\db\ActiveQuery))
+#6 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\Query.php(247): yii\db\ActiveQuery->createCommand(NULL)
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveQuery.php(295): yii\db\Query->one(NULL)
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\ActiveRelationTrait.php(157): yii\db\ActiveQuery->one()
+#9 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BaseActiveRecord.php(288): yii\db\ActiveQuery->findFor('buyer', Object(api\modules\v1\models\Favoritefact))
+#10 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\components\RestUtils.php(42): yii\db\BaseActiveRecord->__get('buyer')
+#11 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\FavoriteFactController.php(40): api\components\RestUtils::loadQueryIntoVar(Object(api\modules\v1\models\Favoritefact))
+#12 [internal function]: api\modules\v1\controllers\FavoriteFactController->actionIndex()
+#13 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#14 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#15 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#16 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/favorite-fac...', Array)
+#17 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#18 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#19 {main}
+2016-12-02 15:34:18 [::1][-][-][info][application] $_GET = [
+    'q' => '{\"buyerId\":{\"test\":\"like binary\",\"value\":\"n6cXcvhdOKc8oog48uBDb\"}}'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '49686'
+    'REDIRECT_QUERY_STRING' => 'q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REDIRECT_URL' => '/v1/favorite-facts'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REQUEST_URI' => '/v1/favorite-facts?q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480689258.072
+    'REQUEST_TIME' => 1480689258
+]
+2016-12-02 15:56:37 [::1][-][-][error][yii\base\UnknownPropertyException] exception 'yii\base\UnknownPropertyException' with message 'Getting unknown property: api\modules\v1\models\ReviewFact::reviews' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Component.php:145
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\db\BaseActiveRecord.php(286): yii\base\Component->__get('reviews')
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\ReviewFactController.php(47): yii\db\BaseActiveRecord->__get('reviews')
+#2 [internal function]: api\modules\v1\controllers\ReviewFactController->actionIndex()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction('index', Array)
+#6 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('v1/review-fact/...', Array)
+#7 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#9 {main}
+2016-12-02 15:56:37 [::1][-][-][info][application] $_GET = [
+    'q' => '{\"buyerId\":{\"test\":\"like binary\",\"value\":\"n6cXcvhdOKc8oog48uBDb\"}}'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '52496'
+    'REDIRECT_QUERY_STRING' => 'q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REDIRECT_URL' => '/v1/review-facts'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'REQUEST_URI' => '/v1/review-facts?q={%22buyerId%22:{%22test%22:%22like%20binary%22,%22value%22:%22n6cXcvhdOKc8oog48uBDb%22}}'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480690597.463
+    'REQUEST_TIME' => 1480690597
+]
+2016-12-02 16:02:38 [::1][-][-][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Request.php:193
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(82): yii\web\Request->resolve()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#3 {main}
+2016-12-02 16:02:38 [::1][-][-][info][application] $_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '53275'
+    'REDIRECT_URL' => '/v1/auth/signin'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/v1/auth/signin'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480690958.54
+    'REQUEST_TIME' => 1480690958
+]
+2016-12-03 13:05:52 [::1][-][-][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined index: q' in C:\wamp\www\AdminBack\AdminLTE\ondetem\api\modules\v1\controllers\LoyaltyController.php:32
+Stack trace:
+#0 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php(57): ::call_user_func_array:{C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\InlineAction.php:57}()
+#1 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams()
+#2 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Module.php(524): yii\base\Controller->runAction()
+#3 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction()
+#4 C:\wamp\www\AdminBack\AdminLTE\ondetem\vendor\yiisoft\yii2\base\Application.php(373): yii\web\Application->handleRequest()
+#5 C:\wamp\www\AdminBack\AdminLTE\ondetem\api\web\index.php(16): yii\base\Application->run()
+#6 {main}
+2016-12-03 13:05:48 [::1][-][-][info][application] $_COOKIE = [
+    '_ga' => 'GA1.1.251165203.1479815713'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:7000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => '_ga=GA1.1.251165203.1479815713'
+    'PATH' => 'C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\GitExtensions\\;C:\\WINDOWS\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Bitcoin\\daemon\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI\\wbin;C:\\Program Files (x86)\\Java\\jdk1.7.0_55\\bin;C:\\Program Files (x86)\\GtkSharp\\2.12\\bin;C:\\sqlite;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Calibre2\\;C:\\Program Files (x86)\\Heroku\\bin;C:\\wamp\\bin\\php\\php5.5.12;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\Tesseract-OCR;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\nodejs\\;C:\\Users\\bruno_000\\AppData\\Roaming\\npm;C:\\Program Files (x86)\\Android\\android-sdk;C:\\Program Files (x86)\\Android\\android-sdk\\tools\\;C:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12 Server at localhost Port 7000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.9 (Win64) OpenSSL/1.0.1g PHP/5.5.12'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '7000'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web'
+    'SERVER_ADMIN' => 'webmaster@ondetem.com.br'
+    'SCRIPT_FILENAME' => 'C:/wamp/www/AdminBack/AdminLTE/ondetem/api/web/index.php'
+    'REMOTE_PORT' => '51078'
+    'REDIRECT_URL' => '/v1/loyalty'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/v1/loyalty'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1480766746.16
+    'REQUEST_TIME' => 1480766746
+]

@@ -45,7 +45,7 @@ class Seller extends \yii\db\ActiveRecord
             [['about'], 'string', 'max' => 420],
             [['name', 'email', 'website'], 'string', 'max' => 60],
             [['hours', 'categories', 'paymentOptions'], 'string', 'max' => 255],
-            [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
+            //[['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
             [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
         ];
     }
@@ -76,27 +76,18 @@ class Seller extends \yii\db\ActiveRecord
         return $this->hasMany(Offer::className(), ['sellerId' => 'sellerId']);
     }
 
+    public function getUser() {}
+
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
-    {
-        return $this->hasOne(User::className(), ['userId' => 'userId']);
-    }
-
     public function getPicture()
     {
         return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
     }
 
-    /*public function getReviewFacts()
-    {
-        return $this->hasMany(ReviewFact::className(), ['sellerId' => 'sellerId']);
-    }*/
-
     public function getReviews()
     {
         return $this->hasMany(ReviewFact::className(), ['sellerId' => 'sellerId']);
-            //->via('reviewFacts');
     }
 }

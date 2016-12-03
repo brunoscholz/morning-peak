@@ -42,7 +42,7 @@ class Buyer extends \yii\db\ActiveRecord
             [['gender', 'status'], 'string', 'max' => 3],
             [['email', 'website'], 'string', 'max' => 60],
             [['title'], 'string', 'max' => 10],
-            [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
+            //[['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
             [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
         ];
     }
@@ -76,21 +76,16 @@ class Buyer extends \yii\db\ActiveRecord
             ->one();
     }
 
-    public static function findByUserId($id)
+    /*public static function findByUserId($id)
     {
         return static::find()
             ->where(['like binary', 'userId', $id])
             ->one();
-    }
+    }*/
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
-    {
-        return $this->hasOne(User::className(), ['userId' => 'userId']);
-    }
-
     public function getPicture()
     {
         return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);

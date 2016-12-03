@@ -190,6 +190,22 @@ class RestUtils
         return $query;
     }
 
+    public static function getBalance($id, $token, $query)
+    {
+        //$query = Loyalty::find();
+        $query->joinWith([
+            'transaction',
+            'token'
+        ]);
+        $query->where('tbl_transaction.recipientId not like tbl_transaction.senderId');
+        $query->andWhere(['like', 'tbl_asset_token.name', $token]);
+        $query->select([
+            "sum(case when tbl_transaction.senderId LIKE BINARY '".$id."' then tbl_transaction.amount else 0 end) as TotalRed",
+            "sum(case when tbl_transaction.recipientId LIKE BINARY '".$id."' then tbl_transaction.amount else 0 end) as TotalBlue"
+        ]);
+        return $query->createCommand()->queryOne();
+    }
+
     /**
      * Create a reponse header
      */

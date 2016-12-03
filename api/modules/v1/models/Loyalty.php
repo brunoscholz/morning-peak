@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "{{%loyalty}}".
  *
  * @property string $loyaltyId
- * @property string $buyerId
+ * @property string $userId
  * @property string $actionId
  * @property string $ruleId
  * @property integer $points
@@ -39,11 +39,11 @@ class Loyalty extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['loyaltyId', 'buyerId', 'actionId', 'ruleId', 'points', 'transactionId', 'status'], 'required'],
+            [['loyaltyId', 'userId', 'actionId', 'ruleId', 'points', 'transactionId', 'status'], 'required'],
             [['actionId', 'points'], 'integer'],
-            [['loyaltyId', 'buyerId', 'ruleId', 'transactionId'], 'string', 'max' => 21],
+            [['loyaltyId', 'userId', 'ruleId', 'transactionId'], 'string', 'max' => 21],
             [['status'], 'string', 'max' => 3],
-            [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
+            [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
             [['transactionId'], 'exist', 'skipOnError' => true, 'targetClass' => Transaction::className(), 'targetAttribute' => ['transactionId' => 'transactionId']],
         ];
     }
@@ -55,7 +55,7 @@ class Loyalty extends \yii\db\ActiveRecord
     {
         return [
             'loyaltyId' => 'Loyalty ID',
-            'buyerId' => 'Buyer ID',
+            'userId' => 'User ID',
             'actionId' => 'Action ID',
             'ruleId' => 'Rule ID',
             'points' => 'Points',
@@ -64,9 +64,9 @@ class Loyalty extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getBuyer()
+    public function getUser()
     {
-        return $this->hasOne(Buyer::className(), ['buyerId' => 'buyerId']);
+        return $this->hasOne(User::className(), ['userId' => 'userId']);
     }
 
     public function getTransaction()
