@@ -8,6 +8,7 @@ use backend\models\Offer;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 class DashboardController extends Controller
@@ -15,6 +16,20 @@ class DashboardController extends Controller
 	public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login','error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['logout','index','profile'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -42,11 +57,18 @@ class DashboardController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionProfile($id)
+    public function actionProfile()
     {
-        return $this->render('profile', [
-            'model' => Seller::findOne($id),
-            'offerModel' => new Offer(),
-        ]);
+        $pref = Yii::$app->user->identity->preferredProfile;
+
+        if($pref['type'] == 'seller')
+            return $this->render('profile', [
+                'seller' => Seller::findOne($pref['id'])
+            ]);
+        else
+            return $this->render('profile', [
+                'buyer' => Seller::findOne($pref['id'])
+            ]);
+
     }
 }

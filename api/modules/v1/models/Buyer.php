@@ -35,8 +35,8 @@ class Buyer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['buyerId', 'userId', 'name', 'email'], 'required'],
-            [['buyerId', 'userId', 'dob'], 'string', 'max' => 21],
+            [['buyerId', 'name', 'email'], 'required'],
+            [['buyerId', 'dob', 'pictureId', 'shippingAddressId', 'billingAddressId'], 'string', 'max' => 21],
             [['about'], 'string', 'max' => 420],
             [['name'], 'string', 'max' => 80],
             [['gender', 'status'], 'string', 'max' => 3],
@@ -44,6 +44,8 @@ class Buyer extends \yii\db\ActiveRecord
             [['title'], 'string', 'max' => 10],
             //[['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
             [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
+            [['shippingAddressId'], 'exist', 'skipOnError' => true, 'targetClass' => ShippingAddress::className(), 'targetAttribute' => ['shippingAddressId' => 'shippingAddressId']],
+            [['billingAddressId'], 'exist', 'skipOnError' => true, 'targetClass' => BillingAddress::className(), 'targetAttribute' => ['billingAddressId' => 'billingAddressId']],
         ];
     }
 
@@ -89,6 +91,16 @@ class Buyer extends \yii\db\ActiveRecord
     public function getPicture()
     {
         return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
+    }
+
+    public function getBillingAddress()
+    {
+        return $this->hasOne(BillingAddress::className(), ['billingAddressId' => 'billingAddressId']);
+    }
+
+    public function getShippingAddress()
+    {
+        return $this->hasOne(ShippingAddress::className(), ['shippingAddressId' => 'shippingAddressId']);
     }
 
     public function getLoyalties()

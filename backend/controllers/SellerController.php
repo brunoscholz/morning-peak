@@ -153,4 +153,20 @@ class SellerController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function CreditCoin()
+    {
+        $params = Yii::$app->request->post();
+        if(isset($params['post'])) {
+            $test = ['time' => date('H:i:s')];
+            
+        } else {
+            $test = ['time' => 'undefined'];
+            
+        }
+
+        // return Json    
+        return \yii\helpers\Json::encode($test);
+        //return $this->render('index', ['time' => date('H:i:s')]);
+    }
 }

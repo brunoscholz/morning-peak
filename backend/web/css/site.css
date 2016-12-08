@@ -118,3 +118,11 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.main-header span.logo-mini img {
+    height: 45px;
+}
+
+.main-header span.logo-lg img {
+    height: 45px;
+}

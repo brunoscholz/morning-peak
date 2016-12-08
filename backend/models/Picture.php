@@ -65,13 +65,20 @@ class Picture extends \yii\db\ActiveRecord
         ];
     }
 
-    public function upload()
+    public static function findById($id)
+    {
+        return static::find()
+            ->where(['like binary', 'pictureId', $id])
+            ->one();
+    }
+
+    public function upload($folder = 'userpics')
     {
         // the path to save file, you can set an uploadPath
         // in Yii::$app->params (as used in example below)                       
 
         if ($this->validate()) {
-            $path = '/uploads/userpics/';
+            $path = '/uploads/'.$folder.'/';
             $basePath = Yii::$app->basePath . '/../frontend/web';
             
             if(isset($this->imageCover) && !empty($this->imageCover))
@@ -108,5 +115,32 @@ class Picture extends \yii\db\ActiveRecord
         } else {
             return false;
         }
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert))
+        {
+            // ...custom code here...
+            //http://ondetem-gn.com.br/uploads/userpics/4xsJ18K4J7dXr74jlWK_U--lvTY7tyF6.png
+            $this->thumbnail = str_replace('http://ondetem-gn.com.br', '', $this->thumbnail);
+            $this->cover = str_replace('http://ondetem-gn.com.br', '', $this->cover);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function afterFind()
+    {
+        if(is_null($this->thumbnail) || empty($this->thumbnail))
+            $this->thumbnail = 'assets/img/generic-avatar.png';
+        else
+            $this->thumbnail = 'http://ondetem-gn.com.br' . $this->thumbnail;
+        
+        if(is_null($this->cover) || empty($this->cover))
+            $this->cover = 'assets/img/generic-cover.jpg';
+        else
+            $this->cover = 'http://ondetem-gn.com.br' . $this->cover;
     }
 }

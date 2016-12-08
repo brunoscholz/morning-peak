@@ -38,8 +38,8 @@ class RestUtils
                 continue;
             $attributes = $model->getAttributes($model->fields());
             $relations = array();
-            foreach (RestUtils::getRelations($model) as $key => $related) {
-                $relations[$related] = RestUtils::loadQueryIntoVar($model->$related);    
+            foreach (self::getRelations($model) as $key => $related) {
+                $relations[$related] = self::loadQueryIntoVar($model->$related);    
             }
             $all = array_merge($attributes, $relations);
 
@@ -67,6 +67,12 @@ class RestUtils
                 $splitedNames = ['sender'];
             elseif(array_key_exists("recipientId",$value))
                 $splitedNames = ['recipient'];
+            
+            if(array_key_exists("shippingAddressId",$value))
+                $splitedNames = ['shippingAddress'];
+            if(array_key_exists("billingAddressId",$value))
+                $splitedNames = ['billingAddress'];
+
 
             foreach ($splitedNames as $name) {
                 $relations[$key] = $name; //ucfirst($name);
@@ -83,12 +89,12 @@ class RestUtils
                 $attr = $data->$key->attributes;
                 foreach ($value as $k => $v) {
                     unset($attr[$k]);
-                    $attr[$v] = RestUtils::getAttributes2($data->$key->$v, $v);
+                    $attr[$v] = self::getAttributes2($data->$key->$v, $v);
                 }
                 $temp[$key] = $attr;
             }
             else {
-                $temp[$value] = RestUtils::getAttributes2($data->$value, $value);
+                $temp[$value] = self::getAttributes2($data->$value, $value);
             }
         }
         return $temp;
@@ -206,6 +212,54 @@ class RestUtils
         return $query->createCommand()->queryOne();
     }
 
+     /**
+     * @return api\modules\v1\models\AssetToken;
+     */
+    public static function checkAuth($auth)
+    {
+        $models = array('status'=>500);
+
+        if(is_null($auth))
+        {
+            $models['status'] = \api\modules\v1\models\AuthToken::TOKEN_MISSING;
+        }
+        elseif(strtotime($auth->expires) < strtotime(date('Y-m-d H:i:s')))
+        {
+            $models['status'] = \api\modules\v1\models\AuthToken::TOKEN_EXPIRED;
+        }
+        else
+        {
+            if(self::is_hash_equals($auth->token, hash('sha256', base64_decode($authenticator))))
+            {
+                $models['status'] = 200;
+            }
+            else
+            {
+                $models['status'] = \api\modules\v1\models\AuthToken::TOKEN_WRONG;
+            }
+        }
+
+        return $models;
+    }
+
+    public static function is_hash_equals($str1, $str2)
+    {
+        if(strlen($str1) != strlen($str2))
+        {
+            return false;
+        }
+        else
+        {
+            $res = $str1 ^ $str2;
+            $ret = 0;
+            for($i = strlen($res) - 1; $i >= 0; $i--)
+            {
+                $ret |= ord($res[$i]);
+            }
+            return !$ret;
+        }
+    }
+
     /**
      * Create a reponse header
      */
@@ -226,19 +280,19 @@ class RestUtils
 
     public static function sendResult($code, $models)
     {
-        RestUtils::setHeader($code);
+        self::setHeader($code);
         return json_encode($models, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 
     public static function generateId()
     {
         //md5(uniqid($name, true));
-        return RestUtils::getToken(21);
+        return self::getToken(21);
     }
 
     public static function generateSalt()
     {
-        return RestUtils::getToken(64);
+        return self::getToken(64);
     }
 
     public static function hashPassword($password, $salt)
@@ -248,7 +302,7 @@ class RestUtils
 
     public static function generateActivationKey()
     {
-        return RestUtils::getToken(8);
+        return self::getToken(8);
     }
 
     public static function generateValidationKey($key, $email, $id)
@@ -258,7 +312,7 @@ class RestUtils
 
     /*public function validatePassword($password)
     {
-        $hashedPass = RestUtils::hashPassword($password, $this->salt);
+        $hashedPass = self::hashPassword($password, $this->salt);
         return $hashedPass === $this->password;
     }
 
@@ -269,7 +323,7 @@ class RestUtils
 
     public static function generateActivationKey()
     {
-        return RestUtils::getToken(8);
+        return self::getToken(8);
     }
 
     public static function generateValidationKey($key, $email, $id)
@@ -306,10 +360,35 @@ class RestUtils
         $max = strlen($codeAlphabet);
 
         for ($i=0; $i < $length; $i++) {
-            $token .= $codeAlphabet[RestUtils::crypto_rand_secure(0, $max)];
+            $token .= $codeAlphabet[self::crypto_rand_secure(0, $max)];
         }
 
         return $token;
+    }
+
+    public static function saveBase64Image($base64_image_string, $output_file_without_extentnion, $path_with_end_slash = "")
+    {
+        /*$splited = explode(',', substr( $base64_image_string , 5 ) , 2);
+        $mime=$splited[0];
+        $data=$splited[1];*/
+
+        list($mime, $data) = explode(';', $base64_image_string);
+        $data = str_replace('base64,', '', $data);
+        $data = str_replace(' ','+',$data);
+        $data = base64_decode($data);
+
+        $mime_split_without_base64=explode(';', $mime,2);
+        $mime_split=explode('/', $mime_split_without_base64[0],2);
+        if(count($mime_split)==2)
+        {
+            $extension=$mime_split[1];
+            if($extension=='jpeg') $extension='jpg';
+            //if($extension=='javascript')$extension='js';
+            //if($extension=='text')$extension='txt';
+            $output_file_with_extentnion.=$output_file_without_extentnion.'.'.$extension;
+        }
+        file_put_contents($path_with_end_slash . $output_file_with_extentnion, $data);
+        return $output_file_with_extentnion;
     }
 }
 

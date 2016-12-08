@@ -1,13 +1,21 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
+use backend\components\Utils;
+
+//use backend\modules\notification\widgets\NotificationWidget;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+//Yii::$app->user->isGuest
+
+$myImages = Url::to('@web/img/');
+
 ?>
 
 <header class="main-header">
 
-    <?= Html::a('<span class="logo-mini">APP</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
+    <?= Html::a('<span class="logo-mini"><img src="'.$myImages.'logo-icon.png"></span><span class="logo-lg"><img src="'.$myImages.'logo.png"></span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
 
     <nav class="navbar navbar-static-top" role="navigation">
 
@@ -20,6 +28,8 @@ use yii\helpers\Html;
             <ul class="nav navbar-nav">
 
                 <!-- Messages: style can be found in dropdown.less-->
+                <?php //NotificationWidget::widget([]); ?>
+
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
@@ -229,18 +239,15 @@ use yii\helpers\Html;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/avatar5.png" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs"><?php //echo Yii::$app->user->identity->username; ?></span>
+                        <img src="http://www.ondetem-gn.com.br/<?php echo Yii::$app->user->identity->buyer->picture->thumbnail; ?>" class="user-image" alt="User Image"/>
+                        <span class="hidden-xs"><?php echo Yii::$app->user->identity->username; ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/avatar5.png" class="img-circle"
-                                 alt="User Image"/>
-
+                            <img src="http://www.ondetem-gn.com.br/<?php echo Yii::$app->user->identity->buyer->picture->thumbnail; ?>" class="img-circle" alt="User Image"/>
                             <p>
-                                <?php //echo Yii::$app->user->identity->username; ?>
-                                <small>Member desde Nov. 2012</small>
+                                <small>Membro desde <?php echo Utils::dateToString(Yii::$app->user->identity->createdAt); ?></small>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -260,13 +267,13 @@ use yii\helpers\Html;
                             <div class="pull-left">
                                 <?= Html::a(
                                     'Perfil',
-                                    ['/userprofile'],
+                                    ['/profile'],
                                     ['class' => 'btn btn-default btn-flat']
                                 ) ?>
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(
-                                    'Sign out',
+                                    'Sair',
                                     ['/site/logout'],
                                     ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
                                 ) ?>

@@ -41,12 +41,13 @@ class Seller extends \yii\db\ActiveRecord
     {
         return [
             [['sellerId', 'userId', 'name', 'email', 'phone', 'cellphone'], 'required'],
-            [['sellerId', 'userId'], 'string', 'max' => 21],
+            [['sellerId', 'userId', 'pictureId', 'billingAddressId'], 'string', 'max' => 21],
             [['about'], 'string', 'max' => 420],
             [['name', 'email', 'website'], 'string', 'max' => 60],
             [['hours', 'categories', 'paymentOptions'], 'string', 'max' => 255],
             //[['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
             [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
+            [['billingAddressId'], 'exist', 'skipOnError' => true, 'targetClass' => BillingAddress::className(), 'targetAttribute' => ['billingAddressId' => 'billingAddressId']],
         ];
     }
 
@@ -68,7 +69,17 @@ class Seller extends \yii\db\ActiveRecord
             'hours' => 'Hours',
             'categories' => 'Categories',
             'paymentOptions' => 'Payment Options',
+            'createdAt' => 'Data Criação',
+            'updatedAt' => 'Data Atualização',
+            'status' => 'Status',
         ];
+    }
+
+    public static function findById($id)
+    {
+        return static::find()
+            ->where(['like binary', 'sellerId', $id])
+            ->one();
     }
 
     public function getOffers()
@@ -84,6 +95,11 @@ class Seller extends \yii\db\ActiveRecord
     public function getPicture()
     {
         return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
+    }
+
+    public function getBillingAddress()
+    {
+        return $this->hasOne(BillingAddress::className(), ['billingAddressId' => 'billingAddressId']);
     }
 
     public function getReviews()

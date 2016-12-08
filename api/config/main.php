@@ -112,17 +112,17 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/auth',
                     'pluralize' => false,
-                    'only' => ['signup', 'signin', 'logout', 'forgot-password','settings', 'seller-register', 'social-connect'],
+                    'only' => ['signup', 'signin', 'logout', 'forgot-password', 'settings', 'seller-register', 'social-connect'],
                     'extraPatterns' => [
                         'POST signin' => 'signin',
                         'POST signup' => 'signup',
+                        'POST settings' => 'settings',
                         'POST seller-register' => 'seller-register',
                         'POST social-connect' => 'social-connect',
-                        'GET logout/<id:\w+>' => 'logout',
                         'POST forgot-password' => 'forgot-password',
-                        'GET,POST settings/<id:\w+>' => 'settings',
+                        'GET logout/<id:\w+>' => 'logout',
                         //'DELETE logout/<id:\d+>' => 'logout',
-                        'PUT,PATCH change-password/<id:\d+>' => 'change-password'
+                        //'PUT,PATCH change-password/<id:\d+>' => 'change-password'
                     ],
                 ],
                 [

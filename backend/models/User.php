@@ -22,12 +22,6 @@ use yii\web\IdentityInterface;
  * @property string $salt
  * @property string $activation_key
  * @property string $validation_key
- * @property string $facebookSocialId
- * @property string $twitterSocialId
- * @property string $instagramSocialId
- * @property string $snapchatSocialId
- * @property string $linkedinSocialId
- * @property string $githubSocialId
  * @property string $avatar
  * @property string $paletteId
  * @property string $publicKey
@@ -49,6 +43,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     const STATUS_NOT_VERIFIED = 'PEN';
     const STATUS_BANNED = 'BAN';
 
+    private $_preferredProfile = ['id' => '', 'type' => 'buyer'];
+
     /**
      * @inheritdoc
      */
@@ -60,19 +56,28 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['userId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
-            [['email', 'vendor'], 'required'],
+            [['email', 'buyerId', 'vendor'], 'required'],
             [['role'], 'string'],
             [['vendor'], 'integer'],
-            [['createdAt', 'updatedAt'], 'safe'],
-            [['userId', 'username', 'lastLogin', 'facebookSocialId', 'twitterSocialId', 'instagramSocialId', 'snapchatSocialId', 'linkedinSocialId', 'githubSocialId', 'paletteId'], 'string', 'max' => 21],
+            [['lastLogin', 'createdAt', 'updatedAt'], 'safe'],
+            [['userId', 'username', 'paletteId'], 'string', 'max' => 21],
             [['email', 'avatar'], 'string', 'max' => 60],
             [['about', 'password', 'resetToken', 'salt', 'validation_key', 'publicKey'], 'string', 'max' => 255],
             [['lastLoginIp'], 'string', 'max' => 32],
             [['activation_key'], 'string', 'max' => 128],
             [['visibility', 'status'], 'string', 'max' => 3],
+            [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
         ];
     }
 
@@ -96,12 +101,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'salt' => 'Salt',
             'activation_key' => 'Chave de Ativação',
             'validation_key' => 'Chave de Validação',
-            'facebookSocialId' => 'Facebook Social ID',
-            'twitterSocialId' => 'Twitter Social ID',
-            'instagramSocialId' => 'Instagram Social ID',
-            'snapchatSocialId' => 'Snapchat Social ID',
-            'linkedinSocialId' => 'Linkedin Social ID',
-            'githubSocialId' => 'Github Social ID',
             'avatar' => 'Avatar',
             'paletteId' => 'ID Paleta',
             'publicKey' => 'Public Key',
@@ -115,19 +114,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public static function findIdentity($id)
     {
-        return static::findOne($id);
+        //return static::findOne($id);
+        return static::findOne(['userId' => $id]); //'status' => self::STATUS_ACTIVE
     }
-
-    public static function findById($id)
-    {
-        return static::find()
-            ->where(['like binary', 'userId', $id])
-            ->one();
-    }
-
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        return null;
+        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
     }
     public function getId()
     {
@@ -139,23 +131,121 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
     public function validateAuthKey($authKey)
     {
-        return "";
+        return true;
     }
 
+    /**
+        Relations
+     */
+    public function getBuyer()
+    {
+        return $this->hasOne(Buyer::className(), ['buyerId' => 'buyerId']);
+    }
+
+    public function getSellers()
+    {
+        return $this->hasMany(Seller::className(), ['userId' => 'userId']);
+    }
+
+    public function getTransactions()
+    {
+        //return $this->hasMany(Transaction::className(), ['userId' => 'senderId']);
+    }
+
+
+    public function getPreferredProfile()
+    {
+        if(empty($this->_preferredProfile['id']) || $this->_preferredProfile['id'] == '')
+        {
+            $this->setPreferredProfile($this->buyerId, 'buyer');
+        }
+
+        return $this->_preferredProfile;
+    }
+
+    public function setPreferredProfile($id, $type)
+    {
+        $this->_preferredProfile['id'] = $id;
+        $this->_preferredProfile['type'] = $type;
+    }
+
+    /**
+     * Finds user by username
+     *
+     * @param string $username
+     * @return static|null
+     */
     public static function findByUsername($username)
     {
+        $query = static::find()
+            ->andWhere(['status' => self::STATUS_ACTIVE])
+            ->andWhere(['email' => $username]);
+
+        return $query->one();
+    }
+    public function validatePassword($password)
+    {
+        $hashedPass = User::hashPassword($password, $this->salt);
+        return $hashedPass === $this->password;
+    }
+
+
+    public static function findById($id)
+    {
         return static::find()
-            ->where(['username' => $username])
-            ->orWhere(['email' => $username])
+            ->where(['like binary', 'userId', $id])
             ->one();
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * Finds user by password reset token
+     *
+     * @param string $token password reset token
+     * @return static|null
      */
-    public function getVitUsermetas()
+    public static function findByPasswordResetToken($token)
     {
-        return $this->hasMany(VitUsermeta::className(), ['userId' => 'userId']);
+        if (!static::isPasswordResetTokenValid($token)) {
+            return null;
+        }
+
+        return static::findOne([
+            'resetToken' => $token,
+            'status' => self::STATUS_ACTIVE,
+        ]);
+    }
+
+    /**
+     * Finds out if password reset token is valid
+     *
+     * @param string $token password reset token
+     * @return boolean
+     */
+    public static function isPasswordResetTokenValid($token)
+    {
+        if (empty($token)) {
+            return false;
+        }
+
+        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
+        return $timestamp + $expire >= time();
+    }
+
+    /**
+     * Generates new password reset token
+     */
+    public function generatePasswordResetToken()
+    {
+        $this->resetToken = Yii::$app->security->generateRandomString() . '_' . time();
+    }
+
+    /**
+     * Removes password reset token
+     */
+    public function removePasswordResetToken()
+    {
+        $this->resetToken = null;
     }
 
     public static function generateId()
@@ -167,12 +257,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public static function generateSalt()
     {
         return User::getToken(64);
-    }
-
-    public function validatePassword($password)
-    {
-        $hashedPass = User::hashPassword($password, $this->salt);
-        return $hashedPass === $this->password;
     }
 
     public static function hashPassword($password, $salt)

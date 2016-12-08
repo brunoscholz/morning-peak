@@ -39,6 +39,8 @@ class User extends \yii\db\ActiveRecord
     const ROLE_SALES = 'salesman';
     const ROLE_ADMIN = 'administrator';
 
+    const USER_EXISTS = '401';
+
     const STATUS_ACTIVE = 'ACT';
     const STATUS_NOT_VERIFIED = 'PEN';
     const STATUS_BANNED = 'BAN';
@@ -74,7 +76,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['email', 'vendor'], 'required'],
+            [['email', 'buyerId', 'vendor'], 'required'],
             [['role'], 'string'],
             [['vendor'], 'integer'],
             [['lastLogin', 'createdAt', 'updatedAt'], 'safe'],

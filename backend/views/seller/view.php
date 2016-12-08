@@ -2,9 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Seller */
+
+if(!isset($time))
+    $time = date('H:i:s');
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Sellers', 'url' => ['index']];

@@ -3,7 +3,19 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-$this->title = $model->name;
+$profileType = 'seller';
+if(isset($seller))
+{
+  $profileType = 'seller';
+  $model = $seller;
+}
+else
+{
+  $profileType = 'buyer';
+  $model = $buyer;
+}
+
+$this->title = $model['name'];
 
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 
@@ -13,11 +25,11 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
 <section class="content-header">
   <h1>
     <?= Html::encode($this->title) ?>
-    <small>Control panel</small>
+    <small>Perfil</small>
   </h1>
   <?php
     $this->params['breadcrumbs'][] = ['label' => 'Dashboard', 'url' => ['index']];
-    $this->params['breadcrumbs'][] = $model->name;
+    $this->params['breadcrumbs'][] = ['label' => $model['name']];
   ?>
 </section>
 
@@ -30,45 +42,46 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
       <!-- Profile Image -->
       <div class="box box-primary">
         <div class="box-body box-profile">
-          <img class="profile-user-img img-responsive img-circle" src="<?= $directoryAsset ?>/img/user4-128x128.jpg" alt="User profile picture">
-          <h3 class="profile-username text-center">Nina Mcintire</h3>
-          <p class="text-muted text-center">Software Engineer</p>
+          <img src="http://www.ondetem-gn.com.br/<?php echo Yii::$app->user->identity->buyer->picture->thumbnail; ?>" class="profile-user-img img-responsive img-circle" alt="User Image"/>
+
+          <h3 class="profile-username text-center"><?php echo Yii::$app->user->identity->buyer->name; ?></h3>
+          <p class="text-muted text-center"><?php echo Yii::$app->user->identity->buyer->email; ?></p>
 
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
-              <b>Followers</b> <a class="pull-right">1,322</a>
+              <b>Seguidores</b> <a class="pull-right">1.322</a>
             </li>
             <li class="list-group-item">
-              <b>Following</b> <a class="pull-right">543</a>
+              <b>Seguindo</b> <a class="pull-right">543</a>
             </li>
             <li class="list-group-item">
-              <b>Friends</b> <a class="pull-right">13,287</a>
+              <b>Lista</b> <a class="pull-right">13</a>
             </li>
           </ul>
 
-          <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+          <!-- <a href="#" class="btn btn-primary btn-block"><b>Seguir</b></a> -->
         </div><!-- /.box-body -->
       </div><!-- /.box -->
 
       <!-- About Me Box -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">About Me</h3>
+          <h3 class="box-title">Sobre mim</h3>
         </div><!-- /.box-header -->
         <div class="box-body">
-          <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
+          <strong><i class="fa fa-book margin-r-5"></i>  Bio</strong>
           <p class="text-muted">
-            B.S. in Computer Science from the University of Tennessee at Knoxville
+            <?php echo Yii::$app->user->identity->buyer->about; ?>
           </p>
 
           <hr>
 
-          <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-          <p class="text-muted">Malibu, California</p>
+          <strong><i class="fa fa-map-marker margin-r-5"></i> Nascimento</strong>
+          <p class="text-muted"><?php echo Yii::$app->user->identity->buyer->dob; ?></p>
 
           <hr>
 
-          <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+          <!-- <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
           <p>
             <span class="label label-danger">UI Design</span>
             <span class="label label-success">Coding</span>
@@ -80,7 +93,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
           <hr>
 
           <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p> -->
         </div><!-- /.box-body -->
       </div><!-- /.box -->
     </div><!-- /.col -->
@@ -324,10 +337,11 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
           </div><!-- /.tab-pane -->
 
           <div class="tab-pane" id="offers">
-            <?php
-              var_dump($model->offers);
-            ?>
-              <?= $this->render('/offer/_form', ['model' => $offerModel]) ?>
+            <?php if($profileType == 'seller') : ?>
+              <?php foreach ($model['offers'] as $offerModel) : ?>
+                <?= $this->render('/offer/_form', ['model' => $offerModel]) ?>
+              <?php endforeach; ?>
+            <?php endif; ?>
             
           </div><!-- /.tab-pane -->
 

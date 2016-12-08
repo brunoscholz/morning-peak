@@ -75,9 +75,9 @@ class AuthToken extends \yii\db\ActiveRecord
 
     public static function findByUser($id)
     {
+        //->andWhere(['>', 'expires', date('Y-m-d h:i:s')])
         return static::find()
             ->where(['like binary', 'userId', $id])
-            //->andWhere(['>', 'expires', date('Y-m-d h:i:s')])
             ->one();
     }
 
@@ -90,9 +90,9 @@ class AuthToken extends \yii\db\ActiveRecord
 
     public static function findByToken($token)
     {
+        //->andWhere(['>', 'expires', date('Y-m-d h:i:s')])
         return static::find()
             ->where(['like binary', 'token', $token])
-            //->andWhere(['>', 'expires', date('Y-m-d h:i:s')])
             ->one();
     }
 }

@@ -50,7 +50,29 @@ class SearchController extends \yii\rest\ActiveController
         foreach ($offerModels->each() as $model)
         {
             $temp = RestUtils::loadQueryIntoVar($model);
-            $temp['reviews'] = RestUtils::loadQueryIntoVar($model->reviews);
+            $revs = RestUtils::loadQueryIntoVar($model->reviews);
+
+            $i = 0;
+            $sum = 0;
+            $newReviews = array();
+            foreach ($revs as $review)
+            {
+                $rate = $review['rating'];
+                $rating = array();
+                $rating['grade'] = $rate - floor($rate/100) * 100;
+
+                $rating['attendance'] = floor(floor($rate/100)/10);
+                $rating['price'] = floor($rate/100) - $rating['attendance']*10;
+
+                $review['rating'] = $rating;
+                unset($review['offer']);
+                $newReviews[] = $review;
+                $sum += $rating['grade'];
+                $i++;
+            }
+
+            $temp['reviews'] = $newReviews;
+            $temp['avgRating'] = ($i > 0) ? $sum / $i : 0;
             $offers[] = $temp;
         }
 

@@ -12,20 +12,22 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        // can be versioned and updated
+        'notification' => [
+            'basePath' => '@app/modules/Notification',
+            'class' => 'backend\modules\Notification\NotificationModule',
+        ],
+    ],
+    'defaultRoute' => 'dashboard/index',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
-        /*'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
-        ],*/
         'user' => [
             'identityClass' => 'backend\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            //'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
@@ -43,10 +45,24 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManagerFrontEnd' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => '/ondetem/frontend/web',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+        ],
         /*'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
+        ],*/
+        /*'i18n' => [
+            'translations' => [
+                'messages' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@backend/messages',
+                ]
+            ],
         ],*/
     ],
     'params' => $params,

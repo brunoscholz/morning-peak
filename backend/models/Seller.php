@@ -15,13 +15,6 @@ use yii\behaviors\TimestampBehavior;
  * @property string $name
  * @property string $email
  * @property string $website
- * @property string $facebookSocialId
- * @property string $twitterSocialId
- * @property string $instagramSocialId
- * @property string $snapchatSocialId
- * @property string $linkedinSocialId
- * @property string $githubSocialId
- * @property string $url_youtube
  * @property string $hours
  * @property string $categories
  * @property string $paymentOptions
@@ -31,6 +24,11 @@ use yii\behaviors\TimestampBehavior;
  */
 class Seller extends \yii\db\ActiveRecord
 {
+    const STATUS_ACTIVE = 'ACT';
+    const STATUS_NOT_VERIFIED = 'PEN';
+    const STATUS_WAITING_PAY = 'PAY';
+    const STATUS_BANNED = 'BAN';
+
     /**
      * @var UploadedFile[]
      */
@@ -48,6 +46,14 @@ class Seller extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['sellerId'];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -57,7 +63,7 @@ class Seller extends \yii\db\ActiveRecord
             [['name', 'email', 'website'], 'string', 'max' => 60],
             [['hours', 'categories'], 'string', 'max' => 255],
             [['status'], 'string', 'max' => 3],
-            [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
+            //[['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
             [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
             [['imageCover'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
             [['imageThumb'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
@@ -90,6 +96,8 @@ class Seller extends \yii\db\ActiveRecord
             'email' => 'Email Contato (pode ser o mesmo do cadastro)',
             'website' => 'Website',
             'hours' => 'Horário de Funcionamento',
+            'phone' => 'Fone',
+            'cellphone' => 'Celular',
             'categories' => 'Categorias',
             'paymentOptions' => 'Opções de Pagamento',
             'createdAt' => 'Data Criação',
@@ -111,10 +119,7 @@ class Seller extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
-    {
-        return $this->hasOne(User::className(), ['userId' => 'userId']);
-    }
+    public function getUser() {}
 
     /**
      * @return \yii\db\ActiveQuery
@@ -122,5 +127,10 @@ class Seller extends \yii\db\ActiveRecord
     public function getPicture()
     {
         return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
+    }
+
+    public function getReviews()
+    {
+        return $this->hasMany(ReviewFact::className(), ['sellerId' => 'sellerId']);
     }
 }

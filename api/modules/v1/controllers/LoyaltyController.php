@@ -65,6 +65,8 @@ class LoyaltyController extends \yii\rest\ActiveController
         if($cur !== 'none')
             $data->andWhere(['like', 'tbl_asset_token.name', $cur]);
 
+        $data->orderBy("tbl_transaction.timestamp DESC");
+
         $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 

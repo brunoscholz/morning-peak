@@ -5,12 +5,11 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/avatar5.png" class="img-circle" alt="User Image"/>
+                <img src="http://www.ondetem-gn.com.br/<?php echo Yii::$app->user->identity->buyer->picture->thumbnail; ?>" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p><?php //echo Yii::$app->user->identity->username; ?></p>
-
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <p><?php echo Yii::$app->user->identity->username; ?></p>
+                <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
             </div>
         </div>
 
@@ -31,10 +30,13 @@
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     ['label' => 'Menu OndeTem', 'options' => ['class' => 'header']],
-                    ['label' => 'Dashboard', 'icon' => 'fa fa-dashboard', 'url' => ['/dashboard']],
+                    ['label' => 'Painel', 'icon' => 'fa fa-dashboard', 'url' => ['/dashboard']],
                     ['label' => 'Ofertas', 'icon' => 'fa fa-shopping-bag', 'url' => ['/offer']],
                     ['label' => 'Categorias', 'icon' => 'fa fa-th', 'url' => ['/category']],
                     ['label' => 'Itens', 'icon' => 'fa  fa-tags', 'url' => ['/item']],
+                    ['label' => 'Clientes', 'icon' => 'fa  fa-tags', 'url' => ['/seller'], 'visible' => (Yii::$app->user->identity->role === 'administrator')],
+                    ['label' => 'Vendedores', 'icon' => 'fa  fa-tags', 'url' => ['/buyer'], 'visible' => (Yii::$app->user->identity->role === 'administrator')],
+                    ['label' => 'Usuários', 'icon' => 'fa  fa-tags', 'url' => ['/buyer'], 'visible' => (Yii::$app->user->identity->role === 'administrator')],
 
                     /*['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug']],*/

@@ -74,8 +74,13 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
+        $this->layout = "main-login";
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            //return $this->redirect('/dashboard/index');
+            /*var_dump($this->goBack());
+            die();*/
+            //return $this->goBack((!empty(Yii::$app->request->referrer) ? Yii::$app->request->referrer : null));
             return $this->goBack();
         }
         return $this->render('login', [

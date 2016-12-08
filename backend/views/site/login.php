@@ -4,9 +4,9 @@ use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \common\models\LoginForm */
+/* @var $model \backend\models\LoginForm */
 
-$this->title = 'Sign In';
+$this->title = 'Entrar';
 
 $fieldOptions1 = [
     'options' => ['class' => 'form-group has-feedback'],
@@ -17,6 +17,10 @@ $fieldOptions2 = [
     'options' => ['class' => 'form-group has-feedback'],
     'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
 ];
+
+var_dump(Yii::$app->user->isGuest);
+var_dump(Yii::$app->user->identity);
+
 ?>
 
 <div class="login-box">
@@ -45,7 +49,7 @@ $fieldOptions2 = [
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
-                <?= Html::submitButton('Sign in', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Entrar', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
             </div>
             <!-- /.col -->
         </div>
@@ -53,6 +57,8 @@ $fieldOptions2 = [
 
         <?php ActiveForm::end(); ?>
 
+        <?php
+        /*
         <div class="social-auth-links text-center">
             <p>- OR -</p>
             <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in
@@ -61,6 +67,7 @@ $fieldOptions2 = [
                 in using Google+</a>
         </div>
         <!-- /.social-auth-links -->
+        */?>
 
         <a href="#">I forgot my password</a><br>
         <a href="register.html" class="text-center">Register a new membership</a>
