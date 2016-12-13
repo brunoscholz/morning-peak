@@ -3,18 +3,12 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\Buyer;
+use api\modules\v1\models\AuthToken;
 use api\components\RestUtils;
 
-/**
- * BuyerController API (extends \yii\rest\ActiveController)
- * BuyerController is responsible for present the normal user's info
- * @return [status,data,count,[error]]
- * @author Bruno Scholz <brunoscholz@yahoo.de>
- */
-class BuyerController extends \yii\rest\ActiveController
+class AuthTokenController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\Buyer';
+    public $modelClass = 'api\modules\v1\models\AuthToken';
 
     public function actions()
     {
@@ -25,26 +19,16 @@ class BuyerController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        $data = RestUtils::getQuery(\Yii::$app->request->get(), Buyer::find());
+        $data = RestUtils::getQuery(\Yii::$app->request->get(), AuthToken::find());
 
         $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 
+        //$data->andFilterWhere(['like binary', 'tbl_user.userId', $filter['userId']]);
+
         foreach ($data->each() as $model)
         {
             $temp = RestUtils::loadQueryIntoVar($model);
-            $revs = RestUtils::loadQueryIntoVar($model->reviews);
-            $temp['reviews'] = $revs;
-
-            $flwr = RestUtils::loadQueryIntoVar($model->followers);
-            $temp['followers'] = $flwr;
-
-            $flwg = RestUtils::loadQueryIntoVar($model->following);
-            $temp['following'] = $flwg;
-
-            $favs = RestUtils::loadQueryIntoVar($model->favorites);
-            $temp['favorites'] = $favs;
-
             $modelsArray[] = $temp;
         }
 

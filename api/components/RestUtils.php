@@ -82,6 +82,8 @@ class RestUtils
       }
     }
 
+
+
     /*public static function loadQueryIntoVar_OLD_AND_NOT_RECURSIVE($data, $scope) {
         $temp = array();
         foreach ($scope as $key => $value) {
@@ -117,6 +119,12 @@ class RestUtils
             $limit = $params['l'];
             if(isset($params['fo']))
                 $limit = 1;
+        }
+
+        if(isset($params['pg']))
+        {
+            $page = $params['pg'];
+            $limit = ($limit == 0) ? 10 : $limit;
         }
 
         $offset=$limit*($page-1);
@@ -210,54 +218,6 @@ class RestUtils
             "sum(case when tbl_transaction.recipientId LIKE BINARY '".$id."' then tbl_transaction.amount else 0 end) as TotalBlue"
         ]);
         return $query->createCommand()->queryOne();
-    }
-
-     /**
-     * @return api\modules\v1\models\AssetToken;
-     */
-    public static function checkAuth($auth)
-    {
-        $models = array('status'=>500);
-
-        if(is_null($auth))
-        {
-            $models['status'] = \api\modules\v1\models\AuthToken::TOKEN_MISSING;
-        }
-        elseif(strtotime($auth->expires) < strtotime(date('Y-m-d H:i:s')))
-        {
-            $models['status'] = \api\modules\v1\models\AuthToken::TOKEN_EXPIRED;
-        }
-        else
-        {
-            if(self::is_hash_equals($auth->token, hash('sha256', base64_decode($authenticator))))
-            {
-                $models['status'] = 200;
-            }
-            else
-            {
-                $models['status'] = \api\modules\v1\models\AuthToken::TOKEN_WRONG;
-            }
-        }
-
-        return $models;
-    }
-
-    public static function is_hash_equals($str1, $str2)
-    {
-        if(strlen($str1) != strlen($str2))
-        {
-            return false;
-        }
-        else
-        {
-            $res = $str1 ^ $str2;
-            $ret = 0;
-            for($i = strlen($res) - 1; $i >= 0; $i--)
-            {
-                $ret |= ord($res[$i]);
-            }
-            return !$ret;
-        }
     }
 
     /**

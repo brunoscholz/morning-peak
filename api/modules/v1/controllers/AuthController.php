@@ -8,6 +8,7 @@ use api\modules\v1\models\Buyer;
 use api\modules\v1\models\Seller;
 use api\modules\v1\models\User;
 use api\modules\v1\models\AuthToken;
+use api\modules\v1\models\SocialAccount;
 use api\modules\v1\models\AssetToken;
 use api\modules\v1\models\Transaction;
 use api\modules\v1\models\Loyalty;
@@ -15,6 +16,7 @@ use api\modules\v1\models\Relationship;
 use api\modules\v1\models\ActionReference;
 use api\modules\v1\models\BillingAddress;
 use api\components\RestUtils;
+use \backend\models\Picture;
 
 /**
  * AuthController API (extends \yii\rest\ActiveController)
@@ -25,6 +27,9 @@ use api\components\RestUtils;
  */
 class AuthController extends \yii\rest\ActiveController
 {
+    protected $API_VERSION = 'v1';
+    protected $APP_VERSION = 'v1.4.2';
+
     /**
      * @internal typical override of ActiveController 
      *
@@ -56,43 +61,120 @@ class AuthController extends \yii\rest\ActiveController
     {
     	$params = \Yii::$app->request->post();
     	$models = array('status'=>500);
-    	//NkhEQ0RSd2dV:bWx1NzlEUHNnMUc1Tk5pa3hDTGlqcE1JNzd3RHE5NnFh
-        // remember me auto login
-        if(isset($params['token']) && !empty($params['token']))
+        $models['error'] = 'Erro no servidor';
+
+        if(isset($params['fbId']) && !empty($params['fbId']))
         {
+            $fbId = $params['fbId'];
+            $social = SocialAccount::findByExternalId($fbId);
+            $user = User::findByUsername($params['email']);
+            if(is_null($social) && is_null($user))
+            {
+                // SignUp
+                $buyer = $this->createBuyer($params['email'], $params['name']);
+                $user = $this->createUser($buyer, $fbId);
+                $authenticator = RestUtils::getToken(33);
+                $authModel = $this->createAuthToken($user, $authenticator);
+                $social = $this->createSocialAccount($user, $fbId);
+                $models['firstLogin'] = 1;
+
+                $user->lastLogin = date('Y-m-d\TH:i:s');
+                //$picture = createPicture();
+
+                $res = $this->validateAndSave([$buyer, $user, $authModel, $social]);
+                if(isset($res['error']))
+                {
+                    $models['status'] = 500;
+                    $models['error'] = $res['error'];
+                    $models['errorLog'] = $res['errorLog'];
+                }
+                else
+                {
+                    $temp = $this->fetchUser($user);
+                    $models['status'] = 200;
+                    $models['data'] = [$temp];
+                    $models['token'] = $authModel->selector.':'.base64_encode($authenticator);
+                    unset($models['error']);
+                }
+
+            }
+            elseif(is_null($user)) {}
+            elseif(is_null($social))
+            {
+                // Connect Facebook
+                $authenticator = RestUtils::getToken(33);
+                $authModel = $this->createAuthToken($user, $authenticator);
+                $social = $this->createSocialAccount($user, $fbId);
+                $user->lastLogin = date('Y-m-d H:i:s');
+                
+                $res = $this->validateAndSave([$user, $authModel, $social]);
+
+                if(isset($res['error']))
+                {
+                    $models['status'] = 500;
+                    $models['error'] = $res['error'];
+                    $models['errorLog'] = $res['errorLog'];
+                }
+                else
+                {
+                    $temp = $this->fetchUser($user);
+                    $models['status'] = 200;
+                    $models['data'] = [$temp];
+                    $models['token'] = $authModel->selector.':'.base64_encode($authenticator);
+                    unset($models['error']);
+                }
+
+            }
+            else
+            {
+                $authenticator = RestUtils::getToken(33);
+                $authModel = $this->createAuthToken($user, $authenticator);
+                $user->lastLogin = date('Y-m-d\TH:i:s');
+
+                $res = $this->validateAndSave([$user, $authModel]);
+                if(isset($res['error']))
+                {
+                    $models['status'] = 500;
+                    $models['error'] = $res['error'];
+                    $models['errorLog'] = $res['errorLog'];
+                }
+                else
+                {
+                    $temp = $this->fetchUser($user);
+                    $models['status'] = 200;
+                    $models['data'] = [$temp];
+                    $models['token'] = $authModel->selector.':'.base64_encode($authenticator);
+                    unset($models['error']);
+                }
+            }
+
+        }
+        elseif(isset($params['token']) && !empty($params['token']))
+        {
+            // remember me auto login
+            //NkhEQ0RSd2dV:bWx1NzlEUHNnMUc1Tk5pa3hDTGlqcE1JNzd3RHE5NnFh
             $token = $params['token'];
-            list($selector, $authenticator) = explode(':',$token);
-            $auth = AuthToken::findBySelector($selector);
+            $res = $this->checkAuthToken($params['token']);
 
-    		if(is_null($auth))
-    		{
-    			// 404
-    			$models['status'] = AuthToken::TOKEN_MISSING;
-    		}
-	   		elseif(strtotime($auth->expires) < strtotime(date('Y-m-d H:i:s')))
-    		{
-    			// 401
-    			$models['status'] = AuthToken::TOKEN_EXPIRED;
-    		}
-    		else
-    		{
-	    		if(hash_equals($auth->token, hash('sha256', base64_decode($authenticator))))
-	    		{
-	    			// logged in
-	    			$models['status'] = 200;
-	    			// change last login in user table
-	    			$user = User::findById($auth->userId);
-	    			$user->lastLogin = date('Y-m-d H:i:s');
-	    			$user->save();
+            if(isset($res['error']))
+            {
+                $models['status'] = $res['status'];
+                $models['error'] = $res['error'];
+            }
+            else
+            {
+                $auth = $res['auth'];
+                // change last login in user table
+                $user = User::findById($auth->userId);
+                $user->lastLogin = date('Y-m-d\TH:i:s');
+                $user->save();
 
-                    $temp = RestUtils::loadQueryIntoVar($user);
-                    $temp['sellers'] = RestUtils::loadQueryIntoVar($user->sellers);
-	    			$models['data'] = [$temp];
-	    		}
-	    		else
-	    		{
-	    			$models['status'] = AuthToken::TOKEN_WRONG;
-	    		}
+                $temp = $this->fetchUser($user);
+
+    			$models['status'] = 200;
+    			$models['data'] = [$temp];
+                $models['token'] = $token;
+                unset($models['error']);
     		}
 
     	}
@@ -107,32 +189,20 @@ class AuthController extends \yii\rest\ActiveController
 			elseif($user->validatePassword($params['password']))
 			{
 				// if remember me...
-				$auth = AuthToken::findByUser($user->userId);
-				if(is_null($auth))
-				{
-					$models['firstLogin'] = 1;
-				}
-				
-				$authModel = new AuthToken();
-				$authModel->authTokenId = RestUtils::generateId();
-				$authModel->userId = $user->userId;
-				$authModel->selector = base64_encode(RestUtils::getToken(9));
 				$authenticator = RestUtils::getToken(33);
-				$authModel->token = hash('sha256', $authenticator);
-				//$authModel->expires = date('Y-m-d\TH:i:s', time() + 864000); //(7 * 24 * 60 * 60)
-				$authModel->expires = date('Y-m-d\TH:i:s', strtotime('+6 months'));
-
+                $authModel = $this->createAuthToken($user, $authenticator);
 				$authModel->save();
 
 				// change last login in user table
 				$user->lastLogin = date('Y-m-d\TH:i:s');
     			$user->save();
 
-				$models['status'] = 200;
-                $temp = RestUtils::loadQueryIntoVar($user);
-                $temp['sellers'] = RestUtils::loadQueryIntoVar($user->sellers);
+                $temp = $this->fetchUser($user);
+
+                $models['status'] = 200;
                 $models['data'] = [$temp];
-				$models['token'] = $authModel->selector.':'.base64_encode($authenticator);
+                $models['token'] = $authModel->selector.':'.base64_encode($authenticator);
+                unset($models['error']);
 			}
 			else
 			{
@@ -154,6 +224,7 @@ class AuthController extends \yii\rest\ActiveController
     {
     	$params = \Yii::$app->request->post();
     	$models = array('status'=>500);
+        $models['error'] = 'Erro no servidor';
 
         $check = User::findByUsername($params['username']);
         if(!is_null($check))
@@ -163,60 +234,185 @@ class AuthController extends \yii\rest\ActiveController
         }
         else
         {
-        	// facebook, twitter, g+
-
-        	$user = new User();
-        	$user->userId = RestUtils::generateId();
-        	$user->email = $params['username'];
-        	$salt = RestUtils::generateSalt();
-        	$user->salt = $salt;
-        	$user->password = User::hashPassword($params['password'], $salt);
-        	$user->status = User::STATUS_ACTIVE;
-
-        	$user->role = User::ROLE_USER;
-        	$user->vendor = 0;
-        	$user->visibility = "NOR";
-
-        	$buyer = new Buyer();
-        	$buyer->buyerId = RestUtils::generateId();
-        	$buyer->name = $params['name'];
-        	$buyer->email = $user->email;
-        	$buyer->status = "INC";
-
-
-            //$models['data'] = 'Done! Check your email';
-            $models['data'] = [$user, $buyer];
-
-            $auth = AuthToken::findByUser($user->userId);
-            if(is_null($auth))
-            {
-                $models['firstLogin'] = 1;
-            }
-            
-            $authModel = new AuthToken();
-            $authModel->authTokenId = RestUtils::generateId();
-            $authModel->userId = $user->userId;
-            $authModel->selector = base64_encode(RestUtils::getToken(9));
+            $buyer = $this->createBuyer($params['username'], $params['name']);
+            $user = $this->createUser($buyer, $params['password']);
             $authenticator = RestUtils::getToken(33);
-            $authModel->token = hash('sha256', $authenticator);
-            $authModel->expires = date('Y-m-d\TH:i:s', strtotime('+6 months'));
+            $authModel = $this->createAuthToken($user, $authenticator);
+            $models['firstLogin'] = 1;
 
-            $buyer->save();
-            $user->buyerId = $buyer->buyerId;
-            // change last login in user table
-            $user->lastLogin = date('Y-m-d\TH:i:s');
-            $user->save();
-            $authModel->save();
-
-
-            $models['status'] = 200;
-            $temp = RestUtils::loadQueryIntoVar($user);
-            $temp['sellers'] = RestUtils::loadQueryIntoVar($user->sellers);
-            $models['data'] = [$temp];
-            $models['token'] = $authModel->selector.':'.base64_encode($authenticator);
+            $res = $this->validateAndSave([$buyer, $user, $authModel]);
+            if(isset($res['error']))
+            {
+                $models['status'] = 500;
+                $models['error'] = $res['error'];
+                $models['errorLog'] = $res['errorLog'];
+            }
+            else
+            {
+                $temp = $this->fetchUser($user);
+                $models['status'] = 200;
+                $models['data'] = [$temp];
+                $models['token'] = $authModel->selector.':'.base64_encode($authenticator);
+                unset($models['error']);
+            }
         }
 
         echo RestUtils::sendResult($models['status'], $models);
+    }
+
+    protected function createUser($buyer, $pass, $status = User::STATUS_ACTIVE)
+    {
+        $user = new User();
+        $user->userId = RestUtils::generateId();
+        $user->email = $buyer->email;
+        $salt = RestUtils::generateSalt();
+        $user->role = User::ROLE_USER;
+        $user->vendor = 0;
+        $user->visibility = "NOR";
+        $user->buyerId = $buyer->buyerId;
+        $user->createdAt = date('Y-m-d\TH:i:s');
+        $user->lastLogin = date('Y-m-d\TH:i:s');
+        $user->status = $status;
+        
+        if($pass !== '' && !empty($pass))
+        {
+            $user->salt = $salt;
+            $user->password = User::hashPassword($pass, $salt);
+        }
+        
+        return $user;
+    }
+
+    protected function createBuyer($email, $name)
+    {
+        $buyer = new Buyer();
+        $buyer->buyerId = RestUtils::generateId();
+        $buyer->name = $name;
+        $buyer->email = $email;
+        $buyer->createdAt = date('Y-m-d\TH:i:s');
+        $buyer->status = "INC";
+        return $buyer;
+    }
+
+    protected function createSeller($user, $params, $status = User::STATUS_ACTIVE)
+    {
+        $seller = new Seller();
+        $seller->sellerId = RestUtils::generateId();
+        $seller->userId = $user->userId;
+        $seller->name = $params['name'];
+        $seller->about = $params['about'];
+        $seller->email = $user->email;
+        $seller->phone = $params['phone'];
+        $seller->cellphone = $params['cellphone'];
+        $seller->createdAt = date('Y-m-d\TH:i:s');
+        $seller->status = $status;
+        return $seller;
+    }
+
+    protected function createAuthToken($user, $authenticator)
+    {
+        $authModel = new AuthToken();
+        $authModel->authTokenId = RestUtils::generateId();
+        $authModel->userId = $user->userId;
+        $authModel->selector = base64_encode(RestUtils::getToken(9));
+        $authModel->token = hash('sha256', $authenticator);
+        $authModel->expires = date('Y-m-d\TH:i:s', strtotime('+6 months'));
+        //$authModel->expires = date('Y-m-d\TH:i:s', time() + 864000); //(7 * 24 * 60 * 60)
+        return $authModel;
+    }
+
+    protected function createSocialAccount($user, $scId, $scName = 'facebook')
+    {
+        $social = new SocialAccount();
+        $social->socialId = RestUtils::generateId();
+        $social->userId = $user->userId;
+        $social->externalId = $scId;
+        $social->name = $scName;
+        $social->status = 'ATV';
+        return $social;
+    }
+
+    protected function checkAuthToken($token)
+    {
+        $models = array('status' => AuthToken::TOKEN_MISSING);
+        list($selector, $authenticator) = explode(':',$token);
+        $auth = AuthToken::findBySelector($selector);
+
+        if(is_null($auth))
+        {
+            // 404
+            $models['status'] = AuthToken::TOKEN_MISSING;
+            $models['error'] = 'Token não encontrado';
+        }
+        elseif(strtotime($auth->expires) < strtotime(date('Y-m-d H:i:s')))
+        {
+            // 401
+            $models['status'] = AuthToken::TOKEN_EXPIRED;
+            $models['error'] = 'Token inválido';
+        }
+        else
+        {
+            if(hash_equals($auth->token, hash('sha256', base64_decode($authenticator))))
+            {
+                $models['status'] = 200;
+                $models['auth'] = $auth;
+            }
+            else
+            {
+                $models['status'] = AuthToken::USER_WRONG;
+                $models['error'] = 'Usuário ou senha incorretos';
+            }
+        }
+
+        return $models;
+    }
+
+    protected function fetchUser($user)
+    {
+        $temp = RestUtils::loadQueryIntoVar($user);
+        $temp['social'] = RestUtils::loadQueryIntoVar($user->social);
+
+        $flwr = RestUtils::loadQueryIntoVar($user->buyer->followers);
+        $temp['buyer']['followers'] = $flwr;
+
+        $flwg = RestUtils::loadQueryIntoVar($user->buyer->following);
+        $temp['buyer']['following'] = $flwg;
+
+        $favs = RestUtils::loadQueryIntoVar($user->buyer->favorites);
+        $temp['buyer']['favorites'] = $favs;
+
+        $temp['sellers'] = array();
+        foreach ($user->sellers as $seller)
+        {
+            $sel = RestUtils::loadQueryIntoVar($seller);
+            $flwr = RestUtils::loadQueryIntoVar($seller->followers);
+            $sel['followers'] = $flwr;
+            $temp['sellers'][] = $sel;
+        }
+
+        return $temp;
+    }
+
+    protected function validateAndSave($models)
+    {
+        $ret = array('status' => 200);
+
+        foreach($models as $model)
+        {
+            if(!$model->validate()) {
+                $ret['status'] = 500;
+                $ret['error'] = 'Erro de validação das informações';
+                $ret['errorLog'][] = $model->errors;
+            }
+            else
+                if(!$model->save()) {
+                    $ret['status'] = 500;
+                    $ret['error'] = 'Erro ao salvar informações';
+                    $ret['errorLog'][] = $model->errors;
+                }
+        }
+
+        return $ret;
     }
 
     /**
@@ -253,23 +449,11 @@ class AuthController extends \yii\rest\ActiveController
         $buyer = null;
         if(is_null($user))
         {
-        	$user = new User();
-        	$user->userId = RestUtils::generateId();
-        	$user->email = $params['email'];
-        	$user->role = User::ROLE_USER;
-        	$user->visibility = "NOR";
+            $buyer = $this->createBuyer($params['name'], $params['email']);
+            $user = $this->createUser($buyer, '', User::STATUS_NOT_VERIFIED);
+
         	$user->activation_key = RestUtils::generateActivationKey();
             $user->validation_key = RestUtils::generateValidationKey($user->activation_key, $user->email, $user->userId);
-        	$user->createdAt = date('Y-m-d\TH:i:s');
-        	$user->status = User::STATUS_NOT_VERIFIED;
-
-            $buyer = new Buyer();
-            $buyer->buyerId = RestUtils::generateId();
-            $buyer->name = $params['name'];
-            $buyer->email = $user->email;
-            $buyer->createdAt = date('Y-m-d\TH:i:s');
-            $buyer->status = "INC";
-            $user->buyerId = $buyer->buyerId;
         }
         else
         {
@@ -277,21 +461,10 @@ class AuthController extends \yii\rest\ActiveController
         }
 
         $user->vendor = 1;
-        $user->updatedAt = date('Y-m-d H:i:s');
+        $user->updatedAt = date('Y-m-d\TH:i:s');
 
     	// register the new seller
-    	$seller = new Seller();
-    	$seller->sellerId = RestUtils::generateId();
-    	$seller->userId = $user->userId;
-    	$seller->name = $params['name'];
-        $seller->about = $params['about'];
-    	$seller->email = $user->email;
-    	$seller->phone = $params['phone'];
-    	$seller->cellphone = $params['cellphone'];
-    	//$seller->website = $params['website'];
-    	$seller->hours = $params['hours'];
-    	$seller->createdAt = date('Y-m-d\TH:i:s');
-    	$seller->status = Seller::STATUS_NOT_VERIFIED;
+    	$seller = $this->createSeller($user, $params, User::STATUS_NOT_VERIFIED);
 
         $address = new BillingAddress();
         $address->billingAddressId = RestUtils::generateId();
@@ -323,7 +496,7 @@ class AuthController extends \yii\rest\ActiveController
     	$loyal->loyaltyId = RestUtils::generateId();
     	$loyal->userId = $salesman->userId;
     	$loyal->actionId = ActionReference::findByType('sell')->actionReferenceId;
-    	$loyal->ruleId = "Sales in Loci";
+    	$loyal->ruleId = "Vendas no Local";
     	$loyal->points = 1;
     	$loyal->transactionId = $tx->transactionId;
     	$loyal->status = 'PEN';
@@ -349,53 +522,26 @@ class AuthController extends \yii\rest\ActiveController
 		    ->setTo($seller->email)
 		    ->setSubject('OndeTem?! Ativação de Cadastro');
 
-		if($address->validate() && $user->validate() && $buyer->validate() && $seller->validate() && $tx->validate() && $loyal->validate() && $rel->validate())
-		{
-            $address->save();
-			$user->save();
-			$buyer->save();
-			$seller->save();
-			$tx->save();
-			$loyal->save();
-			$rel->save();
-			$models['user'] = $user->errors;
-	    	$models['buyer'] = $buyer->errors;
-	    	$models['seller'] = $seller->errors;
-	    	$models['tx'] = $tx->errors;
-	    	$models['loyalty'] = $loyal->errors;
-	    	$models['rel'] = $rel->errors;
+        $res = $this->validateAndSave([$address, $buyer, $user, $seller, $tx, $loyal, $rel]);
+        if(isset($res['error']))
+        {
+            $models['status'] = 500;
+            $models['error'] = $res['error'];
+            $models['errorLog'] = $res['errorLog'];
+        }
+        else
+        {
+            try { $mail->send(); }
+            catch(\Swift_SwiftException $exception) {
+                $models['mailerror'] = 'Can sent mail due to the following exception '. $exception;
+            }
+            finally {
+                $models['status'] = 200;
+                $models['data'] = 'Empresa cadastrada com sucesso';
+            }
+        }
 
-	    	$models['status'] = 200;
-
-			try { $mail->send(); }
-	        catch(\Swift_SwiftException $exception) {
-	        	$models['mailerror'] = 'Can sent mail due to the following exception '. $exception;
-	        }
-	        finally {
-	        	$models['status'] = 200;
-	        	$models['data'] = 'Empresa cadastrada com sucesso';
-	        }
-
-	        /*$models['user'] = $user->attributes;
-	    	$models['buyer'] = $buyer->attributes;
-	    	$models['seller'] = $seller->attributes;
-	    	$models['tx'] = $tx->attributes;
-	    	$models['loyalty'] = $loyal->attributes;
-	    	$models['rel'] = $rel->attributes;*/
-			echo RestUtils::sendResult($models['status'], $models);
-		}
-		else
-		{
-			$models['user'] = $user->errors;
-	    	$models['buyer'] = $buyer->errors;
-	    	$models['seller'] = $seller->errors;
-	    	$models['tx'] = $tx->errors;
-	    	$models['loyalty'] = $loyal->errors;
-	    	$models['rel'] = $rel->errors;
-	    	$models['status'] = 500;
-			echo RestUtils::sendResult($models['status'], $models);
-		}
-
+		echo RestUtils::sendResult($models['status'], $models);
     }
 
     /**
@@ -556,7 +702,14 @@ class AuthController extends \yii\rest\ActiveController
                                 $buyer = $user->buyer;
                                 if($buyer->buyerId == $params['buyerId'])
                                 {
-                                    $pic = $buyer->picture;
+                                    if($buyer->picture->pictureId != '4899oxUh7aJvOZFwNir5s')
+                                        $pic = $buyer->picture;
+                                    else {
+                                        $pic = new Picture();
+                                        $pic->pictureId = RestUtils::generateId();
+                                        $buyer->pictureId = $pic->pictureId;
+                                    }
+
                                     if( substr( $params['picture'], 0, 5 ) === "data:" )
                                     {
                                         $path = '/uploads/userpics/';
@@ -572,6 +725,7 @@ class AuthController extends \yii\rest\ActiveController
 
                                         if($pic->save())
                                         {
+                                            $buyer->save();
                                             $models['status'] = 200;
                                             unset($models['error']);
                                             $models['data'] = 'Foto alterada com sucesso: ' . $name;

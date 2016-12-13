@@ -210,4 +210,14 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionPolicyPrint()
+    {
+        return $this->render('_policy');
+    }
+
+    public function actionTermsPrint()
+    {
+        return $this->render('_terms');
+    }
 }

@@ -110,6 +110,11 @@ return [
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/auth-token',
+                    'pluralize' => false,
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/auth',
                     'pluralize' => false,
                     'only' => ['signup', 'signin', 'logout', 'forgot-password', 'settings', 'seller-register', 'social-connect'],

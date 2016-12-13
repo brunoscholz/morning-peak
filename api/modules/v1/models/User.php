@@ -162,6 +162,11 @@ class User extends \yii\db\ActiveRecord
         return $this->hasMany(Seller::className(), ['userId' => 'userId']);
     }
 
+    public function getSocial()
+    {
+        return $this->hasMany(SocialAccount::className(), ['userId' => 'userId']);
+    }
+
     public function getTransactions()
     {
         //return $this->hasMany(Transaction::className(), ['userId' => 'senderId']);

@@ -38,6 +38,10 @@ class SellerController extends \yii\rest\ActiveController
             $temp = RestUtils::loadQueryIntoVar($model);
             $revs = RestUtils::loadQueryIntoVar($model->reviews);
             $temp['reviews'] = $revs;
+
+            $flwr = RestUtils::loadQueryIntoVar($model->followers);
+            $temp['followers'] = $flwr;
+
             $modelsArray[] = $temp;
         }
 

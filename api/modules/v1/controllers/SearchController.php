@@ -81,7 +81,7 @@ class SearchController extends \yii\rest\ActiveController
         foreach ($sellerModels->each() as $model)
         {
             $temp = RestUtils::loadQueryIntoVar($model);
-            //$temp['reviews'] = RestUtils::loadQueryIntoVar($model->reviews);;
+            //$temp['reviews'] = RestUtils::loadQueryIntoVar($model->reviews);
             $sellers[] = $temp;
         }
 
@@ -90,7 +90,15 @@ class SearchController extends \yii\rest\ActiveController
         foreach ($buyerModels->each() as $model)
         {
             $temp = RestUtils::loadQueryIntoVar($model);
-            //$temp['reviews'] = RestUtils::loadQueryIntoVar($model->reviews);;
+            $flwr = RestUtils::loadQueryIntoVar($user->buyer->followers);
+            $temp['buyer']['followers'] = $flwr;
+
+            $flwg = RestUtils::loadQueryIntoVar($user->buyer->following);
+            $temp['buyer']['following'] = $flwg;
+
+            $favs = RestUtils::loadQueryIntoVar($user->buyer->favorites);
+            $temp['buyer']['favorites'] = $favs;
+
             $buyers[] = $temp;
         }
 

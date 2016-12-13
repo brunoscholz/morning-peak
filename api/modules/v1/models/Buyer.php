@@ -103,6 +103,21 @@ class Buyer extends \yii\db\ActiveRecord
         return $this->hasOne(ShippingAddress::className(), ['shippingAddressId' => 'shippingAddressId']);
     }
 
+    public function getFollowers()
+    {
+        return $this->hasMany(FollowFact::className(), ['buyerId' => 'buyerId']);
+    }
+
+    public function getFollowing()
+    {
+        return $this->hasMany(FollowFact::className(), ['userId' => 'buyerId']);
+    }
+
+    public function getFavorites()
+    {
+        return $this->hasMany(FavoriteFact::className(), ['buyerId' => 'buyerId']);
+    }
+
     public function getLoyalties()
     {
         return $this->hasMany(Loyalty::className(), ['buyerId' => 'buyerId']);

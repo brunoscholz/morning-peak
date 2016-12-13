@@ -62,12 +62,12 @@ class FollowFact extends \yii\db\ActiveRecord
 
     public function getUser()
     {
-        return $this->hasOne(Buyer::className(), ['buyerId' => 'buyerId']);
+        return $this->hasOne(Buyer::className(), ['buyerId' => 'userId']);
     }
 
     public function getBuyer()
     {
-        return $this->hasOne(Buyer::className(), ['buyerId' => 'userId']);
+        return $this->hasOne(Buyer::className(), ['buyerId' => 'buyerId']);
     }
 
     public function getSeller()

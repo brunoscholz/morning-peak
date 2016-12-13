@@ -102,6 +102,11 @@ class Seller extends \yii\db\ActiveRecord
         return $this->hasOne(BillingAddress::className(), ['billingAddressId' => 'billingAddressId']);
     }
 
+    public function getFollowers()
+    {
+        return $this->hasMany(FollowFact::className(), ['sellerId' => 'sellerId']);
+    }
+
     public function getReviews()
     {
         return $this->hasMany(ReviewFact::className(), ['sellerId' => 'sellerId']);
