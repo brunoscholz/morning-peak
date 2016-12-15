@@ -1,11 +1,13 @@
 <?php
-use yii\widgets\Breadcrumbs;
+use \machour\yii2\adminlte\widgets\Breadcrumbs;
 use dmstr\widgets\Alert;
 
 ?>
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
     <section class="content-header">
-        <!-- <?php if (isset($this->blocks['content-header'])) { ?>
+        <?php if (isset($this->blocks['content-header'])) { ?>
             <h1><?= $this->blocks['content-header'] ?></h1>
         <?php } else { ?>
             <h1>
@@ -19,7 +21,7 @@ use dmstr\widgets\Alert;
                     echo ($this->context->module->id !== \Yii::$app->id) ? '<small>Module</small>' : '';
                 } ?>
             </h1>
-        <?php } ?> -->
+        <?php } ?>
 
         <?=
         Breadcrumbs::widget(
@@ -29,18 +31,20 @@ use dmstr\widgets\Alert;
         ) ?>
     </section>
 
+    <!-- Main content -->
     <section class="content">
         <?= Alert::widget() ?>
         <?= $content ?>
     </section>
+    <!-- ./content -->
 </div>
+<!-- /.content-wrapper -->
 
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-        <b>Version</b> 2.0
+        <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2016-<?php echo date('Y'); ?> <a href="http://ondetem-gn.com.br">OndeTem?</a></strong>
 </footer>
 
 <!-- Control Sidebar -->

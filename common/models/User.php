@@ -1,31 +1,51 @@
 <?php
+
 namespace common\models;
 
 use Yii;
-use yii\base\NotSupportedException;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 /**
- * User model
+ * This is the model class for table "{{%tbl_user}}".
  *
- * @property integer $id
+ * @property string $userId
  * @property string $username
- * @property string $password_hash
- * @property string $password_reset_token
  * @property string $email
- * @property string $auth_key
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
- * @property string $password write-only password
+ * @property string $about
+ * @property string $lastLogin
+ * @property string $lastLoginIp
+ * @property string $role
+ * @property string $password
+ * @property string $passwordStrategy
+ * @property integer $requiresNewPassword
+ * @property string $resetToken
+ * @property string $salt
+ * @property string $activation_key
+ * @property string $validation_key
+ * @property string $avatar
+ * @property string $paletteId
+ * @property string $publicKey
+ * @property integer $vendor
+ * @property string $visibility
+ * @property string $status
+ * @property string $createdAt
+ * @property string $updatedAt
+ * @author Bruno Scholz <brunoscholz@yahoo.de>
  */
-class User extends ActiveRecord implements IdentityInterface
+ 
+class User extends \yii\db\ActiveRecord
 {
-    const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 10;
+    const ROLE_USER = 'regular';
+    const ROLE_SALES = 'salesman';
+    const ROLE_ADMIN = 'administrator';
 
+    const USER_EXISTS = '401';
+
+    const STATUS_ACTIVE = 'ACT';
+    const STATUS_NOT_VERIFIED = 'PEN';
+    const STATUS_BANNED = 'BAN';
+
+    private $_preferredProfile = ['id' => '', 'type' => 'buyer'];
 
     /**
      * @inheritdoc
@@ -38,11 +58,18 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public static function primaryKey()
     {
-        return [
-            TimestampBehavior::className(),
-        ];
+        return ['userId'];
+    }
+
+    // explicitly list every field, best used when you want to make sure the changes
+    // in your DB table or model attributes do not cause your field changes (to keep API backward compatibility).
+    public function fields()
+    {
+        $fields = parent::fields();
+        unset($fields['password'], $fields['passwordStrategy'], $fields['resetToken'], $fields['salt'], $fields['activation_key'], $fields['validation_key']);
+        return $fields;
     }
 
     /**
@@ -51,139 +78,117 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            [['email', 'buyerId', 'vendor'], 'required'],
+            [['role'], 'string'],
+            [['vendor'], 'integer'],
+            [['lastLogin', 'createdAt', 'updatedAt'], 'safe'],
+            [['userId', 'username', 'paletteId'], 'string', 'max' => 21],
+            [['email', 'avatar'], 'string', 'max' => 60],
+            [['about', 'password', 'resetToken', 'salt', 'validation_key', 'publicKey'], 'string', 'max' => 255],
+            [['lastLoginIp'], 'string', 'max' => 32],
+            [['activation_key'], 'string', 'max' => 128],
+            [['visibility', 'status'], 'string', 'max' => 3],
+            [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public static function findIdentity($id)
+    public function attributeLabels()
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return [
+            'userId' => 'UserID',
+            'username' => 'Nome de Usuário',
+            'email' => 'Email',
+            'about' => 'Sobre',
+            'lastLogin' => 'Last Login',
+            'lastLoginIp' => 'Last Login Ip',
+            'role' => 'Role',
+            'password' => 'Senha',
+            'passwordStrategy' => 'Password Strategy',
+            'requiresNewPassword' => 'Requires New Password',
+            'resetToken' => 'Reset Token',
+            'salt' => 'Salt',
+            'activation_key' => 'Chave de Ativação',
+            'validation_key' => 'Chave de Validação',
+            'avatar' => 'Avatar',
+            'paletteId' => 'ID Paleta',
+            'publicKey' => 'Public Key',
+            'vendor' => 'Vendor',
+            'visibility' => 'Visibility',
+            'status' => 'Status',
+            'createdAt' => 'Created At',
+            'updatedAt' => 'Updated At',
+        ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public static function findIdentityByAccessToken($token, $type = null)
+    /*
+    public function getPreferredProfile()
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        if(empty($this->_preferredProfile['id']) || $this->_preferredProfile['id'] == '')
+        {
+            $this->setPreferredProfile($this->buyerId, 'buyer');
+        }
+
+        return $this->_preferredProfile;
     }
 
-    /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
-     */
+    public function setPreferredProfile($id, $type)
+    {
+        $this->_preferredProfile['id'] = $id;
+        $this->_preferredProfile['type'] = $type;
+    }
+    */
+
+    public static function findById($id)
+    {
+        return static::find()
+            ->where(['like binary', 'userId', $id])
+            ->one();
+    }
+
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::find()
+            ->where(['like binary', 'username', $username])
+            ->orWhere(['like binary', 'email', $username])
+            ->one();
     }
 
-    /**
-     * Finds user by password reset token
-     *
-     * @param string $token password reset token
-     * @return static|null
-     */
-    public static function findByPasswordResetToken($token)
-    {
-        if (!static::isPasswordResetTokenValid($token)) {
-            return null;
-        }
-
-        return static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
-        ]);
-    }
-
-    /**
-     * Finds out if password reset token is valid
-     *
-     * @param string $token password reset token
-     * @return boolean
-     */
-    public static function isPasswordResetTokenValid($token)
-    {
-        if (empty($token)) {
-            return false;
-        }
-
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
-        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
-        return $timestamp + $expire >= time();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getId()
-    {
-        return $this->getPrimaryKey();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getAuthKey()
-    {
-        return $this->auth_key;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function validateAuthKey($authKey)
-    {
-        return $this->getAuthKey() === $authKey;
-    }
-
-    /**
-     * Validates password
-     *
-     * @param string $password password to validate
-     * @return boolean if password provided is valid for current user
-     */
     public function validatePassword($password)
     {
-        return Yii::$app->security->validatePassword($password, $this->password_hash);
+        $hashedPass = User::hashPassword($password, $this->salt);
+        return $hashedPass === $this->password;
     }
 
-    /**
-     * Generates password hash from password and sets it to the model
-     *
-     * @param string $password
-     */
-    public function setPassword($password)
+    public static function hashPassword($password, $salt)
     {
-        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+        return md5($salt . $password);
     }
 
-    /**
-     * Generates "remember me" authentication key
-     */
-    public function generateAuthKey()
+    public function verifyKeys($activationKey)
     {
-        $this->auth_key = Yii::$app->security->generateRandomString();
+        return $this->validation_key === md5($activationKey . $this->email . $this->userId);
     }
 
-    /**
-     * Generates new password reset token
-     */
-    public function generatePasswordResetToken()
+    public function getBuyer()
     {
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+        return $this->hasOne(Buyer::className(), ['buyerId' => 'buyerId']);
     }
 
-    /**
-     * Removes password reset token
-     */
-    public function removePasswordResetToken()
+    public function getSellers()
     {
-        $this->password_reset_token = null;
+        return $this->hasMany(Seller::className(), ['userId' => 'userId']);
+    }
+
+    public function getSocial()
+    {
+        return $this->hasMany(SocialAccount::className(), ['userId' => 'userId']);
+    }
+
+    public function getTransactions()
+    {
+        //return $this->hasMany(Transaction::className(), ['userId' => 'senderId']);
     }
 }

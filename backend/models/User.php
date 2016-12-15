@@ -3,6 +3,9 @@
 namespace backend\models;
 
 use Yii;
+use common\models\Buyer;
+use common\models\User as UserModel;
+use backend\components\Utils;
 use yii\web\IdentityInterface;
 
 /**
@@ -33,37 +36,8 @@ use yii\web\IdentityInterface;
  *
  * @property VitUsermeta[] $vitUsermetas
  */
-class User extends \yii\db\ActiveRecord implements IdentityInterface
+class User extends UserModel implements IdentityInterface
 {
-    const ROLE_USER = 'regular';
-    const ROLE_SALES = 'salesman';
-    const ROLE_ADMIN = 'administrator';
-
-    const STATUS_ACTIVE = 'ACT';
-    const STATUS_NOT_VERIFIED = 'PEN';
-    const STATUS_BANNED = 'BAN';
-
-    private $_preferredProfile = ['id' => '', 'type' => 'buyer'];
-
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%user}}';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public static function primaryKey()
-    {
-        return ['userId'];
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -78,37 +52,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['activation_key'], 'string', 'max' => 128],
             [['visibility', 'status'], 'string', 'max' => 3],
             [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'userId' => 'UserID',
-            'username' => 'Nome de Usuário',
-            'email' => 'Email',
-            'about' => 'Sobre',
-            'lastLogin' => 'Last Login',
-            'lastLoginIp' => 'Last Login Ip',
-            'role' => 'Role',
-            'password' => 'Senha',
-            'passwordStrategy' => 'Password Strategy',
-            'requiresNewPassword' => 'Requires New Password',
-            'resetToken' => 'Reset Token',
-            'salt' => 'Salt',
-            'activation_key' => 'Chave de Ativação',
-            'validation_key' => 'Chave de Validação',
-            'avatar' => 'Avatar',
-            'paletteId' => 'ID Paleta',
-            'publicKey' => 'Public Key',
-            'vendor' => 'Vendor',
-            'visibility' => 'Visibility',
-            'status' => 'Status',
-            'createdAt' => 'Created At',
-            'updatedAt' => 'Updated At',
         ];
     }
 
@@ -134,39 +77,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return true;
     }
 
-    /**
-        Relations
-     */
-    public function getBuyer()
+    public static function findById($id)
     {
-        return $this->hasOne(Buyer::className(), ['buyerId' => 'buyerId']);
-    }
-
-    public function getSellers()
-    {
-        return $this->hasMany(Seller::className(), ['userId' => 'userId']);
-    }
-
-    public function getTransactions()
-    {
-        //return $this->hasMany(Transaction::className(), ['userId' => 'senderId']);
-    }
-
-
-    public function getPreferredProfile()
-    {
-        if(empty($this->_preferredProfile['id']) || $this->_preferredProfile['id'] == '')
-        {
-            $this->setPreferredProfile($this->buyerId, 'buyer');
-        }
-
-        return $this->_preferredProfile;
-    }
-
-    public function setPreferredProfile($id, $type)
-    {
-        $this->_preferredProfile['id'] = $id;
-        $this->_preferredProfile['type'] = $type;
+        return static::find()
+            ->where(['like binary', 'userId', $id])
+            ->one();
     }
 
     /**
@@ -182,19 +97,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             ->andWhere(['email' => $username]);
 
         return $query->one();
-    }
-    public function validatePassword($password)
-    {
-        $hashedPass = User::hashPassword($password, $this->salt);
-        return $hashedPass === $this->password;
-    }
-
-
-    public static function findById($id)
-    {
-        return static::find()
-            ->where(['like binary', 'userId', $id])
-            ->one();
     }
 
     /**
@@ -216,23 +118,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds out if password reset token is valid
-     *
-     * @param string $token password reset token
-     * @return boolean
-     */
-    public static function isPasswordResetTokenValid($token)
-    {
-        if (empty($token)) {
-            return false;
-        }
-
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
-        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
-        return $timestamp + $expire >= time();
-    }
-
-    /**
      * Generates new password reset token
      */
     public function generatePasswordResetToken()
@@ -248,64 +133,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $this->resetToken = null;
     }
 
-    public static function generateId()
-    {
-        //md5(uniqid($name, true));
-        return User::getToken(21);
-    }
-
-    public static function generateSalt()
-    {
-        return User::getToken(64);
-    }
-
-    public static function hashPassword($password, $salt)
-    {
-        return md5($salt . $password);
-    }
-
-    public static function generateActivationKey()
-    {
-        return User::getToken(8);
-    }
-
-    public static function generateValidationKey($key, $email, $id)
-    {
-        return  md5($key . $email . $id);
-    }
-
     public function verifyKeys($activationKey)
     {
         return $this->validation_key === md5($activationKey . $this->email . $this->userId);
     }
 
-    static function crypto_rand_secure($min, $max)
+    public function validatePassword($password)
     {
-        $range = $max - $min;
-        if ($range < 1) return $min; // not so random...
-        $log = ceil(log($range, 2));
-        $bytes = (int) ($log / 8) + 1; // length in bytes
-        $bits = (int) $log + 1; // length in bits
-        $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
-        do {
-            $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
-            $rnd = $rnd & $filter; // discard irrelevant bits
-        } while ($rnd >= $range);
-        return $min + $rnd;
-    }
-
-    public static function getToken($length)
-    {
-        $token = "";
-        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
-        $codeAlphabet.= "0123456789";
-        $max = strlen($codeAlphabet);
-
-        for ($i=0; $i < $length; $i++) {
-            $token .= $codeAlphabet[User::crypto_rand_secure(0, $max)];
-        }
-
-        return $token;
+        $hashedPass = Utils::hashPassword($password, $this->salt);
+        return $hashedPass === $this->password;
     }
 }

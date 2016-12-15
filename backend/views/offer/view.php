@@ -1,46 +1,143 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\helpers\ArrayHelper;
+use backend\components\Utils;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Offer */
 
-$this->title = $model->offerId;
+$this->title = $model->item->title;
 $this->params['breadcrumbs'][] = ['label' => 'Offers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="offer-view">
+<!-- Content Header (Page header) -->
+<section class="content-header"></section>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<!-- Main content -->
+<section class="content">
+  <div class="offer-view">
+    <div class="invoice" style="margin:0;">
+      <!-- title row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-globe"></i> <?= $this->title ?>
+            <small class="pull-right"><?= Utils::dateToString($model->createdAt) ?></small>
+          </h2>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- info row -->
+      <div class="row invoice-info">
+        <div class="col-xs-4">
+            <?= Html::img($model->picture->cover, ['alt' => 'Item', 'width'=>'100%']) ?>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4">
+          Postado por:
+          <address>
+            <strong><?= $model->seller->name ?></strong><br>
+            <?= $model->seller->billingAddress->address ?><br>
+            <?= $model->seller->billingAddress->city ?> - <?= $model->seller->billingAddress->state ?><br>
+            Fone: <?= $model->seller->phone ?><br>
+            Email: <?= $model->seller->email ?>
+          </address>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <p class="lead">Preços</p>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->offerId], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->offerId], [
-            'class' => 'btn btn-danger',
+          <div class="table-responsive">
+            <table class="table">
+              <tr>
+                <th style="width:50%">Subtotal:</th>
+                <td>R$ <?= number_format($model->pricePerUnit, 2, ',', '.') ?></td>
+                <td></td>
+              </tr>
+              <!-- <tr>
+                <th>Tax (9.3%)</th>
+                <td>$10.34</td>
+                <td></td>
+              </tr> -->
+              <!-- <tr>
+                <th>Shipping:</th>
+                <td>$5.80</td>
+                <td></td>
+              </tr> -->
+              <tr>
+                <th>Desconto:</th>
+                <?php $totalDiscount = ($model->pricePerUnit * $model->discountPerUnit/100); ?>
+                <td><?= ($totalDiscount == 0) ? '-' : 'R$ ' . number_format($totalDiscount, 2, ',', '.') ?></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Total:</th>
+                <?php $totalPrice = $model->pricePerUnit - $totalDiscount; ?>
+                <td>R$ <?= number_format($totalPrice, 2, ',', '.') ?></td>
+                <td>COIN 3000</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- /.col -->
+
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-xs-4">
+          <p class="lead">Descrição</p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            <?= $model->description ?>
+          </p>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <p class="lead">Tags</p>
+
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            <?= $model->keywords ?>
+          </p>
+        </div>
+        <!-- accepted payments column -->
+        <div class="col-xs-4">
+          <p class="lead">Opções de Pagamento:</p>
+          <?php
+            $query = \common\models\PaymentLookup::find();
+            $pays = explode(',', $model->seller->paymentOptions);
+            foreach ($pays as $payop):
+                $query->orWhere(['like binary', 'paymentId', $payop]);
+            endforeach;
+            $dataCategory=ArrayHelper::map($query->asArray()->all(), 'name', 'icon');
+          
+            $pays = explode(',', $model->seller->paymentOptions);
+            foreach ($dataCategory as $key => $value):
+                //Html::img($model->picture->cover, ['alt' => 'Item', 'width'=>'100%'])
+                echo '<img src="data:image/gif;base64,' . $value . '" alt="'.$key.'" title="'.$key.'" width="51" height="32"/>';
+            endforeach;
+          ?>
+
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- this row will not appear when printing -->
+      <div class="row no-print">
+        <div class="col-xs-12">
+          <?= Html::a('Editar', ['update', 'id' => $model->offerId], ['class' => 'btn btn-primary pull-right']) ?>
+
+          <?= Html::a('Excluir', ['delete', 'id' => $model->offerId], [
+            'class' => 'btn btn-danger pull-right',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Tem certeza que deseja excluir essa oferta?',
                 'method' => 'post',
             ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'offerId',
-            'itemId',
-            'policyId',
-            'shippingId',
-            'pictureId',
-            'pricePerUnit',
-            'discountPerUnit',
-            'description',
-            'imageHashes:ntext',
-            'keywords:ntext',
-            'itemCondition',
-            'status',
-        ],
-    ]) ?>
-
+          ]) ?>
+        </div>
+      </div>
+    </div>
 </div>
+</section>

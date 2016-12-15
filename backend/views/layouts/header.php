@@ -239,13 +239,13 @@ $myImages = Url::to('@web/img/');
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="http://www.ondetem-gn.com.br/<?php echo Yii::$app->user->identity->buyer->picture->thumbnail; ?>" class="user-image" alt="User Image"/>
+                        <img src="<?php echo Yii::$app->user->identity->buyer->picture->thumbnail; ?>" class="user-image" alt="User Image"/>
                         <span class="hidden-xs"><?php echo Yii::$app->user->identity->username; ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="http://www.ondetem-gn.com.br/<?php echo Yii::$app->user->identity->buyer->picture->thumbnail; ?>" class="img-circle" alt="User Image"/>
+                            <img src="<?php echo Yii::$app->user->identity->buyer->picture->thumbnail; ?>" class="img-circle" alt="User Image"/>
                             <p>
                                 <small>Membro desde <?php echo Utils::dateToString(Yii::$app->user->identity->createdAt); ?></small>
                             </p>

@@ -4,9 +4,69 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "25dec25a7868a586afc2bbf6c13319a4",
-    "content-hash": "644434da6a5883475f469237c957a647",
+    "hash": "ff2a27e1e8be878b4feb986788c74acd",
+    "content-hash": "811c358e7b2b0eb7c0b3dfa3644a71a1",
     "packages": [
+        {
+            "name": "2amigos/yii2-chartjs-widget",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-chartjs-widget.git",
+                "reference": "e0935ffac86ef32615e2b8f5018f476de8000b16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-chartjs-widget/zipball/e0935ffac86ef32615e2b8f5018f476de8000b16",
+                "reference": "e0935ffac86ef32615e2b8f5018f476de8000b16",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/chartjs": "2.1.6",
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\chartjs\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "2amigOS! Consulting Group",
+                    "email": "hola@2amigos.us",
+                    "homepage": "http://2amigos.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "ChartJs widget for Yii2.",
+            "homepage": "http://yiiwheels.com/extension/chartjs-widget",
+            "keywords": [
+                "2amigos",
+                "chartjs",
+                "extension",
+                "widget",
+                "yii",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2016-11-17 18:20:19"
+        },
         {
             "name": "almasaeed2010/adminlte",
             "version": "v2.3.8",
@@ -94,6 +154,115 @@
                 "mobile-first",
                 "responsive",
                 "web"
+            ]
+        },
+        {
+            "name": "bower-asset/bower-jquery-sparkline",
+            "version": "2.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicolabortignon/bower-jquery-sparkline.git",
+                "reference": "ece667486f45045a8aebccc6de247d0a09a99183"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicolabortignon/bower-jquery-sparkline/zipball/ece667486f45045a8aebccc6de247d0a09a99183",
+                "reference": "ece667486f45045a8aebccc6de247d0a09a99183",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "./dist/jquery.sparkline.retina.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A plugin for the jQuery javascript library to generate small sparkline charts directly in the browser.",
+            "keywords": [
+                "chart",
+                "graph",
+                "jquery",
+                "sparkline"
+            ]
+        },
+        {
+            "name": "bower-asset/chartjs",
+            "version": "v2.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chartjs/Chart.js.git",
+                "reference": "07662b158d829f395b2c97d732e60599b8b5c4e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chartjs/Chart.js/zipball/07662b158d829f395b2c97d732e60599b8b5c4e4",
+                "reference": "07662b158d829f395b2c97d732e60599b8b5c4e4",
+                "shasum": ""
+            },
+            "require-dev": {
+                "bower-asset/jquery": "~2.1.4"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/Chart.js"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple HTML5 Charts using the canvas element"
+        },
+        {
+            "name": "bower-asset/ionrangeslider",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IonDen/ion.rangeSlider.git",
+                "reference": "1de0251e82c2559aeb64a37e8932f0cb5e98ddcb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/IonDen/ion.rangeSlider/zipball/1de0251e82c2559aeb64a37e8932f0cb5e98ddcb",
+                "reference": "1de0251e82c2559aeb64a37e8932f0cb5e98ddcb",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.8"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "js/ion.rangeSlider.js",
+                    "css/ion.rangeSlider.css",
+                    "css/ion.rangeSlider.skinFlat.css",
+                    "img/sprite-skin-flat.png"
+                ],
+                "bower-asset-ignore": [
+                    "PSD",
+                    "ion-rangeSlider.jquery.json"
+                ],
+                "branch-alias": {
+                    "dev-master": "2.1.5-dev"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Powerful range slider with skin support",
+            "keywords": [
+                "diapason",
+                "ion",
+                "jquery-plugin",
+                "range",
+                "slider"
             ]
         },
         {
@@ -424,6 +593,47 @@
             "time": "2016-10-21 02:03:45"
         },
         {
+            "name": "ekaragodin/yii2-bootstrap-slider",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ekaragodin/yii2-bootstrap-slider.git",
+                "reference": "842bcc63f957b8fb12e3ba6790285b66d4b72303"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ekaragodin/yii2-bootstrap-slider/zipball/842bcc63f957b8fb12e3ba6790285b66d4b72303",
+                "reference": "842bcc63f957b8fb12e3ba6790285b66d4b72303",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "ekaragodin\\bootstrap\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "ekaragodin",
+                    "email": "ekaragodin@gmail.com"
+                }
+            ],
+            "description": "Bootstrap slider control",
+            "keywords": [
+                "bootstrap",
+                "extension",
+                "yii2"
+            ],
+            "time": "2014-04-01 11:24:45"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.8.0",
             "source": {
@@ -516,6 +726,151 @@
             "time": "2016-10-24 15:52:54"
         },
         {
+            "name": "machour/yii2-adminlte-widgets",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/machour/yii2-adminlte-widgets.git",
+                "reference": "63906c968ffe0cd29e5911330a06a8a4ea26f4f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/machour/yii2-adminlte-widgets/zipball/63906c968ffe0cd29e5911330a06a8a4ea26f4f7",
+                "reference": "63906c968ffe0cd29e5911330a06a8a4ea26f4f7",
+                "shasum": ""
+            },
+            "require": {
+                "2amigos/yii2-chartjs-widget": "*",
+                "ekaragodin/yii2-bootstrap-slider": "*",
+                "machour/yii2-jquery-flot": "dev-master",
+                "machour/yii2-sparkline": "dev-master",
+                "rmrevin/yii2-ionicon": "*",
+                "yii2mod/yii2-ion-slider": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "machour\\yii2\\adminlte\\widgets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mehdi Achour",
+                    "email": "machour@gmail.com"
+                }
+            ],
+            "description": "Yii2 AdminLTE widgets",
+            "keywords": [
+                "AdminLTE",
+                "extension",
+                "yii2"
+            ],
+            "time": "2015-12-03 16:34:53"
+        },
+        {
+            "name": "machour/yii2-jquery-flot",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/machour/yii2-jquery-flot.git",
+                "reference": "da9417126f3f35a3cbbb913cd2b0ac5b5e156feb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/machour/yii2-jquery-flot/zipball/da9417126f3f35a3cbbb913cd2b0ac5b5e156feb",
+                "reference": "da9417126f3f35a3cbbb913cd2b0ac5b5e156feb",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "machour\\flot\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU GENERAL PUBLIC LICENSE"
+            ],
+            "authors": [
+                {
+                    "name": "Bogdan Burim",
+                    "email": "bgdn2007@ukr.net"
+                }
+            ],
+            "description": "jQuery Flot Charts extension for the Yii 2 framework",
+            "keywords": [
+                "chart",
+                "flot",
+                "jquery",
+                "yii"
+            ],
+            "time": "2015-10-20 01:11:25"
+        },
+        {
+            "name": "machour/yii2-sparkline",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/machour/yii2-sparkline.git",
+                "reference": "a6e7c0fd04668f21c8e2f1609b5f71f469668d01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/machour/yii2-sparkline/zipball/a6e7c0fd04668f21c8e2f1609b5f71f469668d01",
+                "reference": "a6e7c0fd04668f21c8e2f1609b5f71f469668d01",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bower-jquery-sparkline": "^2.1@dev",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "machour\\sparkline\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mehdi Achour",
+                    "email": "machour@gmail.com"
+                }
+            ],
+            "description": "Yii2 jQuery Sparkline widget",
+            "keywords": [
+                "charts",
+                "extension",
+                "sparkline",
+                "yii2"
+            ],
+            "time": "2015-11-15 20:01:59"
+        },
+        {
             "name": "rmrevin/yii2-fontawesome",
             "version": "2.17.0",
             "source": {
@@ -566,6 +921,59 @@
                 "yii"
             ],
             "time": "2016-10-25 15:14:55"
+        },
+        {
+            "name": "rmrevin/yii2-ionicon",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rmrevin/yii2-ionicon.git",
+                "reference": "81c74e57fa3c03db18f1e9154035bff5ea9cf30c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rmrevin/yii2-ionicon/zipball/81c74e57fa3c03db18f1e9154035bff5ea9cf30c",
+                "reference": "81c74e57fa3c03db18f1e9154035bff5ea9cf30c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "2.0.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "rmrevin\\yii\\ionicon\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Revin Roman",
+                    "email": "roman@rmrevin.com",
+                    "homepage": "https://rmrevin.com/"
+                }
+            ],
+            "description": "Asset Bundle for Yii2 with Ionicon",
+            "keywords": [
+                "asset",
+                "bundle",
+                "font",
+                "icons",
+                "ionicon",
+                "social",
+                "yii"
+            ],
+            "time": "2016-05-22 20:34:59"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -619,6 +1027,54 @@
                 "mailer"
             ],
             "time": "2016-10-09 11:45:02"
+        },
+        {
+            "name": "yii2mod/yii2-ion-slider",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/yii2-ion-slider.git",
+                "reference": "28446d705e8f46d12d910691f4675762071b31ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/yii2-ion-slider/zipball/28446d705e8f46d12d910691f4675762071b31ba",
+                "reference": "28446d705e8f46d12d910691f4675762071b31ba",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/ionrangeslider": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\slider\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Chepurnoy",
+                    "email": "igorzfort@gmail.com"
+                }
+            ],
+            "description": "Ion.RangeSlider Widget for Yii 2",
+            "keywords": [
+                "yii2",
+                "yii2 ion slider",
+                "yii2 range slider",
+                "yii2 slider"
+            ],
+            "time": "2016-07-27 10:54:09"
         },
         {
             "name": "yiisoft/yii2",

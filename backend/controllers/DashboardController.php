@@ -3,13 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Seller;
-use backend\models\Offer;
-use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use backend\components\Utils;
+
+use common\models\Seller;
+use backend\models\SellerSearch;
+use common\models\Offer;
+use backend\models\OfferSearch;
 
 class DashboardController extends Controller
 {
@@ -44,6 +47,8 @@ class DashboardController extends Controller
         /*$dataProvider = new ActiveDataProvider([
             'query' => Seller::find(),
         ]);*/
+
+        Utils::setFlash('error', 'my message...');
 
         $data = Seller::find()->one();
 

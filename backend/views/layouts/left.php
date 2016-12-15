@@ -1,3 +1,4 @@
+<!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -5,7 +6,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="http://www.ondetem-gn.com.br/<?php echo Yii::$app->user->identity->buyer->picture->thumbnail; ?>" class="img-circle" alt="User Image"/>
+                <img src="<?php echo Yii::$app->user->identity->buyer->picture->thumbnail; ?>" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
                 <p><?php echo Yii::$app->user->identity->username; ?></p>
