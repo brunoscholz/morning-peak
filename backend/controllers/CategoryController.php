@@ -3,11 +3,12 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Category;
-use yii\data\ActiveDataProvider;
+use common\models\Category;
+use backend\models\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -20,6 +21,41 @@ class CategoryController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['user'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['view'],
+                        'roles' => ['user'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['delete'],
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['sugest'],
+                        'roles' => ['user'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -35,11 +71,10 @@ class CategoryController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Category::find(),
-        ]);
-
+        $searchModel = new CategorySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -109,6 +144,8 @@ class CategoryController extends Controller
 
         return $this->redirect(['index']);
     }
+
+    public function actionSugest() {}
 
     /**
      * Finds the Category model based on its primary key value.

@@ -3,80 +3,48 @@
 namespace backend\models;
 
 use Yii;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+use common\models\Category;
 
 /**
- * This is the model class for table "{{%category}}".
- *
- * @property string $categoryId
- * @property string $parentId
- * @property string $name
- * @property string $description
- * @property string $icon
- *
- * @property Category $parent
- * @property Category[] $categories
- * @property Item[] $items
+ * CategorySearch represents the model behind the search form about common\models\Category.
  */
-class Category extends \yii\db\ActiveRecord
+class CategorySearch extends Category
 {
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%category}}';
-    }
-
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['name', 'description', 'icon'], 'required'],
-            [['categoryId', 'parentId'], 'string', 'max' => 21],
-            [['name'], 'string', 'max' => 60],
-            [['description'], 'string', 'max' => 255],
-            [['icon'], 'string', 'max' => 40],
-            [['parentId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['parentId' => 'categoryId']],
+            [['name', 'description', 'parentId'], 'safe'],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
+    public function scenarios()
     {
-        return [
-            'categoryId' => 'ID Categoria',
-            'parentId' => 'ID SuperCategoria',
-            'name' => 'Nome',
-            'description' => 'Descrição',
-            'icon' => 'Ícone',
-        ];
+        // bypass scenarios() implementation in the parent class
+        return Model::scenarios();
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
      */
-    public function getParent()
+    public function search($params)
     {
-        return $this->hasOne(Category::className(), ['categoryId' => 'parentId']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCategories()
-    {
-        return $this->hasMany(Category::className(), ['parentId' => 'categoryId']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getItems()
-    {
-        return $this->hasMany(Item::className(), ['categoryId' => 'categoryId']);
+        $query = Category::find()->orderBy('name ASC')->where(['<>', 'parentId', 'NULL']);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+        if (!($this->load($params) && $this->validate())) {
+            return $dataProvider;
+        }
+        $query->andFilterWhere(['like', 'name', $this->name]);
+        return $dataProvider;
     }
 }

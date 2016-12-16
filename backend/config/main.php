@@ -13,10 +13,18 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
-        // can be versioned and updated
-        'notification' => [
-            'basePath' => '@app/modules/Notification',
-            'class' => 'backend\modules\Notification\NotificationModule',
+        'notifications' => [
+            'class' => 'machour\yii2\notifications\NotificationsModule',
+            // Point this to your own Notification class
+            // See the "Declaring your notifications" section below
+            'notificationClass' => 'backend\components\Notification',
+            // Allow to have notification with same (userId, key, keyId)
+            // Default to FALSE
+            'allowDuplicate' => false,
+            // This callable should return your logged in user Id
+            'userId' => function() {
+                return \Yii::$app->user->identity->userId;
+            }
         ],
     ],
     'defaultRoute' => 'dashboard/index',

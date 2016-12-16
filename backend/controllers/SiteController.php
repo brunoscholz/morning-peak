@@ -81,6 +81,7 @@ class SiteController extends Controller
             /*var_dump($this->goBack());
             die();*/
             //return $this->goBack((!empty(Yii::$app->request->referrer) ? Yii::$app->request->referrer : null));
+            var_dump(Yii::$app->request->post());
             return $this->goBack();
         }
         return $this->render('login', [

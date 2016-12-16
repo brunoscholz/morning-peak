@@ -18,18 +18,17 @@ $fieldOptions2 = [
     'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
 ];
 
-var_dump(Yii::$app->user->isGuest);
-var_dump(Yii::$app->user->identity);
-
+/*var_dump(Yii::$app->user->isGuest);
+var_dump(Yii::$app->user->identity);*/
 ?>
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b>Admin</b>LTE</a>
+        <a href="#"><b>OndeTem?</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Faça o Login para iniciar sua sessão</p>
 
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 

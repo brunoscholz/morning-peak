@@ -6,13 +6,13 @@ use yii\db\ActiveRecord;
 /**
  * This is the model class for table "notification".
  *
- * @property integer $id
- * @property string $key_id
+ * @property integer $notificationId
+ * @property integer $userId
  * @property string $key
+ * @property string $keyId
  * @property string $type
  * @property boolean $seen
  * @property string $createdAt
- * @property integer $userId
  */
 abstract class Notification extends ActiveRecord
 {
@@ -73,9 +73,8 @@ abstract class Notification extends ActiveRecord
     {
         return [
             [['type', 'userId', 'key', 'createdAt'], 'required'],
-            [['id', 'key_id', 'createdAt'], 'safe'],
-            [['userId'], 'integer'],
-            [['key_id'], 'string'],
+            [['notificationId', 'keyId', 'createdAt'], 'safe'],
+            [['notificationId', 'userId', 'keyId', 'key'], 'string', 'max' => 21],
         ];
     }
     /**
@@ -88,10 +87,10 @@ abstract class Notification extends ActiveRecord
      * @return bool Returns TRUE on success, FALSE on failure
      * @throws \Exception
      */
-    public static function notify($key, $userId, $key_id = null, $type = self::TYPE_DEFAULT)
+    public static function notify($key, $userId, $keyId = null, $type = self::TYPE_DEFAULT)
     {
         $class = self::className();
-        return NotificationsModule::notify(new $class(), $key, $userId, $key_id, $type);
+        return NotificationsModule::notify(new $class(), $key, $userId, $keyId, $type);
     }
     /**
      * Creates a warning notification
@@ -101,9 +100,9 @@ abstract class Notification extends ActiveRecord
      * @param string $key_id The notification key id
      * @return bool Returns TRUE on success, FALSE on failure
      */
-    public static function warning($key, $userId, $key_id = null)
+    public static function warning($key, $userId, $keyId = null)
     {
-        return static::notify($key, $userId, $key_id, self::TYPE_WARNING);
+        return static::notify($key, $userId, $keyId, self::TYPE_WARNING);
     }
     /**
      * Creates an error notification
@@ -113,9 +112,9 @@ abstract class Notification extends ActiveRecord
      * @param string $key_id The notification key id
      * @return bool Returns TRUE on success, FALSE on failure
      */
-    public static function error($key, $userId, $key_id = null)
+    public static function error($key, $userId, $keyId = null)
     {
-        return static::notify($key, $userId, $key_id, self::TYPE_ERROR);
+        return static::notify($key, $userId, $keyId, self::TYPE_ERROR);
     }
     /**
      * Creates a success notification
@@ -125,8 +124,8 @@ abstract class Notification extends ActiveRecord
      * @param string $key_id The notification key id
      * @return bool Returns TRUE on success, FALSE on failure
      */
-    public static function success($key, $userId, $key_id = null)
+    public static function success($key, $userId, $keyId = null)
     {
-        return static::notify($key, $userId, $key_id, self::TYPE_SUCCESS);
+        return static::notify($key, $userId, $keyId, self::TYPE_SUCCESS);
     }
 }

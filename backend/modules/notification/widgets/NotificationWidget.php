@@ -59,6 +59,6 @@ class NotificationWidget extends Widget
 
     public function run()
     {
-        return Html::encode($this->message);
+        return $this->listItemTemplate ? str_replace('{msg}', Html::encode($this->message), $this->listItemTemplate) : Html::encode($this->message);
     }
 }

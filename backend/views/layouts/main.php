@@ -10,9 +10,9 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
-AppAsset::register($this);
 dmstr\web\AdminLteAsset::register($this);
-$directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+AppAsset::register($this);
+$directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/bower') . '/adminlte/dist';
 
 ?>
 <?php $this->beginPage() ?>

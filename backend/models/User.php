@@ -92,7 +92,7 @@ class User extends UserModel implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        $query = static::find()
+        $query = User::find()
             ->andWhere(['status' => self::STATUS_ACTIVE])
             ->andWhere(['email' => $username]);
 

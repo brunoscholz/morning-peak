@@ -8,6 +8,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use backend\components\Utils;
+use backend\components\Notification;
+
 
 use common\models\Seller;
 use backend\models\SellerSearch;
@@ -27,7 +29,7 @@ class DashboardController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout','index','profile'],
+                        'actions' => ['logout','index','profile','notify'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -48,13 +50,30 @@ class DashboardController extends Controller
             'query' => Seller::find(),
         ]);*/
 
-        Utils::setFlash('error', 'my message...');
+        //Utils::setFlash('error', 'my message...');
+
+        //$auth = Yii::$app->authManager;
+        //var_dump(Yii::$app->user->can('updateOwnProfile'));
+
+        // $message was just created by the logged in user, and sent to $recipient_id
+        /*Notification::notify(Notification::KEY_NEW_MESSAGE, $recipient_id, $message->id);
+
+        // You may also use the following static methods to set the notification type:
+        Notification::warning(Notification::KEY_NEW_MESSAGE, $recipient_id, $message->id);
+        Notification::success(Notification::ORDER_PLACED, $admin_id, $order->id);
+        Notification::error(Notification::KEY_NO_DISK_SPACE, '1234acanidqo1');
+        */
 
         $data = Seller::find()->one();
 
         return $this->render('index', [
             'dataProvider' => $data,
         ]);
+    }
+
+    public function actionNotify()
+    {
+        Notification::notify(Notification::KEY_OFFER_TRADED, Yii::$app->user->identity->userId, 'TDh7O1NJPqfCgoECYnEau');
     }
 
     /**
