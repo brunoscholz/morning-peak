@@ -6,10 +6,10 @@ use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $searchModel backend\models\CategorySearch */
 
 $this->title = 'Categorias';
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
 <div class="category-index">
 
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
       'color' => '',
       'noPadding' => false,
       'header' => [
-        'title' => 'Categorias ...',
+        'title' => $this->title . ' ...',
         'class' => 'with-border',
         'tools' => '{collapse}',
       ],

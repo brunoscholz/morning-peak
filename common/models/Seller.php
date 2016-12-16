@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * Seller Model
@@ -16,6 +18,15 @@ class Seller extends \yii\db\ActiveRecord
     const STATUS_NOT_VERIFIED = 'PEN';
     const STATUS_WAITING_PAY = 'PAY';
     const STATUS_BANNED = 'BAN';
+    const STATUS_REMOVED = 'REM';
+
+    public static $statusArray = [
+        self::STATUS_ACTIVE,
+        self::STATUS_NOT_VERIFIED,
+        self::STATUS_WAITING_PAY,
+        self::STATUS_BANNED,
+        self::STATUS_REMOVED,
+    ];
 
     /**
      * @inheritdoc
@@ -50,24 +61,36 @@ class Seller extends \yii\db\ActiveRecord
         ];
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'createdAt',
+                'updatedAtAttribute' => 'updatedAt',
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function attributeLabels()
     {
         return [
-            'sellerId' => 'Seller ID',
-            'userId' => 'User ID',
-            'pictureId' => 'Picture',
-            'about' => 'About',
-            'name' => 'Name',
+            'sellerId' => 'ID Prestadora',
+            'userId' => 'ID Usuário',
+            'pictureId' => 'Fotos',
+            'about' => 'Sobre',
+            'name' => 'Nome Fantasia',
             'email' => 'Email',
-            'phone' => 'Phone',
-            'cellphone' => 'Cell Phone',
+            'phone' => 'Fone',
+            'cellphone' => 'Celular',
             'website' => 'Website',
             'hours' => 'Hours',
             'categories' => 'Categories',
-            'paymentOptions' => 'Payment Options',
+            'paymentOptions' => 'Opções de Pagamento',
             'createdAt' => 'Data Criação',
             'updatedAt' => 'Data Atualização',
             'status' => 'Status',

@@ -1,0 +1,214 @@
+<!-- Profile Image -->
+      <?= \machour\yii2\adminlte\widgets\Box::begin([
+        'type' => 'box-widget',
+        'color' => '',
+        'noPadding' => false,
+        'header' => [
+          'title' => $this->title . ' ...',
+          'class' => 'with-border',
+          'tools' => '',
+        ],
+        'body' => [
+          'class' => 'box-profile',
+        ],
+      ]); ?>
+        <?= Html::img($model->picture->thumbnail, ['class' => 'profile-user-img img-responsive img-circle', 'alt' => 'User Image']) ?>
+        <h3 class="profile-username text-center"><?= $model->name ?></h3>
+        <p class="text-muted text-center"><?= $model->email ?></p>
+        <!-- Html::a('Seguir', ['create'], ['class' => 'btn btn-primary btn-block']) -->
+      <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
+        <ul class="nav nav-stacked">
+          <li><a href="#"><b>Seguidores</b> <span class="pull-right badge bg-blue">1.322</span></a></li>
+          <li><a href="#"><b>Seguindo</b> <span class="pull-right badge bg-aqua">543</span></a></li>
+          <li><a href="#"><b>Listas</b> <span class="pull-right badge bg-yellow">12</span></a></li>
+        </ul>
+      <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
+
+      <?= \machour\yii2\adminlte\widgets\BoxSocial::begin([
+        'type' => '2',
+        'color' => 'bg-yellow',
+        'avatar' => $model->picture->thumbnail,
+        'username' => $model->name,
+        'description' => $model->email,
+        'noPadding' => true,
+      ]); ?>
+      <?= \machour\yii2\adminlte\widgets\BoxSocial::footer(); ?>
+        <ul class="nav nav-stacked">
+          <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
+          <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
+          <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
+          <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
+        </ul>
+      <?= \machour\yii2\adminlte\widgets\BoxSocial::end(); ?>
+
+      <?= \machour\yii2\adminlte\widgets\BoxSocial::begin([
+        'type' => '',
+        'color' => 'bg-aqua-active',
+        'avatar' => $model->picture->thumbnail,
+        'username' => $model->name,
+        'description' => $model->email,
+        'noPadding' => false,
+      ]); ?>
+      <?= \machour\yii2\adminlte\widgets\BoxSocial::footer(); ?>
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <h5 class="description-header">3,200</h5>
+              <span class="description-text">SALES</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <h5 class="description-header">13,000</h5>
+              <span class="description-text">FOLLOWERS</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4">
+            <div class="description-block">
+              <h5 class="description-header">35</h5>
+              <span class="description-text">PRODUCTS</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+        </div>
+      <?= \machour\yii2\adminlte\widgets\BoxSocial::end(); ?>
+
+      <?= \machour\yii2\adminlte\widgets\BoxSocial::begin([
+        'type' => '',
+        'color' => 'bg-black',
+        'avatar' => $model->picture->thumbnail,
+        'username' => $model->name,
+        'description' => $model->email,
+        'cover' => $model->picture->cover,
+      ]); ?>
+      <?= \machour\yii2\adminlte\widgets\BoxSocial::footer(); ?>
+        <div class="row">
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <h5 class="description-header">3,200</h5>
+              <span class="description-text">SALES</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <h5 class="description-header">13,000</h5>
+              <span class="description-text">FOLLOWERS</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4">
+            <div class="description-block">
+              <h5 class="description-header">35</h5>
+              <span class="description-text">PRODUCTS</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+        </div>
+      <?= \machour\yii2\adminlte\widgets\BoxSocial::end(); ?>
+
+
+/* POSTS */
+
+<!-- Post -->
+            <div class="post">
+              <div class="user-block">
+                <img class="img-circle img-bordered-sm" src="<?= $directoryAsset ?>/img/user1-128x128.jpg" alt="user image">
+                <span class='username'>
+                  <a href="#">Jonathan Burke Jr.</a>
+                  <a href='#' class='pull-right btn-box-tool'><i class='fa fa-times'></i></a>
+                </span>
+                <span class='description'>Avaliou - 7:30 PM today</span>
+              </div><!-- /.user-block -->
+              <p>
+                Lorem ipsum represents a long-held tradition for designers,
+                typographers and the like. Some people hate it and argue for
+                its demise, but others ignore the hate as they create awesome
+                tools to help create filler text for everyone from bacon lovers
+                to Charlie Sheen fans.
+              </p>
+              <ul class="list-inline">
+                <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+                <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a></li>
+                <li class="pull-right"><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments (5)</a></li>
+              </ul>
+
+              <input class="form-control input-sm" type="text" placeholder="Type a comment">
+            </div><!-- /.post -->
+
+            <!-- Post -->
+            <div class="post clearfix">
+              <div class='user-block'>
+                <img class='img-circle img-bordered-sm' src='<?= $directoryAsset ?>/img/user7-128x128.jpg' alt='user image'>
+                <span class='username'>
+                  <a href="#">Sarah Ross</a>
+                  <a href='#' class='pull-right btn-box-tool'><i class='fa fa-times'></i></a>
+                </span>
+                <span class='description'>Sent you a message - 3 days ago</span>
+              </div><!-- /.user-block -->
+              <p>
+                Lorem ipsum represents a long-held tradition for designers,
+                typographers and the like. Some people hate it and argue for
+                its demise, but others ignore the hate as they create awesome
+                tools to help create filler text for everyone from bacon lovers
+                to Charlie Sheen fans.
+              </p>
+
+              <form class='form-horizontal'>
+                <div class='form-group margin-bottom-none'>
+                  <div class='col-sm-9'>
+                    <input class="form-control input-sm" placeholder="Response">
+                  </div>                          
+                  <div class='col-sm-3'>
+                    <button class='btn btn-danger pull-right btn-block btn-sm'>Send</button>
+                  </div>                          
+                </div>                        
+              </form>
+            </div><!-- /.post -->
+
+            <!-- Post -->
+            <div class="post">
+              <div class='user-block'>
+                <img class='img-circle img-bordered-sm' src='<?= $directoryAsset ?>/img/user6-128x128.jpg' alt='user image'>
+                <span class='username'>
+                  <a href="#">Adam Jones</a>
+                  <a href='#' class='pull-right btn-box-tool'><i class='fa fa-times'></i></a>
+                </span>
+                <span class='description'>Posted 5 photos - 5 days ago</span>
+              </div><!-- /.user-block -->
+              <div class='row margin-bottom'>
+                <div class='col-sm-6'>
+                  <img class='img-responsive' src='<?= $directoryAsset ?>/img/photo1.png' alt='Photo'>
+                </div><!-- /.col -->
+                <div class='col-sm-6'>
+                  <div class='row'>
+                    <div class='col-sm-6'>
+                      <img class='img-responsive' src='<?= $directoryAsset ?>/img/photo2.png' alt='Photo'>
+                      <br>
+                      <img class='img-responsive' src='<?= $directoryAsset ?>/img/photo3.jpg' alt='Photo'>
+                    </div><!-- /.col -->
+                    <div class='col-sm-6'>
+                      <img class='img-responsive' src='<?= $directoryAsset ?>/img/photo4.jpg' alt='Photo'>
+                      <br>
+                      <img class='img-responsive' src='<?= $directoryAsset ?>/img/photo1.png' alt='Photo'>
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+                </div><!-- /.col -->
+              </div><!-- /.row -->
+
+              <ul class="list-inline">
+                <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+                <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a></li>
+                <li class="pull-right"><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments (5)</a></li>
+              </ul>
+
+              <input class="form-control input-sm" type="text" placeholder="Type a comment">
+            </div><!-- /.post -->

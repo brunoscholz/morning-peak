@@ -1,7 +1,6 @@
 <?php
 use \machour\yii2\adminlte\widgets\Breadcrumbs;
 use dmstr\widgets\Alert;
-
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

@@ -3,15 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Seller;
-use yii\data\ActiveDataProvider;
+use common\models\Seller;
+use backend\models\SellerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
+use yii\filters\AccessControl;
+//use yii\web\UploadedFile;
 
 /**
- * SellerController implements the CRUD actions for Seller model.
+ * CategoryController implements the CRUD actions for Category model.
  */
 class SellerController extends Controller
 {
@@ -36,14 +37,15 @@ class SellerController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Seller::find(),
-        ]);
-
+        $searchModel = new SellerSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    public function actionList() {}
 
     /**
      * Displays a single Seller model.
@@ -52,7 +54,7 @@ class SellerController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->render('@common/views/profiles/seller-profile', [
             'model' => $this->findModel($id),
         ]);
     }

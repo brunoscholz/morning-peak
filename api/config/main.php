@@ -15,12 +15,16 @@ $backEndBaseUrl = str_replace('/api/web', '/backend/web', (new Request)->getBase
 return [
     'id' => 'app-api',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'v1'], //, 'docGenerator'
+    'bootstrap' => ['log', 'v1', 'v2'], //, 'docGenerator'
     'modules' => [
         // can be versioned and updated
         'v1' => [
             'basePath' => '@app/modules/v1',
             'class' => 'api\modules\v1\Module',
+        ],
+        'v2' => [
+            'basePath' => '@app/modules/v2',
+            'class' => 'api\modules\v2\Module',
         ],
     ],
     'components' => [
@@ -41,7 +45,9 @@ return [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
+            //'rules' => include('routes.php'),
             'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => ['v2/relationship', 'v2/category', 'v2/transaction']],
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/relationship',

@@ -11,7 +11,7 @@ use yii\helpers\ArrayHelper;
 
 <div class="item-form" style="display: none;">
 
-    <?php $dataCategory=ArrayHelper::map(\backend\models\Category::find()->where(['<>', 'categoryId', '0'])->asArray()->all(), 'categoryId', 'name'); ?>
+    <?php $dataCategory=ArrayHelper::map(\common\models\Category::find()->where(['<>', 'categoryId', '0'])->asArray()->all(), 'categoryId', 'name'); ?>
 
     <div class="form-group field-item-categoryid required">
         <label class="control-label" for="item-category">Categoria</label>

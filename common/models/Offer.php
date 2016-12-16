@@ -14,6 +14,9 @@ use yii\behaviors\TimestampBehavior;
  */
 class Offer extends \yii\db\ActiveRecord
 {
+    public $imageCover;
+    public $imageThumb;
+
     const STATUS_ACTIVE = "ATV";
 
     /**
@@ -99,18 +102,20 @@ class Offer extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'offerId' => 'Offer ID',
-            'itemId' => 'Item ID',
-            'sellerId' => 'Seller ID',
-            'policyId' => 'Policy ID',
-            'shippingId' => 'Shipping ID',
-            'pricePerUnit' => 'Price Per Unit',
-            'discountPerUnit' => 'Discount Per Unit',
-            'description' => 'Description',
+            'offerId' => 'ID Oferta',
+            'itemId' => 'ID Item',
+            'sellerId' => 'ID Empresa',
+            'policyId' => 'ID Termos',
+            'shippingId' => 'ID Entrega',
+            'pricePerUnit' => 'Preço',
+            'discountPerUnit' => 'Desconto',
+            'description' => 'Descrição',
             'imageHashes' => 'Image Hashes',
-            'keywords' => 'Keywords',
-            'itemCondition' => 'Condition',
+            'keywords' => 'Tags',
+            'itemCondition' => 'Condição do Item',
             'status' => 'Status',
+            'imageCover' => 'Foto de Capa',
+            'imageThumb' => 'Avatar',
         ];
     }
 

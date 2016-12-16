@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use machour\yii2\notifications\widgets\NotificationsWidget;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -29,37 +28,6 @@ Html::a('Criar Prestadora', ['create'], ['class' => 'btn btn-success'])*/
 ]);
 */
 ?>
-
-<div class="row">
-  <?= NotificationsWidget::widget([
-    'theme' => NotificationsWidget::THEME_GROWL,
-    'clientOptions' => [
-        'location' => 'br',
-    ],
-    'counters' => [
-        '.notifications-header-count',
-        '.notifications-icon-count'
-    ],
-    'listSelector' => '#notifications',
-  ]) ?>
-  <div class="col-lg-3 col-xs-6">
-    <ul>
-      <li class="dropdown notifications-menu">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-bell-o"></i>
-            <span class="label label-warning notifications-icon-count">0</span>
-        </a>
-        <ul class="dropdown-menu">
-            <li class="header">You have <span class="notifications-header-count">0</span> notifications</li>
-            <li>
-                <div id="notifications"></div>
-            </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-
-</div>
 
 <!-- Small boxes (Stat box) -->
 <div class="row">

@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
       'color' => '',
       'noPadding' => false,
       'header' => [
-        'title' => 'Ofertas ...',
+        'title' => $this->title . ' ...',
         'class' => 'with-border',
         'tools' => '{collapse}',
       ],

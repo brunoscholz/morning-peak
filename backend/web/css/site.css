@@ -126,3 +126,41 @@ a.desc:after {
 .main-header span.logo-lg img {
     height: 45px;
 }
+
+.widget-user .widget-user-image > img {
+    width: 90px;
+    height: auto;
+    border: 3px solid #fff;
+    background-color: #f4f4f4;
+}
+
+.widget-user .widget-user-header {
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.offer-list .widget-user .widget-user-image {
+    position: absolute;
+    top: 65px;
+    right: 10px;
+    left: unset;
+    margin-left: unset;
+}
+
+.nav-tabs-custom > .tab-content {
+    background-color: #fff; /*#e1f1f1*/
+}
+
+.ui-autocomplete.ui-widget-content {
+    border: 1px solid #aaaaaa;
+    /*background: #ffffff 50% 50% repeat-x;*/
+    color: #222222;
+}
+
+.ui-autocomplete .ui-menu-item {
+    position: relative;
+    margin: 0;
+    padding: 3px 1em 3px .4em;
+    cursor: pointer;
+    min-height: 0;
+}

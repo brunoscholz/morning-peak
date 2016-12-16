@@ -3,134 +3,49 @@
 namespace backend\models;
 
 use Yii;
-use yii\db\Expression;
-use yii\behaviors\TimestampBehavior;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+use common\models\Seller;
 
 /**
- * This is the model class for table "{{%seller}}".
- *
- * @property string $sellerId
- * @property string $userId
- * @property string $about
- * @property string $name
- * @property string $email
- * @property string $website
- * @property string $hours
- * @property string $categories
- * @property string $paymentOptions
- *
- * @property User $user
- * @property Offer[] $offers
+ * CategorySearch represents the model behind the search form about common\models\Category.
  */
-class Seller extends \yii\db\ActiveRecord
+
+class SellerSearch extends Seller
 {
-    const STATUS_ACTIVE = 'ACT';
-    const STATUS_NOT_VERIFIED = 'PEN';
-    const STATUS_WAITING_PAY = 'PAY';
-    const STATUS_BANNED = 'BAN';
-
-    /**
-     * @var UploadedFile[]
-     */
-    public $imageCover;
-    public $imageThumb;
-
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%seller}}';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public static function primaryKey()
-    {
-        return ['sellerId'];
-    }
-
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['about', 'name', 'email'], 'required'],
-            [['sellerId', 'userId'], 'string', 'max' => 21],
-            [['about'], 'string', 'max' => 420],
-            [['name', 'email', 'website'], 'string', 'max' => 60],
-            [['hours', 'categories'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 3],
-            //[['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
-            [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
-            [['imageCover'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
-            [['imageThumb'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
+            [['name', 'email', 'website'], 'safe'],
         ];
     }
 
-    public function behaviors()
+    public function scenarios()
     {
-        return [
-            [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'createdAt',
-                'updatedAtAttribute' => 'updatedAt',
-                'value' => new Expression('NOW()'),
-            ],
-        ];
+        // bypass scenarios() implementation in the parent class
+        return Model::scenarios();
     }
 
     /**
-     * @inheritdoc
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
      */
-    public function attributeLabels()
+    public function search($params)
     {
-        return [
-            'sellerId' => 'ID Empresa',
-            'userId' => 'UserID',
-            'pictureId' => 'PictureID',
-            'about' => 'Sobre',
-            'name' => 'Nome Fantasia',
-            'email' => 'Email Contato (pode ser o mesmo do cadastro)',
-            'website' => 'Website',
-            'hours' => 'Horário de Funcionamento',
-            'phone' => 'Fone',
-            'cellphone' => 'Celular',
-            'categories' => 'Categorias',
-            'paymentOptions' => 'Opções de Pagamento',
-            'createdAt' => 'Data Criação',
-            'updatedAt' => 'Data Atualização',
-            'status' => 'Status',
-            'imageCover' => 'Capa',
-            'imageThumb' => 'Avatar',
-        ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getOffers()
-    {
-        return $this->hasMany(Offer::className(), ['sellerId' => 'sellerId']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUser() {}
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPicture()
-    {
-        return $this->hasOne(Picture::className(), ['pictureId' => 'pictureId']);
-    }
-
-    public function getReviews()
-    {
-        return $this->hasMany(ReviewFact::className(), ['sellerId' => 'sellerId']);
+        $query = Seller::find()->orderBy('name ASC');
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+        if (!($this->load($params) && $this->validate())) {
+            return $dataProvider;
+        }
+        $query->andFilterWhere(['like', 'name', $this->name]);
+        return $dataProvider;
     }
 }

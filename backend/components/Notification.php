@@ -39,10 +39,10 @@ class Notification extends BaseNotification
     {
         switch ($this->key) {
             case self::KEY_OFFER_TRADED:
-                return 'Uma oferta foi trocada!'; //Yii::t('app', 'Meeting reminder');
+                return '<i class="fa fa-shopping-cart text-green"></i> Uma oferta foi trocada!'; //Yii::t('app', 'Meeting reminder');
 
             case self::KEY_NEW_FOLLOWER:
-                return 'Você tem um novo seguidor'; //Yii::t('app', 'You got a new message');
+                return '<i class="fa fa-users text-red"></i> Você tem um novo seguidor'; //Yii::t('app', 'You got a new message');
 
             case self::KEY_NO_DISK_SPACE:
                 return Yii::t('app', 'No disk space left');

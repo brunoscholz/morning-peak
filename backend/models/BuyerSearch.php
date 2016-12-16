@@ -18,14 +18,33 @@ class BuyerSearch extends Buyer
     public function rules()
     {
         return [
-            [['dob', 'name', 'gender', 'email'], 'required'],
-            [['buyerId', 'userId', 'dob'], 'string', 'max' => 21],
-            [['about'], 'string', 'max' => 420],
-            [['name'], 'string', 'max' => 80],
-            [['gender'], 'string', 'max' => 3],
-            [['email', 'website'], 'string', 'max' => 60],
-            [['title'], 'string', 'max' => 10],
-            [['status'], 'string', 'max' => 3],
+            [['name', 'email', 'gender', 'dob', 'status'], 'safe'],
         ];
+    }
+
+    public function scenarios()
+    {
+        // bypass scenarios() implementation in the parent class
+        return Model::scenarios();
+    }
+
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $query = Buyer::find()->orderBy('name ASC');
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+        if (!($this->load($params) && $this->validate())) {
+            return $dataProvider;
+        }
+        $query->andFilterWhere(['like', 'name', $this->name]);
+        return $dataProvider;
     }
 }

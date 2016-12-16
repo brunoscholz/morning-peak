@@ -10,6 +10,7 @@ use Yii;
  * @property string $billingAddressId
  * @property string $address
  * @property string $city
+ * @property string $neighborhood
  * @property string $state
  * @property string $postCode
  * @property string $country
@@ -30,10 +31,10 @@ class BillingAddress extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['billingAddressId', 'address', 'city', 'state', 'postCode', 'country'], 'required'],
+            [['billingAddressId', 'address', 'city', 'neighborhood', 'state', 'postCode', 'country'], 'required'],
             [['billingAddressId'], 'string', 'max' => 21],
             [['address', 'country'], 'string', 'max' => 100],
-            [['city'], 'string', 'max' => 60],
+            [['city', 'neighborhood'], 'string', 'max' => 60],
             [['state'], 'string', 'max' => 2],
             [['postCode'], 'string', 'max' => 15],
         ];
@@ -46,11 +47,17 @@ class BillingAddress extends \yii\db\ActiveRecord
     {
         return [
             'billingAddressId' => 'Billing Address ID',
-            'address' => 'Address',
-            'city' => 'City',
+            'address' => 'Endereço',
+            'city' => 'Cidade',
+            'neighborhood' => 'Bairro',
             'state' => 'State',
-            'postCode' => 'Post Code',
-            'country' => 'Country',
+            'postCode' => 'CEP',
+            'country' => 'País',
         ];
+    }
+
+    public function getFullAddress()
+    {
+        return $this->address .', '. $this->neighborhood .' - '. $this->city .'/'. $this->state;
     }
 }

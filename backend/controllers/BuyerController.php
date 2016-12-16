@@ -3,12 +3,14 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Buyer;
-use yii\data\ActiveDataProvider;
+use common\models\Buyer;
+use backend\models\BuyerSearch;
+use common\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
+use yii\filters\AccessControl;
+//use yii\web\UploadedFile;
 
 /**
  * BuyerController implements the CRUD actions for Buyer model.
@@ -36,11 +38,25 @@ class BuyerController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Buyer::find(),
+        $searchModel = new BuyerSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionRoleIndex($role)
+    {
+        $searchModel = new BuyerSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $dataProvider->query
+            ->join('JOIN', 'tbl_user', 'tbl_user.buyerId = tbl_buyer.buyerId')  
+            ->where(['tbl_user.role' => $role]);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -52,9 +68,12 @@ class BuyerController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
+        return $this->render('@common/views/profiles/user-profile', [
+            'model' => $this->findUserModel($id),
         ]);
+        /*return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);*/
     }
 
     /**
@@ -143,6 +162,15 @@ class BuyerController extends Controller
     protected function findModel($id)
     {
         if (($model = Buyer::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function findUserModel($id)
+    {
+        if (($model = User::find()->where(['like binary', 'buyerId', $id])->one()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

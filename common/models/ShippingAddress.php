@@ -10,6 +10,7 @@ use Yii;
  * @property string $shippingAddressId
  * @property string $adress
  * @property string $city
+ * @property string $neighborhood
  * @property string $state
  * @property string $postCode
  * @property string $country
@@ -30,10 +31,10 @@ class ShippingAddress extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['shippingAddressId', 'adress', 'city', 'state', 'postCode', 'country'], 'required'],
+            [['shippingAddressId', 'adress', 'city', 'neighborhood', 'state', 'postCode', 'country'], 'required'],
             [['shippingAddressId'], 'string', 'max' => 21],
             [['adress', 'country'], 'string', 'max' => 100],
-            [['city'], 'string', 'max' => 60],
+            [['city', 'neighborhood'], 'string', 'max' => 60],
             [['state'], 'string', 'max' => 2],
             [['postCode'], 'string', 'max' => 15],
         ];
@@ -46,11 +47,17 @@ class ShippingAddress extends \yii\db\ActiveRecord
     {
         return [
             'shippingAddressId' => 'Shipping Address ID',
-            'adress' => 'Adress',
-            'city' => 'City',
+            'address' => 'Endereço',
+            'city' => 'Cidade',
+            'neighborhood' => 'Bairro',
             'state' => 'State',
-            'postCode' => 'Post Code',
-            'country' => 'Country',
+            'postCode' => 'CEP',
+            'country' => 'País',
         ];
+    }
+
+    public function getFullAddress($wc = false)
+    {
+        return $this->address .', '. $this->neighborhood .' - '. $this->city .'/'. $this->state;
     }
 }

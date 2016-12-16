@@ -35,9 +35,27 @@
                     ['label' => 'Ofertas', 'icon' => 'fa fa-shopping-bag', 'url' => ['/offer']],
                     ['label' => 'Categorias', 'icon' => 'fa fa-th', 'url' => ['/category']],
                     ['label' => 'Itens', 'icon' => 'fa  fa-tags', 'url' => ['/item']],
-                    ['label' => 'Clientes', 'icon' => 'fa  fa-tags', 'url' => ['/seller'], 'visible' => (Yii::$app->user->identity->role === 'administrator')],
-                    ['label' => 'Vendedores', 'icon' => 'fa  fa-tags', 'url' => ['/buyer'], 'visible' => (Yii::$app->user->identity->role === 'administrator')],
-                    ['label' => 'Usuários', 'icon' => 'fa  fa-tags', 'url' => ['/buyer'], 'visible' => (Yii::$app->user->identity->role === 'administrator')],
+                    [
+                        'label' => 'Clientes (Empresas)', 
+                        'icon' => 'fa  fa-tags',
+                        'url' => ['#'],
+                        'visible' => Yii::$app->user->can('admin'),
+                        'items' => [
+                            ['label' => 'Ver Todos', 'icon' => 'fa fa-file-code-o', 'url' => ['/seller']],
+                            ['label' => 'Cadastrar', 'icon' => 'fa fa-dashboard', 'url' => ['/seller/create']],
+                        ],
+                    ],
+                    [
+                        'label' => 'Clientes (Usuários)', 
+                        'icon' => 'fa  fa-tags',
+                        'url' => ['#'],
+                        'visible' => Yii::$app->user->can('admin'),
+                        'items' => [
+                            ['label' => 'Administradores', 'icon' => 'fa  fa-tags', 'url' => ['/buyer/role-index', 'role' => 'administrator']],
+                            ['label' => 'Vendedores', 'icon' => 'fa  fa-tags', 'url' => ['/buyer/role-index', 'role' => 'salesman']],
+                            ['label' => 'Usuários', 'icon' => 'fa  fa-tags', 'url' => ['/buyer']],
+                        ],
+                    ],
 
                     /*['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug']],*/
