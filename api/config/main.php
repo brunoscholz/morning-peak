@@ -47,7 +47,14 @@ return [
             'showScriptName' => false,
             //'rules' => include('routes.php'),
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => ['v2/relationship', 'v2/category', 'v2/transaction']],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'v2/relationship',
+                        'v2/category',
+                        'v2/transaction',
+                    ]
+                ],
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/relationship',

@@ -564,12 +564,12 @@ class AuthController extends \yii\rest\ActiveController
         {
             $data = array();
             //$data['key'] = $user->activation_key . $user->userId;
-            $data['disclaimer'] = 'Em caso de dúvidas, envie um email para vendas@ondetem-gn.com.br';
+            $data['disclaimer'] = 'Em caso de dúvidas, envie um email para contato@ondetem-gn.com.br';
 
             $mail = \Yii::$app->mailer->compose('passwordResetToken-html', [
                 'data' => $data
             ])
-                ->setFrom('vendas@ondetem.tk')
+                ->setFrom('contato@ondetem-gn.com.br')
                 ->setTo($user->email)
                 ->setSubject('OndeTem?! Recuperação de senha');
 

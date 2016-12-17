@@ -193,6 +193,87 @@ class RestUtils
         return $query;
     }
 
+    public static function getQueryParams($params, $class)
+    {
+        $filter=array();
+        $sort="";
+        $page=1;
+        $limit=0;
+        $select = "*";
+        $ftFilters = array();
+
+        if(isset($params['l']))
+        {
+            $limit = $params['l'];
+            if(isset($params['fo']))
+                $limit = 1;
+        }
+
+        if(isset($params['pg']))
+        {
+            $page = $params['pg'];
+            $limit = ($limit == 0) ? 10 : $limit;
+        }
+
+        $offset=$limit*($page-1);
+
+        // f: field set for select
+        if(isset($params['f']))
+            $select = $params['f'];
+
+        // s: sortOrder
+        if(isset($params['s']))
+        {
+            $so = (array)json_decode($params['s']);
+            $sort = $so['field'];
+
+            if(isset($so['order']))
+            {
+                if($so['order'] == "false" || $so['order'] == "desc")
+                    $sort.=" desc";
+                else
+                    $sort.=" asc";
+            }
+        }
+
+        // ft: from-to's
+        if(isset($params['ft']))
+        {
+            $ft = (array)json_decode($params['ft']);
+            foreach ($ft as $v)
+            {
+                $ftFilters[$v['field']] = array('from' => $v['low'], 'to' => $v['high']);
+            }
+        }
+
+        $query = null;
+        // q: Filter elements
+        if(isset($params['q']))
+        {
+            $name = preg_split('#\\\\#', $class::classname());
+            $filter = [end($name) => (array)json_decode($params['q'], true)];
+            $searchModel = new $class();
+            $query = $searchModel->search($filter);
+        }
+        else
+            $query = $class::find();
+
+        $query->offset($offset)
+            ->orderBy($sort)
+            ->select($select);
+
+        if($limit > 0)
+            $query->limit($limit);
+
+        foreach ($ftFilters as $key => $value)
+        {
+            $query->andWhere($key . " >= '". $v['from']."' ");
+            $query->andWhere($key . " <= '". $v['to']."'");
+        }
+
+        return $query;
+    }
+
     public static function getSearch($term, $fields, $query)
     {
         foreach ($fields as $field)
