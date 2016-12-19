@@ -12,6 +12,7 @@ use Yii;
  * @property string $name
  * @property string $description
  * @property string $icon
+ * @property string $status
  */
 class Category extends \yii\db\ActiveRecord
 {
@@ -42,6 +43,7 @@ class Category extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 60],
             [['description'], 'string', 'max' => 255],
             [['icon'], 'string', 'max' => 40],
+            [['status'], 'string', 'max' => 3],
             [['parentId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['parentId' => 'categoryId']],
         ];
     }
@@ -53,10 +55,11 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'categoryId' => 'Category ID',
-            'parentId' => 'Parent ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'icon' => 'Icon',
+            'parentId' => 'Categoria Pai',
+            'name' => 'Nome',
+            'description' => 'Descrição',
+            'icon' => 'Ícone',
+            'status' => 'Status',
         ];
     }
 

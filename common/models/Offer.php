@@ -14,10 +14,9 @@ use yii\behaviors\TimestampBehavior;
  */
 class Offer extends \yii\db\ActiveRecord
 {
-    public $imageCover;
-    public $imageThumb;
-
-    const STATUS_ACTIVE = "ATV";
+    const STATUS_ACTIVE = "ACT";
+    const STATUS_OVER = "OVR";
+    const STATUS_ENDED = "END";
 
     /**
      * @inheritdoc
@@ -42,8 +41,8 @@ class Offer extends \yii\db\ActiveRecord
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'createdAt',
                 'updatedAtAttribute' => 'updatedAt',
-                'value' => date('Y-m-d\Th:i:s'),
-                //'value' => new Expression('NOW()'),
+                'value' => new Expression('NOW()'),
+                //'value' => date('Y-m-d\Th:i:s'),
             ],
         ];
     }
@@ -83,7 +82,7 @@ class Offer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['offerId', 'itemId', 'sellerId', 'pricePerUnit', 'description', 'imageHashes'], 'required'],
+            [['offerId', 'sellerId', 'pricePerUnit', 'description'], 'required'],
             [['pricePerUnit', 'discountPerUnit'], 'number'],
             [['imageHashes', 'keywords'], 'string'],
             [['offerId', 'itemId', 'sellerId', 'policyId', 'shippingId'], 'string', 'max' => 21],
@@ -114,8 +113,6 @@ class Offer extends \yii\db\ActiveRecord
             'keywords' => 'Tags',
             'itemCondition' => 'Condição do Item',
             'status' => 'Status',
-            'imageCover' => 'Foto de Capa',
-            'imageThumb' => 'Avatar',
         ];
     }
 

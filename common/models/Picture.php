@@ -130,6 +130,7 @@ class Picture extends \yii\db\ActiveRecord
             //http://ondetem-gn.com.br/uploads/userpics/4xsJ18K4J7dXr74jlWK_U--lvTY7tyF6.png
             $this->thumbnail = str_replace('http://ondetem-gn.com.br', '', $this->thumbnail);
             $this->cover = str_replace('http://ondetem-gn.com.br', '', $this->cover);
+
             return true;
         } else {
             return false;

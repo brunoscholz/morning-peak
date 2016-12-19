@@ -26,11 +26,9 @@ class CategoryController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        $params = \Yii::$app->request->queryParams;      
+        $params = \Yii::$app->request->get();
         $data = RestUtils::getQueryParams($params, $this->modelClass);
-        var_dump($data);
 
-        die();
         $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 

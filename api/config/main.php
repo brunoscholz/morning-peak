@@ -53,6 +53,7 @@ return [
                         'v2/relationship',
                         'v2/category',
                         'v2/transaction',
+                        'v2/offer',
                     ]
                 ],
                 [

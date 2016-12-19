@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
       'noPadding' => false,
       'header' => [
         'title' => $this->title . ' ...',
+        'icon' => 'fa-th',
         'class' => 'with-border',
         'tools' => '{collapse}',
       ],

@@ -7,21 +7,18 @@ use backend\components\Utils;
 
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/bower') . '/adminlte/dist';
 
-$user = $model;
-$model = $model->buyer;
-
-$this->title = $model['name'];
+$this->title = $model->buyer['name'];
 //$this->params['breadcrumbs'][] = ['label' => 'Dashboard', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model['name']];
+$this->params['breadcrumbs'][] = ['label' => $model->buyer['name']];
 
 $myImages = Url::to('@web/img/');
 
-if (strpos($model->picture->thumbnail, 'generic-avatar') !== false) {
-    $model->picture->thumbnail = $myImages . '/generic-avatar.png';
+if (strpos($model->buyer->picture->thumbnail, 'generic-avatar') !== false) {
+    $model->buyer->picture->thumbnail = $myImages . '/generic-avatar.png';
 }
 
-if (strpos($model->picture->cover, 'generic-cover') !== false) {
-    $model->picture->cover = $myImages . '/generic-avatar.png';
+if (strpos($model->buyer->picture->cover, 'generic-cover') !== false) {
+    $model->buyer->picture->cover = $myImages . '/generic-cover.jpg';
 }
 
 ?>
@@ -42,12 +39,14 @@ if (strpos($model->picture->cover, 'generic-cover') !== false) {
         ],
         'body' => [
           'class' => 'box-profile',
+          'bg-image' => $model->buyer->picture->cover,
         ],
       ]); ?>
-        <?= Html::img($model->picture->thumbnail, ['class' => 'profile-user-img img-responsive img-circle', 'alt' => 'User Image']) ?>
-        <h3 class="profile-username text-center"><?= $model->name ?></h3>
-        <p class="text-muted text-center"><?= $model->email ?></p>
+        <?= Html::img($model->buyer->picture->thumbnail, ['class' => 'profile-user-img img-responsive img-circle', 'alt' => 'User Image']) ?>
+        <h3 class="profile-username text-center"><?= $model->buyer->name ?></h3>
+        <p class="text-muted text-center"><?= $model->buyer->email ?></p>
         <!-- Html::a('Seguir', ['create'], ['class' => 'btn btn-primary btn-block']) -->
+      <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
         <div class="row">
           <div class="col-sm-4 border-right">
             <div class="description-block">
@@ -74,7 +73,6 @@ if (strpos($model->picture->cover, 'generic-cover') !== false) {
           </div>
           <!-- /.col -->
         </div>
-      <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
         <ul class="nav nav-stacked">
           <li><a href="#"><b>Seguindo</b> <span class="pull-right badge bg-aqua">543</span></a></li>
           <li><a href="#"><b>Listas</b> <span class="pull-right badge bg-yellow">12</span></a></li>
@@ -87,18 +85,18 @@ if (strpos($model->picture->cover, 'generic-cover') !== false) {
         'color' => '',
         'noPadding' => false,
         'header' => [
-          'title' => 'Sobre a '. $model->name,
+          'title' => $model->buyer->name,
           'class' => 'with-border',
           'tools' => '',
         ],
       ]); ?>
         <strong><i class="fa fa-book margin-r-5"></i>  Bio</strong>
         <p class="text-muted">
-          <?= $model->about; ?>
+          <?= $model->buyer->about; ?>
         </p>
         <hr>
-        <strong><i class="fa fa-map-marker margin-r-5"></i> Endereço</strong>
-        <p class="text-muted">//$model->shippingAddress->getFullAddress()</p>
+        <strong><i class="fa fa-map-marker margin-r-5"></i> Ranking</strong>
+        <p class="text-muted">//$model->buyer->shippingAddress->getFullAddress()</p>
       <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
       <!-- 
       <hr>
@@ -190,52 +188,13 @@ if (strpos($model->picture->cover, 'generic-cover') !== false) {
           </div>
 
           <div class="tab-pane" id="settings">
-            <form class="form-horizontal">
-              <div class="form-group">
-                <label for="inputName" class="col-sm-2 control-label">Name</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputName" placeholder="Name">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputName" class="col-sm-2 control-label">Name</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputName" placeholder="Name">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-                <div class="col-sm-10">
-                  <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-danger">Submit</button>
-                </div>
-              </div>
-            </form>
+            <?php
+              $profileForm = new \backend\models\form\ProfileForm();
+              $profileForm->user = \backend\models\User::findOne($model->userId);
+            ?>
+            <?= $this->render('/user/_form', [
+              'model' => $profileForm,
+            ]) ?>
           </div><!-- /.tab-pane -->
 
         </div><!-- /.tab-content -->

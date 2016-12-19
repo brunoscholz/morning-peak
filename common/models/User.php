@@ -3,36 +3,15 @@
 namespace common\models;
 
 use Yii;
-use yii\web\IdentityInterface;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the model class for table "{{%tbl_user}}".
+ * User Model
+ * This is the model class for table "{{%user}}".
  *
- * @property string $userId
- * @property string $username
- * @property string $email
- * @property string $about
- * @property string $lastLogin
- * @property string $lastLoginIp
- * @property string $role
- * @property string $password
- * @property string $passwordStrategy
- * @property integer $requiresNewPassword
- * @property string $resetToken
- * @property string $salt
- * @property string $activation_key
- * @property string $validation_key
- * @property string $avatar
- * @property string $paletteId
- * @property string $publicKey
- * @property integer $vendor
- * @property string $visibility
- * @property string $status
- * @property string $createdAt
- * @property string $updatedAt
  * @author Bruno Scholz <brunoscholz@yahoo.de>
  */
- 
 class User extends \yii\db\ActiveRecord
 {
     const ROLE_USER = 'regular';
@@ -44,6 +23,14 @@ class User extends \yii\db\ActiveRecord
     const STATUS_ACTIVE = 'ACT';
     const STATUS_NOT_VERIFIED = 'PEN';
     const STATUS_BANNED = 'BAN';
+    const STATUS_REMOVED = 'REM';
+
+    public static $statusArray = [
+        self::STATUS_ACTIVE,
+        self::STATUS_NOT_VERIFIED,
+        self::STATUS_BANNED,
+        self::STATUS_REMOVED,
+    ];
 
     private $_preferredProfile = ['id' => '', 'type' => 'buyer'];
 
@@ -78,7 +65,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['email', 'buyerId', 'vendor'], 'required'],
+            [['email'], 'required'],
             [['role'], 'string'],
             [['vendor'], 'integer'],
             [['lastLogin', 'createdAt', 'updatedAt'], 'safe'],
@@ -89,6 +76,18 @@ class User extends \yii\db\ActiveRecord
             [['activation_key'], 'string', 'max' => 128],
             [['visibility', 'status'], 'string', 'max' => 3],
             [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'createdAt',
+                'updatedAtAttribute' => 'updatedAt',
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 

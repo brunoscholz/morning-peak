@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Offer;
 use backend\models\OfferSearch;
+use backend\models\form\OfferForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -63,47 +64,26 @@ class OfferController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Offer();
-        $modelItem = new \backend\models\Item();
-        $postData = Yii::$app->request->post();
+        $params = Yii::$app->request->post();
+        $offerForm = new OfferForm();
+        //$offerForm->user = $this->findUserModel(isset($params['userId']) ? $params['userId'] : Yii::$app->user->identity->userId);
+        $offerForm->seller = isset($params['OfferForm']['sellerId']) ? $params['OfferForm']['sellerId'] : '';
+        $offerForm->offer = new Offer();
+        $offerForm->setAttributes($params);
 
-        if ($model->load($postData) && $modelItem->load($postData)) {
-            $modelItem->itemId = \backend\models\User::generateId();
-            $modelItem->sku = \backend\models\User::getToken(12);
-            $modelItem->status = 'PEN';
+        if ($params && $offerForm->validate()) {
+            // required?
+            $offerForm->picture->imageCover = UploadedFile::getInstance($offerForm->picture, 'imageCover');
+            //$offerForm->picture->imageThumb = UploadedFile::getInstance($offerForm->picture, 'imageThumb');
+            $offerForm->picture->status = 'ATV';
 
-            $picModel = new \backend\models\Picture();
-            $picModel->pictureId = \backend\models\User::generateId();
-
-            $picModel->imageCover = UploadedFile::getInstance($model, 'imageCover');
-            $picModel->imageThumb = UploadedFile::getInstance($model, 'imageThumb');
-            $picModel->status = 'ATV';
-
-            if ($picModel->upload()) {
-                $picModel->imageCover = null;
-                $picModel->imageThumb = null;
+            if($offerForm->save()) {
+                Yii::$app->getSession()->setFlash('success', 'Empresa cadastrada com sucesso.');
+                return $this->redirect(['offer/view', 'id' => $offerForm->offer->offerId]);
             }
-
-            $model->offerId = \backend\models\User::generateId();
-            $model->itemId = $modelItem->itemId;
-            $model->pictureId = $picModel->pictureId;
-            $model->sellerId = 'vW8wrgSIKukU78XxxhgGs';
-
-            if($modelItem->validate() && $picModel->validate() && $model->validate()) {
-                if($modelItem->save() && $picModel->save() && $model->save())
-                    return $this->redirect(['view', 'id' => $model->offerId]);
-            }
-            else {
-                print_r($model->getErrors());
-                print_r($picModel->getErrors());
-                print_r($modelItem->getErrors());
-            }
-
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
         }
+
+        return $this->render('create', ['model' => $offerForm]);
     }
 
     /**

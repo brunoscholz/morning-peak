@@ -81,10 +81,10 @@ Html::a('Criar Prestadora', ['create'], ['class' => 'btn btn-success'])*/
 </div><!-- /.row -->  
 
 <?php
-  $statusColors = ['ATV' => 'green', 'PEN' => 'yellow', 'BAN' => 'red', 'REM' => 'red'];
+  $statusColors = ['ACT' => 'green', 'PEN' => 'yellow', 'BAN' => 'red', 'REM' => 'red'];
   
   $sellersChunks = array_chunk($currentUser->sellers, 3);
-  $rows = ceil((count($currentUser->sellers) / 2));
+  $rows = ceil((count($currentUser->sellers) / 3));
   for($i = 0; $i < $rows; $i++):
     echo '<div class="row">';
     foreach ($sellersChunks[0] as $seller):

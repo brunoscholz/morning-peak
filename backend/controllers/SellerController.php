@@ -5,11 +5,12 @@ namespace backend\controllers;
 use Yii;
 use common\models\Seller;
 use backend\models\SellerSearch;
+use backend\models\form\CompanyForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-//use yii\web\UploadedFile;
+use yii\web\UploadedFile;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -66,46 +67,24 @@ class SellerController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Seller();
+        $params = Yii::$app->request->post();
+        $companyForm = new CompanyForm();
+        $companyForm->user = $this->findUserModel(isset($params['userId']) ? $params['userId'] : Yii::$app->user->identity->userId);
+        $companyForm->seller = new Seller();
+        $companyForm->setAttributes($params);
 
-        $loggedUser = Yii::$app->user->identity;
+        if ($params && $companyForm->validate()) {
+            $companyForm->picture->imageCover = UploadedFile::getInstance($companyForm->picture, 'imageCover');
+            $companyForm->picture->imageThumb = UploadedFile::getInstance($companyForm->picture, 'imageThumb');
+            $companyForm->picture->status = 'ATV';
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->sellerId = \backend\models\User::generateId();
-            $model->userId = $loggedUser->userId;
-
-            $payList = Yii::$app->request->post()['Seller']['paymentOptions'];
-            $model->paymentOptions = implode(",", $payList);
-            $model->status = 'ATV';
-
-            $picModel = new \backend\models\Picture();
-            $picModel->pictureId = \backend\models\User::generateId();
-            $model->pictureId = $picModel->pictureId;
-
-            $picModel->imageCover = UploadedFile::getInstance($model, 'imageCover');
-            $picModel->imageThumb = UploadedFile::getInstance($model, 'imageThumb');
-            $picModel->status = 'ATV';
-
-
-            if ($picModel->upload())
-                $picModel->imageCover = null;
-                $picModel->imageThumb = null;
-
-            if($model->save() && $picModel->save())
-                return $this->redirect(['view', 'id' => $model->sellerId]);
-
-
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if($companyForm->save()) {
+                Yii::$app->getSession()->setFlash('success', 'Empresa cadastrada com sucesso.');
+                return $this->redirect(['seller/view', 'id' => $companyForm->seller->sellerId]);
+            }
         }
 
-            /*if (isset(Yii::$app->session['userData']))
-            {
-                $id = Yii::$app->session['userData'];
-                $model->userId = $id;
-            }*/
+        return $this->render('create', ['model' => $companyForm]);
     }
 
     /**
@@ -150,6 +129,15 @@ class SellerController extends Controller
     protected function findModel($id)
     {
         if (($model = Seller::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function findUserModel($id)
+    {
+        if (($model = \backend\models\User::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

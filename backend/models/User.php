@@ -38,23 +38,6 @@ use yii\web\IdentityInterface;
  */
 class User extends UserModel implements IdentityInterface
 {
-    public function rules()
-    {
-        return [
-            [['email', 'buyerId', 'vendor'], 'required'],
-            [['role'], 'string'],
-            [['vendor'], 'integer'],
-            [['lastLogin', 'createdAt', 'updatedAt'], 'safe'],
-            [['userId', 'username', 'paletteId'], 'string', 'max' => 21],
-            [['email', 'avatar'], 'string', 'max' => 60],
-            [['about', 'password', 'resetToken', 'salt', 'validation_key', 'publicKey'], 'string', 'max' => 255],
-            [['lastLoginIp'], 'string', 'max' => 32],
-            [['activation_key'], 'string', 'max' => 128],
-            [['visibility', 'status'], 'string', 'max' => 3],
-            [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
-        ];
-    }
-
     public static function findIdentity($id)
     {
         //return static::findOne($id);

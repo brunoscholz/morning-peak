@@ -3,12 +3,15 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\User;
-use yii\data\ActiveDataProvider;
 use yii\web\Controller;
+use backend\models\form\ProfileForm;
+use backend\models\User;
+// use common\models\User as UserModel;
+use backend\components\Utils;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\UploadedFile;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -49,62 +52,47 @@ class UserController extends Controller
     }
 
     /**
-     * Lists all User models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $dataProvider = new ActiveDataProvider([
-            'query' => User::find(),
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single User model.
-     * @param string $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
      * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new User();
+        $params = Yii::$app->request->post();
+        $profileForm = new ProfileForm();
+        $profileForm->user = new User();
+        $profileForm->setAttributes($params);
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->userId = User::generateId();
-            $model->salt = User::generateSalt();
-            $model->password = User::hashPassword($model->password, $model->salt);
-            $model->activation_key = User::generateActivationKey();
-            $model->validation_key = User::generateValidationKey($model->activation_key, $model->email, $model->userId);
-            $model->status = "AWT";
+        if ($params && $profileForm->validate()) {
+            $profileForm->user->email = strtolower($profileForm->user->email);
 
-            $model->createdAt = date('y-m-d h:i:s');
-            $model->updatedAt = date('y-m-d h:i:s');
+            $check = User::findByUsername($profileForm->user->email);
+            if(!is_null($check))
+            {
+                Yii::$app->session->setFlash('error', "Usuário já existe");
+                return $this->render('create', [
+                    'model' => $profileForm,
+                ]);
+            }
 
-            if($model->save())
-                return $this->redirect(['view', 'id' => $model->userId]);
+            $profileForm->picture->imageCover = UploadedFile::getInstance($profileForm->picture, 'imageCover');
+            $profileForm->picture->imageThumb = UploadedFile::getInstance($profileForm->picture, 'imageThumb');
+            $profileForm->picture->status = 'ATV';
 
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            /*if ($profileForm->picture->upload()) {
+                $profileForm->picture->imageCover = null;
+                $profileForm->picture->imageThumb = null;*/
+            if($profileForm->save()) {
+                Yii::$app->getSession()->setFlash('success', 'O novo usuário foi cadastrado.');
+                return $this->redirect(['buyer/view', 'id' => $profileForm->buyer->buyerId]);
+            }
         }
+
+        return $this->render('create', ['model' => $profileForm]);
     }
-//http://admin.ondetem.com.br/user/validate?key=NQzx8v7RpOpanUFgzUlbdhzQfSBnG
+            
+
+    //http://admin.ondetem.com.br/user/validate?key=NQzx8v7RpOpanUFgzUlbdhzQfSBnG
     public function actionValidate($key)
     {
         $id = substr($key, 8);
@@ -134,16 +122,113 @@ class UserController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdateOld($id)
     {
+        $params = Yii::$app->request->post();
+        var_dump($params);
         $model = $this->findModel($id);
+        $buyer = $model->buyer;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->userId]);
+        // $model->scenario = 'update';
+        // $buyer->scenario = 'update';
+
+        if ($buyer->load($params) && $buyer->validate())
+        {
+            if(!empty($params['User']['checkPassword']) && 
+                !empty($params['User']['newPassword']) && 
+                !empty($params['User']['confirmPassword']))
+            {
+                if($model->validatePassword($params['User']['checkPassword']))
+                {
+                    if($params['User']['confirmPassword'] == $params['User']['newPassword'])
+                    {
+                        $salt = Utils::generateSalt();
+                        $model->salt = $salt;
+                        $model->password = User::hashPassword($params['User']['newPassword'], $salt);
+                    }
+                    else
+                    {
+                        // senhas diferentes
+                        Yii::$app->session->setFlash('error', "A nova senha deve ser confirmada corretamente");
+                        return $this->redirect(['buyer/view', 'id' => $model->buyer->buyerId]);
+                    }
+                }
+                else
+                {
+                    // senha atual incorreta
+                    Yii::$app->session->setFlash('error', "Senha incorreta");
+                    return $this->redirect(['buyer/view', 'id' => $model->buyer->buyerId]);
+                }
+            }
+
+            $picture = $model->buyer->picture;
+            $coverImg = UploadedFile::getInstance($picture, 'imageCover');
+            $thumbImg = UploadedFile::getInstance($picture, 'imageThumb');
+
+            var_dump($thumbImg);
+            var_dump($coverImg);
+            var_dump($model);
+            die();
+
+            // verify if <> than last one
+            // probrably a hidden field changed by upload function
+            if(!is_null($coverImg) || !is_null($thumbImg))
+            {
+                $picture->imageCover = UploadedFile::getInstance($picture, 'cover');
+                $picture->imageThumb = UploadedFile::getInstance($picture, 'thumb');
+                $picture->status = 'ATV';
+
+                if ($picture->upload()) {
+                    $picture->imageCover = null;
+                    $picture->imageThumb = null;
+                    $picture->save();
+                }
+                else
+                {
+                    Yii::$app->session->setFlash('error', "Problemas fazendo upload da foto");
+                    return $this->redirect(['buyer/view', 'id' => $model->buyer->buyerId]);
+                }
+            }
+
+            $buyer->save();
+            $model->save();
+            return $this->redirect(['buyer/view', 'id' => $buyer->buyerId]);
         } else {
             return $this->render('update', [
                 'model' => $model,
             ]);
+        }
+    }
+
+    public function actionUpdate($id)
+    {
+        $params = Yii::$app->request->post();
+        $profileForm = new ProfileForm();
+        $profileForm->user = $this->findModel($id);
+        $profileForm->setAttributes($params);
+        $profileForm->attributes = $params['ProfileForm'];
+
+        if ($params && $profileForm->validate()) {
+            $profileForm->user->email = strtolower($profileForm->user->email);
+
+            $profileForm->picture->imageCover = UploadedFile::getInstance($profileForm->picture, 'imageCover');
+            $profileForm->picture->imageThumb = UploadedFile::getInstance($profileForm->picture, 'imageThumb');
+
+            if($profileForm->save()) {
+                Yii::$app->getSession()->setFlash('success', 'As informações do usuário foram atualizadas.');
+                return $this->redirect(['buyer/view', 'id' => $profileForm->buyer->buyerId]);
+            }
+        }
+
+        return $this->render('update', ['model' => $profileForm]);
+    }
+
+    public function validatePassword($email, $pass)
+    {
+        $user = User::findByUsername($email);
+
+        if (!$user || !$user->validatePassword($pass)) {
+            $this->addError('password', 'Senha incorreta.');
         }
     }
 

@@ -113,9 +113,7 @@ $myImages = Url::to('@web/img/');
 
                 <?= NotificationsWidget::widget([
                     'theme' => NotificationsWidget::THEME_GROWL,
-                    'clientOptions' => [
-                        'location' => 'br',
-                    ],
+                    'timeAgoLocale' => 'pt-br',
                     'counters' => [
                         '.notifications-header-count',
                         '.notifications-icon-count'

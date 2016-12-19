@@ -3,7 +3,8 @@
 namespace common\models;
 
 use Yii;
-use \common\models\Picture;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * Buyer Model
@@ -35,13 +36,14 @@ class Buyer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['buyerId', 'name', 'email'], 'required'],
+            [['buyerId', 'name'], 'required'],
             [['buyerId', 'dob', 'pictureId', 'shippingAddressId', 'billingAddressId'], 'string', 'max' => 21],
             [['about'], 'string', 'max' => 420],
             [['name'], 'string', 'max' => 80],
             [['gender', 'status'], 'string', 'max' => 3],
             [['email', 'website'], 'string', 'max' => 60],
             [['title'], 'string', 'max' => 10],
+            [['email'], 'email'],
             //[['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
             [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
             [['shippingAddressId'], 'exist', 'skipOnError' => true, 'targetClass' => ShippingAddress::className(), 'targetAttribute' => ['shippingAddressId' => 'shippingAddressId']],
@@ -68,6 +70,18 @@ class Buyer extends \yii\db\ActiveRecord
             'website' => 'Website',
             'coinsBalance' => 'Coins Balance',
             'status' => 'Status',
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'createdAt',
+                'updatedAtAttribute' => 'updatedAt',
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 

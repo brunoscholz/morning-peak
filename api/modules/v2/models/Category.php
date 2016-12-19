@@ -39,6 +39,7 @@ class Category extends CategoryModel
     {
         //$filters = ['Category' => (array)json_decode($params['q'], true)];
         $query = CategoryModel::find()->orderBy('name ASC');
+        $query->andWhere(['<>', 'parentId', 'NULL']);
 
         if (!($this->load($params) && $this->validate())) {
             return $query;

@@ -139,6 +139,11 @@ a.desc:after {
     background-position: center !important;
 }
 
+.box-profile h3.profile-username, .box-profile p {
+    color: lightcyan;
+    background-color: turquoise;
+}
+
 .offer-list .widget-user .widget-user-image {
     position: absolute;
     top: 65px;
@@ -163,4 +168,26 @@ a.desc:after {
     padding: 3px 1em 3px .4em;
     cursor: pointer;
     min-height: 0;
+}
+
+.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+}
+.kv-avatar .file-input {
+    display: table-cell;
+    max-width: 220px;
+}
+
+.cover-image.kv-avatar .file-input {
+    display: block;
+    max-width: unset;
+    width: 100%;
+}
+
+.cover-image .file-preview img {
+    width: 100% !important;
 }

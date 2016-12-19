@@ -125,7 +125,11 @@ if (strpos($model->picture->cover, 'generic-cover') !== false) {
         <div class="tab-content">
 
           <div class="active tab-pane" id="newoffer">
-            <?= $this->render('/offer/_form', ['model' => new \common\models\Offer()]) ?>
+            <?php
+              $offerForm = new \backend\models\form\OfferForm();
+              $offerForm->offer = new \common\models\Offer();
+              echo $this->render('/offer/_createform', ['model' => $offerForm, 'seller' => $model]);
+            ?>
           </div><!-- /.tab-pane -->
 
           <div class="tab-pane" id="offers">

@@ -50,11 +50,13 @@ class Seller extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sellerId', 'userId', 'name', 'email', 'phone', 'cellphone'], 'required'],
+            [['sellerId', 'name', 'phone', 'cellphone'], 'required'],
             [['sellerId', 'userId', 'pictureId', 'billingAddressId'], 'string', 'max' => 21],
             [['about'], 'string', 'max' => 420],
             [['name', 'email', 'website'], 'string', 'max' => 60],
-            [['hours', 'categories', 'paymentOptions'], 'string', 'max' => 255],
+            [['hours', 'categories'], 'string', 'max' => 255],
+            ['email', 'email'],
+            ['website', 'url', 'defaultScheme' => 'http'],
             //[['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
             [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
             [['billingAddressId'], 'exist', 'skipOnError' => true, 'targetClass' => BillingAddress::className(), 'targetAttribute' => ['billingAddressId' => 'billingAddressId']],

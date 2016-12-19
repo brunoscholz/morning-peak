@@ -37,7 +37,9 @@ class CategorySearch extends Category
      */
     public function search($params)
     {
-        $query = Category::find()->orderBy('name ASC')->where(['<>', 'parentId', 'NULL']);
+        $query = Category::find()->orderBy('name ASC')
+            ->andWhere(['<>', 'parentId', 'NULL']);
+            //->andWhere(['status' => 'ACT']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

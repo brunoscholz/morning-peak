@@ -7,15 +7,11 @@ use backend\components\Utils;
 /* @var $this yii\web\View */
 /* @var $model app\models\Offer */
 
-$this->title = $model->item->title;
-$this->params['breadcrumbs'][] = ['label' => 'Offers', 'url' => ['index']];
+$this->title = 'Ver Oferta';
+$this->params['breadcrumbs'][] = ['label' => 'Ofertas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<!-- Content Header (Page header) -->
-<section class="content-header"></section>
 
-<!-- Main content -->
-<section class="content">
   <div class="offer-view">
     <div class="invoice" style="margin:0;">
       <!-- title row -->
@@ -23,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-xs-12">
           <h2 class="page-header">
             <i class="fa fa-globe"></i> <?= $this->title ?>
-            <small class="pull-right"><?= Utils::dateToString($model->createdAt) ?></small>
+            <small class="pull-right">postada em: <?= Utils::dateToString($model->createdAt) ?></small>
           </h2>
         </div>
         <!-- /.col -->
@@ -140,4 +136,3 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     </div>
 </div>
-</section>

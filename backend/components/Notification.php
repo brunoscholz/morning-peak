@@ -19,9 +19,9 @@ class Notification extends BaseNotification
      */
     const KEY_OFFER_TRADED = 'offer_traded';
     /**
-     * No disk space left !
+     * User made a category suggestion !
      */
-    const KEY_NO_DISK_SPACE = 'no_disk_space';
+    const CATEGORY_SUGGESTED = 'category_suggested';
 
     /**
      * @var array Holds all usable notifications
@@ -29,7 +29,7 @@ class Notification extends BaseNotification
     public static $keys = [
         self::KEY_NEW_FOLLOWER,
         self::KEY_OFFER_TRADED,
-        self::KEY_NO_DISK_SPACE,
+        self::CATEGORY_SUGGESTED,
     ];
 
     /**
@@ -44,8 +44,8 @@ class Notification extends BaseNotification
             case self::KEY_NEW_FOLLOWER:
                 return '<i class="fa fa-users text-red"></i> Você tem um novo seguidor'; //Yii::t('app', 'You got a new message');
 
-            case self::KEY_NO_DISK_SPACE:
-                return Yii::t('app', 'No disk space left');
+            case self::CATEGORY_SUGGESTED:
+                return '<i class="fa fa-th text-red"></i> Nova categoria sugerida';
         }
     }
 
@@ -68,9 +68,9 @@ class Notification extends BaseNotification
                 ]);*/
                 return $flw->user->buyer->name . ' começou a seguir você..';
 
-            case self::KEY_NO_DISK_SPACE:
-                // We don't have a key_id here
-                return 'Please buy more space immediately';
+            case self::CATEGORY_SUGGESTED:
+                //$usr = \common\models\User::findOne($this->userId);
+                return 'Uma nova categoria foi sugerida.';
         }
     }
 
@@ -86,9 +86,14 @@ class Notification extends BaseNotification
             case self::KEY_NEW_FOLLOWER:
                 return ['/buyer/view', 'id' => $this->keyId];
 
-            case self::KEY_NO_DISK_SPACE:
-                return 'https://aws.amazon.com/';
+            case self::CATEGORY_SUGGESTED:
+                return ['/category/view', 'id' => $this->keyId];
         };
     }
 
+    public static function notifyGroup($key, $user, $keyId = null, $type = self::TYPE_DEFAULT)
+    {
+        $class = self::className();
+        return NotificationsModule::notifyGroup(new $class(), $key, $users, $keyId, $type);
+    }
 }

@@ -24,7 +24,10 @@ return [
             // This callable should return your logged in user Id
             'userId' => function() {
                 return \Yii::$app->user->identity->userId;
-            }
+            },
+            'userGroup' => function() {
+                return \Yii::$app->user->identity->role;
+            },
         ],
     ],
     'defaultRoute' => 'dashboard/index',

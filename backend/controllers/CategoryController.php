@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use backend\components\Notification;
+use yii\helpers\ArrayHelper;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -145,7 +147,25 @@ class CategoryController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionSugest() {}
+    public function actionSugest()
+    {
+        $model = new Category();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->categoryId = \backend\components\Utils::generateId();
+            $model->status = 'PEN';
+
+            if($model->save()) {
+                Notification::notify(Notification::CATEGORY_SUGGESTED, 'administrator', $model->categoryId);
+                return $this->redirect(['view', 'id' => $model->categoryId]);
+            }
+
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }   
+    }
 
     /**
      * Finds the Category model based on its primary key value.

@@ -11,27 +11,31 @@ use yii\helpers\ArrayHelper;
 
 <div class="item-form">
 
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(['action' => ['/item/create'] , 'options' => ['enctype' => 'multipart/form-data']]); ?>
+    <?= \machour\yii2\adminlte\widgets\Box::begin([
+      'type' => 'box-success',
+      'color' => '',
+      'noPadding' => false,
+      'header' => [
+        'title' => 'Criar Item',
+        'class' => 'with-border',
+        'tools' => '{collapse}',
+      ],
+    ]); ?>
+        <?php $dataCategory=ArrayHelper::map(\common\models\Category::find()->where(['<>', 'categoryId', '0'])->asArray()->all(), 'categoryId', 'name'); ?>
 
-    <?php $dataCategory=ArrayHelper::map(\backend\models\Category::find()->where(['<>', 'categoryId', '0'])->asArray()->all(), 'categoryId', 'name'); ?>
+        <?= $form->field($model, 'categoryId')->dropDownList(
+            $dataCategory,
+            ['prompt'=>' - Escolha uma Categoria - ']
+        ) ?>
+        <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'categoryId')->dropDownList(
-        $dataCategory,
-        ['prompt'=>' - Escolha uma Categoria - ']
-    ) ?>
-
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
-
-    <!-- $form->field($model, 'photoSrc')->textInput(['maxlength' => true]) -->
-    <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Criar' : 'Salvar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+        <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
+            <?= Html::submitButton('Criar', ['class' => 'btn btn-success']) ?>
+            <?= Html::resetButton('Limpar', ['class' => 'btn btn-danger pull-right']) ?>
+    <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
 
     <?php ActiveForm::end(); ?>
 

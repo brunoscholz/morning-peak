@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Seller */
+/* @var $model backend\models\Buyer */
 
-$this->title = 'Criar Empresas';
-$this->params['breadcrumbs'][] = ['label' => 'Empresas', 'url' => ['index']];
+$this->title = 'Criar usuário';
+$this->params['breadcrumbs'][] = ['label' => 'Usuários', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="seller-create">
+<div class="user-create">
 
     <?= $this->render('_createform', [
         'model' => $model,

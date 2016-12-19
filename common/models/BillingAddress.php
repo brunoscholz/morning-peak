@@ -31,7 +31,7 @@ class BillingAddress extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['billingAddressId', 'address', 'city', 'neighborhood', 'state', 'postCode', 'country'], 'required'],
+            [['billingAddressId', 'address', 'city', 'neighborhood', 'state', 'postCode'], 'required'],
             [['billingAddressId'], 'string', 'max' => 21],
             [['address', 'country'], 'string', 'max' => 100],
             [['city', 'neighborhood'], 'string', 'max' => 60],
@@ -50,7 +50,7 @@ class BillingAddress extends \yii\db\ActiveRecord
             'address' => 'Endereço',
             'city' => 'Cidade',
             'neighborhood' => 'Bairro',
-            'state' => 'State',
+            'state' => 'Estado',
             'postCode' => 'CEP',
             'country' => 'País',
         ];

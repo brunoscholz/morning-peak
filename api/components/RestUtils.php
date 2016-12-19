@@ -247,23 +247,20 @@ class RestUtils
         }
 
         $query = null;
+        $searchModel = new $class();
         // q: Filter elements
         if(isset($params['q']))
         {
             $name = preg_split('#\\\\#', $class::classname());
             $filter = [end($name) => (array)json_decode($params['q'], true)];
-            $searchModel = new $class();
             $query = $searchModel->search($filter);
         }
         else
-            $query = $class::find();
+            $query = $searchModel->search([]);
 
-        $query->offset($offset)
-            ->orderBy($sort)
-            ->select($select);
-
-        if($limit > 0)
-            $query->limit($limit);
+        $query->offset($offset)->select($select);
+        if($sort != '') $query->orderBy($sort);
+        if($limit > 0) $query->limit($limit);
 
         foreach ($ftFilters as $key => $value)
         {

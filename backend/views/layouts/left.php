@@ -32,61 +32,60 @@
                 'items' => [
                     ['label' => 'Menu OndeTem', 'options' => ['class' => 'header']],
                     ['label' => 'Painel', 'icon' => 'fa fa-dashboard', 'url' => ['/dashboard']],
-                    ['label' => 'Ofertas', 'icon' => 'fa fa-shopping-bag', 'url' => ['/offer']],
-                    ['label' => 'Categorias', 'icon' => 'fa fa-th', 'url' => ['/category']],
-                    ['label' => 'Itens', 'icon' => 'fa  fa-tags', 'url' => ['/item']],
+                    [
+                        'label' => 'Ofertas',
+                        'icon' => 'fa fa-shopping-bag',
+                        'url' => ['#'],
+                        'items' => [
+                            // filter by selected seller
+                            ['label' => 'Ver Todas', 'icon' => 'fa fa-eye', 'url' => ['/offer'], 'visible' => Yii::$app->user->can('vendor')],
+                            //['label' => 'Nova Oferta', 'icon' => 'fa fa-cart-plus', 'url' => ['/offer/create'], 'visible' => Yii::$app->user->can('vendor')],
+                        ],
+                    ],
+                    [
+                        'label' => 'Categorias',
+                        'icon' => 'fa  fa-th',
+                        'url' => ['#'],
+                        'items' => [
+                            ['label' => 'Ver Todas', 'icon' => 'fa fa-eye', 'url' => ['/category'], 'visible' => Yii::$app->user->can('user')],
+                            ['label' => 'Sugerir Nova', 'icon' => 'fa fa-plus-circle', 'url' => ['/category/sugest'], 'visible' => Yii::$app->user->can('user')],
+                            ['label' => 'Nova Categoria', 'icon' => 'fa fa-plus', 'url' => ['/category/create'], 'visible' => Yii::$app->user->can('admin')],
+                        ],
+                    ],
+                    [
+                        'label' => 'Itens',
+                        'icon' => 'fa  fa-shopping-basket',
+                        'url' => ['/item'],
+                        'visible' => Yii::$app->user->can('vendor'),
+                    ],
                     [
                         'label' => 'Clientes (Empresas)', 
-                        'icon' => 'fa  fa-tags',
+                        'icon' => 'fa  fa-building',
                         'url' => ['#'],
                         'visible' => Yii::$app->user->can('admin'),
                         'items' => [
-                            ['label' => 'Ver Todos', 'icon' => 'fa fa-file-code-o', 'url' => ['/seller']],
-                            ['label' => 'Cadastrar', 'icon' => 'fa fa-dashboard', 'url' => ['/seller/create']],
+                            ['label' => 'Ver Todos', 'icon' => 'fa fa-eye', 'url' => ['/seller']],
+                            ['label' => 'Cadastrar', 'icon' => 'fa fa-user-plus', 'url' => ['/seller/create']],
                         ],
                     ],
                     [
                         'label' => 'Clientes (Usuários)', 
-                        'icon' => 'fa  fa-tags',
+                        'icon' => 'fa  fa-users',
                         'url' => ['#'],
                         'visible' => Yii::$app->user->can('admin'),
                         'items' => [
-                            ['label' => 'Administradores', 'icon' => 'fa  fa-tags', 'url' => ['/buyer/role-index', 'role' => 'administrator']],
-                            ['label' => 'Vendedores', 'icon' => 'fa  fa-tags', 'url' => ['/buyer/role-index', 'role' => 'salesman']],
-                            ['label' => 'Usuários', 'icon' => 'fa  fa-tags', 'url' => ['/buyer']],
+                            ['label' => 'Administradores', 'icon' => 'fa  fa-eye', 'url' => ['/buyer/role-index', 'role' => 'administrator']],
+                            ['label' => 'Vendedores', 'icon' => 'fa  fa-eye', 'url' => ['/buyer/role-index', 'role' => 'salesman']],
+                            ['label' => 'Usuários', 'icon' => 'fa  fa-eye', 'url' => ['/buyer']],
+                            ['label' => 'Cadastrar', 'icon' => 'fa fa-user-plus', 'url' => ['/user/create']],
                         ],
                     ],
 
                     /*['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug']],*/
 
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-                    [
-                        'label' => 'Same tools',
-                        'icon' => 'fa fa-share',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
-                            [
-                                'label' => 'Level One',
-                                'icon' => 'fa fa-circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'fa fa-circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                                        ],
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
+                    ['label' => 'Entrar', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Sair', 'url' => ['site/logout'], 'visible' => !Yii::$app->user->isGuest],
                 ],
             ]
         ) ?>

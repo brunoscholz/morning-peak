@@ -13,23 +13,33 @@ use yii\helpers\ArrayHelper;
 <div class="category-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <?php //$dataCategory=ArrayHelper::map(\common\models\Category::find()->asArray()->all(), 'categoryId', 'name'); ?>
 
-    <?php $dataCategory=ArrayHelper::map(\backend\models\Category::find()->asArray()->all(), 'categoryId', 'name'); ?>
-
-    <?= $form->field($model, 'parentId')->dropDownList(
-        $dataCategory,
-        []
-    ) ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'icon')->textInput(['maxlength' => true]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Criar' : 'Editar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <?= \machour\yii2\adminlte\widgets\Box::begin([
+              'type' => 'box-primary',
+              'color' => '',
+              'noPadding' => false,
+              'header' => [
+                'title' => '',
+                'class' => 'with-border',
+                'tools' => '{collapse}',
+              ],
+            ]); ?>
+                <!-- $form->field($model, 'parentId')->dropDownList(
+                    $dataCategory,
+                    []
+                ) -->
+                <?= $form->field($model, 'parentId', ['options' => ['value'=> '0'] ])->hiddenInput()->label(false) ?>
+                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'icon')->textInput(['maxlength' => true]) ?>
+            <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
+                <?= Html::resetButton('Limpar', ['class' => 'btn btn-default']) ?>
+                <?= Html::submitButton($model->isNewRecord ? 'Criar' : 'Salvar', ['class' => ($model->isNewRecord ? 'btn btn-success' : 'btn btn-primary') . ' pull-right']) ?>
+            <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
+        </div>
 
     <?php ActiveForm::end(); ?>
 
