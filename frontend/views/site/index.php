@@ -22,10 +22,16 @@ $this->title = 'OndeTem?!';
     <!-- banner end -->
 
     <!-- intro start -->
-    <?= $this->render('_intro', [
+    <?php /*$this->render('_intro', [
+        'baseUrl' => $bundle->baseUrl,
+    ]) */?>
+    <!-- intro end -->
+
+    <!-- screenshot start -->
+    <?= $this->render('_screenshot', [
         'baseUrl' => $bundle->baseUrl,
     ]) ?>
-    <!-- intro end -->
+    <!-- screenshot end -->
 
     <!-- feature start -->
     <?= $this->render('_feature', [
@@ -34,27 +40,22 @@ $this->title = 'OndeTem?!';
     <!-- feature end -->
 
     <!-- description start -->
-    <?= $this->render('_description', [
+    <?php /*$this->render('_description', [
         'baseUrl' => $bundle->baseUrl,
-    ]) ?>
+    ]) */?>
     <!-- description end-->
 
     <!-- video start -->
-    <?= $this->render('_video', [
+    <?php /*$this->render('_video', [
         'baseUrl' => $bundle->baseUrl,
-    ]) ?>
+    ]) */?>
     <!-- video end -->
 
-    <!-- screenshot start -->
-    <?= $this->render('_screenshot', [
-        'baseUrl' => $bundle->baseUrl,
-    ]) ?>
-    <!-- screenshot end -->
 
     <!-- review start -->
-    <?= $this->render('_review', [
+    <?php /*$this->render('_review', [
         'baseUrl' => $bundle->baseUrl,
-    ]) ?>
+    ]) */?>
     <!-- review end -->
 
     <!-- price start -->

@@ -5,7 +5,9 @@ namespace backend\controllers;
 use Yii;
 use yii\web\Controller;
 use backend\models\form\ProfileForm;
+use backend\models\form\RegisterForm;
 use backend\models\User;
+use common\models\Seller;
 // use common\models\User as UserModel;
 use backend\components\Utils;
 use yii\web\NotFoundHttpException;
@@ -79,9 +81,6 @@ class UserController extends Controller
             $profileForm->picture->imageThumb = UploadedFile::getInstance($profileForm->picture, 'imageThumb');
             $profileForm->picture->status = 'ATV';
 
-            /*if ($profileForm->picture->upload()) {
-                $profileForm->picture->imageCover = null;
-                $profileForm->picture->imageThumb = null;*/
             if($profileForm->save()) {
                 Yii::$app->getSession()->setFlash('success', 'O novo usuário foi cadastrado.');
                 return $this->redirect(['buyer/view', 'id' => $profileForm->buyer->buyerId]);
@@ -92,28 +91,57 @@ class UserController extends Controller
     }
             
 
-    //http://admin.ondetem.com.br/user/validate?key=NQzx8v7RpOpanUFgzUlbdhzQfSBnG
+    public function actionRegister($id)
+    {
+        $params = Yii::$app->request->post();
+
+        $companyForm = new RegisterForm();
+        $seller = Seller::findById($id);
+        $user = $this->findModel($seller->userId);
+        $companyForm->user = $user;
+        $companyForm->buyer = $user->buyer;
+        $companyForm->buyerPicture = $user->buyer->picture;
+
+        $companyForm->seller = $seller;
+        $companyForm->picture = $seller->picture;
+        $companyForm->billingAddress = $seller->billingAddress;
+        
+        //$companyForm->setAttributes($params);
+        if ($companyForm->loadAll($params)) {
+            if($companyForm->save()) {
+                Yii::$app->getSession()->setFlash('success', 'Empresa cadastrada com sucesso.');
+                //return $this->redirect(['seller/view', 'id' => $companyForm->seller->sellerId]);
+                return $this->redirect(['site/login']);
+            }
+        }
+
+        return $this->render('register', ['model' => $companyForm]);
+    }
+
+    //http://admin.ondetem-gn.com.br/user/validate?key=cDBwVEZ3VHliY3Q1SVQ3V3ZrUzZWTWo3WWVMSlR2WG5ReFNVRHE4cFFR
     public function actionValidate($key)
     {
-        $id = substr($key, 8);
-        $realKey = substr($key, 0, 8);
+        $selector = substr($key, 0, 12);
+        $authenticator = substr($key, 12);
 
-        $model = $this->findModel($id);
+        $model = Seller::findByActivationKey($selector);
 
-        if($model->verifyKeys($realKey))
+        if($model->verifyKeys($authenticator))
         {
-            $model->status = "ATV";
+            $model->status = "REG";
             if($model->save())
             {
-                if (!Yii::$app->session->getIsActive()) {
+                /*if (!Yii::$app->session->getIsActive()) {
                     Yii::$app->session->open();
                 }
                 Yii::$app->session['userData'] = $model->userId;
                 Yii::$app->getSession()->setFlash('success', 'Sua conta foi ativada! Termine seu cadastro para mais clientes te acharem.');
-                Yii::$app->session->close();
-                return $this->redirect(['seller/create']); //, 'userData'=>$model]
+                Yii::$app->session->close();*/
+                return $this->redirect(['register', 'id' => $model->sellerId]); //, 'userData'=>$model]
             }
         }
+        else
+            var_dump(false); // 404
     }
 
     /**

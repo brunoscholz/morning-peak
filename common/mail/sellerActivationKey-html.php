@@ -2,23 +2,22 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-/* @var $this \yii\web\View view component instance */
-/* @var $message \yii\mail\BaseMessage instance of newly created mail message */
-
-//$activationLink = Yii::$app->urlManagerBackEnd->createAbsoluteUrl(['user/validate', 'key' => $data['key']]);
-$activationLink = "http://backend.ondetem.tk/user/validate?key=" . $data['key'];
+$activationLink = "http://admin.ondetem-gn.com.br/user/validate?key=" . $data['key'];
 ?>
-<?php $this->beginPage() ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php //$this->beginPage() ?>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
-<title>OndeTem?</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Onde tem?</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet" type='text/css'>
-<style type="text/css">body{color: #34b483;}.social{display: table;margin: 0 auto;}.social ul{padding: 0px;margin: 16px 0 0 0;text-align:center;}.social ul li{display: inline;}.social ul li a{display: inline-block;margin: 5px;text-align: center;}.social img{width: 35px;}.newsletter{background-color: rgba(0, 0, 0, 0.8);padding: 25px 0;max-width: 800px;margin: 0 auto;border-radius: 20px 20px;text-align: center;box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);}h1 {font-size: 38px;line-height: 52px;font-style: normal;font-weight: 900;font-family: "Lato";letter-spacing: 2.5px;margin: 0 auto;position: relative;text-align: center;}h2{font-size: 30px;line-height: 36px;font-weight: 400;font-style: normal;font-family: "Poiret One", cursive;margin: 0 auto;position: relative;text-align: center;}.banner{margin-top: 20px;background-image: url("http://ondetem.tk/mail/polygon-back.png");padding: 40px 0;background-size: cover;}.banner h1{color: #f3f2f3;text-transform: none;}.content{padding: 40px 20px;/*max-width: 400px;*/margin: 0 auto;text-align: center;font-weight: 400;font-size: 24px;}.disclaimer{font-weight: 400;font-size: 16px;color: #777;}.copyright{font-weight: 600;font-size: 18px;}.logo svg {height: 175px; fill: #34b483;}h1.logo{overflow: hidden;text-align: center;}h1.logo:before,h1.logo:after {background-color: #34b483;content: "";display: inline-block;height: 5px;position: relative;vertical-align: middle;width: 50%;}h1.logo:before {right: 0.5em;margin-left: -50%;}h1.logo:after {left: 0.5em;margin-right: -50%;}</style>
+<style type="text/css">
+    body{color: #34b483;}.social{display: table;margin: 0 auto;}.social ul{padding: 0px;margin: 16px 0 0 0;text-align:center;}.social ul li{display: inline;}.social ul li a{display: inline-block;margin: 5px;text-align: center;}.social img{width: 35px;}.newsletter{background-color: rgba(0, 0, 0, 0.8);padding: 25px 0;max-width: 800px;margin: 0 auto;border-radius: 20px 20px;text-align: center;box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);}h1 {font-size: 38px;line-height: 52px;font-style: normal;font-weight: 900;font-family: "Lato";letter-spacing: 2.5px;margin: 0 auto;position: relative;text-align: center;}h2{font-size: 30px;line-height: 36px;font-weight: 400;font-style: normal;font-family: "Poiret One", cursive;margin: 0 auto;position: relative;text-align: center;}.banner{margin-top: 20px;background-image: url("http://ondetem-gn.com.br/mail/polygon-back.png");padding: 40px 0;background-size: cover;}.banner h1{color: #f3f2f3;text-transform: none;}.content{padding: 40px 20px;/*max-width: 400px;*/margin: 0 auto;text-align: center;font-weight: 400;font-size: 24px;}.disclaimer{font-weight: 400;font-size: 16px;color: #777;}.copyright{font-weight: 600;font-size: 18px;}.logo svg {height: 175px; fill: #34b483;}h1.logo{overflow: hidden;text-align: center;}h1.logo:before,h1.logo:after {background-color: #34b483;content: "";display: inline-block;height: 5px;position: relative;vertical-align: middle;width: 50%;}h1.logo:before {right: 0.5em;margin-left: -50%;}h1.logo:after {left: 0.5em;margin-right: -50%;}</style>
 </head>
-<body>
-    <?php $this->beginBody() ?>
+<body style="height: 100%;margin: 0;padding: 0;width: 100%;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;background-color: #EEEEEE;">
+    <?php //$this->beginBody() ?>
     <section class="newsletter">
         <div class="container">
             <div class="row">
@@ -40,7 +39,7 @@ $activationLink = "http://backend.ondetem.tk/user/validate?key=" . $data['key'];
                     </svg>
                 </div>
                 <div class="col s12">
-                    <h1 class="logo">OndeTem?</h1>
+                    <h1 class="logo">Onde tem?</h1>
                 </div>
                 <div class="col s12">
                     <h2>Guia de Negócios</h2>
@@ -64,7 +63,6 @@ $activationLink = "http://backend.ondetem.tk/user/validate?key=" . $data['key'];
                 <div class="row">
                     <div class="col s12 disclaimer">
                         <p><?= $data['disclaimer'] ?></p>
-                        <!-- <p>Ou entre em contato direto com o vendedor pelo fone: $data['salesman']->phone </p> -->
                         <p>Boas Vendas!</p>
                     </div>
                 </div>
@@ -72,9 +70,9 @@ $activationLink = "http://backend.ondetem.tk/user/validate?key=" . $data['key'];
                     <div class="col s12">
                         <div class="col s12 social">
                             <ul>
-                              <li><a href="https://www.facebook.com/ondetemnegocios/" class="btn-luxore btn-large" target="_blank"><img src="http://ondetem.tk/mail/facebook.png"></i></a></li>
-                              <li><a href="https://twitter.com/ondetemnegocios" class="btn-luxore btn-large" target="_blank"><img src="http://ondetem.tk/mail/twitter.png"></i></a></li>
-                              <li><a href="https://www.instagram.com/ondetemnegocios/" class="btn-luxore btn-large" target="_blank"><img src="http://ondetem.tk/mail/instagram.png"></i></a></li>
+                              <li><a href="https://www.facebook.com/ondetemnegocios/" class="btn-luxore btn-large" target="_blank"><img src="http://ondetem-gn.com.br/mail/facebook.png"></i></a></li>
+                              <li><a href="https://twitter.com/ondetemnegocios" class="btn-luxore btn-large" target="_blank"><img src="http://ondetem-gn.com.br/mail/twitter.png"></i></a></li>
+                              <li><a href="https://www.instagram.com/ondetemnegocios/" class="btn-luxore btn-large" target="_blank"><img src="http://ondetem-gn.com.br/mail/instagram.png"></i></a></li>
                             </ul>
                           </div>
                     </div>
@@ -87,6 +85,6 @@ $activationLink = "http://backend.ondetem.tk/user/validate?key=" . $data['key'];
             </div>
         </div>  
     </section>
-    <?php $this->endBody() ?>
+    <?php //$this->endBody() ?>
 </body></html>
-<?php $this->endPage() ?>
+<?php //$this->endPage() ?>

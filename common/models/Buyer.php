@@ -30,6 +30,18 @@ class Buyer extends \yii\db\ActiveRecord
         return ['buyerId'];
     }
  
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'createdAt',
+                'updatedAtAttribute' => 'updatedAt',
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+ 
     /**
      * Define rules for validation
      */
@@ -43,7 +55,7 @@ class Buyer extends \yii\db\ActiveRecord
             [['gender', 'status'], 'string', 'max' => 3],
             [['email', 'website'], 'string', 'max' => 60],
             [['title'], 'string', 'max' => 10],
-            [['email'], 'email'],
+            //[['email'], 'email'],
             //[['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
             [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
             [['shippingAddressId'], 'exist', 'skipOnError' => true, 'targetClass' => ShippingAddress::className(), 'targetAttribute' => ['shippingAddressId' => 'shippingAddressId']],
@@ -57,31 +69,18 @@ class Buyer extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'buyerId' => 'Buyer ID',
-            'userId' => 'User ID',
+            'buyerId' => 'ID Buyer',
             'pictureId' => 'Picture',
-            'about' => 'About',
-            'dob' => 'Birthday',
-            'name' => 'Name',
-            'gender' => 'Gender',
+            'about' => 'Sobre',
+            'dob' => 'Data de Nascimento',
+            'name' => 'Nome',
+            'gender' => 'Gênero',
             'email' => 'Email',
             'title' => 'Title',
-            'phone' => 'Phone',
+            'phone' => 'Fone',
             'website' => 'Website',
-            'coinsBalance' => 'Coins Balance',
+            'coinsBalance' => 'Balanço de Moedas',
             'status' => 'Status',
-        ];
-    }
-
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'createdAt',
-                'updatedAtAttribute' => 'updatedAt',
-                'value' => new Expression('NOW()'),
-            ],
         ];
     }
 

@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use backend\components\Utils;
 
@@ -10,17 +9,6 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/bower') . '/
 $this->title = $model->buyer['name'];
 //$this->params['breadcrumbs'][] = ['label' => 'Dashboard', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->buyer['name']];
-
-$myImages = Url::to('@web/img/');
-
-if (strpos($model->buyer->picture->thumbnail, 'generic-avatar') !== false) {
-    $model->buyer->picture->thumbnail = $myImages . '/generic-avatar.png';
-}
-
-if (strpos($model->buyer->picture->cover, 'generic-cover') !== false) {
-    $model->buyer->picture->cover = $myImages . '/generic-cover.jpg';
-}
-
 ?>
 
 <div class="seller-view">
@@ -39,26 +27,19 @@ if (strpos($model->buyer->picture->cover, 'generic-cover') !== false) {
         ],
         'body' => [
           'class' => 'box-profile',
-          'bg-image' => $model->buyer->picture->cover,
+          'bg-image' => Utils::safePicture($model->buyer->picture, 'cover'),
         ],
       ]); ?>
-        <?= Html::img($model->buyer->picture->thumbnail, ['class' => 'profile-user-img img-responsive img-circle', 'alt' => 'User Image']) ?>
+        <?= Html::img(Utils::safePicture($model->buyer->picture, 'thumbnail'), ['class' => 'profile-user-img img-responsive img-circle', 'alt' => 'User Image']) ?>
         <h3 class="profile-username text-center"><?= $model->buyer->name ?></h3>
         <p class="text-muted text-center"><?= $model->buyer->email ?></p>
         <!-- Html::a('Seguir', ['create'], ['class' => 'btn btn-primary btn-block']) -->
       <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
         <div class="row">
-          <div class="col-sm-4 border-right">
-            <div class="description-block">
-              <h5 class="description-header">3,200</h5>
-              <span class="description-text">Views</span>
-            </div>
-            <!-- /.description-block -->
-          </div>
           <!-- /.col -->
           <div class="col-sm-4 border-right">
             <div class="description-block">
-              <h5 class="description-header">13,000</h5>
+              <h5 class="description-header"><?= count($model->buyer->followers) ?></h5>
               <span class="description-text">Seguidores</span>
             </div>
             <!-- /.description-block -->
@@ -66,16 +47,23 @@ if (strpos($model->buyer->picture->cover, 'generic-cover') !== false) {
           <!-- /.col -->
           <div class="col-sm-4">
             <div class="description-block">
-              <h5 class="description-header">35</h5>
-              <span class="description-text">OFERTAS</span>
+              <h5 class="description-header"><?= count($model->buyer->following) ?></h5>
+              <span class="description-text">Seguindo</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <div class="col-sm-4 border-right">
+            <div class="description-block">
+              <h5 class="description-header"><?= count($model->buyer->favorites) ?></h5>
+              <span class="description-text">Favoritos</span>
             </div>
             <!-- /.description-block -->
           </div>
           <!-- /.col -->
         </div>
         <ul class="nav nav-stacked">
-          <li><a href="#"><b>Seguindo</b> <span class="pull-right badge bg-aqua">543</span></a></li>
-          <li><a href="#"><b>Listas</b> <span class="pull-right badge bg-yellow">12</span></a></li>
+          <!-- <li><a href="#"><b>Seguindo</b> <span class="pull-right badge bg-aqua">543</span></a></li> -->
+          <!-- <li><a href="#"><b>Favoritos</b> <span class="pull-right badge bg-yellow">12</span></a></li> -->
         </ul>
       <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
 
@@ -95,8 +83,8 @@ if (strpos($model->buyer->picture->cover, 'generic-cover') !== false) {
           <?= $model->buyer->about; ?>
         </p>
         <hr>
-        <strong><i class="fa fa-map-marker margin-r-5"></i> Ranking</strong>
-        <p class="text-muted">//$model->buyer->shippingAddress->getFullAddress()</p>
+        <strong><i class="fa fa-map-marker margin-r-5"></i> Saldos</strong>
+        <p class="text-muted">COIN: <?= $model->buyer->coinsBalance ?></p>
       <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
       <!-- 
       <hr>
@@ -117,14 +105,14 @@ if (strpos($model->buyer->picture->cover, 'generic-cover') !== false) {
     <div class="col-md-9">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#activity" data-toggle="tab">Atividade</a></li>
+          <!-- <li class="active"><a href="#activity" data-toggle="tab">Atividade</a></li> -->
           <!-- <li><a href="#timeline" data-toggle="tab">Timeline</a></li> -->
           <li><a href="#offers" data-toggle="tab">Favoritos</a></li>
           <li><a href="#settings" data-toggle="tab">Configurações</a></li>
         </ul>
         <div class="tab-content">
 
-          <div class="active tab-pane" id="activity">
+          <div class="tab-pane" id="activity">
             <!-- novos reviews -->
             <!-- Post -->
             <div class="post">
@@ -183,8 +171,8 @@ if (strpos($model->buyer->picture->cover, 'generic-cover') !== false) {
             </div><!-- /.post -->
           </div><!-- /.tab-pane -->
 
-          <div class="tab-pane" id="offers">
-            
+          <div class="active tab-pane" id="offers">
+            <?= $this->render('/offer/list', ['model' => $model->buyer->favorites]) ?>
           </div>
 
           <div class="tab-pane" id="settings">

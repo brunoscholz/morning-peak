@@ -3,8 +3,8 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\Loyalty;
-use api\modules\v1\models\AssetToken;
+use common\models\Loyalty;
+use common\models\AssetToken;
 use api\components\RestUtils;
 
 /**
@@ -15,7 +15,7 @@ use api\components\RestUtils;
  */
 class LoyaltyController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\Loyalty';
+    public $modelClass = 'common\models\Loyalty';
 
     public function actions()
     {

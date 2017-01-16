@@ -3,12 +3,12 @@
 namespace backend\controllers;
 
 use Yii;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use backend\components\Utils;
 use backend\components\Notification;
+use common\components\BaseController;
 
 
 use common\models\Seller;
@@ -16,7 +16,7 @@ use backend\models\SellerSearch;
 use common\models\Offer;
 use backend\models\OfferSearch;
 
-class DashboardController extends Controller
+class DashboardController extends BaseController
 {
 	public function behaviors()
     {
@@ -64,11 +64,7 @@ class DashboardController extends Controller
         Notification::error(Notification::KEY_NO_DISK_SPACE, '1234acanidqo1');
         */
 
-        $data = Seller::find()->one();
-
-        return $this->render('index', [
-            'dataProvider' => $data,
-        ]);
+        return $this->render('index');
     }
 
     public function actionNotify()

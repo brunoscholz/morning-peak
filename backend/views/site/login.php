@@ -44,7 +44,7 @@ var_dump(Yii::$app->user->identity);*/
 
         <div class="row">
             <div class="col-xs-8">
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                <?= $form->field($model, 'rememberMe')->checkbox()->label('Lembre-se de mim') ?>
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
@@ -68,8 +68,8 @@ var_dump(Yii::$app->user->identity);*/
         <!-- /.social-auth-links -->
         */?>
 
-        <a href="#">I forgot my password</a><br>
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="#">Esqueci a senha</a><br>
+        <!-- <a href="register.html" class="text-center">Register a new membership</a> -->
 
     </div>
     <!-- /.login-box-body -->

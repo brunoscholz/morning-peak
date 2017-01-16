@@ -18,10 +18,9 @@
           <!-- Collect the nav toggling -->
           <div class="collapse navbar-collapse navbar-example" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li><a href="#intro">Intro</a></li>
-              <li><a href="#feature">Funcionalidades</a></li>
-              <li><a href="#description">Descrição</a></li>
               <li><a href="#screenshot">Telas</a></li>
+              <li><a href="#feature">Funcionalidades</a></li>
+              <li><a href="#price">Preços</a></li>
               <li><a href="#download">Download</a></li>
               <li><a href="#contact">Contato</a></li>
             </ul>             
@@ -29,9 +28,9 @@
         </div>
         <div class="col-sm-2 mob-right">
           <ul class="app pull-right">
-            <li><a href=""><i class="fa fa-apple"></i></a></li>
-            <li><a href=""><i class="fa fa-android"></i></a></li>
-            <li><a href=""><i class="fa fa-windows"></i></a></li>
+            <!-- <li><a href=""><i class="fa fa-apple"></i></a></li> -->
+            <li><a href="https://play.google.com/store/apps/details?id=com.ionicframework.appv2355299"><i class="fa fa-android"></i></a></li>
+            <!-- <li><a href=""><i class="fa fa-windows"></i></a></li> -->
           </ul>
         </div>
       </div>

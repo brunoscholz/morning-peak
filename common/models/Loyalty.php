@@ -9,7 +9,7 @@ use Yii;
  *
  * @property string $loyaltyId
  * @property string $userId
- * @property string $actionId
+ * @property string $actionReferenceId
  * @property string $ruleId
  * @property integer $points
  * @property string $transactionId
@@ -39,13 +39,21 @@ class Loyalty extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['loyaltyId', 'userId', 'actionId', 'ruleId', 'points', 'transactionId', 'status'], 'required'],
-            [['actionId', 'points'], 'integer'],
+            [['loyaltyId', 'userId', 'actionReferenceId', 'transactionId', 'ruleId', 'points', 'status'], 'required'],
+            //[['userId', 'actionReferenceId', 'transactionId'], 'required', 'on' => 'create'],
+            [['actionReferenceId', 'points'], 'integer'],
             [['loyaltyId', 'userId', 'ruleId', 'transactionId'], 'string', 'max' => 21],
             [['status'], 'string', 'max' => 3],
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
             [['transactionId'], 'exist', 'skipOnError' => true, 'targetClass' => Transaction::className(), 'targetAttribute' => ['transactionId' => 'transactionId']],
         ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['register'] = ['loyaltyId', 'ruleId', 'points', 'status'];
+        return $scenarios;
     }
 
     /**
@@ -56,7 +64,7 @@ class Loyalty extends \yii\db\ActiveRecord
         return [
             'loyaltyId' => 'Loyalty ID',
             'userId' => 'User ID',
-            'actionId' => 'Action ID',
+            'actionReferenceId' => 'Action ID',
             'ruleId' => 'Rule ID',
             'points' => 'Points',
             'transactionId' => 'Transaction ID',
@@ -78,5 +86,10 @@ class Loyalty extends \yii\db\ActiveRecord
     {
         return $this->hasOne(AssetToken::className(), ['tokenId' => 'tokenId'])
             ->via('transaction');
+    }
+
+    public function getActionreference()
+    {
+        return $this->hasOne(ActionReference::className(), ['actionReferenceId' => 'actionReferenceId']);
     }
 }

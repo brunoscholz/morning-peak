@@ -15,7 +15,7 @@
            <a href="" class="wow rollIn animated" data-wow-delay=".9s"><i class="fa fa-dribbble"></i></a> -->
           </div>
           <div class="copyright">
-            <p>&copy; <span>OndeTem?!</span>2016</p>
+            <p>&copy; <span>Onde tem?</span> 2016</p>
             <p>Design by <span>Bruno Scholz</span></p>
           </div>
         </div>

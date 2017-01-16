@@ -3,7 +3,7 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\Category;
+use common\models\Category;
 use api\components\RestUtils;
 
 /**
@@ -14,7 +14,7 @@ use api\components\RestUtils;
  */
 class CategoryController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\Category';
+    public $modelClass = 'common\models\Category';
 
     public function actions()
     {

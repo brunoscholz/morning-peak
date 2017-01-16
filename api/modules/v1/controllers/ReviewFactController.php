@@ -3,8 +3,11 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\ReviewFact;
-use api\modules\v1\models\Review;
+
+use common\models\ReviewModel;
+use common\models\ReviewFact;
+use common\models\Review;
+
 use api\components\RestUtils;
 use yii\filters\VerbFilter;
 
@@ -16,7 +19,7 @@ use yii\filters\VerbFilter;
  */
 class ReviewFactController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\ReviewFact';
+    public $modelClass = 'common\models\ReviewFact';
 
     public function actions()
     {
@@ -63,15 +66,26 @@ class ReviewFactController extends \yii\rest\ActiveController
     }
 
     public function actionCreate() {
-        //print_r(\Yii::$app->request->post());
-
         $params = \Yii::$app->request->post();
+        $models = array('status'=>200,'count'=>0);
 
-        $model = new ReviewFact();
+        var_dump($params);
+        die();
 
+        $review = new ReviewModel();
+        if($review->loadAll($params) && $review->save()) {
+            //$review->save();
+            $models['data'] = RestUtils::loadQueryIntoVar($review);
+            $models['credit'] = $review->transaction->amount;
+        } else {
+            $models['error'] = $review->errorList();
+            $models['status'] = 403;
+        }
+
+        /*$model = new ReviewFact();
         $model->reviewFactId = RestUtils::generateId();
-        $model->actionId = 1;
-        $model->buyerId = "n6cXcvhdOKc8oog48uBDb";
+        $model->actionReferenceId = $act->actionReferenceId;
+        $model->buyerId = $params['buyerId'];
         $model->sellerId = $params['sellerId'];
         $model->offerId = $params['offerId'];
         $model->grades = "grades";
@@ -80,32 +94,7 @@ class ReviewFactController extends \yii\rest\ActiveController
         $rev = new Review();
         $rev->reviewId = RestUtils::generateId();
         $rev->title = $params['review']['title'];
-        $rev->body = $params['review']['body'];
-
-        $models = array('status'=>1,'count'=>0);
-
-        if(!$rev->validate()) {
-            $models['data']['review'] = $rev->getErrors();
-            $models['status'] = 500;
-            echo RestUtils::sendResult($models['status'], $models);
-            die();
-        }
-        
-        if($rev->save())
-            $models['data']['review'] = 'saved';
-
-        $model->reviewId = $rev->reviewId;
-        if(!$model->validate()) {
-            $models['data']['reviewFact'] = $model->getErrors();
-            $models['status'] = 500;
-            echo RestUtils::sendResult($models['status'], $models);
-            die();
-        }
-
-        if($model->save()) {
-            $models['data']['reviewFact'] = 'saved';
-            $models['status'] = 1;
-        }
+        $rev->body = $params['review']['body'];*/
 
         echo RestUtils::sendResult($models['status'], $models);
     }

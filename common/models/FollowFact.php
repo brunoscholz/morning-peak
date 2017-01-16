@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "{{%followfact}}".
  *
  * @property string $followFactId
- * @property integer $actionId
+ * @property integer $actionReferenceId
  * @property string $userId
  * @property string $buyerId
  * @property string $sellerId
@@ -37,13 +37,22 @@ class FollowFact extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['followFactId', 'actionId', 'userId'], 'required'],
-            [['actionId'], 'integer'],
+            [['followFactId', 'actionReferenceId', 'userId', 'status'], 'required'],
+            [['actionReferenceId'], 'integer'],
             [['followFactId', 'userId', 'buyerId', 'sellerId'], 'string', 'max' => 21],
+            [['status'], 'string', 'max' => 3],
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['userId' => 'buyerId']],
             [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
             [['sellerId'], 'exist', 'skipOnError' => true, 'targetClass' => Seller::className(), 'targetAttribute' => ['sellerId' => 'sellerId']],
+            [['actionReferenceId'], 'exist', 'skipOnError' => true, 'targetClass' => ActionReference::className(), 'targetAttribute' => ['actionReferenceId' => 'actionReferenceId']],
         ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['register'] = ['followFactId', 'actionReferenceId', 'userId', 'status'];
+        return $scenarios;
     }
 
     /**
@@ -53,11 +62,19 @@ class FollowFact extends \yii\db\ActiveRecord
     {
         return [
             'followFactId' => 'Follow Fact ID',
-            'actionId' => 'Action ID',
+            'actionReferenceId' => 'Action ID',
             'userId' => 'User ID',
             'buyerId' => 'Buyer ID',
             'sellerId' => 'Seller ID',
+            'status' => 'Status',
         ];
+    }
+
+    public static function findByType($typ)
+    {
+        return static::find()
+            ->where(['like', 'action.actionType', $typ])
+            ->one();
     }
 
     public function getUser()
@@ -73,5 +90,10 @@ class FollowFact extends \yii\db\ActiveRecord
     public function getSeller()
     {
         return $this->hasOne(Seller::className(), ['sellerId' => 'sellerId']);
+    }
+
+    public function getActionreference()
+    {
+        return $this->hasOne(ActionReference::className(), ['actionReferenceId' => 'actionReferenceId']);
     }
 }

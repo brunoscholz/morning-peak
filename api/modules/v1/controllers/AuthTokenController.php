@@ -3,12 +3,12 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\AuthToken;
+use common\models\AuthToken;
 use api\components\RestUtils;
 
 class AuthTokenController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\AuthToken';
+    public $modelClass = 'common\models\AuthToken';
 
     public function actions()
     {

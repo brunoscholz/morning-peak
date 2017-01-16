@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%reviewfact}}".
@@ -17,6 +19,7 @@ use Yii;
  */
 class ReviewFact extends \yii\db\ActiveRecord
 {
+    protected $_updated_at;
     /**
      * @inheritdoc
      */
@@ -33,22 +36,42 @@ class ReviewFact extends \yii\db\ActiveRecord
         return ['reviewFactId'];
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'date',
+                'value' => new Expression('NOW()'),
+                //'value' => date('Y-m-d\Th:i:s'),
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['reviewFactId', 'actionId', 'reviewId', 'date', 'rating'], 'required'],
-            [['actionId'], 'integer'],
+            [['reviewFactId', 'actionReferenceId', 'reviewId', 'date', 'rating', 'status'], 'required'],
+            [['actionReferenceId'], 'integer'],
             [['rating'], 'number'],
             [['reviewFactId', 'date'], 'safe'],
-            [['reviewFactId', 'offerId', 'sellerId', 'reviewId'], 'string', 'max' => 21],
+            [['reviewFactId', 'offerId', 'sellerId', 'buyerId', 'reviewId'], 'string', 'max' => 21],
             [['sellerId'], 'exist', 'skipOnError' => true, 'targetClass' => Seller::className(), 'targetAttribute' => ['sellerId' => 'sellerId']],
             [['offerId'], 'exist', 'skipOnError' => true, 'targetClass' => Offer::className(), 'targetAttribute' => ['offerId' => 'offerId']],
             [['reviewId'], 'exist', 'skipOnError' => true, 'targetClass' => Review::className(), 'targetAttribute' => ['reviewId' => 'reviewId']],
             [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
+            [['actionReferenceId'], 'exist', 'skipOnError' => true, 'targetClass' => ActionReference::className(), 'targetAttribute' => ['actionReferenceId' => 'actionReferenceId']],
         ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['register'] = ['reviewFactId', 'actionReferenceId', 'offerId', 'buyerId', 'sellerId', 'rating', 'status'];
+        return $scenarios;
     }
 
     /**
@@ -58,18 +81,20 @@ class ReviewFact extends \yii\db\ActiveRecord
     {
         return [
             'reviewFactId' => 'Review Fact ID',
-            'actionId' => 'Action ID',
+            'actionReferenceId' => 'Action ID',
             'offerId' => 'Offer ID',
             'sellerId' => 'Seller ID',
             'reviewId' => 'Review ID',
             'date' => 'Date',
             'rating' => 'Rating',
+            'status' => 'Status',
         ];
     }
 
-    public function getCommentFacts()
-    {
-    }
+    public function getUpdated_at() { return $this->_updated_at; }
+    public function setUpdated_at($t) { $this->_updated_at = $t; }
+
+    public function getCommentFacts() {}
 
     public function getComments()
     {
@@ -96,5 +121,10 @@ class ReviewFact extends \yii\db\ActiveRecord
     public function getOffer()
     {
         return $this->hasOne(Offer::className(), ['offerId' => 'offerId']);
+    }
+
+    public function getActionreference()
+    {
+        return $this->hasOne(ActionReference::className(), ['actionReferenceId' => 'actionReferenceId']);
     }
 }

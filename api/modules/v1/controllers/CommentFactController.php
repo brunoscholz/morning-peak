@@ -3,7 +3,7 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\CommentFact;
+use common\models\CommentFact;
 use api\components\RestUtils;
 
 /**
@@ -14,7 +14,7 @@ use api\components\RestUtils;
  */
 class CommentFactController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\CommentFact';
+    public $modelClass = 'common\models\CommentFact';
 
     public function actions()
     {

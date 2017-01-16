@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "93845cf3699b0bd5ac59ca9456591aac",
-    "content-hash": "17523f8140f5345aa68fab33d7f4ce83",
+    "hash": "4d989a68cab9be286b56bae288888142",
+    "content-hash": "e264b703ea25e0d30782f805663f8c2c",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -593,6 +593,51 @@
             "time": "2016-12-09 03:16:30"
         },
         {
+            "name": "drsdre/yii2-wizardwidget",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drsdre/yii2-wizardwidget.git",
+                "reference": "51ef01d315875830af2565121fe1f3b1bf32850c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drsdre/yii2-wizardwidget/zipball/51ef01d315875830af2565121fe1f3b1bf32850c",
+                "reference": "51ef01d315875830af2565121fe1f3b1bf32850c",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": ">=2.0.6",
+                "yiisoft/yii2-bootstrap": "~2.0.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "drsdre\\wizardwidget\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "A.F.Schuurman",
+                    "email": "andre.schuurman+yii2-wizardwidget@gmail.com"
+                }
+            ],
+            "description": "Multi step wizard widget using tabs to guide a user through steps to complete a task. Based on the Form wizard (using tabs) from lukepzak (see http://bootsnipp.com/snippets/featured/form-wizard-using-tabs).",
+            "keywords": [
+                "extension",
+                "tabs",
+                "ui",
+                "widget",
+                "wizard",
+                "yii2"
+            ],
+            "time": "2016-12-28 13:00:02"
+        },
+        {
             "name": "ekaragodin/yii2-bootstrap-slider",
             "version": "dev-master",
             "source": {
@@ -1074,6 +1119,53 @@
                 "yii2"
             ],
             "time": "2015-11-15 20:01:59"
+        },
+        {
+            "name": "marekpetras/yii2-ajax-box-widget",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marekpetras/yii2-ajax-box-widget.git",
+                "reference": "b443430540f79caef287cda496cf7614b3b8ac5c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marekpetras/yii2-ajax-box-widget/zipball/b443430540f79caef287cda496cf7614b3b8ac5c",
+                "reference": "b443430540f79caef287cda496cf7614b3b8ac5c",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "marekpetras\\yii2ajaxboxwidget\\": "/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marek Petras",
+                    "email": "mark@markpetras.eu"
+                }
+            ],
+            "description": "Ajax Box widget for Yii 2 Framework.",
+            "homepage": "https://github.com/marekpetras/yii2-ajax-box-widget",
+            "keywords": [
+                "ajax",
+                "box",
+                "extension",
+                "load content with ajax",
+                "submit",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-10-31 05:26:52"
         },
         {
             "name": "rmrevin/yii2-fontawesome",

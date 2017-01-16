@@ -3,8 +3,8 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\Seller;
-use api\modules\v1\models\Offer;
+use common\models\Seller;
+use common\models\Offer;
 use api\components\RestUtils;
 
 /**
@@ -15,7 +15,7 @@ use api\components\RestUtils;
  */
 class SellerController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\Seller';
+    public $modelClass = 'common\models\Seller';
 
     public function actions()
     {
@@ -53,7 +53,7 @@ class SellerController extends \yii\rest\ActiveController
 
     public function actionCatalog($id)
     {
-        $models = ['status'=>500, 'count'=>0];
+        $models = ['status'=>200, 'count'=>0];
         $seller = Seller::findOne($id);
 
         $modelsArray = [];

@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
+use common\components\BaseModel;
 
 /**
  * Seller Model
@@ -12,7 +13,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @author Bruno Scholz <brunoscholz@yahoo.de>
  */
-class Seller extends \yii\db\ActiveRecord
+class Seller extends BaseModel
 {
     const STATUS_ACTIVE = 'ACT';
     const STATUS_NOT_VERIFIED = 'PEN';
@@ -27,6 +28,9 @@ class Seller extends \yii\db\ActiveRecord
         self::STATUS_BANNED,
         self::STATUS_REMOVED,
     ];
+
+    public $_hours;
+    public $_days;
 
     /**
      * @inheritdoc
@@ -44,25 +48,6 @@ class Seller extends \yii\db\ActiveRecord
         return ['sellerId'];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['sellerId', 'name', 'phone', 'cellphone'], 'required'],
-            [['sellerId', 'userId', 'pictureId', 'billingAddressId'], 'string', 'max' => 21],
-            [['about'], 'string', 'max' => 420],
-            [['name', 'email', 'website'], 'string', 'max' => 60],
-            [['hours', 'categories'], 'string', 'max' => 255],
-            ['email', 'email'],
-            ['website', 'url', 'defaultScheme' => 'http'],
-            //[['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
-            [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
-            [['billingAddressId'], 'exist', 'skipOnError' => true, 'targetClass' => BillingAddress::className(), 'targetAttribute' => ['billingAddressId' => 'billingAddressId']],
-        ];
-    }
-
     public function behaviors()
     {
         return [
@@ -73,6 +58,34 @@ class Seller extends \yii\db\ActiveRecord
                 'value' => new Expression('NOW()'),
             ],
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['sellerId', 'userId', 'name', 'email', 'phone', 'cellphone'], 'required'],
+            [['sellerId', 'userId', 'pictureId', 'billingAddressId'], 'string', 'max' => 21],
+            [['about'], 'string', 'max' => 420],
+            [['name', 'email', 'website'], 'string', 'max' => 60],
+            [['hours', 'categories'], 'string', 'max' => 255],
+            ['email', 'email'],
+            ['website', 'url', 'defaultScheme' => 'http'],
+            [['activation_key'], 'string', 'max' => 12],
+            [['validation_key'], 'string', 'max' => 64],
+            //[['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
+            [['pictureId'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['pictureId' => 'pictureId']],
+            [['billingAddressId'], 'exist', 'skipOnError' => true, 'targetClass' => BillingAddress::className(), 'targetAttribute' => ['billingAddressId' => 'billingAddressId']],
+        ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['register'] = ['sellerId', 'name', 'email', 'phone', 'cellphone'];
+        return $scenarios;
     }
 
     /**
@@ -90,7 +103,7 @@ class Seller extends \yii\db\ActiveRecord
             'phone' => 'Fone',
             'cellphone' => 'Celular',
             'website' => 'Website',
-            'hours' => 'Hours',
+            'hours' => 'Horário de Funcionamento',
             'categories' => 'Categories',
             'paymentOptions' => 'Opções de Pagamento',
             'createdAt' => 'Data Criação',
@@ -106,12 +119,46 @@ class Seller extends \yii\db\ActiveRecord
             ->one();
     }
 
+    /**
+     * Finds seller by activation token
+     *
+     * @param string $token activation key selector
+     * @return static|null
+     */
+    public static function findByActivationKey($token)
+    {
+        return static::find()
+            ->where(['like binary', 'activation_key', $token])
+            ->one();
+    }
+
+    public function verifyKeys($activationKey)
+    {
+        return $this->validation_key === hash('sha256', base64_decode($activationKey));
+    }
+
     public function getOffers()
     {
         return $this->hasMany(Offer::className(), ['sellerId' => 'sellerId']);
     }
 
     public function getUser() {}
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLicenses()
+    {
+        return $this->hasMany(License::className(), ['sellerId' => 'sellerId']);
+    }
+
+    public function getActiveLicense()
+    {
+        return $this->hasMany(License::className(), ['sellerId' => 'sellerId'])
+            ->where(['status' => 'ACT'])
+            //->andFilterWhere(['like', 'tbl_item.title', $this->itemId]);
+            ->one();
+    }
 
     /**
      * @return \yii\db\ActiveQuery

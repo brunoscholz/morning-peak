@@ -3,9 +3,9 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\Buyer;
-use api\modules\v1\models\Seller;
-use api\modules\v1\models\User;
+use common\models\Buyer;
+use common\models\Seller;
+use common\models\User;
 
 /**
  * UserController API (extends \yii\rest\ActiveController)

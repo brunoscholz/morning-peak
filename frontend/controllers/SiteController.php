@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\swiftmailer\Mailer;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -12,6 +13,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\Subscription;
+use backend\components\Utils;
 
 /**
  * Site controller
@@ -117,7 +120,7 @@ class SiteController extends Controller
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
+            if ($model->sendEmail(Yii::$app->params['contactEmail'])) {
                 Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
             } else {
                 Yii::$app->session->setFlash('error', 'There was an error sending email.');
@@ -129,6 +132,48 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionNewsletter()
+    {
+        $params = Yii::$app->request->post();
+
+        $model = new Subscription();
+        $model->selector = Utils::getToken(9);
+        $model->email = $params['email'];
+        $model->createdAt = date('Y-m-d\Th:i:s');
+        $model->status = 'ACT';
+
+        if ($model->validate()) {
+            $body = array();
+            $body['selector'] = $model->selector;
+            $body['disclaimer'] = 'Em caso de dúvidas, envie um email para contato@ondetem-gn.com.br';
+            $body['message'] = '<p>Seu email foi cadastrado na newsletter da Onde tem?.</p><p>Você vai receber informações sobre o andamento do projeto, funcionalidades, e atualizações.</p>';
+            
+            if ($model->save() && $model->sendEmail($body)) {
+                Yii::$app->session->setFlash('newsletterSuccess', 'Email cadastrado com sucesso.');
+            } else {
+                Yii::$app->session->setFlash('newsletterError', 'Não conseguimos cadastrar seu email...');
+            }
+            
+            return $this->refresh();
+        } else {
+            return $this->goHome();
+        }
+    }
+
+    public function actionUnsubscribe($key)
+    {
+        //http://www.ondetem-gn.com.br/site/unsubscribe?key=YlJVRVllVlAy
+        $id = base64_decode($key);
+        $model = Subscription::findBySelector($id);
+
+        $model->status = 'UNS';
+
+        if($model->save())
+            Yii::$app->session->setFlash('unsubscribeSuccess', 'O email foi removido de nossa lista.');
+
+        return $this->goHome();
     }
 
     /**

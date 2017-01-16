@@ -76,7 +76,7 @@ class SellerController extends Controller
         if ($params && $companyForm->validate()) {
             $companyForm->picture->imageCover = UploadedFile::getInstance($companyForm->picture, 'imageCover');
             $companyForm->picture->imageThumb = UploadedFile::getInstance($companyForm->picture, 'imageThumb');
-            $companyForm->picture->status = 'ATV';
+            $companyForm->picture->status = 'ACT';
 
             if($companyForm->save()) {
                 Yii::$app->getSession()->setFlash('success', 'Empresa cadastrada com sucesso.');

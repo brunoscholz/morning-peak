@@ -3,9 +3,9 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\Offer;
-use api\modules\v1\models\Seller;
-use api\modules\v1\models\Buyer;
+use common\models\Offer;
+use common\models\Seller;
+use common\models\Buyer;
 use api\components\RestUtils;
 //use api\modules\v1\models\Geography;
 
@@ -17,7 +17,7 @@ use api\components\RestUtils;
  */
 class SearchController extends \yii\rest\ActiveController
 {
-	public $modelClass = 'api\modules\v1\models\Offer';
+	public $modelClass = 'common\models\Offer';
 
 	public function actions()
     {
@@ -72,7 +72,7 @@ class SearchController extends \yii\rest\ActiveController
             }
 
             $temp['reviews'] = $newReviews;
-            $temp['avgRating'] = ($i > 0) ? $sum / $i : 0;
+            $temp['avgRating'] = ['qtd' => $i, 'avg' => ($i > 0) ? $sum / $i : 0];
             $offers[] = $temp;
         }
 
@@ -104,9 +104,9 @@ class SearchController extends \yii\rest\ActiveController
 
         $models = array('status'=>200,'count'=>0);
 
-        $models['data']['offers'] = $offers;
-        $models['data']['sellers'] = $sellers;
-        $models['data']['buyers'] = $buyers;
+        $models['data']['offers'] = ['title' => 'Ofertas', 'list' => $offers, 'icon' => 'ios-add-circle-outline', 'showDetails' => false];
+        $models['data']['sellers'] = ['title' => 'Empresas', 'list' => $sellers, 'icon' => 'ios-add-circle-outline', 'showDetails' => false];
+        $models['data']['buyers'] = ['title' => 'Usuários', 'list' => $buyers, 'icon' => 'ios-add-circle-outline', 'showDetails' => false];
         $models['count'] = count($offers) + count($sellers) + count($buyers);
 
         echo RestUtils::sendResult($models['status'], $models);

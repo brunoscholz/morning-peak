@@ -50,6 +50,13 @@ class Relationship extends \yii\db\ActiveRecord
         ];
     }
 
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['register'] = ['relationshipId', 'dateId'];
+        return $scenarios;
+    }
+
     /**
      * @inheritdoc
      */

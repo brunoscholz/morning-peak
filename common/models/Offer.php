@@ -82,8 +82,8 @@ class Offer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['offerId', 'sellerId', 'pricePerUnit', 'description'], 'required'],
-            [['pricePerUnit', 'discountPerUnit'], 'number'],
+            [['offerId', 'itemId', 'sellerId', 'pricePerUnit', 'description', 'status'], 'required'],
+            [['isGift', 'coinPrice', 'pricePerUnit', 'discountPerUnit'], 'number'],
             [['imageHashes', 'keywords'], 'string'],
             [['offerId', 'itemId', 'sellerId', 'policyId', 'shippingId'], 'string', 'max' => 21],
             [['description'], 'string', 'max' => 255],
@@ -106,14 +106,26 @@ class Offer extends \yii\db\ActiveRecord
             'sellerId' => 'ID Empresa',
             'policyId' => 'ID Termos',
             'shippingId' => 'ID Entrega',
+            'pictureId' => 'ID Imagem',
             'pricePerUnit' => 'Preço',
             'discountPerUnit' => 'Desconto',
+            'coinPrice' => 'Preço em COINs',
+            'isGift' => 'Oferecer como Brinde',
             'description' => 'Descrição',
             'imageHashes' => 'Image Hashes',
             'keywords' => 'Tags',
             'itemCondition' => 'Condição do Item',
+            'createdAt' => 'Criado em',
+            'updatedAt' => 'Modificado em',
             'status' => 'Status',
         ];
+    }
+
+    public static function findById($id)
+    {
+        return static::find()
+            ->where(['like binary', 'offerId', $id])
+            ->one();
     }
 
     public function getItem()

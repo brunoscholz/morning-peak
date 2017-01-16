@@ -3,13 +3,13 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\ReviewFact;
-use api\modules\v1\models\CommentFact;
-use api\modules\v1\models\FollowFact;
-use api\modules\v1\models\Review;
-use api\modules\v1\models\Comment;
-use api\modules\v1\models\Transaction;
-use api\modules\v1\models\ActionRelationship;
+use common\models\ReviewFact;
+use common\models\CommentFact;
+use common\models\FollowFact;
+use common\models\Review;
+use common\models\Comment;
+use common\models\Transaction;
+use common\models\ActionRelationship;
 use api\components\RestUtils;
 
 /**
@@ -22,7 +22,7 @@ use api\components\RestUtils;
  */
 class ActionRelationshipController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\ActionRelationship';
+    public $modelClass = 'common\models\ActionRelationship';
 
     public function actions()
     {

@@ -3,8 +3,8 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\Transaction;
-use api\modules\v1\models\User;
+use common\models\Transaction;
+use common\models\User;
 use api\components\RestUtils;
 
 /**
@@ -15,7 +15,7 @@ use api\components\RestUtils;
  */
 class TransactionController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\Transaction';
+    public $modelClass = 'common\models\Transaction';
 
     public function actions()
     {

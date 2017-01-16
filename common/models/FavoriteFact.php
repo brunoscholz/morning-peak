@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "{{%favoritefact}}".
  *
  * @property string $favoriteFactId
- * @property integer $actionId
+ * @property integer $actionReferenceId
  * @property string $buyerId
  * @property string $offerId
  * @property string $status
@@ -37,12 +37,13 @@ class FavoriteFact extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['favoriteFactId', 'actionId', 'buyerId', 'offerId', 'status'], 'required'],
-            [['actionId'], 'integer'],
+            [['favoriteFactId', 'actionReferenceId', 'buyerId', 'offerId', 'status'], 'required'],
+            [['actionReferenceId'], 'integer'],
             [['favoriteFactId', 'buyerId', 'offerId'], 'string', 'max' => 21],
             [['status'], 'string', 'max' => 3],
             [['offerId'], 'exist', 'skipOnError' => true, 'targetClass' => Offer::className(), 'targetAttribute' => ['offerId' => 'offerId']],
             [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
+            [['actionReferenceId'], 'exist', 'skipOnError' => true, 'targetClass' => ActionReference::className(), 'targetAttribute' => ['actionReferenceId' => 'actionReferenceId']],
         ];
     }
 
@@ -53,7 +54,7 @@ class FavoriteFact extends \yii\db\ActiveRecord
     {
         return [
             'favoriteFactId' => 'Favorite Fact ID',
-            'actionId' => 'Action ID',
+            'actionReferenceId' => 'Action ID',
             'buyerId' => 'Buyer ID',
             'offerId' => 'Offer ID',
             'status' => 'Status',
@@ -68,5 +69,10 @@ class FavoriteFact extends \yii\db\ActiveRecord
     public function getOffer()
     {
         return $this->hasOne(Offer::className(), ['offerId' => 'offerId']);
+    }
+
+    public function getActionreference()
+    {
+        return $this->hasOne(ActionReference::className(), ['actionReferenceId' => 'actionReferenceId']);
     }
 }

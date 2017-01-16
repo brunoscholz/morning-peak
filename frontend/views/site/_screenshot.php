@@ -8,41 +8,41 @@
         </div>
         <div id="owl-demo" class="owl-carousel">
             <div class="item screenshot-block">
-              <img src="<?php echo $baseUrl ?>/images/screenshot.jpg" alt="GRAPE">
+              <img src="<?php echo $baseUrl ?>/images/screenshots/categories.png" alt="GRAPE">
               <div class="caption">
-                <a class="test-popup-link" href="<?php echo $baseUrl ?>/images/screenshot.jpg"><i class="fa fa-plus"></i></a>
+                <a class="test-popup-link" href="<?php echo $baseUrl ?>/images/screenshots/categories.png"><i class="fa fa-plus"></i></a>
               </div>
             </div>
             <div class="item screenshot-block">
-              <img src="<?php echo $baseUrl ?>/images/screenshot.jpg" alt="GRAPE">
+              <img src="<?php echo $baseUrl ?>/images/screenshots/search.png" alt="GRAPE">
               <div class="caption">
-                <a class="test-popup-link" href="<?php echo $baseUrl ?>/images/screenshot.jpg"><i class="fa fa-plus"></i></a>
+                <a class="test-popup-link" href="<?php echo $baseUrl ?>/images/screenshots/search.png"><i class="fa fa-plus"></i></a>
               </div>
             </div>
             <div class="item screenshot-block">
-              <img src="<?php echo $baseUrl ?>/images/screenshot.jpg" alt="GRAPE">
+              <img src="<?php echo $baseUrl ?>/images/screenshots/preview.png" alt="GRAPE">
               <div class="caption">
-                <a class="test-popup-link" href="<?php echo $baseUrl ?>/images/screenshot.jpg"><i class="fa fa-plus"></i></a>
+                <a class="test-popup-link" href="<?php echo $baseUrl ?>/images/screenshots/preview.png"><i class="fa fa-plus"></i></a>
               </div>
             </div>
             <div class="item screenshot-block">
-              <img src="<?php echo $baseUrl ?>/images/screenshot.jpg" alt="GRAPE">
+              <img src="<?php echo $baseUrl ?>/images/screenshots/home.png" alt="GRAPE">
               <div class="caption">
-                <a class="test-popup-link" href="<?php echo $baseUrl ?>/images/screenshot.jpg"><i class="fa fa-plus"></i></a>
+                <a class="test-popup-link" href="<?php echo $baseUrl ?>/images/screenshots/home.png"><i class="fa fa-plus"></i></a>
+              </div>
+            </div>
+            <!-- <div class="item screenshot-block">
+              <img src="<?php //echo $baseUrl ?>/images/screenshot.jpg" alt="GRAPE">
+              <div class="caption">
+                <a class="test-popup-link" href="<?php //echo $baseUrl ?>/images/screenshot.jpg"><i class="fa fa-plus"></i></a>
               </div>
             </div>
             <div class="item screenshot-block">
-              <img src="<?php echo $baseUrl ?>/images/screenshot.jpg" alt="GRAPE">
+              <img src="<?php //echo $baseUrl ?>/images/screenshot.jpg" alt="GRAPE">
               <div class="caption">
-                <a class="test-popup-link" href="<?php echo $baseUrl ?>/images/screenshot.jpg"><i class="fa fa-plus"></i></a>
+                <a class="test-popup-link" href="<?php //echo $baseUrl ?>/images/screenshot.jpg"><i class="fa fa-plus"></i></a>
               </div>
-            </div>
-            <div class="item screenshot-block">
-              <img src="<?php echo $baseUrl ?>/images/screenshot.jpg" alt="GRAPE">
-              <div class="caption">
-                <a class="test-popup-link" href="<?php echo $baseUrl ?>/images/screenshot.jpg"><i class="fa fa-plus"></i></a>
-              </div>
-            </div>
+            </div> -->
           </div>
       </div>
     </div>

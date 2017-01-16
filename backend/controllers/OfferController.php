@@ -68,7 +68,7 @@ class OfferController extends Controller
         $offerForm = new OfferForm();
         //$offerForm->user = $this->findUserModel(isset($params['userId']) ? $params['userId'] : Yii::$app->user->identity->userId);
         $offerForm->seller = isset($params['OfferForm']['sellerId']) ? $params['OfferForm']['sellerId'] : '';
-        $offerForm->offer = new Offer();
+        $offerForm->offer = new OfferSearch();
         $offerForm->setAttributes($params);
 
         if ($params && $offerForm->validate()) {
@@ -95,6 +95,9 @@ class OfferController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        /*var_dump(Yii::$app->request->post());
+        die();*/
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->offerId]);

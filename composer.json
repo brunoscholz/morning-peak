@@ -22,16 +22,16 @@
         "dmstr/yii2-adminlte-asset": "2.*",
         "machour/yii2-adminlte-widgets": "*",
         "machour/yii2-notifications": "@dev",
-        "kartik-v/yii2-widget-fileinput": "@dev"
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "marekpetras/yii2-ajax-box-widget": "^1.0",
+        "drsdre/yii2-wizardwidget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
         "yiisoft/yii2-gii": "~2.0.0",
         "yiisoft/yii2-faker": "~2.0.0",
-
         "codeception/base": "^2.2.3",
-        "codeception/verify": "~0.3.1",
-        "purrweb/yii2-heroku": "*"
+        "codeception/verify": "~0.3.1"
     },
     "config": {
         "process-timeout": 1800
@@ -41,8 +41,5 @@
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"
         }
-    },
-    "scripts": {
-        "post-install-cmd": "sh post-install-cmd.sh"
     }
 }

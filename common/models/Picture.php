@@ -142,11 +142,11 @@ class Picture extends \yii\db\ActiveRecord
         if(is_null($this->thumbnail) || empty($this->thumbnail))
             $this->thumbnail = 'assets/img/generic-avatar.png';
         else
-            $this->thumbnail = 'http://ondetem-gn.com.br' . $this->thumbnail;
+            $this->thumbnail = 'http://ondetem-gn.com.br/' . $this->thumbnail;
         
         if(is_null($this->cover) || empty($this->cover))
             $this->cover = 'assets/img/generic-cover.jpg';
         else
-            $this->cover = 'http://ondetem-gn.com.br' . $this->cover;
+            $this->cover = 'http://ondetem-gn.com.br/' . $this->cover;
     }
 }

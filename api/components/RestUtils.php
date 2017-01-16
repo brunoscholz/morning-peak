@@ -414,6 +414,7 @@ class RestUtils
         $data = str_replace('base64,', '', $data);
         $data = str_replace(' ','+',$data);
         $data = base64_decode($data);
+        $output_file_with_extentnion = '';
 
         $mime_split_without_base64=explode(';', $mime,2);
         $mime_split=explode('/', $mime_split_without_base64[0],2);

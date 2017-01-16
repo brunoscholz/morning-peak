@@ -51,7 +51,7 @@ class Item extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['itemId', 'categoryId', 'description', 'title'], 'required'],
+            [['itemId', 'categoryId', 'description', 'title', 'status'], 'required'],
             [['itemId', 'sku', 'categoryId'], 'string', 'max' => 21],
             [['description', 'title'], 'string', 'max' => 40],
             [['keywords', 'photoSrc'], 'string', 'max' => 255],

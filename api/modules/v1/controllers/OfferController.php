@@ -3,7 +3,7 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\Offer;
+use common\models\Offer;
 use api\components\RestUtils;
 use yii\helpers\ArrayHelper;
 
@@ -16,7 +16,7 @@ use yii\helpers\ArrayHelper;
  */
 class OfferController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\Offer';
+    public $modelClass = 'common\models\Offer';
 
     public function actions()
     {
@@ -71,6 +71,7 @@ class OfferController extends \yii\rest\ActiveController
                 $rating['price'] = floor($rate/100) - $rating['attendance']*10;
 
                 $review['rating'] = $rating;
+                unset($review['offer']);
                 $newReviews[] = $review;
                 $sum += $rating['grade'];
                 $i++;
@@ -80,7 +81,8 @@ class OfferController extends \yii\rest\ActiveController
             // return decimal;
 
             $temp['reviews'] = $newReviews;
-            $temp['avgRating'] = ($i > 0) ? $sum / $i : 0;
+            $temp['avgRating'] = ['qtd' => $i, 'avg' => ($i > 0) ? $sum / $i : 0];
+
             /*var_dump($temp);
 
             die();

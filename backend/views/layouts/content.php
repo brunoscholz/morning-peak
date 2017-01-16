@@ -43,7 +43,7 @@ use dmstr\widgets\Alert;
     <div class="pull-right hidden-xs">
         <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2016-<?php echo date('Y'); ?> <a href="http://ondetem-gn.com.br">OndeTem?</a></strong>
+    <strong>Copyright &copy; 2016-<?php echo date('Y'); ?> <a href="http://ondetem-gn.com.br">Onde tem?</a></strong>
 </footer>
 
 <!-- Control Sidebar -->

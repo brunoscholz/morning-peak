@@ -6,6 +6,8 @@ $params = array_merge(
     require(__DIR__ . '/params-local.php')
 );
 
+//php composer.phar require --prefer-dist drsdre/yii2-wizardwidget "*"
+
 return [
     'id' => 'app-backend',
     'name' => 'OndeTem?!',

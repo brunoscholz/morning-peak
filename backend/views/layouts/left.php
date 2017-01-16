@@ -1,12 +1,18 @@
+<?php
+
+use backend\components\Utils;
+
+?>
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 
     <section class="sidebar">
 
         <!-- Sidebar user panel -->
+        <?php if(!Yii::$app->user->isGuest): ?>
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?php echo Yii::$app->user->identity->buyer->picture->thumbnail; ?>" class="img-circle" alt="User Image"/>
+                <img src="<?php echo Utils::safePicture(Yii::$app->user->identity->buyer->picture, 'thumbnail'); ?>" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
                 <p><?php echo Yii::$app->user->identity->username; ?></p>
@@ -39,6 +45,7 @@
                         'items' => [
                             // filter by selected seller
                             ['label' => 'Ver Todas', 'icon' => 'fa fa-eye', 'url' => ['/offer'], 'visible' => Yii::$app->user->can('vendor')],
+                            //['label' => 'Catálogos', 'icon' => 'fa fa-eye', 'url' => ['/offer']],
                             //['label' => 'Nova Oferta', 'icon' => 'fa fa-cart-plus', 'url' => ['/offer/create'], 'visible' => Yii::$app->user->can('vendor')],
                         ],
                     ],
@@ -89,6 +96,9 @@
                 ],
             ]
         ) ?>
+
+        <!-- else ... -->
+        <?php endif; ?>
 
     </section>
 

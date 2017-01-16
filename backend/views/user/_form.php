@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\Url;
+use backend\components\Utils;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
 
@@ -10,22 +10,12 @@ use kartik\file\FileInput;
 /* @var $form yii\widgets\ActiveForm */
 
 $buyer = $model->buyer;
-$myImages = Url::to('@web/img/');
-
-if (strpos($buyer->picture->thumbnail, 'generic-avatar') !== false) {
-    $buyer->picture->thumbnail = $myImages . '/generic-avatar.png';
-}
-
-if (strpos($buyer->picture->cover, 'generic-cover') !== false) {
-    $buyer->picture->cover = $myImages . '/generic-cover.jpg';
-}
-$thumb = $buyer->picture->thumbnail;
-$cover = $buyer->picture->cover;
+$thumb = Utils::safePicture($buyer->picture, 'thumbnail');
+$cover = Utils::safePicture($buyer->picture, 'cover');
 
 ?>
 
 <div class="user-form">
-
     <?php $form = ActiveForm::begin(['action' => ['user/update', 'id' => $model->user->userId], 'options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $model->errorSummary($form); ?>

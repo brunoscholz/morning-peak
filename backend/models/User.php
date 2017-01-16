@@ -83,6 +83,23 @@ class User extends UserModel implements IdentityInterface
     }
 
     /**
+     * Finds user by activation token
+     *
+     * @param string $token activation key selector
+     * @return static|null
+     */
+    public static function findByActivationKey($token)
+    {
+        /*if (!static::isPasswordResetTokenValid($token)) {
+            return null;
+        }*/
+
+        return static::find()
+            ->where(['like binary', 'activation_key', $token])
+            ->one();
+    }
+
+    /**
      * Finds user by password reset token
      *
      * @param string $token password reset token
@@ -118,7 +135,7 @@ class User extends UserModel implements IdentityInterface
 
     public function verifyKeys($activationKey)
     {
-        return $this->validation_key === md5($activationKey . $this->email . $this->userId);
+        return $this->validation_key === hash('sha256', base64_decode($activationKey));
     }
 
     public function validatePassword($password)

@@ -765,7 +765,7 @@ h3 {
 */
 
 .feature {
-  background: url(../images/feature_bg.jpg) no-repeat fixed;
+  background: url(../images/common_bg.jpg) no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -1216,7 +1216,7 @@ section.video {
 */
 
 .downlaod {
-  background: url(../images/download_bg.jpg) no-repeat fixed;
+  background: url(../images/common_bg.jpg) no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -1245,6 +1245,20 @@ section.video {
   margin-bottom: 50px;
 }
 
+.downlaod .trans-bg {
+  height: 450px !important;
+  min-height: 450px !important;
+}
+
+.downlaod .under-construction {
+  background: url(../images/under_construction.png) no-repeat fixed;
+  position: absolute;
+  z-index: 10;
+  height: 130px;
+  width: 100%;
+  top: -23px;
+  left: -10px;
+}
 
 /*
 ========================================================================
@@ -1313,12 +1327,18 @@ section.video {
 */
 
 .subscription {
-  background: url(../images/subscription_bg.jpg) no-repeat fixed;
+  background: url(../images/common_bg.jpg) no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
+
+.subscription .trans-bg {
+  height: 490px !important;
+  min-height: 490px !important;
+}
+
 .btn-sub {
   position: relative;
   margin: 0;
@@ -1537,12 +1557,18 @@ section.contact > .container {
 */
 
 #footer {
-  background: url(../images/footer_bg.jpg) no-repeat fixed;
+  background: url(../images/common_bg.jpg) no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
+
+#footer .trans-bg {
+  height: 490px !important;
+  min-height: 490px !important;
+}
+
 .social-icon {
   margin-bottom: 60px;
 }

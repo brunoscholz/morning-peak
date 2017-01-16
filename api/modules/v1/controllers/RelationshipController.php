@@ -3,7 +3,7 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\Relationship;
+use common\models\Relationship;
 use api\components\RestUtils;
 
 /**
@@ -15,7 +15,7 @@ use api\components\RestUtils;
  */
 class RelationshipController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\Relationship';
+    public $modelClass = 'common\models\Relationship';
 
     public function actions()
     {

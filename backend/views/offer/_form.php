@@ -101,6 +101,8 @@ $cover = $myImages . '/generic-cover.jpg';
                 $dataConditions
             ) ?>
 
+            <?= $form->field($model, 'isGift')->checkBox(['selected' => $model->isGift]) ?>
+
             <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
                 <?= Html::submitButton('Salvar', ['class' => 'btn btn-primary']) ?>
                 <?= Html::resetButton('Limpar', ['class' => 'btn btn-danger pull-right']) ?>

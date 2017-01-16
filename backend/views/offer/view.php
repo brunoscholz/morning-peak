@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use backend\components\Utils;
 
@@ -10,6 +11,11 @@ use backend\components\Utils;
 $this->title = 'Ver Oferta';
 $this->params['breadcrumbs'][] = ['label' => 'Ofertas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$myImages = Url::to('@web/img/');
+$cover = $model->picture->cover;
+if (strpos($cover, 'generic-cover') !== false) {
+  $cover = $myImages . '/generic-cover.jpg';
+}
 ?>
 
   <div class="offer-view">
@@ -27,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <!-- info row -->
       <div class="row invoice-info">
         <div class="col-xs-4">
-            <?= Html::img($model->picture->cover, ['alt' => 'Item', 'width'=>'100%']) ?>
+            <?= Html::img($cover, ['alt' => 'Item', 'width'=>'100%']) ?>
         </div>
         <!-- /.col -->
         <div class="col-sm-4">

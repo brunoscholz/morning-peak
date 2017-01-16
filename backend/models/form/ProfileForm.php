@@ -88,6 +88,27 @@ class ProfileForm extends Model
     	}
 
     	$this->user->buyerId = $this->buyer->buyerId;
+
+        if($this->user->role !== $this->user->getOldAttribute('role')) {
+            $auth = \Yii::$app->authManager;
+            $role = $auth->getRole('user');
+            switch ($this->user->role) {
+                case 'administrator':
+                    $role = $auth->getRole('admin');
+                    break;
+                case 'salesman':
+                    $role = $auth->getRole('salesman');
+                    break;
+                default:
+                    if(count($this->user->sellers) > 0)
+                        $role = $auth->getRole('vendor');
+                    break;
+            }
+
+            $auth->revokeAll($this->user->userId);
+            $auth->assign($role, $this->user->userId);
+        }
+
     	if(!$this->user->save()) {
     		$transaction->rollBack();
     		return false;

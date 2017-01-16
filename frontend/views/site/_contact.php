@@ -1,3 +1,17 @@
+<?php
+
+/* @var $this yii\web\View */
+/* @var $form yii\bootstrap\ActiveForm */
+/* @var $model \frontend\models\ContactForm */
+
+use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+use yii\captcha\Captcha;
+use frontend\models\ContactForm;
+
+$contactModel = new ContactForm();
+?>
+
 <section id="contact" class="contact white tab-content">
   <div class="container">
     <div class="row">
@@ -18,9 +32,9 @@
       <div class="container">
         <div class="row">
         <div class="col-sm-12 text-center">            
-          <span class="sub-head">we are here</span>
+          <span class="sub-head">fale conosco</span>
           <div class="title">
-            <h2>get in touch</h2>
+            <h2>entre em contato</h2>
           </div>
         </div>
       </div>
@@ -30,9 +44,9 @@
               <i class="fa fa-taxi"></i>
                <br>
                <p>
-                 14/4 <br>
-                 Burnaby <br>
-                 BC, Canada 
+                 Av Água Verde, 172 <br>
+                 Curitiba <br>
+                 PR, Brasil 
                </p>
             </div>                
           </div>
@@ -40,11 +54,9 @@
             <div class="info-holder">
               <i class="fa fa-mobile"></i>
               <br>
-              <p>+1778-885-0000
-              <br>
-              +1778-885-1111
-              <br>
-              +6698 55514 68
+              <p>
+                (41) 99999-9999
+                <br>
               </p>
             </div>                
           </div>
@@ -53,9 +65,9 @@
               <i class="fa fa-reply"></i>
               <br>
               <p>
-                info@domain.com
+                contato@ondetem-gn.com.br
                 <br>
-                hello@gmail.com
+                suporte@ondetem-gn.com.br
               </p>
             </div>                
           </div>
@@ -66,44 +78,41 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12 text-center">            
-            <span class="sub-head">we are here</span>
+            <span class="sub-head">fale conosco</span>
             <div class="title">
-              <h2>get in touch</h2>
+              <h2>entre em contato</h2>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <form class="form-horizontal" role="form">
+            <?php $form = ActiveForm::begin(['id' => 'contact-form', 'class' => 'form-horizontal']); ?>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <div class="span-form">
-                    <input class="form-control" type="text" placeholder="First name" required="required">
-                  </div>
-                  <div class="span-form">
-                    <input type="text" class="form-control" placeholder="Last name" required="required">
-                  </div>
+                  <?= $form->field($contactModel, 'name')->textInput(['autofocus' => true, 'class'=>'form-control', 'placeholder'=>'Seu nome', 'required'=>'required'])->label(false) ?>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" placeholder="Email address" required="required">
+                  <?= $form->field($contactModel, 'email')->input('email', ['type'=>'email', 'class'=>'form-control', 'placeholder'=>'Endereço de e-mail', 'required'=>'required'])->label(false) ?>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Subject" required="required">
+                  <?= $form->field($contactModel, 'subject')->textInput(['class'=>'form-control', 'placeholder'=>'Assunto', 'required'=>'required'])->label(false) ?>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <textarea name="" class="form-control btn-block" rows="3"></textarea>
+                  <?= $form->field($contactModel, 'body')->textarea(['rows' => 3, 'class' => 'form-control btn-block'])->label(false) ?>
                 </div>
                 <div class="form-group">
-                  <input type="submit" class="btn btn-block" value="send message">
+                  <?= Html::submitButton('enviar mensagem', ['class' => 'btn btn-block', 'name' => 'contact-button']) ?>
                 </div>
               </div>
-            <div class="col-sm-12">
-              <p class="contact-success">Your Message has been Successfully Sent!</p>
-              <p class="contact-error">Error! Something went wrong!</p>
-            </div>
-            </form>
+
+              <div class="col-sm-12">
+                <p class="contact-success">Sua mensagem foi enviada com sucesso!</p>
+                <p class="contact-error">Ops! Algo deu errado!</p>
+              </div>
+
+            <?php ActiveForm::end(); ?>
           </div>
         </div>
       </div>
@@ -112,9 +121,9 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12 text-center">            
-            <span class="sub-head">we are here</span>
+            <span class="sub-head">fale conosco</span>
             <div class="title">
-              <h2>get in touch</h2>
+              <h2>entre em contato</h2>
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">              
-          <h2><a href="" class="lg-logo default-color">OndeTem?!</a></h2> <!--/ .lg-logo -->
+          <h2><a href="" class="lg-logo default-color">Onde tem?</a></h2> <!--/ .lg-logo -->
            <div class="flex_text text-slider">
               <ul class="slides">
                   <li>Buscador de produtos e serviços</li>
@@ -13,13 +13,14 @@
             </div>
             <!--/.text-slider end-->                
             <ul class="app">
-              <li><a href=""><i class="fa fa-apple"></i></a></li>
-              <li><a href=""><i class="fa fa-android"></i></a></li>
-              <li><a href=""><i class="fa fa-windows"></i></a></li>
+              <!-- <li><a href=""><i class="fa fa-apple"></i></a></li> -->
+              <li><a href="https://play.google.com/store/apps/details?id=com.ionicframework.appv2355299"><i class="fa fa-android"></i></a></li>
+              <!-- <li><a href=""><i class="fa fa-windows"></i></a></li> -->
             </ul>  
             <div class="download-block text-center">
-               <a href="" class="btn-download">Download</a><a href="" class="btn-download">Take a tour</a>
-             </div>             
+              <!-- <a href="https://play.google.com/store/apps/details?id=com.ionicframework.appv2355299" class="btn-download">Download</a> -->
+              <!-- <a href="" class="btn-download">Take a tour</a> -->
+            </div>
         </div>
       </div>
     </div>

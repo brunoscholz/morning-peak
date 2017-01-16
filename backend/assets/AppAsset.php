@@ -22,4 +22,8 @@ class AppAsset extends AssetBundle
         'yii\bootstrap\BootstrapAsset',
         'dmstr\web\AdminLteAsset',
     ];
+
+    public $publishOptions = [
+        'forceCopy' => YII_ENV_DEV,
+    ];
 }

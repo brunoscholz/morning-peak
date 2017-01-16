@@ -3,7 +3,7 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
-use api\modules\v1\models\Buyer;
+use common\models\Buyer;
 use api\components\RestUtils;
 
 /**
@@ -14,7 +14,7 @@ use api\components\RestUtils;
  */
 class BuyerController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\Buyer';
+    public $modelClass = 'common\models\Buyer';
 
     public function actions()
     {

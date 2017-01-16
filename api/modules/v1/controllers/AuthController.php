@@ -4,19 +4,22 @@ namespace api\modules\v1\controllers;
 
 use yii\swiftmailer\Mailer;
 use yii\db\Query;
-use api\modules\v1\models\Buyer;
-use api\modules\v1\models\Seller;
-use api\modules\v1\models\User;
-use api\modules\v1\models\AuthToken;
-use api\modules\v1\models\SocialAccount;
-use api\modules\v1\models\AssetToken;
-use api\modules\v1\models\Transaction;
-use api\modules\v1\models\Loyalty;
-use api\modules\v1\models\Relationship;
-use api\modules\v1\models\ActionReference;
-use api\modules\v1\models\BillingAddress;
+use common\models\Buyer;
+use common\models\Seller;
+use common\models\User;
+use common\models\AuthToken;
+use common\models\SocialAccount;
+use common\models\AssetToken;
+use common\models\Transaction;
+use common\models\Loyalty;
+use common\models\Relationship;
+use common\models\License;
+use common\models\LicenseType;
+use common\models\ActionReference;
+use common\models\BillingAddress;
+use api\modules\v1\models\SellerRegister;
+use common\models\Picture;
 use api\components\RestUtils;
-use \backend\models\Picture;
 
 /**
  * AuthController API (extends \yii\rest\ActiveController)
@@ -28,13 +31,13 @@ use \backend\models\Picture;
 class AuthController extends \yii\rest\ActiveController
 {
     protected $API_VERSION = 'v1';
-    protected $APP_VERSION = 'v1.4.2';
+    protected $APP_VERSION = 'v1.4.4';
 
     /**
      * @internal typical override of ActiveController 
      *
      */
-    public $modelClass = 'api\modules\v1\models\User';
+    public $modelClass = 'common\models\User';
 
     /**
      * @internal typical override of ActiveController 
@@ -67,7 +70,7 @@ class AuthController extends \yii\rest\ActiveController
         {
             $fbId = $params['fbId'];
             $social = SocialAccount::findByExternalId($fbId);
-            $user = User::findByUsername($params['email']);
+            $user = User::findByUsername(strtolower($params['email']));
             if(is_null($social) && is_null($user))
             {
                 // SignUp
@@ -264,7 +267,7 @@ class AuthController extends \yii\rest\ActiveController
     {
         $user = new User();
         $user->userId = RestUtils::generateId();
-        $user->email = $buyer->email;
+        $user->email = strtolower($buyer->email);
         $salt = RestUtils::generateSalt();
         $user->role = User::ROLE_USER;
         $user->vendor = 0;
@@ -288,7 +291,7 @@ class AuthController extends \yii\rest\ActiveController
         $buyer = new Buyer();
         $buyer->buyerId = RestUtils::generateId();
         $buyer->name = $name;
-        $buyer->email = $email;
+        $buyer->email = strtolower($email);
         $buyer->createdAt = date('Y-m-d\TH:i:s');
         $buyer->status = "INC";
         return $buyer;
@@ -328,7 +331,7 @@ class AuthController extends \yii\rest\ActiveController
         $social->userId = $user->userId;
         $social->externalId = $scId;
         $social->name = $scName;
-        $social->status = 'ATV';
+        $social->status = 'ACT';
         return $social;
     }
 
@@ -445,91 +448,27 @@ class AuthController extends \yii\rest\ActiveController
  	   	$params = \Yii::$app->request->post();
     	$models = array('status'=>500);
 
-        $user = User::findByUsername($params['email']);
-        $buyer = null;
-        if(is_null($user))
-        {
-            $buyer = $this->createBuyer($params['name'], $params['email']);
-            $user = $this->createUser($buyer, '', User::STATUS_NOT_VERIFIED);
+        $register = new SellerRegister();
 
-        	$user->activation_key = RestUtils::generateActivationKey();
-            $user->validation_key = RestUtils::generateValidationKey($user->activation_key, $user->email, $user->userId);
-        }
-        else
-        {
-            $buyer = $user->buyer;
-        }
-
-        $user->vendor = 1;
-        $user->updatedAt = date('Y-m-d\TH:i:s');
-
-    	// register the new seller
-    	$seller = $this->createSeller($user, $params, User::STATUS_NOT_VERIFIED);
-
-        $address = new BillingAddress();
-        $address->billingAddressId = RestUtils::generateId();
-        $address->address = $params['name'];
-        $address->city = $params['city'];
-        $address->state = 'NA';
-        $address->postCode = '0';
-        $address->country = 'Brasil (BRA)';
-        $seller->billingAddressId = $address->billingAddressId;
-
-    	// picture
-    	$salesman = User::findById($params['salesman']);
-
-    	// credit salesman user with sales token
-    	$tx = new Transaction();
-    	$tx->transactionId = RestUtils::generateId();
-    	$tx->senderId = $user->userId;//'zZN6prD6rzxEhg8sDQz1j'; // robot for token creation
-    	$tx->recipientId = $salesman->userId;
-    	$tx->type = 0;
-    	$tx->amount = 1;
-    	$tx->fee = 0;
-    	$tx->timestamp = date('Y-m-d\TH:i:s');
-    	$tx->senderPublicKey = 'aaa';
-    	$tx->signature = 'aaa';
-    	$tx->tokenId = AssetToken::findByCode('SALE')->tokenId;
-
-    	// credited to salesperson
-    	$loyal = new Loyalty();
-    	$loyal->loyaltyId = RestUtils::generateId();
-    	$loyal->userId = $salesman->userId;
-    	$loyal->actionId = ActionReference::findByType('sell')->actionReferenceId;
-    	$loyal->ruleId = "Vendas no Local";
-    	$loyal->points = 1;
-    	$loyal->transactionId = $tx->transactionId;
-    	$loyal->status = 'PEN';
-
-    	$rel = new Relationship();
-    	$rel->relationshipId = RestUtils::generateId();
-    	$rel->dateId = date('Y-m-d\TH:i:s');
-    	$rel->sellerId = $seller->sellerId;
-    	$rel->buyerId = $salesman->buyer->buyerId;
-    	$rel->loyaltyId = $loyal->loyaltyId;
+        $salesman = User::findById($params['salesman']);
+        $register->create($params, $salesman);
 
     	$data = array();
-    	$data['key'] = $user->activation_key . $user->userId;
-    	$data['seller'] = $seller;
+    	//$data['key'] = $user->activation_key . $user->userId;
+        $data['key'] = $register->seller->activation_key.base64_encode($register->_authenticator);
+    	$data['seller'] = $register->seller;
     	$data['salesman'] = $salesman->buyer;
     	$data['disclaimer'] = 'Em caso de dúvidas, envie um email para vendas@ondetem-gn.com.br';
 
-    	// send email to seller with confirmation token and link to backend\create
-    	$mail = \Yii::$app->mailer->compose('sellerActivationKey-html', [
-    		'data' => $data
-		])
-		    ->setFrom('vendas@ondetem-gn.com.br')
-		    ->setTo($seller->email)
-		    ->setSubject('OndeTem?! Ativação de Cadastro');
+        // send email to seller with confirmation token and link to backend\create
+        $mail = \Yii::$app->mailer->compose('sellerActivationKey-html', [
+            'data' => $data
+        ])
+            ->setFrom('vendas@ondetem-gn.com.br')
+            ->setTo($register->seller->email)
+            ->setSubject('Onde tem? Ativação de Cadastro');
 
-        $res = $this->validateAndSave([$address, $buyer, $user, $seller, $tx, $loyal, $rel]);
-        if(isset($res['error']))
-        {
-            $models['status'] = 500;
-            $models['error'] = $res['error'];
-            $models['errorLog'] = $res['errorLog'];
-        }
-        else
+        if($register->save())
         {
             try { $mail->send(); }
             catch(\Swift_SwiftException $exception) {
@@ -539,6 +478,12 @@ class AuthController extends \yii\rest\ActiveController
                 $models['status'] = 200;
                 $models['data'] = 'Empresa cadastrada com sucesso';
             }
+        }
+        else
+        {
+            $models['status'] = 500;
+            $models['error'] = 'Erro ao salvar informações';
+            $models['errorLog'] = $register->errorList();
         }
 
 		echo RestUtils::sendResult($models['status'], $models);
@@ -763,8 +708,34 @@ class AuthController extends \yii\rest\ActiveController
         $pass = '1234abcd';
         $salt = 'ICrs4QDfroMNZT7xozyFE9l2vmUHlZzRlaISuRhAejoLznDnM6PwhDFyUsmwLCdN';
         $hash = md5($salt . $pass);
+        //var_dump($hash);
 
-        var_dump($hash);
+        $genAuthenticator = RestUtils::getToken(33);
+        $genSelector = base64_encode(RestUtils::getToken(9));
+        $genToken = hash('sha256', $genAuthenticator);
+        
+        $publicToken = $genSelector.base64_encode($genAuthenticator);
+
+        var_dump($genAuthenticator);
+        var_dump($genSelector);
+        var_dump($genToken);
+        var_dump($publicToken);
+
+        //list($selector, $authenticator) = explode(':',$publicToken);
+        $selector = substr($publicToken, 0, 12);
+        $authenticator = substr($publicToken, 12);
+
+        var_dump($selector);
+        var_dump($authenticator);
+
+        if($genToken === hash('sha256', base64_decode($authenticator)))
+            var_dump(true);
+        else
+            var_dump(false);
+
+        //$auth = AuthToken::findBySelector($selector);
+
+
         die();
 
         return $hashedPass === $this->password;

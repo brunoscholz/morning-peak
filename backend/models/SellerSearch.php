@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\Seller;
+use common\models\License;
 
 /**
  * CategorySearch represents the model behind the search form about common\models\Category.
@@ -13,6 +14,8 @@ use common\models\Seller;
 
 class SellerSearch extends Seller
 {
+    //protected $activeLicense;
+
     /**
      * @inheritdoc
      */

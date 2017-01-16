@@ -21,6 +21,20 @@ class Utils {
         Yii::$app->getSession()->setFlash($type, $msg);
     }
 
+    public static function safePicture($pic, $t)
+    {
+        $url = $pic->$t;
+
+        if (strpos($url, 'generic-avatar') !== false) {
+            $url = \yii\helpers\Url::to('@web/img/') . '/generic-avatar.png';
+        }
+        elseif (strpos($url, 'generic-cover') !== false) {
+            $url = \yii\helpers\Url::to('@web/img/') . '/generic-cover.jpg';
+        }
+
+        return $url;
+    }
+
 	/**
      * Finds out if password reset token is valid
      *

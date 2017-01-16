@@ -50,6 +50,18 @@ class User extends \yii\db\ActiveRecord
         return ['userId'];
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'createdAt',
+                'updatedAtAttribute' => 'updatedAt',
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
     // explicitly list every field, best used when you want to make sure the changes
     // in your DB table or model attributes do not cause your field changes (to keep API backward compatibility).
     public function fields()
@@ -65,30 +77,26 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['email'], 'required'],
+            [['email', 'buyerId'], 'required'],
             [['role'], 'string'],
             [['vendor'], 'integer'],
             [['lastLogin', 'createdAt', 'updatedAt'], 'safe'],
             [['userId', 'username', 'paletteId'], 'string', 'max' => 21],
             [['email', 'avatar'], 'string', 'max' => 60],
-            [['about', 'password', 'resetToken', 'salt', 'validation_key', 'publicKey'], 'string', 'max' => 255],
+            [['about', 'password', 'resetToken', 'salt', 'publicKey'], 'string', 'max' => 255],
             [['lastLoginIp'], 'string', 'max' => 32],
-            [['activation_key'], 'string', 'max' => 128],
+            [['activation_key'], 'string', 'max' => 12],
+            [['validation_key'], 'string', 'max' => 64],
             [['visibility', 'status'], 'string', 'max' => 3],
             [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
         ];
     }
 
-    public function behaviors()
+    public function scenarios()
     {
-        return [
-            [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'createdAt',
-                'updatedAtAttribute' => 'updatedAt',
-                'value' => new Expression('NOW()'),
-            ],
-        ];
+        $scenarios = parent::scenarios();
+        $scenarios['register'] = ['userId', 'username', 'role', 'email', 'vendor', 'status'];
+        return $scenarios;
     }
 
     /**
@@ -103,7 +111,7 @@ class User extends \yii\db\ActiveRecord
             'about' => 'Sobre',
             'lastLogin' => 'Last Login',
             'lastLoginIp' => 'Last Login Ip',
-            'role' => 'Role',
+            'role' => 'Tipo',
             'password' => 'Senha',
             'passwordStrategy' => 'Password Strategy',
             'requiresNewPassword' => 'Requires New Password',
@@ -152,6 +160,13 @@ class User extends \yii\db\ActiveRecord
         return static::find()
             ->where(['like binary', 'username', $username])
             ->orWhere(['like binary', 'email', $username])
+            ->one();
+    }
+
+    public static function findByBuyerId($id)
+    {
+        return static::find()
+            ->where(['like binary', 'buyerId', $id])
             ->one();
     }
 
