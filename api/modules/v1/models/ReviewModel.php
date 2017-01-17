@@ -43,9 +43,9 @@ class ReviewModel extends Model
         /*if(!$this->offer->validate()) {
             $error = true;
         }*/
-        if(!$this->actionReference->validate()) {
+        /*if(!$this->actionReference->validate()) {
             $error = true;
-        }
+        }*/
         if(!$this->reviewFact->validate()) {
             $error = true;
         }

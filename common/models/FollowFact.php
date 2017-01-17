@@ -52,7 +52,7 @@ class FollowFact extends \yii\db\ActiveRecord
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios['register'] = ['followFactId', 'actionReferenceId', 'userId', 'status'];
+        $scenarios['register'] = ['followFactId', 'userId', 'status'];
         return $scenarios;
     }
 

@@ -40,9 +40,9 @@ class FavoriteModel extends Model
         /*if(!$this->offer->validate()) {
             $error = true;
         }*/
-        if(!$this->actionReference->validate()) {
+        /*if(!$this->actionReference->validate()) {
             $error = true;
-        }
+        }*/
         if(!$this->favoriteFact->validate()) {
             $error = true;
         }

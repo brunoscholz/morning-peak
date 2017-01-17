@@ -40,9 +40,9 @@ class FollowModel extends Model
         /*if(!$this->offer->validate()) {
             $error = true;
         }*/
-        if(!$this->actionReference->validate()) {
+        /*if(!$this->actionReference->validate()) {
             $error = true;
-        }
+        }*/
         if(!$this->followFact->validate()) {
             $error = true;
         }
@@ -117,6 +117,8 @@ class FollowModel extends Model
         $this->followFact = new FollowFact(['scenario' => 'register']);
         $this->actionReference = $params['FollowFact']['action'];
         unset($params['FollowFact']['action']);
+
+        var_dump($this->actionReference);
 
         $this->followFact->load($params);
         $this->followFact->followFactId = RestUtils::generateId();
