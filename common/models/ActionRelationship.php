@@ -9,9 +9,10 @@ use Yii;
  *
  * @property string $actionRelationshipId
  * @property integer $actionReferenceId
- * @property string $followId
- * @property string $commentId
- * @property string $reviewId
+ * @property string $followFactId
+ * @property string $favoriteFactId
+ * @property string $commentFactId
+ * @property string $reviewFactId
  * @property string $loyaltyId
  */
 class ActionRelationship extends \yii\db\ActiveRecord
@@ -40,13 +41,21 @@ class ActionRelationship extends \yii\db\ActiveRecord
         return [
             [['actionRelationshipId', 'actionReferenceId', 'loyaltyId'], 'required'],
             [['actionReferenceId'], 'integer'],
-            [['actionRelationshipId', 'followId', 'commentId', 'reviewId', 'loyaltyId'], 'string', 'max' => 21],
-            [['loyaltyId'], 'exist', 'skipOnError' => true, 'targetClass' => Loyalty::className(), 'targetAttribute' => ['loyaltyId' => 'loyaltyId']],
+            [['actionRelationshipId', 'favoriteFactId', 'followFactId', 'commentFactId', 'reviewFactId', 'loyaltyId'], 'string', 'max' => 21],
             [['actionReferenceId'], 'exist', 'skipOnError' => true, 'targetClass' => Actionreference::className(), 'targetAttribute' => ['actionReferenceId' => 'actionReferenceId']],
-            [['followId'], 'exist', 'skipOnError' => true, 'targetClass' => Followfact::className(), 'targetAttribute' => ['followId' => 'followFactId']],
-            [['commentId'], 'exist', 'skipOnError' => true, 'targetClass' => Commentfact::className(), 'targetAttribute' => ['commentId' => 'commentFactId']],
-            [['reviewId'], 'exist', 'skipOnError' => true, 'targetClass' => Reviewfact::className(), 'targetAttribute' => ['reviewId' => 'reviewFactId']],
+            [['loyaltyId'], 'exist', 'skipOnError' => true, 'targetClass' => Loyalty::className(), 'targetAttribute' => ['loyaltyId' => 'loyaltyId']],
+            [['followFactId'], 'exist', 'skipOnError' => true, 'targetClass' => Followfact::className(), 'targetAttribute' => ['followFactId' => 'followFactId']],
+            [['commentFactId'], 'exist', 'skipOnError' => true, 'targetClass' => Commentfact::className(), 'targetAttribute' => ['commentFactId' => 'commentFactId']],
+            [['reviewFactId'], 'exist', 'skipOnError' => true, 'targetClass' => Reviewfact::className(), 'targetAttribute' => ['reviewFactId' => 'reviewFactId']],
+            [['favoriteFactId'], 'exist', 'skipOnError' => true, 'targetClass' => Favoritefact::className(), 'targetAttribute' => ['favoriteFactId' => 'favoriteFactId']],
         ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['register'] = ['actionRelationshipId'];
+        return $scenarios;
     }
 
     /**
@@ -57,10 +66,37 @@ class ActionRelationship extends \yii\db\ActiveRecord
         return [
             'actionRelationshipId' => 'Action Relationship ID',
             'actionReferenceId' => 'Action Reference ID',
-            'followId' => 'Follow ID',
-            'commentId' => 'Comment ID',
-            'reviewId' => 'Review ID',
+            'followFactId' => 'Follow ID',
+            'commentFactId' => 'Comment ID',
+            'reviewFactId' => 'Review ID',
+            'favoriteFactId' => 'Favorite ID',
             'loyaltyId' => 'Loyalty ID',
         ];
+    }
+
+    public function getLoyalty()
+    {
+        return $this->hasOne(Loyalty::className(), ['loyaltyId' => 'loyaltyId'])
+            ->with(['buyer', 'transaction']);
+    }
+
+    public function getReviewFact()
+    {
+        return $this->hasOne(Reviewfact::className(), ['reviewFactId' => 'reviewFactId']);
+    }
+
+    public function getFollowFact()
+    {
+        return $this->hasOne(Followfact::className(), ['followFactId' => 'followFactId']);
+    }
+
+    public function getCommentFact()
+    {
+        return $this->hasOne(Commentfact::className(), ['commentFactId' => 'commentFactId']);
+    }
+
+    public function getFavoriteFact()
+    {
+        return $this->hasOne(Favoritefact::className(), ['favoriteFactId' => 'favoriteFactId']);
     }
 }

@@ -3,6 +3,7 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
+use api\modules\v1\models\FavoriteModel;
 use common\models\FavoriteFact;
 use common\models\ActionReference;
 use api\components\RestUtils;
@@ -52,25 +53,16 @@ class FavoriteFactController extends \yii\rest\ActiveController
         $params = \Yii::$app->request->post();
         $models = array('status'=>200,'count'=>0);
 
-        $act = ActionReference::findByType($params['action']);
+        $fav = new FavoriteModel();
+        $fav->loadAll($params);
 
-        $model = new FavoriteFact();
-        $model->favoriteFactId = RestUtils::generateId();
-        $model->actionReferenceId = $act->actionReferenceId;
-        $model->buyerId = isset($params['buyerId']) ? $params['buyerId'] : null;
-        $model->offerId = isset($params['offerId']) ? $params['offerId'] : null;
-        $model->status = 'ACT';
-
-        // create loyalty and transaction
-
-        if(!$model->save())
-        {
+        if($fav->loadAll($params) && $fav->save()) {
+            //$fav->save();
+            $models['data'] = RestUtils::loadQueryIntoVar($fav->favoriteFact);
+            $models['credit'] = $fav->transaction->amount;
+        } else {
             $models['status'] = 403;
-            $models['error'] = $model->getFirstError();
-        }
-        else
-        {
-            $models['data'] = 'you have another item in your list';
+            $models['error'] = $fav->errorList();
         }
 
         //$models['count'] = count($modelsArray);

@@ -4,6 +4,7 @@ namespace api\modules\v1\controllers;
 
 use yii\db\Query;
 use common\models\Offer;
+use api\modules\v1\models\OfferModel;
 use api\components\RestUtils;
 use yii\helpers\ArrayHelper;
 
@@ -16,7 +17,7 @@ use yii\helpers\ArrayHelper;
  */
 class OfferController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'common\models\Offer';
+    public $modelClass = 'api\modules\v1\models\OfferModel';
 
     public function actions()
     {
@@ -27,13 +28,8 @@ class OfferController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        $data = RestUtils::getQuery(\Yii::$app->request->get(), Offer::find());
-
-        $data->joinWith([
-            'item'
-        ]);
-
-        $data->select([
+        $get = \Yii::$app->request->get();
+        /*$data->select([
             'tbl_offer.*',
             'tbl_item.itemId as it_itemId',
             'tbl_item.sku',
@@ -43,18 +39,17 @@ class OfferController extends \yii\rest\ActiveController
             'tbl_item.keywords as it_keywords',
             'tbl_item.photoSrc as it_photoSrc',
             'tbl_item.status as it_status',
-        ]);
+        ]);*/
 
-        //print_r($data->createCommand()->getRawSql());
+        $searchModel = new OfferModel();
+        $params = RestUtils::getQueryParams($get);
+        $data = $searchModel->search($params);
 
         $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 
         foreach ($data->each() as $model)
         {
-            //var_dump($model);
-            //var_dump($model->reviews);
-            //var_dump(ArrayHelper::toArray($model, $this->getResponseScope(), true));
             $temp = RestUtils::loadQueryIntoVar($model);
             $revs = RestUtils::loadQueryIntoVar($model->reviews);
 
@@ -82,15 +77,6 @@ class OfferController extends \yii\rest\ActiveController
 
             $temp['reviews'] = $newReviews;
             $temp['avgRating'] = ['qtd' => $i, 'avg' => ($i > 0) ? $sum / $i : 0];
-
-            /*var_dump($temp);
-
-            die();
-
-            $of = $model->attributes;
-            unset($of['itemId'], $of['sellerId'], $of['policyId'], $of['shippingId'], $of['pictureId']);
-
-            $of = array_merge($of, RestUtils::loadQueryIntoVar($model, $this->getResponseScope()));*/
             $modelsArray[] = $temp;
         }
 

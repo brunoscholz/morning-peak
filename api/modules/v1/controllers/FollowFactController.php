@@ -3,6 +3,7 @@
 namespace api\modules\v1\controllers;
 
 use yii\db\Query;
+use api\modules\v1\models\FollowModel;
 use common\models\FollowFact;
 use common\models\ActionReference;
 use api\components\RestUtils;
@@ -15,7 +16,7 @@ use api\components\RestUtils;
  */
 class FollowFactController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'common\models\FollowFact';
+    public $modelClass = 'api\modules\v1\models\FollowModel';
 
     public function actions()
     {
@@ -47,29 +48,17 @@ class FollowFactController extends \yii\rest\ActiveController
         $params = \Yii::$app->request->post();
         $models = array('status'=>200,'count'=>0);
 
-        $act = ActionReference::findByType($params['action']);
+        $follow = new FollowModel();
+        $follow->loadAll($params);
 
-        $model = new FollowFact();
-        $model->followFactId = RestUtils::generateId();
-        $model->actionReferenceId = $act->actionReferenceId;
-        $model->userId = $params['userId'];
-        $model->buyerId = isset($params['buyerId']) ? $params['buyerId'] : null;
-        $model->sellerId = isset($params['sellerId']) ? $params['sellerId'] : null;
-        $model->status = 'ACT';
-
-        // create loyalty and transaction
-
-        if(!$model->save())
-        {
+        if($follow->loadAll($params) && $follow->save()) {
+            //$follow->save();
+            $models['data'] = RestUtils::loadQueryIntoVar($follow->followFact);
+            $models['credit'] = $follow->transaction->amount;
+        } else {
             $models['status'] = 403;
-            $models['error'] = $model->getFirstError();
+            $models['error'] = $follow->errorList();
         }
-        else
-        {
-            $models['data'] = 'you are now following someone';
-        }
-
-        //$models['count'] = count($modelsArray);
 
         echo RestUtils::sendResult($models['status'], $models);
     }

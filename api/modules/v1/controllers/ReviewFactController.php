@@ -4,7 +4,7 @@ namespace api\modules\v1\controllers;
 
 use yii\db\Query;
 
-use common\models\ReviewModel;
+use api\modules\v1\models\ReviewModel;
 use common\models\ReviewFact;
 use common\models\Review;
 
@@ -19,7 +19,7 @@ use yii\filters\VerbFilter;
  */
 class ReviewFactController extends \yii\rest\ActiveController
 {
-    public $modelClass = 'common\models\ReviewFact';
+    public $modelClass = 'api\modules\v1\models\ReviewModel';
 
     public function actions()
     {
@@ -69,13 +69,10 @@ class ReviewFactController extends \yii\rest\ActiveController
         $params = \Yii::$app->request->post();
         $models = array('status'=>200,'count'=>0);
 
-        var_dump($params);
-        die();
-
         $review = new ReviewModel();
         if($review->loadAll($params) && $review->save()) {
             //$review->save();
-            $models['data'] = RestUtils::loadQueryIntoVar($review);
+            $models['data'] = RestUtils::loadQueryIntoVar($review->reviewFact);
             $models['credit'] = $review->transaction->amount;
         } else {
             $models['error'] = $review->errorList();

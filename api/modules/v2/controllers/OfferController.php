@@ -3,9 +3,10 @@
 namespace api\modules\v2\controllers;
 
 use yii\db\Query;
-use api\modules\v2\models\Offer;
-use common\models\Offer as OfferModel;
+use api\modules\v2\models\OfferModel;
+use api\components\Controller;
 use api\components\RestUtils;
+use api\components\Serializer;
 
 /**
  * OfferController API (extends \yii\rest\ActiveController)
@@ -14,9 +15,10 @@ use api\components\RestUtils;
  * @return [status,data,count,[error]]
  * @author Bruno Scholz <brunoscholz@yahoo.de>
  */
-class OfferController extends \yii\rest\ActiveController
+class OfferController extends Controller
 {
-    public $modelClass = 'api\modules\v2\models\Offer';
+    public $modelClass = 'common\models\Offer';
+    public $searchFormClass = 'api\modules\v2\models\OfferModel';
 
     public function actions()
     {
@@ -27,20 +29,29 @@ class OfferController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        $params = \Yii::$app->request->get();
-
-        $data = RestUtils::getQueryParams($params, $this->modelClass);
-
         $models = array('status'=>200,'count'=>0);
-        $modelsArray = array();
+        $searchForm = new $this->searchFormClass();
+        $get = \Yii::$app->request->get();
 
-        foreach ($data->each() as $model)
+        // $data = RestUtils::getQuery($get, \common\models\Offer::find());
+        // var_dump($data->createCommand()->rawsql);
+
+        $query = $searchForm->search($get);
+
+        $queryCount = clone $query;
+        //$countAll = (int) $queryCount->limit(-1)->offset(-1)->orderBy([])->count('*');
+
+        //$data = $query->all();
+        //$countCurrent = count($models);
+
+        $modelsArray = array();
+        foreach ($query->each() as $model)
         {
             //var_dump($model);
             //var_dump($model->reviews);
             //var_dump(ArrayHelper::toArray($model, $this->getResponseScope(), true));
-            $temp = RestUtils::loadQueryIntoVar($model);
-            $revs = RestUtils::loadQueryIntoVar($model->reviews);
+            $temp = (new Serializer())->serializeModels($model);
+            $revs = (new Serializer())->serializeModels($model->reviews);
 
             $i = 0;
             $sum = 0;
@@ -66,14 +77,7 @@ class OfferController extends \yii\rest\ActiveController
 
             $temp['reviews'] = $newReviews;
             $temp['avgRating'] = ['qtd' => $i, 'avg' => ($i > 0) ? $sum / $i : 0];
-            /*var_dump($temp);
 
-            die();
-
-            $of = $model->attributes;
-            unset($of['itemId'], $of['sellerId'], $of['policyId'], $of['shippingId'], $of['pictureId']);
-
-            $of = array_merge($of, RestUtils::loadQueryIntoVar($model, $this->getResponseScope()));*/
             $modelsArray[] = $temp;
         }
 
@@ -81,17 +85,5 @@ class OfferController extends \yii\rest\ActiveController
         $models['count'] = count($modelsArray);
 
         echo RestUtils::sendResult($models['status'], $models);
-    }
-
-    public function behaviors() {
-        return
-        [
-            [
-                'class' => \yii\filters\ContentNegotiator::className(),
-                'formats' => [
-                    'application/json' => \yii\web\Response::FORMAT_JSON,
-                ],
-            ],
-        ];
     }
 }

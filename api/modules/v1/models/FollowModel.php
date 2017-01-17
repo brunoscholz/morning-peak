@@ -9,13 +9,14 @@ use common\models\Seller;
 use common\models\ActionReference;
 use common\models\FollowFact;
 
+use common\models\AssetToken;
 use common\models\Loyalty;
 use common\models\Transaction;
-use common\models\Relationship;
+use common\models\ActionRelationship;
 use api\components\RestUtils;
 use yii\base\Model;
 
-class ReviewModel extends Model
+class FollowModel extends Model
 {
     //private $_user;
     private $_buyer;
@@ -24,12 +25,12 @@ class ReviewModel extends Model
     private $_followFact;
     private $_transaction;
     private $_loyalty;
-    private $_relationship;
+    private $_actionRelationship;
 
     public function rules()
     {
         return [
-            [['ActionReference', 'FollowFact', 'Transaction', 'Loyalty', 'Relationship'], 'required'], //'Offer', 'Buyer', 'Seller',
+            [['ActionReference', 'FollowFact', 'Transaction', 'Loyalty', 'ActionRelationship'], 'required'], //'Offer', 'Buyer', 'Seller',
         ];
     }
 
@@ -58,7 +59,7 @@ class ReviewModel extends Model
         if(!$this->loyalty->validate()) {
             $error = true;
         }
-        if(!$this->relationship->validate()) {
+        if(!$this->actionRelationship->validate()) {
             $error = true;
         }
 
@@ -75,30 +76,28 @@ class ReviewModel extends Model
         }
 
         try {
-
             $tx = Yii::$app->db->beginTransaction();
 
-            //$this->followFact->offerId = $this->offer->offerId;
             $this->followFact->save();
 
             $this->transaction->recipientId = User::findByBuyerId($this->followFact->userId)->userId;
             $this->transaction->tokenId = AssetToken::findByCode('COIN')->tokenId;
             $this->transaction->senderId = 'zZN6prD6rzxEhg8sDQz1j'; // robot for token creation
             $this->transaction->type = $this->followFact->actionReferenceId;
-            $this->transaction->amount = Transaction::REVIEW_AMOUNT;
+            $this->transaction->amount = Transaction::FOLLOW_AMOUNT;
             $this->transaction->signature = User::findByBuyerId($this->followFact->userId)->validation_key;
             $this->transaction->save();
 
             $this->loyalty->userId = User::findByBuyerId($this->followFact->userId)->userId;
-            $this->loyalty->actionId = ActionReference::findByType('follow')->actionReferenceId;
+            $this->loyalty->actionReferenceId = ActionReference::findByType('follow')->actionReferenceId;
             $this->loyalty->transactionId = $this->transaction->transactionId;
             $this->loyalty->points = $this->transaction->amount;
             $this->loyalty->save();
 
-            $this->relationship->sellerId = $this->followFact->sellerId;
-            $this->relationship->buyerId = $this->followFact->buyerId;
-            $this->relationship->loyaltyId = $this->loyalty->loyaltyId;
-            $this->relationship->save();
+            $this->actionRelationship->actionReferenceId = $this->followFact->actionReferenceId;
+            $this->actionRelationship->followFactId = $this->followFact->followFactId;
+            $this->actionRelationship->loyaltyId = $this->loyalty->loyaltyId;
+            $this->actionRelationship->save();
 
             $tx->commit();
             return true;
@@ -116,19 +115,20 @@ class ReviewModel extends Model
 
         // update/edit?
         $this->followFact = new FollowFact(['scenario' => 'register']);
-        $this->actionReference = $params['followFact']['action'];
+        $this->actionReference = $params['FollowFact']['action'];
+        unset($params['FollowFact']['action']);
 
         $this->followFact->load($params);
-
+        $this->followFact->followFactId = RestUtils::generateId();
+        $this->followFact->sellerId = (empty($params['FollowFact']['sellerId'] || is_null($params['FollowFact']['sellerId'])) ? null : $params['FollowFact']['sellerId']);
+        $this->followFact->buyerId = (empty($params['FollowFact']['buyerId'] || is_null($params['FollowFact']['buyerId'])) ? null : $params['FollowFact']['buyerId']);
         $this->followFact->actionReferenceId = $this->actionReference->actionReferenceId;
+        $this->followFact->date = date('Y-m-d\Th:i:s');
         $this->followFact->status = 'ACT';
-
-        $this->followFact->sellerId = (empty($this->followFact->sellerId) ? null : $this->followFact->sellerId);
-        $this->followFact->buyerId = (empty($this->followFact->buyerId) ? null : $this->followFact->buyerId);
 
         $this->transaction = $this->createTransaction();
         $this->loyalty = $this->createLoyalty();
-        $this->relationship = $this->createRelation();
+        $this->actionRelationship = $this->createRelation();
 
         /*if(!empty($params['offerId']) && !is_null($params['offerId']))
             $this->offer = Offer::findById($params['offerId']);
@@ -221,15 +221,15 @@ class ReviewModel extends Model
         }
     }
 
-    public function getRelationship()
+    public function getActionRelationship()
     {
-        return $this->_relationship;
+        return $this->_actionRelationship;
     }
 
-    public function setRelationship($rel)
+    public function setActionRelationship($rel)
     {
-        if($rel instanceof Relationship) {
-            $this->_relationship = $rel;
+        if($rel instanceof ActionRelationship) {
+            $this->_actionRelationship = $rel;
         } else if (is_array($rel)) {
             
         }
@@ -252,7 +252,7 @@ class ReviewModel extends Model
             'FollowFact' => $this->followFact,
             'Transaction' => $this->transaction,
             'Loyalty' => $this->loyalty,
-            'Relationship' => $this->relationship,
+            'ActionRelationship' => $this->actionRelationship,
         ];
     }
 
@@ -285,9 +285,9 @@ class ReviewModel extends Model
 
     protected function createRelation()
     {
-        $rel = new Relationship(['scenario' => 'register']);
-        $rel->relationshipId = RestUtils::generateId();
-        $rel->dateId = date('Y-m-d\TH:i:s');
+        $rel = new ActionRelationship(['scenario' => 'register']);
+        $rel->actionRelationshipId = RestUtils::generateId();
+        //$rel->dateId = date('Y-m-d\TH:i:s');
 
         return $rel;
     }

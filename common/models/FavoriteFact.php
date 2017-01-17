@@ -47,6 +47,13 @@ class FavoriteFact extends \yii\db\ActiveRecord
         ];
     }
 
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['register'] = ['favoriteFactId', 'actionReferenceId', 'buyerId', 'offerId', 'status'];
+        return $scenarios;
+    }
+
     /**
      * @inheritdoc
      */

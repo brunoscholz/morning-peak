@@ -193,7 +193,7 @@ class RestUtils
         return $query;
     }
 
-    public static function getQueryParams($params, $class)
+    public static function getQueryParams($params)
     {
         $filter=array();
         $sort="";
@@ -246,28 +246,31 @@ class RestUtils
             }
         }
 
-        $query = null;
-        $searchModel = new $class();
+        // $name = preg_split('#\\\\#', $class::classname());
+        // $className = end($name);
+        // $searchModel = new $class();
+
+        $query = [
+            'whereEnabled' => true,
+            'enableMultiSort' => true,
+            'sort' => $sort,
+            'offset' => $offset,
+            'select' => $select,
+            'limit' => $limit,
+            'ftFilters' => $ftFilters,
+        ];
+
+
         // q: Filter elements
         if(isset($params['q']))
         {
-            $name = preg_split('#\\\\#', $class::classname());
-            $filter = [end($name) => (array)json_decode($params['q'], true)];
-            $query = $searchModel->search($filter);
+            $query['where'] = (array)json_decode($params['q'], true);
+            //$query = $searchModel->search($filter);
         }
         else
-            $query = $searchModel->search([]);
+            $query['whereEnabled'] = false;
 
-        $query->offset($offset)->select($select);
-        if($sort != '') $query->orderBy($sort);
-        if($limit > 0) $query->limit($limit);
-
-        foreach ($ftFilters as $key => $value)
-        {
-            $query->andWhere($key . " >= '". $v['from']."' ");
-            $query->andWhere($key . " <= '". $v['to']."'");
-        }
-
+        //$query = $searchModel->search(['sort' => $sort, 'offset' => $offset, 'select' => $select, 'limit' => $limit, 'ftFilters' => $ftFilters]);
         return $query;
     }
 

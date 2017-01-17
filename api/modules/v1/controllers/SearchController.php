@@ -47,10 +47,10 @@ class SearchController extends \yii\rest\ActiveController
         ]);
 
         $offers = array();
-        foreach ($offerModels->each() as $model)
+        foreach ($offerModels->each() as $offer)
         {
-            $temp = RestUtils::loadQueryIntoVar($model);
-            $revs = RestUtils::loadQueryIntoVar($model->reviews);
+            $temp = RestUtils::loadQueryIntoVar($offer);
+            $revs = RestUtils::loadQueryIntoVar($offer->reviews);
 
             $i = 0;
             $sum = 0;
@@ -78,25 +78,25 @@ class SearchController extends \yii\rest\ActiveController
 
         $sellerModels = RestUtils::getSearch($term, ['name', 'email'], Seller::find());
         $sellers = array();
-        foreach ($sellerModels->each() as $model)
+        foreach ($sellerModels->each() as $seller)
         {
-            $temp = RestUtils::loadQueryIntoVar($model);
+            $temp = RestUtils::loadQueryIntoVar($seller);
             //$temp['reviews'] = RestUtils::loadQueryIntoVar($model->reviews);
             $sellers[] = $temp;
         }
 
         $buyerModels = RestUtils::getSearch($term, ['name'], Buyer::find());
         $buyers = array();
-        foreach ($buyerModels->each() as $model)
+        foreach ($buyerModels->each() as $buyer)
         {
-            $temp = RestUtils::loadQueryIntoVar($model);
-            $flwr = RestUtils::loadQueryIntoVar($user->buyer->followers);
+            $temp = RestUtils::loadQueryIntoVar($buyer);
+            $flwr = RestUtils::loadQueryIntoVar($buyer->followers);
             $temp['buyer']['followers'] = $flwr;
 
-            $flwg = RestUtils::loadQueryIntoVar($user->buyer->following);
+            $flwg = RestUtils::loadQueryIntoVar($buyer->following);
             $temp['buyer']['following'] = $flwg;
 
-            $favs = RestUtils::loadQueryIntoVar($user->buyer->favorites);
+            $favs = RestUtils::loadQueryIntoVar($buyer->favorites);
             $temp['buyer']['favorites'] = $favs;
 
             $buyers[] = $temp;

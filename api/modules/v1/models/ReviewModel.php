@@ -10,9 +10,11 @@ use common\models\Seller;
 use common\models\ActionReference;
 use common\models\ReviewFact;
 use common\models\Review;
+
+use common\models\AssetToken;
 use common\models\Loyalty;
 use common\models\Transaction;
-use common\models\Relationship;
+use common\models\ActionRelationship;
 use api\components\RestUtils;
 use yii\base\Model;
 
@@ -26,12 +28,12 @@ class ReviewModel extends Model
     private $_review;
     private $_transaction;
     private $_loyalty;
-    private $_relationship;
+    private $_actionRelationship;
 
     public function rules()
     {
         return [
-            [['ActionReference', 'ReviewFact', 'Review', 'Transaction', 'Loyalty', 'Relationship'], 'required'], //'Offer', 'Buyer', 'Seller',
+            [['ActionReference', 'ReviewFact', 'Review', 'Transaction', 'Loyalty', 'ActionRelationship'], 'required'], //'Offer', 'Buyer', 'Seller',
         ];
     }
 
@@ -63,7 +65,7 @@ class ReviewModel extends Model
         if(!$this->loyalty->validate()) {
             $error = true;
         }
-        if(!$this->relationship->validate()) {
+        if(!$this->actionRelationship->validate()) {
             $error = true;
         }
 
@@ -99,16 +101,15 @@ class ReviewModel extends Model
             $this->transaction->save();
 
             $this->loyalty->userId = User::findByBuyerId($this->reviewFact->buyerId)->userId;
-            $this->loyalty->actionId = ActionReference::findByType('addReview')->actionReferenceId;
+            $this->loyalty->actionReferenceId = ActionReference::findByType('addReview')->actionReferenceId;
             $this->loyalty->transactionId = $this->transaction->transactionId;
             $this->loyalty->points = $this->transaction->amount;
             $this->loyalty->save();
 
-            $this->relationship->sellerId = 'vW8wrgSIKukU78XxxhgGs';
-            $this->relationship->offerId = $this->reviewFact->offerId;
-            $this->relationship->buyerId = $this->reviewFact->buyerId;
-            $this->relationship->loyaltyId = $this->loyalty->loyaltyId;
-            $this->relationship->save();
+            $this->actionRelationship->actionReferenceId = $this->reviewFact->actionReferenceId;
+            $this->actionRelationship->reviewFactId = $this->reviewFact->reviewFactId;
+            $this->actionRelationship->loyaltyId = $this->loyalty->loyaltyId;
+            $this->actionRelationship->save();
 
             $tx->commit();
             return true;
@@ -136,13 +137,13 @@ class ReviewModel extends Model
 
         $this->reviewFact->reviewFactId = RestUtils::generateId();
         $this->reviewFact->actionReferenceId = $this->actionReference->actionReferenceId;
+        $this->reviewFact->sellerId = (empty($this->reviewFact->sellerId) ? null : $this->reviewFact->sellerId);
         $this->reviewFact->date = date('Y-m-d\Th:i:s');
         $this->reviewFact->status = 'ACT';
-        $this->reviewFact->sellerId = (empty($this->reviewFact->sellerId) ? null : $this->reviewFact->sellerId);
 
         $this->transaction = $this->createTransaction();
         $this->loyalty = $this->createLoyalty();
-        $this->relationship = $this->createRelation();
+        $this->actionRelationship = $this->createRelation();
 
         //$this->offer = Offer::findById($this->reviewFact->offerId);
 
@@ -261,15 +262,15 @@ class ReviewModel extends Model
         }
     }
 
-    public function getRelationship()
+    public function getActionRelationship()
     {
-        return $this->_relationship;
+        return $this->_actionRelationship;
     }
 
-    public function setRelationship($rel)
+    public function setActionRelationship($rel)
     {
-        if($rel instanceof Relationship) {
-            $this->_relationship = $rel;
+        if($rel instanceof ActionRelationship) {
+            $this->_actionRelationship = $rel;
         } else if (is_array($rel)) {
             
         }
@@ -293,7 +294,7 @@ class ReviewModel extends Model
             'Review' => $this->review,
             'Transaction' => $this->transaction,
             'Loyalty' => $this->loyalty,
-            'Relationship' => $this->relationship,
+            'ActioRelationship' => $this->actionRelationship,
         ];
     }
 
@@ -326,9 +327,9 @@ class ReviewModel extends Model
 
     protected function createRelation()
     {
-        $rel = new Relationship(['scenario' => 'register']);
-        $rel->relationshipId = RestUtils::generateId();
-        $rel->dateId = date('Y-m-d\TH:i:s');
+        $rel = new ActionRelationship(['scenario' => 'register']);
+        $rel->actionRelationshipId = RestUtils::generateId();
+        //$rel->dateId = date('Y-m-d\TH:i:s');
 
         return $rel;
     }

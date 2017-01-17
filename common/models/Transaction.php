@@ -30,6 +30,8 @@ class Transaction extends \yii\db\ActiveRecord
 
     // transaction's values (x2 when seller gives gifts)
     const VIEW_AMOUNT = 10;
+    const FAVORITE_AMOUNT = 10;
+    const FOLLOW_AMOUNT = 10;
     const COMMENT_AMOUNT = 25;
     const REVIEW_AMOUNT = 25;
     const SHARE_AMOUNT = 50;

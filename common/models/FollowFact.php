@@ -12,6 +12,7 @@ use Yii;
  * @property string $userId
  * @property string $buyerId
  * @property string $sellerId
+ * @property string $status
  */
 class FollowFact extends \yii\db\ActiveRecord
 {
@@ -73,7 +74,7 @@ class FollowFact extends \yii\db\ActiveRecord
     public static function findByType($typ)
     {
         return static::find()
-            ->where(['like', 'action.actionType', $typ])
+            ->where(['like', 'actionreference.actionType', $typ])
             ->one();
     }
 

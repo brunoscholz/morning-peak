@@ -4,16 +4,16 @@ namespace api\modules\v2\models;
 
 use Yii;
 use yii\base\Model;
-use common\models\Offer as OfferModel;
+use common\models\Offer;
+use api\components\RestUtils;
+
 
 /**
- * Offer represents the model behind the api requests about common\models\Offer.
+ * OfferSearch represents the model behind the search form about common\models\Offer.
  */
-class Offer extends OfferModel
+class OfferModel extends Offer
 {
     public $item;
-    public $seller;
-    public $categoryId;
 
     /**
      * @inheritdoc
@@ -21,7 +21,7 @@ class Offer extends OfferModel
     public function rules()
     {
         return [
-            [['categoryId', 'itemId', 'item', 'sellerId', 'seller', 'description', 'keywords', 'itemCondition', 'status', 'pricePerUnit', 'discountPerUnit', 'shippingId', 'policyId'], 'safe'],
+            [['itemId', 'item', 'sellerId', 'description', 'itemCondition', 'status', 'pricePerUnit', 'discountPerUnit'], 'safe'],
         ];
     }
 
@@ -40,28 +40,47 @@ class Offer extends OfferModel
      */
     public function search($params)
     {
-        //$filters = ['Category' => (array)json_decode($params['q'], true)];
-        $query = OfferModel::find()->orderBy('tbl_offer.createdAt ASC, tbl_offer.pricePerUnit ASC');
+        $query = Offer::find();
         $query->joinWith([
-            'item',
+            'item'
         ]);
 
         if (!($this->load($params) && $this->validate())) {
             return $query;
         }
 
-        $query->andFilterWhere(['like', 'tbl_item.title', $this->item]);
-        $query->andFilterWhere(['like', 'tbl_item.itemId', $this->itemId]);
-        $query->andFilterWhere(['like', 'tbl_item.categoryId', $this->categoryId]);
+        $query->offset($params['offset']);
+        $query->select($params['select']);
+        if($params['sort'] == '') $params['sort'] = 'createdAt ASC, pricePerUnit ASC';
+            $query->orderBy($params['sort']);
+        if($params['limit'] > 0) $query->limit($params['limit']);
+
+        foreach ($params['OfferModel'] as $field => $info) {
+            if(strpos($field, "."))
+                $field = "tbl_" . $field;
+
+            if (isset($info['test']))
+                $query->andFilterWhere([$info['test'], $field, $info['value']]);
+            else
+                $query->andFilterWhere(['like', $field, $info]);
+        }
+
+        foreach ($params['ftFilters'] as $key => $value)
+        {
+            $query->andWhere($key . " >= '". $v['from']."' ");
+            $query->andWhere($key . " <= '". $v['to']."'");
+        }
+
+        /*$query->andFilterWhere(['like', 'tbl_item.title', $this->itemId]);
         $query->andFilterWhere(['like binary', 'sellerId', $this->sellerId]);
+        $query->andFilterWhere(['like', 'tbl_item.categoryId', $this->item]);
 
         if($this->pricePerUnit == 201)
             $query->andFilterWhere(['>', 'pricePerUnit', 200]);
         else
             $query->andFilterWhere(['<', 'pricePerUnit', $this->pricePerUnit]);
 
-        $query->andFilterWhere(['>', 'discountPerUnit', $this->discountPerUnit]);
-
+        $query->andFilterWhere(['>', 'discountPerUnit', $this->discountPerUnit]);*/
         return $query;
     }
 }
