@@ -112,7 +112,9 @@ class FollowModel extends Model
     {
         if(is_null($params) || empty($params))
             return false;
-
+        
+        //Somikchan naked
+        
         // update/edit?
         $this->followFact = new FollowFact(['scenario' => 'register']);
         $this->actionReference = $params['FollowFact']['action'];

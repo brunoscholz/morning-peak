@@ -245,7 +245,8 @@ class SiteController extends Controller
             throw new BadRequestHttpException($e->getMessage());
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
+        //$model->load(Yii::$app->request->post()) && $model->validate() && 
+        if ($model->resetPassword()) {
             Yii::$app->session->setFlash('success', 'New password was saved.');
 
             return $this->goHome();
@@ -254,6 +255,13 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    //http://ondetem-gn.com.br/site/story/TDh7O1NJPqfCgoECYnEau
+    public function actionStory($id)
+    {
+        $offer = \common\models\Offer::findById($id);
+        return $this->render('_publish-story', ['model' => $offer]);
     }
 
     public function actionPolicyPrint()

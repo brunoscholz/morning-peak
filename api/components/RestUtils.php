@@ -6,7 +6,7 @@ use yii\db\Query;
 
 class RestUtils
 {
-	public $codes = Array(
+    public $codes = Array(
         200 => 'OK',
         400 => 'Bad Request',
         401 => 'Unauthorized',
@@ -17,7 +17,7 @@ class RestUtils
         501 => 'Not Implemented',
     );
 
-	/**
+    /**
      * set of functions to get attributes from objects and return an array
      * to be converted into a JSON response
      */
@@ -107,7 +107,7 @@ class RestUtils
      */
     public static function getQuery($params, $query)
     {
-    	$filter=array();
+        $filter=array();
         $sort="";
         $page=1;
         $limit=0;
@@ -181,13 +181,13 @@ class RestUtils
         // item.categoryId
 
         foreach ($filter as $field => $info) {
-        	if(strpos($field, "."))
-        		$field = "tbl_" . $field;
+            if(strpos($field, "."))
+                $field = "tbl_" . $field;
 
-        	if (isset($info['test']))
-        		$query->andFilterWhere([$info['test'], $field, $info['value']]);
-        	else
-        		$query->andFilterWhere(['like', $field, $info]);
+            if (isset($info['test']))
+                $query->andFilterWhere([$info['test'], $field, $info['value']]);
+            else
+                $query->andFilterWhere(['like', $field, $info]);
         }
 
         return $query;
@@ -306,7 +306,7 @@ class RestUtils
      */
     public static function setHeader($code)
     {
-    	$status = isset($codes[$code]) ? $codes[$code] : '';
+        $status = isset($codes[$code]) ? $codes[$code] : '';
         $status_header = 'HTTP/1.1 ' . $code . ' ' . $status;
         $content_type="application/json; charset=utf-8";
 
@@ -431,6 +431,29 @@ class RestUtils
         }
         file_put_contents($path_with_end_slash . $output_file_with_extentnion, $data);
         return $output_file_with_extentnion;
+    }
+
+    public static function arrayCleaner($input) {
+      foreach ($input as &$value) { 
+        if (is_array($value)) { 
+          $value = self::arrayCleaner($value); 
+        }
+      }
+
+      return array_filter($input, function($item){
+        return !is_null($item) && !empty($item);
+      }); 
+    }
+
+    public static function hash_equals($str1, $str2) {
+        if(strlen($str1) != strlen($str2)) {
+            return false;
+        } else {
+            $res = $str1 ^ $str2;
+            $ret = 0;
+            for($i = strlen($res) - 1; $i >= 0; $i--) $ret |= ord($res[$i]);
+            return !$ret;
+        }
     }
 }
 

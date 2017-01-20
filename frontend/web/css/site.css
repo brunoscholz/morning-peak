@@ -122,3 +122,76 @@ a.desc:after {
 section.terms .section p {
     text-align: justify;
 }
+
+.offerview-section {
+    position: relative;
+    padding: 120px 0;
+    overflow: hidden;
+}
+
+.offerview-section .support-block {
+  position: relative;
+  background: #f0f0f0;
+  margin: 50px 0 0; 
+  padding: 50px 30px 30px;
+  text-align: center;
+}
+
+.offerview-section .support-block.active {
+  background: #34b483;
+}
+
+.offerview-section .support-block:hover h3,
+.offerview-section .support-block:hover p {
+    color: #222222;
+}
+
+.offerview-section .support-block.active h3,
+.offerview-section .support-block.active p,
+.offerview-section .support-block.active li {
+  color: #fff;
+}
+
+.offerview-section .support-block img {
+    border-radius: 7px;
+}
+
+.offerview-section .support-block.active .btn {
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+/*.offerview-section .support-block:hover .btn:hover {
+  background: #fff;
+  color: #ff7f66;
+  z-index: 1;
+}*/
+
+.offerview-section .support-block.active .btn::after {
+    background: #fff;
+}
+
+.offerview-section .price {
+  font-family: 'Dosis', sans-serif;
+  color: #fafafa;
+  font-size: 28px; 
+}
+.offerview-section .month {
+  font-family: 'Dosis', sans-serif;
+  color: #dadada;
+}
+
+.alt-navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+    border-radius: 0;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    display: block;
+}
+
+.large-logo img {
+    height:60px;
+}

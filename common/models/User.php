@@ -67,7 +67,7 @@ class User extends \yii\db\ActiveRecord
     public function fields()
     {
         $fields = parent::fields();
-        unset($fields['password'], $fields['passwordStrategy'], $fields['resetToken'], $fields['salt'], $fields['activation_key'], $fields['validation_key']);
+        unset($fields['password'], $fields['resetKey'], $fields['resetToken'], $fields['salt'], $fields['activation_key'], $fields['validation_key']);
         return $fields;
     }
 
@@ -83,10 +83,10 @@ class User extends \yii\db\ActiveRecord
             [['lastLogin', 'createdAt', 'updatedAt'], 'safe'],
             [['userId', 'username', 'paletteId'], 'string', 'max' => 21],
             [['email', 'avatar'], 'string', 'max' => 60],
-            [['about', 'password', 'resetToken', 'salt', 'publicKey'], 'string', 'max' => 255],
+            [['about', 'password', 'salt', 'publicKey'], 'string', 'max' => 255],
             [['lastLoginIp'], 'string', 'max' => 32],
-            [['activation_key'], 'string', 'max' => 12],
-            [['validation_key'], 'string', 'max' => 64],
+            [['activation_key', 'resetKey'], 'string', 'max' => 12],
+            [['validation_key', 'resetToken'], 'string', 'max' => 64],
             [['visibility', 'status'], 'string', 'max' => 3],
             [['buyerId'], 'exist', 'skipOnError' => true, 'targetClass' => Buyer::className(), 'targetAttribute' => ['buyerId' => 'buyerId']],
         ];
@@ -113,8 +113,8 @@ class User extends \yii\db\ActiveRecord
             'lastLoginIp' => 'Last Login Ip',
             'role' => 'Tipo',
             'password' => 'Senha',
-            'passwordStrategy' => 'Password Strategy',
             'requiresNewPassword' => 'Requires New Password',
+            'resetKey' => 'Reset Key',
             'resetToken' => 'Reset Token',
             'salt' => 'Salt',
             'activation_key' => 'Chave de Ativação',
@@ -172,7 +172,7 @@ class User extends \yii\db\ActiveRecord
 
     public function validatePassword($password)
     {
-        $hashedPass = User::hashPassword($password, $this->salt);
+        $hashedPass = self::hashPassword($password, $this->salt);
         return $hashedPass === $this->password;
     }
 
@@ -181,9 +181,42 @@ class User extends \yii\db\ActiveRecord
         return md5($salt . $password);
     }
 
+    public static function findByPasswordResetToken($token)
+    {
+        $selector = substr($token, 0, 12);
+        $authenticator = substr($token, 12);
+
+        $model = static::find()
+            ->where(['like binary', 'resetKey', $selector])
+            ->one();
+        
+        if($model && $model->verifyResetKeys($authenticator))
+            return $model;
+
+        return null;
+    }
+
+    public function setPassword($password)
+    {
+        $this->salt = \backend\components\Utils::generateSalt();
+        $this->password = self::hashPassword($password, $this->salt);
+    }
+
+    public function removePasswordResetToken()
+    {
+        $this->resetToken = '';
+        $this->resetKey = '';
+        $this->requiresNewPassword = 1;
+    }
+
     public function verifyKeys($activationKey)
     {
-        return $this->validation_key === md5($activationKey . $this->email . $this->userId);
+        return $this->validation_key === hash('sha256', base64_decode($activationKey));
+    }
+
+    public function verifyResetKeys($resetKey)
+    {
+        return $this->resetToken === hash('sha256', base64_decode($resetKey));
     }
 
     public function getBuyer()

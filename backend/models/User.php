@@ -19,8 +19,8 @@ use yii\web\IdentityInterface;
  * @property string $lastLoginIp
  * @property string $role
  * @property string $password
- * @property string $passwordStrategy
  * @property integer $requiresNewPassword
+ * @property string $resetKey
  * @property string $resetToken
  * @property string $salt
  * @property string $activation_key

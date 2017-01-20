@@ -20,4 +20,11 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+
+    public function __construct($config = [])
+    {
+        $this->publishOptions['forceCopy'] = (YII_ENV_DEV || true);
+
+        parent::__construct($config);
+    }
 }

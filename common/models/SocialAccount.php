@@ -37,13 +37,20 @@ class SocialAccount extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['socialId', 'externalId', 'name'], 'required'],
+            [['socialId', 'userId', 'externalId', 'name'], 'required'],
             [['socialId', 'userId'], 'string', 'max' => 21],
             [['externalId'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 30],
             [['status'], 'string', 'max' => 3],
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'userId']],
         ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['register'] = ['socialId', 'externalId', 'name'];
+        return $scenarios;
     }
 
     /**

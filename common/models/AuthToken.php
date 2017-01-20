@@ -53,6 +53,13 @@ class AuthToken extends \yii\db\ActiveRecord
         ];
     }
 
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['register'] = ['authTokenId'];
+        return $scenarios;
+    }
+
     /**
      * @inheritdoc
      */
