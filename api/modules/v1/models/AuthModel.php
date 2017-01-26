@@ -53,7 +53,7 @@ class AuthModel extends Model
             }],
 
             [['socialId', 'token', 'name', 'username', 'socialName'], 'string'],
-            [['terms'], 'boolean'],
+            //[['terms'], 'integer'],
 
 
             [['password', 'confirmPassword'], 'string', 'min' => 8, 'max' => 60],
@@ -166,9 +166,8 @@ class AuthModel extends Model
             $this->username = $params['AuthModel']['email'];
             $this->password = RestUtils::getToken(8);
             $this->confirmPassword = $this->password;
-            if($params['AuthModel']['terms'])
-                $this->terms = 1;
-            else
+            $this->terms = $params['AuthModel']['terms'] == true ? 1 : 0;
+            if($this->terms == 0)
                 $this->addError('AuthModel', 'O novo usuário deve aceitar os termos para se cadastrar.');
             $this->_socialPicture = $params['AuthModel']['picture'];
         }
@@ -210,7 +209,8 @@ class AuthModel extends Model
             // user exists
             // register social
             $this->buyer = $this->user->buyer;
-            $this->picture = $this->buyer->picture;
+            //$this->picture = $this->buyer->picture;
+            $this->picture = Picture::findById($this->buyer->picture->pictureId);
             foreach($this->user->social as $acc)
             {
                 if($acc->externalId == $this->socialId && $acc->name == $this->socialName) {

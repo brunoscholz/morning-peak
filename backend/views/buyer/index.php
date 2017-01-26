@@ -1,8 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use \machour\yii2\adminlte\widgets\GridView;
 use yii\helpers\ArrayHelper;
+use \machour\yii2\adminlte\widgets\GridView;
+use backend\components\Utils;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -25,12 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
         <?= GridView::widget([
+            'id' => 'buyer-table',
             'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
 
                 'name',
-                'about',
+                [
+                  'attribute'=>'about',
+                  'format'=>'html',
+                  'value' => function($data) {
+                      return Utils::truncate($data->about, 30) . '...';
+                  }
+                ],
                 'dob',
                 'email:email',
                 // 'gender',

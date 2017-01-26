@@ -10,14 +10,22 @@ use backend\models\User;
 use backend\components\Utils;
 use yii\base\Model;
 use yii\widgets\ActiveForm;
+use yii\web\UploadedFile;
 
 class ProfileForm extends Model
 {
+    const USER_SCENARIO = 'formUser';
+    const PASS_SCENARIO = 'formPass';
+    const PICTURE_SCENARIO = 'formPicture';
+
 	private $_user;
 	private $_buyer;
-	private $_picture;
+    private $_picture;
+    private $commonError;
 
-	public $checkPassword;
+    public $username;
+
+    public $checkPassword;
     public $newPassword;
     public $confirmPassword;
 
@@ -28,15 +36,23 @@ class ProfileForm extends Model
             [['checkPassword', 'newPassword', 'confirmPassword'], 'string', 'min' => 8, 'max' => 60],
             [['checkPassword'], 'validatePassword'],
             [['confirmPassword'], 'checkNewPassword'],
+            [['username'], 'string', 'max' => 21],
         ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[self::USER_SCENARIO] = ['User', 'Buyer', 'username'];
+        $scenarios[self::PASS_SCENARIO] = ['User', 'newPassword', 'confirmPassword', 'checkPassword'];
+        $scenarios[self::PICTURE_SCENARIO] = ['User', 'Buyer', 'Picture'];
+        return $scenarios;
     }
 
     public function validatePassword($attribute, $params)
     {
-        $user = User::findByUsername($this->user->email);
-
-        if (!$user || !$user->validatePassword($this->$attribute)) {
-            $this->addError($attribute, 'Senha incorreta.');
+        if(!$this->user->validatePassword($this->$attribute) && !is_null($this->$attribute)) {
+            //$this->addError($attribute, 'Senha incorreta.');
         }
     }
 
@@ -70,52 +86,80 @@ class ProfileForm extends Model
     	if(!$this->validate()) {
     		return false;
     	}
-    	$transaction = Yii::$app->db->beginTransaction();
-        if ($this->picture->upload()) {
-            $this->picture->imageCover = null;
-            $this->picture->imageThumb = null;
-        	if(!$this->picture->save()) {
-        		$transaction->rollBack();
-        		return false;
-        	}
-        }
 
-    	$this->buyer->pictureId = $this->picture->pictureId;
-        $this->buyer->email = $this->user->email;
-    	if(!$this->buyer->save()) {
-    		$transaction->rollBack();
-    		return false;
-    	}
+        try {
+            $tx = Yii::$app->db->beginTransaction();
 
-    	$this->user->buyerId = $this->buyer->buyerId;
-
-        if($this->user->role !== $this->user->getOldAttribute('role')) {
-            $auth = \Yii::$app->authManager;
-            $role = $auth->getRole('user');
-            switch ($this->user->role) {
-                case 'administrator':
-                    $role = $auth->getRole('admin');
-                    break;
-                case 'salesman':
-                    $role = $auth->getRole('salesman');
-                    break;
-                default:
-                    if(count($this->user->sellers) > 0)
-                        $role = $auth->getRole('vendor');
-                    break;
+            if ($this->scenario == self::PICTURE_SCENARIO && $this->picture->upload()) {
+                $this->picture->imageCover = null;
+                $this->picture->imageThumb = null;
+                $this->picture->save();
+                $this->buyer->pictureId = $this->picture->pictureId;
             }
 
-            $auth->revokeAll($this->user->userId);
-            $auth->assign($role, $this->user->userId);
+            // if new
+            //$this->buyer->email = $this->user->email;
+            //$this->user->buyerId = $this->buyer->buyerId;
+            $this->buyer->save();
+
+            if($this->user->role !== $this->user->getOldAttribute('role')) {
+                $auth = \Yii::$app->authManager;
+                $role = $auth->getRole('user');
+                switch ($this->user->role) {
+                    case 'administrator':
+                        $role = $auth->getRole('admin');
+                        break;
+                    case 'salesman':
+                        $role = $auth->getRole('salesman');
+                        break;
+                    default:
+                        if(count($this->user->sellers) > 0)
+                            $role = $auth->getRole('vendor');
+                        break;
+                }
+
+                $auth->revokeAll($this->user->userId);
+                $auth->assign($role, $this->user->userId);
+            }
+
+            if ($this->scenario == self::PASS_SCENARIO) {
+                $salt = RestUtils::generateSalt();
+                $this->user->salt = $salt;
+                $this->user->password = User::hashPassword($this->newPassword, $salt);
+            }
+
+            $this->user->email = strtolower($this->user->email);
+            $this->user->save();
+
+            $tx->commit();
+            return true;
+
+        } catch(Exception $e) {
+            $tx->rollBack();
+            $this->addError('commonError', $e);
+            return false;
         }
+    }
 
-    	if(!$this->user->save()) {
-    		$transaction->rollBack();
-    		return false;
-    	}
+    public function loadAll($params)
+    {
+        $this->load($params);
 
-    	$transaction->commit();
-    	return true;
+        if($this->scenario == self::USER_SCENARIO) {
+            $this->buyer = $this->user->buyer;
+            $this->user->load($params);
+            $this->buyer->load($params);
+        } elseif($this->scenario == self::PASS_SCENARIO) {
+            $this->buyer = $this->user->buyer;
+            $this->user->load($params);
+            $this->buyer->load($params);
+        } elseif($this->scenario == self::PICTURE_SCENARIO) {
+            $this->buyer = $this->user->buyer;
+            $this->picture = $this->buyer->picture;
+            $this->picture->load($params);
+            $this->picture->imageCover = UploadedFile::getInstance($this->picture, 'imageCover');
+            $this->picture->imageThumb = UploadedFile::getInstance($this->picture, 'imageThumb');
+        }
     }
 
     public function fromExisting($user)
@@ -197,6 +241,27 @@ class ProfileForm extends Model
             $errorLists[] = $errorList;
     	}
     	return implode('', $errorLists);
+    }
+
+    public function errorList()
+    {
+        $errorLists = [];
+        foreach ($this->getAllModels() as $id => $model) {
+            if($model)
+                $errorLists[$id] = $model->errors;
+        }
+        $errorLists['ProfileForm'] = $this->errors;
+        return \api\components\RestUtils::arrayCleaner($errorLists);
+    }
+
+    public function firstError()
+    {
+        $ret = $this->errorList();
+
+        while(is_array($ret))
+            $ret = reset($ret);
+
+        return $ret;
     }
 
     private function getAllModels()

@@ -100,19 +100,24 @@ class CategoryController extends Controller
      */
     public function actionCreate()
     {
+        $params = Yii::$app->request->post();
         $model = new Category();
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->categoryId = \backend\models\User::generateId();
-
-            if($model->save())
+        if ($model->load($params)) {
+            $model->categoryId = \backend\components\Utils::generateId();
+            $model->parentId = '0';
+            $model->status = 'ACT';
+            if($model->validate() && $model->save()) {
+                Yii::$app->getSession()->setFlash('success', 'Nova categoria criada.');
                 return $this->redirect(['view', 'id' => $model->categoryId]);
-
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            } else {
+                Yii::$app->getSession()->setFlash('error', 'Algo muito errado ocorreu.');
+            }
         }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**

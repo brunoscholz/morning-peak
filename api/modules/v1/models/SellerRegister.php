@@ -138,7 +138,7 @@ class SellerRegister extends Model
             $this->transaction->save();
 
             $this->loyalty->userId = $this->salesman->userId;
-            $this->loyalty->actionId = ActionReference::findByType('sell')->actionReferenceId;
+            $this->loyalty->actionReferenceId = ActionReference::findByType('sell')->actionReferenceId;
             $this->loyalty->transactionId = $this->transaction->transactionId;
             $this->loyalty->save();
 
@@ -346,10 +346,21 @@ class SellerRegister extends Model
     {
         $errorLists = [];
         foreach ($this->getAllModels() as $id => $model) {
-            $errorLists[$id] = $model->errors;
+            if($model)
+                $errorLists[$id] = $model->errors;
         }
-        //return implode('', $errorLists);
+        $errorLists['SellerRegister'] = $this->errors;
         return $errorLists;
+    }
+
+    public function firstError()
+    {
+        $ret = RestUtils::arrayCleaner($this->errorList());
+
+        while(is_array($ret))
+            $ret = reset($ret);
+
+        return $ret;
     }
 
     private function getAllModels()
@@ -438,11 +449,12 @@ class SellerRegister extends Model
 
     protected function createAddress($params)
     {
-        $address = new BillingAddress();
+        $address = new BillingAddress(); //['scenario' => 'register']
         $address->billingAddressId = RestUtils::generateId();
         $address->address = $params['address'];
         $address->city = $params['city'];
-        $address->state = 'NA';
+        $address->neighborhood = 'NA';
+        $address->state = $params['state'];
         $address->postCode = '0';
         $address->country = 'Brasil (BRA)';
 

@@ -162,8 +162,8 @@ $myImages = Url::to('@web/img/');
       foreach ($users as $key => $flw):
     ?>
       <li>
-        <img src="<?= $flw->user->buyer->picture->thumbnail ?>" alt="User Image">
-        <a class="users-list-name" href="#"><?= $flw->user->buyer->name ?></a>
+        <img src="<?= $flw->user->picture->thumbnail ?>" alt="User Image">
+        <a class="users-list-name" href="#"><?= $flw->user->name ?></a>
         <span class="users-list-date">Today</span>
       </li>
     <?php endforeach; ?>

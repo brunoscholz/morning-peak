@@ -24,7 +24,8 @@
         "machour/yii2-notifications": "@dev",
         "kartik-v/yii2-widget-fileinput": "@dev",
         "marekpetras/yii2-ajax-box-widget": "^1.0",
-        "drsdre/yii2-wizardwidget": "*"
+        "drsdre/yii2-wizardwidget": "*",
+        "yiisoft/yii2-imagine": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

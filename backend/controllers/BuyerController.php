@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use backend\models\form\ProfileForm;
 //use yii\web\UploadedFile;
 
 /**
@@ -128,7 +129,7 @@ class BuyerController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->buyerId]);

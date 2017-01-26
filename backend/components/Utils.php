@@ -107,4 +107,9 @@ class Utils {
 
         return $token;
     }
+
+    public static function truncate($string, $limit)
+    {
+        return substr($string, 0, strrpos($string, ' ', $limit - strlen($string)));
+    }
 }

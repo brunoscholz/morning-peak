@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use backend\components\Utils;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\User */
@@ -12,16 +13,18 @@ use kartik\file\FileInput;
 $buyer = $model->buyer;
 $thumb = Utils::safePicture($buyer->picture, 'thumbnail');
 $cover = Utils::safePicture($buyer->picture, 'cover');
+//$cover = Yii::$app->urlManagerFrontend->baseUrl . '/uploads/userpics/YtxFeyYC76uHbyuWH0fHyGJd9M3tINAw.jpg';//Utils::safePicture($buyer->picture, 'cover');
+//$cover = 'http://ondetem.com.br/' . 'uploads/userpics/YtxFeyYC76uHbyuWH0fHyGJd9M3tINAw.jpg';
 
 ?>
 
 <div class="user-form">
-    <?php $form = ActiveForm::begin(['action' => ['user/update', 'id' => $model->user->userId], 'options' => ['enctype' => 'multipart/form-data']]); ?>
-
-    <?= $model->errorSummary($form); ?>
 
     <div class="row">
         <div class="col-md-4">
+            <?php $formPass = ActiveForm::begin(['id' => 'formPass', 'action' => ['user/update', 'id' => $model->user->userId], 'options' => ['enctype' => 'multipart/form-data']]); ?>
+            <?= $model->errorSummary($formPass); ?>
+            <?= Html::hiddenInput('scenario', 'formPass'); ?>
             <?= \machour\yii2\adminlte\widgets\Box::begin([
               'type' => 'box-danger',
               'color' => '',
@@ -32,14 +35,18 @@ $cover = Utils::safePicture($buyer->picture, 'cover');
                 'tools' => '{collapse}',
               ],
             ]); ?>
-                <?= $form->field($model, 'checkPassword')->passwordInput()->label('Senha') ?>
-                <?= $form->field($model, 'newPassword')->passwordInput()->hint('A senha deve conter pelo menos 1 número')->label('Nova Senha') ?>
-                <?= $form->field($model, 'confirmPassword')->passwordInput()->hint('As senhas devem ser iguais')->label('Confirmar Senha') ?>
+                <?= $formPass->field($model, 'checkPassword')->passwordInput()->label('Senha') ?>
+                <?= $formPass->field($model, 'newPassword')->passwordInput()->hint('A senha deve conter pelo menos 1 número')->label('Nova Senha') ?>
+                <?= $formPass->field($model, 'confirmPassword')->passwordInput()->hint('As senhas devem ser iguais')->label('Confirmar Senha') ?>
             <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
                 <?= Html::resetButton('Limpar', ['class' => 'btn btn-default']) ?>
                 <?= Html::submitButton('Salvar', ['class' => 'btn btn-primary pull-right']) ?>
             <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
+            <?php ActiveForm::end(); ?>
         </div>
+        <?php $formCover = ActiveForm::begin(['id' => 'formCover', 'action' => ['user/update', 'id' => $model->user->userId], 'options' => ['enctype' => 'multipart/form-data']]); ?>
+        <?= $model->errorSummary($formCover); ?>
+        <?= Html::hiddenInput('scenario', 'formPicture'); ?>
         <div class="col-md-4">
             <?= \machour\yii2\adminlte\widgets\Box::begin([
               'type' => 'box-success',
@@ -52,7 +59,7 @@ $cover = Utils::safePicture($buyer->picture, 'cover');
               ],
             ]); ?>
                 <div class="form-group cover-image kv-avatar center-block" style="width:100%">
-                    <?= $form->field($model->picture, 'imageCover')->widget(FileInput::classname(), [
+                    <?= $formCover->field($model->picture, 'imageCover')->widget(FileInput::classname(), [
                         'pluginOptions' => [
                             'resizeImages' => true,
                             'overwriteInitial' => true,
@@ -95,7 +102,7 @@ $cover = Utils::safePicture($buyer->picture, 'cover');
               ],
             ]); ?>
                 <div class="form-group kv-avatar center-block" style="width:280px;">
-                    <?= $form->field($model->picture, 'imageThumb')->widget(FileInput::classname(), [
+                    <?= $formCover->field($model->picture, 'imageThumb')->widget(FileInput::classname(), [
                         'pluginOptions' => [
                             'resizeImages' => true,
                             //'initialPreview' => "<img src='$thumb' class='file-preview-image' alt='Avatar' title='Avatar'>",
@@ -128,6 +135,11 @@ $cover = Utils::safePicture($buyer->picture, 'cover');
             <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
         </div>
     </div>
+    <?php ActiveForm::end(); ?>
+
+    <?php $formUser = ActiveForm::begin(['id' => 'formUser', 'action' => ['user/update', 'id' => $model->user->userId], 'options' => ['enctype' => 'multipart/form-data']]); ?>
+    <?= $model->errorSummary($formUser); ?>
+    <?= Html::hiddenInput('scenario', 'formUser'); ?>
     <div class="row">
         <div class="col-md-6">
             <?= \machour\yii2\adminlte\widgets\Box::begin([
@@ -140,13 +152,14 @@ $cover = Utils::safePicture($buyer->picture, 'cover');
                 'tools' => '{collapse}',
               ],
             ]); ?>
-                <?= $form->field($model->user, 'email')->textInput(['maxlength' => true]) ?>
-                <?= $form->field($model->buyer, 'name')->textInput(['maxlength' => true]) ?>
+                <?= $formUser->field($model->user, 'email')->textInput(['maxlength' => true]) ?>
+                <?= $formUser->field($model->buyer, 'username')->textInput(['maxlength' => true]) ?>
+                <?= $formUser->field($model->buyer, 'name')->textInput(['maxlength' => true]) ?>
                 <?php
                     //ArrayHelper::map(\backend\models\Category::find()->where(['<>', 'categoryId', '0'])->asArray()->all(), 'categoryId', 'name');
                     $dataRole = array('administrator' => 'Administrador', 'salesman' => 'Vendedor', 'regular' => 'Comum');
                 ?>
-                <?= $form->field($model->user, 'role')->dropDownList(
+                <?= $formUser->field($model->user, 'role')->dropDownList(
                     $dataRole,
                     ['prompt'=>' - Tipo de usuário - ']
                 ) ?>
@@ -167,13 +180,13 @@ $cover = Utils::safePicture($buyer->picture, 'cover');
                 'tools' => '{collapse}',
               ],
             ]); ?>
-                <?= $form->field($model->buyer, 'dob')->textInput(['maxlength' => true]) ?>
-                <?= $form->field($model->buyer, 'about')->textInput(['maxlength' => true]) ?>
+                <?= $formUser->field($model->buyer, 'dob')->textInput(['maxlength' => true]) ?>
+                <?= $formUser->field($model->buyer, 'about')->textInput(['maxlength' => true]) ?>
                 <?php
                     //ArrayHelper::map(\backend\models\Category::find()->where(['<>', 'categoryId', '0'])->asArray()->all(), 'categoryId', 'name');
                     $dataGender = array('mas' => 'Masculino', 'fem' => 'Feminino', 'oth' => 'Outro');
                 ?>
-                <?= $form->field($model->buyer, 'gender')->dropDownList(
+                <?= $formUser->field($model->buyer, 'gender')->dropDownList(
                     $dataGender,
                     ['prompt'=>' - Selecione seu gênero - ']
                 ) ?>

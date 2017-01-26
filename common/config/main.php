@@ -17,5 +17,11 @@ return [
 			'currencyCode' => 'OTK',
 
 		],
+        'urlManagerFrontend' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => 'frontend/web/',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+        ],
     ],
 ];

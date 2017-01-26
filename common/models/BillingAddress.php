@@ -40,6 +40,13 @@ class BillingAddress extends \yii\db\ActiveRecord
         ];
     }
 
+    /*public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['register'] = ['billingAddressId', 'address', 'city'];
+        return $scenarios;
+    }*/
+
     /**
      * @inheritdoc
      */

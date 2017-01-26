@@ -231,24 +231,28 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $params = Yii::$app->request->post();
-        $profileForm = new ProfileForm();
+
+        $profileForm = new ProfileForm(['scenario' => $params['scenario']]);
         $profileForm->user = $this->findModel($id);
-        $profileForm->setAttributes($params);
-        $profileForm->attributes = $params['ProfileForm'];
+        $profileForm->loadAll($params);
 
-        if ($params && $profileForm->validate()) {
-            $profileForm->user->email = strtolower($profileForm->user->email);
+        /*var_dump($params);
+        var_dump($profileForm);
+        var_dump($profileForm->validate());
+        var_dump($profileForm->errorList());
+        die();*/
 
-            $profileForm->picture->imageCover = UploadedFile::getInstance($profileForm->picture, 'imageCover');
-            $profileForm->picture->imageThumb = UploadedFile::getInstance($profileForm->picture, 'imageThumb');
-
-            if($profileForm->save()) {
-                Yii::$app->getSession()->setFlash('success', 'As informações do usuário foram atualizadas.');
-                return $this->redirect(['buyer/view', 'id' => $profileForm->buyer->buyerId]);
-            }
+        if ($profileForm->save()) {
+            Yii::$app->getSession()->setFlash('success', 'As informações do usuário foram atualizadas.');
+        }
+        else {
+            var_dump($profileForm->errorList());
+            die();
+            Yii::$app->getSession()->setFlash('error', $profileForm->firstError());
         }
 
-        return $this->render('update', ['model' => $profileForm]);
+        return $this->redirect(['buyer/view', 'id' => $profileForm->buyer->buyerId]);
+        //return $this->render('update', ['model' => $profileForm]);
     }
 
     public function validatePassword($email, $pass)

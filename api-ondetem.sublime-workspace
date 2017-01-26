@@ -4,24 +4,264 @@
 		"selected_items":
 		[
 			[
-				"para",
+				"Seller",
+				"SellerRegister"
+			],
+			[
+				"picture",
+				"pictureId"
+			],
+			[
+				"borde",
+				"border-radius"
+			],
+			[
+				"socia",
+				"SocialAccount"
+			],
+			[
+				"exter",
+				"externalId"
+			],
+			[
+				"social",
+				"socialName"
+			],
+			[
+				"real",
+				"realname"
+			],
+			[
+				"auth",
+				"authTokenId"
+			],
+			[
+				"_co",
+				"_socialPicture"
+			],
+			[
+				"soc",
+				"socialId"
+			],
+			[
+				"valida",
+				"validateUsername"
+			],
+			[
+				"validate",
+				"validateCurrentPassword"
+			],
+			[
+				"Au",
+				"AuthModel"
+			],
+			[
+				"errorL",
+				"errorList"
+			],
+			[
+				"vali",
+				"validateToken"
+			],
+			[
+				"reset",
+				"resetKey"
+			],
+			[
+				"req",
+				"requiresNewPassword"
+			],
+			[
+				"rese",
+				"resetToken"
+			],
+			[
+				"create",
+				"createPicture"
+			],
+			[
+				"is_a",
+				"is_array"
+			],
+			[
+				"error",
+				"errorList"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"retur",
+				"returnMsg"
+			],
+			[
+				"validat",
+				"validateSeller"
+			],
+			[
+				"scenar",
+				"scenario"
+			],
+			[
+				"TOKE",
+				"TOKEN_MISSING"
+			],
+			[
+				"use",
+				"userModel"
+			],
+			[
+				"pra",
 				"params"
 			],
 			[
+				"US",
+				"USERNAME_SCENARIO"
+			],
+			[
+				"scena",
+				"scenario"
+			],
+			[
 				"param",
-				"paramsO"
+				"params"
+			],
+			[
+				"up",
+				"updateUsername"
+			],
+			[
+				"new",
+				"newPassword"
+			],
+			[
+				"User",
+				"UserForm"
+			],
+			[
+				"us",
+				"userModel"
+			],
+			[
+				"curren",
+				"currentPassword"
+			],
+			[
+				"aut",
+				"authModel"
+			],
+			[
+				"au",
+				"auth"
+			],
+			[
+				"_auth",
+				"_authenticator"
+			],
+			[
+				"_au",
+				"_authenticator"
+			],
+			[
+				"_aut",
+				"_authToken"
 			],
 			[
 				"loy",
 				"loyaltyId"
 			],
 			[
-				"actio",
+				"ac",
 				"actionReferenceId"
 			],
 			[
+				"reviwe",
+				"reviewFactId"
+			],
+			[
+				"review",
+				"reviewFactId"
+			],
+			[
+				"follw",
+				"FollowFact"
+			],
+			[
 				"action",
+				"actionReferenceId"
+			],
+			[
+				"foll",
+				"followFactId"
+			],
+			[
+				"follo",
+				"followFactId"
+			],
+			[
+				"Comm",
+				"Commentfact"
+			],
+			[
+				"Foll",
+				"Followfact"
+			],
+			[
+				"Rev",
+				"Reviewfact"
+			],
+			[
+				"Fav",
+				"Favoritefact"
+			],
+			[
+				"revi",
+				"reviewFactId"
+			],
+			[
+				"comm",
+				"commentFactId"
+			],
+			[
+				"fol",
+				"followFactId"
+			],
+			[
+				"sear",
+				"searchModel"
+			],
+			[
+				"clas",
+				"className"
+			],
+			[
+				"mode",
+				"modelClass"
+			],
+			[
+				"isN",
+				"is_null"
+			],
+			[
+				"act",
 				"actionReference"
+			],
+			[
+				"of",
+				"offset"
+			],
+			[
+				"Offer",
+				"OfferModel"
+			],
+			[
+				"para",
+				"params"
+			],
+			[
+				"actio",
+				"actionReferenceId"
 			],
 			[
 				"Re",
@@ -46,10 +286,6 @@
 			[
 				"_revi",
 				"_reviewFact"
-			],
-			[
-				"review",
-				"reviewFact"
 			],
 			[
 				"offer",
@@ -100,20 +336,12 @@
 				"pictureId"
 			],
 			[
-				"vali",
-				"validate"
-			],
-			[
 				"margin",
 				"margin-bottom"
 			],
 			[
 				"text",
 				"text-align"
-			],
-			[
-				"req",
-				"required"
 			],
 			[
 				"rol",
@@ -172,20 +400,12 @@
 				"contactModel"
 			],
 			[
-				"new",
-				"news"
-			],
-			[
 				"min",
 				"min-height"
 			],
 			[
 				"sea",
 				"searchFor"
-			],
-			[
-				"sear",
-				"searchOptions"
 			],
 			[
 				"lowe",
@@ -232,10 +452,6 @@
 				"canFollow"
 			],
 			[
-				"follo",
-				"FollowFact"
-			],
-			[
 				"comp",
 				"companyForm"
 			],
@@ -252,20 +468,12 @@
 				"password"
 			],
 			[
-				"auth",
-				"authenticator"
-			],
-			[
 				"publ",
 				"publicToken"
 			],
 			[
 				"val",
 				"validation_key"
-			],
-			[
-				"user",
-				"userId"
 			],
 			[
 				"data",
@@ -288,10 +496,6 @@
 				"sellersChunks"
 			],
 			[
-				"use",
-				"user"
-			],
-			[
 				"backg",
 				"background-position"
 			],
@@ -300,16 +504,8 @@
 				"totalFollowers"
 			],
 			[
-				"curren",
-				"currentUser"
-			],
-			[
 				"item",
 				"itemPicked"
-			],
-			[
-				"Offer",
-				"OfferForm"
 			],
 			[
 				"offe",
@@ -318,202 +514,6 @@
 			[
 				"billing",
 				"billingAddressId"
-			],
-			[
-				"profil",
-				"profileForm"
-			],
-			[
-				"conf",
-				"confirmPassword"
-			],
-			[
-				"Pro",
-				"ProfileForm"
-			],
-			[
-				"check",
-				"checkPassword"
-			],
-			[
-				"strto",
-				"strtolower"
-			],
-			[
-				"pro",
-				"profileForm"
-			],
-			[
-				"che",
-				"checkNewPassword"
-			],
-			[
-				"validate",
-				"validatePassword"
-			],
-			[
-				"error",
-				"errorSummary"
-			],
-			[
-				"pic",
-				"picture"
-			],
-			[
-				"Buy",
-				"Buyer"
-			],
-			[
-				"_",
-				"_buyer"
-			],
-			[
-				"is",
-				"is_array"
-			],
-			[
-				"thum",
-				"thumbImg"
-			],
-			[
-				"cover",
-				"coverImg"
-			],
-			[
-				"USER",
-				"UserModel"
-			],
-			[
-				"form",
-				"form-control"
-			],
-			[
-				"col",
-				"col-md-4"
-			],
-			[
-				"orde",
-				"orderBy"
-			],
-			[
-				"model",
-				"modelClass"
-			],
-			[
-				"clas",
-				"classname"
-			],
-			[
-				"mode",
-				"model"
-			],
-			[
-				"ba",
-				"background-size"
-			],
-			[
-				"se",
-				"searchModel"
-			],
-			[
-				"offer-",
-				"offer-item"
-			],
-			[
-				"bg-aqua",
-				"bg-aqua-active"
-			],
-			[
-				"box",
-				"box-profile"
-			],
-			[
-				"No",
-				"NotificationWidget"
-			],
-			[
-				"yii2",
-				"yii2-notifications"
-			],
-			[
-				"wid",
-				"widget"
-			],
-			[
-				"us",
-				"usrTest"
-			],
-			[
-				"di",
-				"div\tTag"
-			],
-			[
-				"lin",
-				"line_data2"
-			],
-			[
-				"random",
-				"randomData"
-			],
-			[
-				"Use",
-				"UserModel"
-			],
-			[
-				"sell",
-				"sellersChunks"
-			],
-			[
-				"sel",
-				"sellCount"
-			],
-			[
-				"count",
-				"Count"
-			],
-			[
-				"footer",
-				"footerUrl"
-			],
-			[
-				"payment",
-				"paymentId"
-			],
-			[
-				"tota",
-				"totalDiscount"
-			],
-			[
-				"desc",
-				"description"
-			],
-			[
-				"da",
-				"dataProvider"
-			],
-			[
-				"key",
-				"keywords"
-			],
-			[
-				"category",
-				"categoryId"
-			],
-			[
-				"cate",
-				"categoryId"
-			],
-			[
-				"pare",
-				"parentId"
-			],
-			[
-				"Info",
-				"InfoBox"
-			],
-			[
-				"Sin",
-				"SignTabsPage"
 			]
 		]
 	},
@@ -541,7 +541,86 @@
 			"file": "common/mail/passwordResetToken-html.php",
 			"settings":
 			{
-				"buffer_size": 433,
+				"buffer_size": 607,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "frontend/views/site/resetPassword.php",
+			"settings":
+			{
+				"buffer_size": 850,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "frontend/assets/AppAsset.php",
+			"settings":
+			{
+				"buffer_size": 558,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "frontend/controllers/SiteController.php",
+			"settings":
+			{
+				"buffer_size": 7349,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "frontend/views/site/_publish-story.php",
+			"settings":
+			{
+				"buffer_size": 5075,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "frontend/web/css/site.css",
+			"settings":
+			{
+				"buffer_size": 3288,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "frontend/themes/grape/css/style.css",
+			"settings":
+			{
+				"buffer_size": 37203,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "frontend/models/ResetPasswordForm.php",
+			"settings":
+			{
+				"buffer_size": 1470,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/models/User.php",
+			"settings":
+			{
+				"buffer_size": 6716,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/models/User.php",
+			"settings":
+			{
+				"buffer_size": 3619,
 				"line_ending": "Unix"
 			}
 		},
@@ -555,10 +634,27 @@
 			}
 		},
 		{
+			"file": "common/mail/newUser-html.php",
+			"settings":
+			{
+				"buffer_size": 6371,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "api/modules/v2/controllers/OfferController.php",
+			"settings":
+			{
+				"buffer_size": 2936,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "api/components/RestUtils.php",
 			"settings":
 			{
-				"buffer_size": 12532,
+				"buffer_size": 13278,
 				"encoding": "UTF-8",
 				"line_ending": "Unix",
 				"name": "<?php"
@@ -568,25 +664,69 @@
 			"file": "api/modules/v1/controllers/AuthController.php",
 			"settings":
 			{
-				"buffer_size": 28963,
+				"buffer_size": 11733,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "api/modules/v1/controllers/OfferController.php",
+			"contents": "Seller[name]:Nova Empresa\nSeller[about]:Nada aqui...\nSeller[email]:brunoscholz@yahoo.de\nSeller[website]:\nSeller[phone]:4132223322\nSeller[cellphone]:41998785665\nSeller[hours]:\nSeller[status]:PAY\nSeller[license]:2\nBillingAddress[address]:Av Companhias, 87\nBillingAddress[city]:Curitiba\nBillingAddress[state]:PR\nBillingAddress[postCode]:\nBillingAddress[country]:Brasil (BRA)\nPicture[cover]:assets/img/generic-cover.jpg\nPicture[thumbnail]:assets/img/generic-avatar.png\nsalesman:zZN6prD6rzxEhg8sDQz1j\nv:1.4.4\n\nSeller[name]:Teste Onde tem\nSeller[about]:Mais um cadastro de teste\nSeller[email]:bruno@ondetem-gn.com.br\nSeller[website]:\nSeller[phone]:4136666666\nSeller[cellphone]:41999899999\nSeller[hours]:\nSeller[status]:PAY\nBillingAddress[address]:Rua A, 2\nBillingAddress[city]:Curitiba\nBillingAddress[neighborhood]:\nBillingAddress[state]:PR\nBillingAddress[postCode]:\nBillingAddress[country]:Brasil (BRA)\nPicture[cover]:assets/img/generic-cover.jpg\nPicture[thumbnail]:assets/img/generic-avatar.png\nsalesman:zZN6prD6rzxEhg8sDQz1j\nv:1.4.4",
 			"settings":
 			{
-				"buffer_size": 3553,
+				"buffer_size": 1029,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "api/modules/v1/models/SellerRegister.php",
+			"settings":
+			{
+				"buffer_size": 14979,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "api/modules/v1/controllers/FavoriteFactController.php",
+			"file": "api/modules/v1/models/AuthModel.php",
 			"settings":
 			{
-				"buffer_size": 2591,
+				"buffer_size": 14322,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<?php\nnamespace api\\modules\\v1\\controllers;\n\nuse yii\\swiftmailer\\Mailer;\nuse yii\\db\\Query;\nuse common\\models\\Buyer;\nuse common\\models\\Seller;\nuse common\\models\\User;\nuse common\\models\\AuthToken;\nuse common\\models\\SocialAccount;\nuse common\\models\\AssetToken;\nuse common\\models\\Transaction;\nuse common\\models\\Loyalty;\nuse common\\models\\Relationship;\nuse common\\models\\License;\nuse common\\models\\LicenseType;\nuse common\\models\\ActionReference;\nuse common\\models\\BillingAddress;\nuse api\\modules\\v1\\models\\SellerRegister;\nuse api\\modules\\v1\\models\\AuthModel;\nuse api\\modules\\v1\\models\\UserForm;\nuse common\\models\\Picture;\nuse api\\components\\RestUtils;\n\n/**\n * AuthController API (extends \\yii\\rest\\ActiveController)\n * AuthController is the controller responsible for doing the access verifications.\n * and create basic, activation dependent, new models for users\n * @return [status,data,count,[error]]\n * @author Bruno Scholz <brunoscholz@yahoo.de>\n */\nclass AuthController extends \\yii\\rest\\ActiveController\n{\n    protected $API_VERSION = 'v1';\n    protected $APP_VERSION = 'v1.4.4';\n\n    /**\n     * @internal typical override of ActiveController \n     *\n     */\n    public $modelClass = 'common\\models\\User';\n\n    /**\n     * @internal typical override of ActiveController \n     *\n     */\n    public function actions()\n    {\n        $actions = parent::actions();\n        unset($actions['index'], $actions['create'], $actions['delete']);\n        return $actions;\n    }\n\n    /**\n     * POST /auth/signin\n     * If token is received, it is verified against authToken table and if not expired, returns ok to login\n     *\n     * If username and password are received, it verifies the password against the user table. If everything is ok, it creates a authToken and returns it\n     *\n     * @example {token:NkhEQ0RSd2dV:bWx1NzlEUHNnMUc1Tk5pa3hDTGlqcE1JNzd3RHE5NnFh}\n     * @example { username:user@mailserver.com, password:strongpass }\n     * @return json @see api\\modules\\v1\\models\\AuthToken for the statuses\n     */\n    public function actionSignin()\n    {\n    \t$params = \\Yii::$app->request->post();\n    \t$models = array('status'=>500);\n\n        $auth = new AuthModel();\n        if(isset($params['AuthModel']['socialId']) || isset($params['AuthModel']['token']) || isset($params['AuthModel']['username']))\n        {\n            $auth->signin($params);\n            if($auth->validateAuth() && $auth->authenticate()) {\n                $models['status'] = 200;\n                $models['data'] = [$this->fetchUser($auth->user)];\n                $models['token'] = $auth->token;\n\n            } else {\n                $models['status'] = AuthToken::TOKEN_WRONG;\n                $models['error'] = $auth->firstError();\n            }\n        }\n        else\n        {\n            $models['error'] = 'Parâmetros inválidos!';\n        }\n\n        echo RestUtils::sendResult($models['status'], $models);\n    }\n\n    /**\n     * POST /auth/signup\n     *\n     * Receives the user info\n     * \n     */\n    public function actionSignup()\n    {\n    \t$params = \\Yii::$app->request->post();\n    \t$models = array('status'=>500);\n\n        $auth = new AuthModel();\n        if(isset($params['AuthModel']['username']) || isset($params['AuthModel']['password']) || isset($params['AuthModel']['socialId']))\n        {\n            $auth->signup($params);\n\n            if($auth->register()) {\n                $models['status'] = 200;\n                $models['data'] = [$this->fetchUser($auth->user)];\n                $models['token'] = $auth->token;\n                //$auth->sendEmail();\n\n            } else {\n                $models['status'] = AuthToken::TOKEN_WRONG;\n                $models['error'] = $auth->errorList();\n            }\n        }\n        else\n        {\n            $models['error'] = 'Parâmetros inválidos!';\n        }\n\n        echo RestUtils::sendResult($models['status'], $models);\n    }\n\n    protected function fetchUser($user)\n    {\n        $temp = RestUtils::loadQueryIntoVar($user);\n        $temp['social'] = RestUtils::loadQueryIntoVar($user->social);\n\n        $flwr = RestUtils::loadQueryIntoVar($user->buyer->followers);\n        $temp['buyer']['followers'] = $flwr;\n\n        $flwg = RestUtils::loadQueryIntoVar($user->buyer->following);\n        $temp['buyer']['following'] = $flwg;\n\n        $favs = RestUtils::loadQueryIntoVar($user->buyer->favorites);\n        $temp['buyer']['favorites'] = $favs;\n\n        $temp['sellers'] = array();\n        foreach ($user->sellers as $seller)\n        {\n            $sel = RestUtils::loadQueryIntoVar($seller);\n            $flwr = RestUtils::loadQueryIntoVar($seller->followers);\n            $sel['followers'] = $flwr;\n            $temp['sellers'][] = $sel;\n        }\n\n        return $temp;\n    }\n\n    /**\n     * POST /auth/social-connect\n     *\n     * Receives the user's social info\n     * If user exists updates the info and creates a socialAccount register\n     * If not, sign up the user with the info provided\n     * \n     */\n    public function actionSocialConnect()\n    {\n    \t$params = \\Yii::$app->request->post();\n    \t$models = array('status'=>500);\n\n    \tif(isset($params['facebook'])){}\n    }\n\n    /**\n     * POST /auth/seller-register\n     *\n     * Receives the new seller (customer) info and the salesperson who made the contact\n     * Creates the user, buyer, and seller models\n     * Creates a transaction with 1 SALE coin to the salesperson\n     * Sends an email to the new seller (customer) with information about activating the account\n     * \n     */\n    public function actionSellerRegister()\n    {\n \t   \t$params = \\Yii::$app->request->post();\n    \t$models = array('status'=>500);\n\n        $register = new SellerRegister();\n\n        $salesman = User::findById($params['salesman']);\n        $register->create($params, $salesman);\n\n    \t$data = array();\n    \t//$data['key'] = $user->activation_key . $user->userId;\n        $data['key'] = $register->seller->activation_key.base64_encode($register->_authenticator);\n    \t$data['seller'] = $register->seller;\n    \t$data['salesman'] = $salesman->buyer;\n    \t$data['disclaimer'] = 'Em caso de dúvidas, envie um email para vendas@ondetem-gn.com.br';\n\n        // send email to seller with confirmation token and link to backend\\create\n        $mail = \\Yii::$app->mailer->compose('sellerActivationKey-html', [\n            'data' => $data\n        ])\n            ->setFrom('vendas@ondetem-gn.com.br')\n            ->setTo($register->seller->email)\n            ->setSubject('Onde tem? Ativação de Cadastro');\n\n        if($register->save())\n        {\n            try { $mail->send(); }\n            catch(\\Swift_SwiftException $exception) {\n                $models['mailerror'] = 'Can sent mail due to the following exception '. $exception;\n            }\n            finally {\n                $models['status'] = 200;\n                $models['data'] = 'Empresa cadastrada com sucesso';\n            }\n        }\n        else\n        {\n            $models['status'] = 500;\n            $models['error'] = 'Erro ao salvar informações';\n            $models['errorLog'] = $register->errorList();\n        }\n\n\t\techo RestUtils::sendResult($models['status'], $models);\n    }\n\n    /**\n     * POST /auth/forget-password\n     * Receives the email of the user and sends an email with instructions to change the current password\n     * \n     */\n    public function actionForgotPassword()\n    {\n        $params = \\Yii::$app->request->post();\n        $models = array('status'=>500);\n\n        $user = User::findByUsername($params['username']);\n        if(is_null($user))\n        {\n            $models['status'] = AuthToken::USER_MISSING;\n            $models['error'] = 'Cadastro não encontrado';\n        }\n        else\n        {\n            $data = array();\n            $authenticator = RestUtils::getToken(33);\n            $user->resetKey = base64_encode(RestUtils::getToken(9));\n            $user->resetToken = hash('sha256', $authenticator);\n            $user->save();\n            //$user->requiresNewPassword = 1;\n            $data['username'] = $user->name;\n            $data['key'] = $user->resetKey.base64_encode($authenticator);\n            $data['disclaimer'] = 'Em caso de dúvidas, envie um email para contato@ondetem-gn.com.br';\n\n            $mail = \\Yii::$app->mailer->compose('passwordResetToken-html', [\n                'data' => $data\n            ])\n                ->setFrom('contato@ondetem-gn.com.br')\n                ->setTo($user->email)\n                ->setSubject('Onde tem? - Recuperação de senha');\n\n            try { $mail->send(); }\n            catch(\\Swift_SwiftException $exception) {\n                $models['error'] = 'Email não enviado: '. $exception;\n            }\n            finally {\n                $models['status'] = 200;\n                $models['data'] = 'Siga as instruções contidas no email enviado.';\n            }\n        }\n\n        echo RestUtils::sendResult($models['status'], $models);\n    }\n\n    /**\n     * POST /auth/settings\n     * Receives the info to change the users preferences\n     *\n     */\n    public function actionSettings()\n    {\n        $params = \\Yii::$app->request->post();\n        $models = array('status'=>500);\n\n        $auth = new AuthModel();\n        if(isset($params['token']) && !empty($params['token'])) {\n            if($auth->validateToken($params['token'])) {\n                // logged in\n                $userModel = new UserForm();\n                $userModel->user = $auth->user;\n                $userModel->loadAll($params);\n\n                if($userModel->save()) {\n                    $models['status'] = 200;\n                    $models['data'] = $userModel->resultMessage();\n                }\n                else {\n                    $models['errors'] = $userModel->firstError();\n                }\n            } else {\n                // error\n                $models['status'] = AuthToken::TOKEN_WRONG;\n                $models['error'] = 'Token de autenticação incorreto.';\n            }\n        } else {\n            $models['status'] = AuthToken::TOKEN_MISSING;\n            $models['error'] = 'Token de autenticação incorreto.';\n        }\n\n        echo RestUtils::sendResult($models['status'], $models);\n    }\n\n    /**\n     * GET /auth/logout/{id}\n     *\n     * Not used\n     * @return null \n     */\n    public function actionLogout($id)\n    {\n        echo RestUtils::generateId();\n        die();\n        $pass = '1234abcd';\n        $salt = 'ICrs4QDfroMNZT7xozyFE9l2vmUHlZzRlaISuRhAejoLznDnM6PwhDFyUsmwLCdN';\n        $hash = md5($salt . $pass);\n        //var_dump($hash);\n\n        $genAuthenticator = RestUtils::getToken(33);\n        $genSelector = base64_encode(RestUtils::getToken(9));\n        $genToken = hash('sha256', $genAuthenticator);\n        \n        $publicToken = $genSelector.base64_encode($genAuthenticator);\n\n        var_dump($genAuthenticator);\n        var_dump($genSelector);\n        var_dump($genToken);\n        var_dump($publicToken);\n\n        //list($selector, $authenticator) = explode(':',$publicToken);\n        $selector = substr($publicToken, 0, 12);\n        $authenticator = substr($publicToken, 12);\n\n        var_dump($selector);\n        var_dump($authenticator);\n\n        if($genToken === hash('sha256', base64_decode($authenticator)))\n            var_dump(true);\n        else\n            var_dump(false);\n\n        //$auth = AuthToken::findBySelector($selector);\n\n\n\n        return $hashedPass === $this->password;\n        return null;\n    }\n\n    /**\n     * @internal typical override of ActiveController \n     *\n     */\n    public function behaviors() {\n        return\n        [\n            [\n                'class' => \\yii\\filters\\ContentNegotiator::className(),\n                'formats' => [\n                    'application/json' => \\yii\\web\\Response::FORMAT_JSON,\n                ],\n            ],\n        ];\n    }\n}\n",
+			"settings":
+			{
+				"buffer_size": 11795,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "api/modules/v1/models/UserForm.php",
+			"settings":
+			{
+				"buffer_size": 10932,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/controllers/UserController.php",
+			"settings":
+			{
+				"buffer_size": 10052,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "api/modules/v1/controllers/SearchController.php",
+			"settings":
+			{
+				"buffer_size": 4194,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
@@ -594,7 +734,7 @@
 			"file": "api/modules/v1/controllers/ReviewFactController.php",
 			"settings":
 			{
-				"buffer_size": 4136,
+				"buffer_size": 4122,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -603,7 +743,34 @@
 			"file": "api/modules/v1/controllers/FollowFactController.php",
 			"settings":
 			{
-				"buffer_size": 2526,
+				"buffer_size": 2207,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "api/modules/v1/controllers/FavoriteFactController.php",
+			"settings":
+			{
+				"buffer_size": 2334,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "api/modules/v1/models/ReviewModel.php",
+			"settings":
+			{
+				"buffer_size": 9111,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "api/modules/v1/models/FavoriteModel.php",
+			"settings":
+			{
+				"buffer_size": 8195,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -612,26 +779,24 @@
 			"file": "api/modules/v1/models/FollowModel.php",
 			"settings":
 			{
-				"buffer_size": 7912,
+				"buffer_size": 8396,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "api/modules/v1/models/SellerRegister.php",
+			"file": "frontend/config/bootstrap.php",
 			"settings":
 			{
-				"buffer_size": 14660,
-				"encoding": "UTF-8",
+				"buffer_size": 6,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "common/models/FollowFact.php",
+			"file": "frontend/config/main.php",
 			"settings":
 			{
-				"buffer_size": 2797,
-				"encoding": "UTF-8",
+				"buffer_size": 2203,
 				"line_ending": "Unix"
 			}
 		}
@@ -680,14 +845,69 @@
 	],
 	"file_history":
 	[
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/web/.htaccess",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/test-local.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/test.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/params.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/main-local.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/main.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/params-local.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/bootstrap.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/main-local.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/BillingAddress.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Seller.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Picture.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Buyer.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/site/index.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/site/_header.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/site/_support.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/site/_price.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/themes/grape/css/style.css",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/themes/grape/css/site.css",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/site/_download.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/offer/view.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/models/Subscription.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/models/PasswordResetRequestForm.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/SocialAccount.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/AuthToken.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/components/Utils.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/UserController.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/models/User.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/User.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/UserForm.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/models/form/OfferForm.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Offer.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/components/SearchForm.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/OfferModel.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/AuthModel.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Relationship.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/models/form/RegisterForm.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v2/models/Offer.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v2/models/OfferModel.php",
+		"/C/Users/bruno_000/Documents/Bruno/Microsoft-MSDN.txt",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/FollowFact.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/ActionRelationship.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/CommentFact.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/LoyaltyController.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/FavoriteModel.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/FavoriteFact.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Transaction.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/components/ApiQuery.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/components/Serializer.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/SearchModel.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/OfferController.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v2/controllers/OfferController.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/components/Controller.php",
+		"/C/Users/bruno_000/AppData/Local/Temp/fz3temp-1/SearchController.php",
+		"/C/Users/bruno_000/AppData/Local/Temp/fz3temp-1/SellerController.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/controllers/OfferController.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/models/OfferSearch.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/ReviewModel.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/ReviewFact.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/UserController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/TransactionController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/SellerController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/SearchController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/RelationshipController.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/LoyaltyController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/CommentFactController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/FavoriteFactController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/CategoryController.php",
@@ -695,22 +915,17 @@
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/AuthTokenController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/ActionRelationshipController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/SellerRegister.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/User.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/User.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Transaction.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Transaction.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/SocialAccount.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/SocialAccount.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/ShippingAddress.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/ShippingAddress.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Shipping.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Shipping.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Seller.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Seller.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/ReviewFact.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Review.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Review.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Relationship.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Relationship.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/ReferenceTransaction.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/ReferenceTransaction.php",
@@ -718,7 +933,6 @@
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Policy.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/PaymentLookup.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/PaymentLookup.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Offer.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Offer.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Loyalty.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Loyalty.php",
@@ -730,27 +944,20 @@
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Item.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Geography.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Geography.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/FavoriteFact.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/FollowFact.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/FollowFact.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/FavoriteFact.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Date.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Date.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/CommentFact.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/CommentFact.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Comment.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Comment.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Category.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Category.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Buyer.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Buyer.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/BillingAddress.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/BillingAddress.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/AuthToken.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/AuthToken.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/AssetToken.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/AssetToken.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/ActionRelationship.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/ActionRelationship.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/ActionReference.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/ActionReference.php",
@@ -758,7 +965,6 @@
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/yiisoft/yii2/base/Controller.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/yiisoft/yii2/base/Model.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/components/BaseModel.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v2/models/Offer.php",
 		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/sign-tabs/signin.ts",
 		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/review-detail/review-detail.html",
 		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/review-detail/review-detail.ts",
@@ -766,48 +972,7 @@
 		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/product-detail/product-detail.scss",
 		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/product-detail/product-options.ts",
 		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/product-detail/product-options.html",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/layouts/main.php",
-		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/components/offer/offer.ts",
-		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/components/offer/offer.scss",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/models/SellerSearch.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/models/form/CompanyForm.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/drsdre/yii2-wizardwidget/WizardWidget.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/controllers/SellerController.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/user/register.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/offer/create.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/offer/update.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/user/_form.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/user/update.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/user/create.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/models/OfferSearch.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/marekpetras/yii2-ajax-box-widget/Box.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/marekpetras/yii2-ajax-box-widget/views/box.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/user/_stepFinal.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/site/index.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/machour/yii2-adminlte-widgets/Flot.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/machour/yii2-adminlte-widgets/View.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/machour/yii2-adminlte-widgets/MorisChart.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/machour/yii2-adminlte-widgets/BoxTrait.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/2amigos/yii2-chartjs-widget/src/ChartJs.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/machour/yii2-adminlte-widgets/ChartJs.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/dmstr/yii2-adminlte-asset/widgets/Menu.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/2amigos/yii2-chartjs-widget/src/ChartJsAsset.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/models/User.php",
-		"/C/Users/bruno_000/AppData/Local/Temp/fz3temp-1/UserController.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/controllers/SiteController.php",
-		"/C/Users/bruno_000/AppData/Local/Temp/fz3temp-1/AuthController.php",
-		"/C/wamp/www/AdminBack/AdminLTE/testMail.html",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/mail/newsletterSubscriptionEmail-html.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/web/css/site.css",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/themes/grape/css/style.css",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/site/_subscription.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/site/_header.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/site/_contact.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/models/ContactForm.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/models/Subscription.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/controllers/SiteController.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/components/Utils.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/site/contact.php"
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/layouts/main.php"
 	],
 	"find":
 	{
@@ -815,7 +980,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 90.0,
 		"where_history":
 		[
 		]
@@ -825,6 +990,75 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"terms",
+			"actionId",
+			"createLicense",
+			"address",
+			"createAddress",
+			"this->password",
+			"terms",
+			"lg-logo",
+			"price",
+			"download",
+			"bundle",
+			"support",
+			"pull",
+			"push",
+			"sendEmail",
+			"validateAndSave",
+			"checkAuthToken",
+			"createSocialAccount",
+			"createAuthToken",
+			"createSeller",
+			"createBuyer",
+			"createUser",
+			"addError",
+			"findByUsername",
+			"singup",
+			"username",
+			"authModel",
+			"resetKey",
+			"addError",
+			"restutils",
+			"fbId",
+			"_token",
+			"token",
+			"RestUtils",
+			"arrayCleaner",
+			"errors",
+			"Utils",
+			"RestUtils",
+			"Strategy",
+			"OndeTem?",
+			"OndeTem",
+			"picture",
+			"user->buyer",
+			"common\\models\\Picture",
+			"common\\models\\seller",
+			"seller",
+			"createPicture",
+			"buyer->picture",
+			"64",
+			"base",
+			"createSeller",
+			"_authenticator",
+			"auth",
+			"_authenticator",
+			"actionId",
+			"FollowModel",
+			"loadQueryIntoVar",
+			"Relationship",
+			"var_dump",
+			"set",
+			"RestUtils",
+			"setWhere",
+			"FollowFact",
+			"sellerId",
+			"userId",
+			"buyerId",
+			"user",
+			"modelClass",
+			"ActiveDataProvider",
 			"api\\modules\\v1",
 			"reviewFact",
 			"actionId",
@@ -883,76 +1117,7 @@
 			"CADASTRADA(S)?",
 			"EMPRESA(S)?",
 			"USUÁRIO(S)?",
-			"SERVIÇO(S)?",
-			"PRODUTO(S)?",
-			"GUIA DE NEGÓCIOS",
-			"CLIENTE(S)?",
-			"TERMO(S)?",
-			"CLIENTE",
-			"TERMO",
-			"\\d\\.\\d(\\.\\d)?",
-			"TERMO",
-			"“ONDE TEM?”",
-			"ul",
-			" scrollspy",
-			"”",
-			"“",
-			"“ONDE TEM?”",
-			"(\\d\\d|\\d)\\.\\d(\\.\\d)?",
-			" translate",
-			"“",
-			"License",
-			"credentials",
-			"_logged",
-			"loggedIn$",
-			"ondetem",
-			"',\n",
-			"password",
-			"buyer",
-			"company",
-			"CompanyForm",
-			"ProfileForm",
-			"activation_key",
-			"hash_equals",
-			"checkAuthToken",
-			"ondetem-gn",
-			"adress",
-			"ondetem.tk",
-			"createBuyer",
-			"adress",
-			"address",
-			"createSeller",
-			"email",
-			"ATV",
-			"Offer",
-			"Url",
-			"picture",
-			"offer",
-			"Offer()",
-			"Offer::",
-			"atv",
-			"$seller[$i]",
-			"version",
-			"versionName",
-			"hasMore",
-			"query",
-			"doQuery",
-			"authTk",
-			"flot",
-			"KEY_NO_DISK_SPACE",
-			"sellerId",
-			"cover",
-			"this->_address",
-			"this->address",
-			"billingAddress",
-			"buyer",
-			"loggedUser",
-			"profileForm",
-			"_buyer",
-			"createBuyer",
-			"createUser",
-			"$this->buyer",
-			"getBuyer"
+			"SERVIÇO(S)?"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -960,6 +1125,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"socialId",
 			"common",
 			"followFact",
 			"actionReferenceId",
@@ -1086,19 +1252,18 @@
 			"@luxore-text-medium",
 			"@luxore-text-dark",
 			"@luxore-text-medium",
-			"@luxore-text-light",
-			"cd-modal-section"
+			"@luxore-text-light"
 		],
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 31,
 			"sheets":
 			[
 				{
@@ -1127,7 +1292,7 @@
 						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 26,
 					"type": "text"
 				},
 				{
@@ -1154,10 +1319,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 746.0,
+						"translation.y": 2186.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -1166,15 +1331,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 433,
+						"buffer_size": 607,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								369,
-								421
+								397,
+								397
 							]
 						],
 						"settings":
@@ -1185,11 +1350,281 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 25,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
+					"file": "frontend/views/site/resetPassword.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 850,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 144.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 27,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "frontend/assets/AppAsset.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 558,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								504,
+								489
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "frontend/controllers/SiteController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7349,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7154,
+								7154
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4310.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "frontend/views/site/_publish-story.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5075,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3782,
+								3782
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 864.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "frontend/web/css/site.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3288,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3282,
+								3282
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3240.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "frontend/themes/grape/css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 37203,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13574,
+								13530
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 10296.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "frontend/models/ResetPasswordForm.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1470,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1081,
+								1081
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 648.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "common/models/User.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6716,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2887,
+								2685
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1412.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 20,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "backend/models/User.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3619,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3355,
+								3434
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1440.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 23,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
 					"file": "common/mail/sellerActivationKey-html.php",
 					"semi_transient": false,
 					"settings":
@@ -1202,7 +1637,7 @@
 						[
 							[
 								0,
-								0
+								6546
 							]
 						],
 						"settings":
@@ -1212,58 +1647,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 288.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "api/components/RestUtils.php",
+					"buffer": 13,
+					"file": "common/mail/newUser-html.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12532,
+						"buffer_size": 6371,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11909,
-								11882
-							]
-						],
-						"settings":
-						{
-							"auto_name": "<?php",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 7219.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "api/modules/v1/controllers/AuthController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 28963,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								15181,
-								15181
+								4492,
+								4492
 							]
 						],
 						"settings":
@@ -1273,49 +1677,19 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7985.0,
+						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "api/modules/v1/controllers/OfferController.php",
+					"buffer": 14,
+					"file": "api/modules/v2/controllers/OfferController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3553,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								74,
-								74
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1584.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "api/modules/v1/controllers/FavoriteFactController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2591,
+						"buffer_size": 2936,
 						"regions":
 						{
 						},
@@ -1333,27 +1707,58 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 22,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "api/modules/v1/controllers/ReviewFactController.php",
+					"buffer": 15,
+					"file": "api/components/RestUtils.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4136,
+						"buffer_size": 13278,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								520,
-								520
+								13274,
+								12961
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<?php",
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7775.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 21,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "api/modules/v1/controllers/AuthController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11733,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5775,
+								5775
 							]
 						],
 						"settings":
@@ -1361,6 +1766,33 @@
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3349.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1029,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								174,
+								174
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1370,20 +1802,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "api/modules/v1/controllers/FollowFactController.php",
+					"buffer": 18,
+					"file": "api/modules/v1/models/SellerRegister.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2526,
+						"buffer_size": 14979,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								63,
-								63
+								14096,
+								14104
 							]
 						],
 						"settings":
@@ -1393,27 +1825,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 792.0,
+						"translation.y": 8630.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "api/modules/v1/models/FollowModel.php",
+					"buffer": 19,
+					"file": "api/modules/v1/models/AuthModel.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7912,
+						"buffer_size": 14322,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3040,
-								3040
+								1612,
+								1612
 							]
 						],
 						"settings":
@@ -1423,27 +1855,26 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1368.0,
+						"translation.y": 2762.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
-					"file": "api/modules/v1/models/SellerRegister.php",
+					"buffer": 20,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14660,
+						"buffer_size": 11795,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								31,
-								31
+								11795,
+								11795
 							]
 						],
 						"settings":
@@ -1453,27 +1884,325 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 72.0,
+						"translation.y": 4501.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "api/modules/v1/models/UserForm.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10932,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1840,
+								1768
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 800.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "backend/controllers/UserController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10052,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3948,
+								4129
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 4104.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 23,
+					"file": "api/modules/v1/controllers/SearchController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4194,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2798,
+								2803
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1430.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 24,
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"file": "api/modules/v1/controllers/ReviewFactController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4122,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2165,
+								2165
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 30,
+					"type": "text"
+				},
+				{
+					"buffer": 25,
+					"file": "api/modules/v1/controllers/FollowFactController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2207,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1650,
+								1650
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 26,
+					"file": "api/modules/v1/controllers/FavoriteFactController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2334,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1728,
+								1728
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 864.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 31,
+					"type": "text"
+				},
+				{
+					"buffer": 27,
+					"file": "api/modules/v1/models/ReviewModel.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9111,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1134,
+								1056
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 674.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 28,
+					"type": "text"
+				},
+				{
+					"buffer": 28,
+					"file": "api/modules/v1/models/FavoriteModel.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8195,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1060,
+								982
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 548.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 29,
+					"type": "text"
+				},
+				{
+					"buffer": 29,
+					"file": "api/modules/v1/models/FollowModel.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8396,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3412,
+								3412
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1916.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 30,
+					"file": "frontend/config/bootstrap.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
-					"file": "common/models/FollowFact.php",
+					"buffer": 31,
+					"file": "frontend/config/main.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2797,
+						"buffer_size": 2203,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1636,
-								1636
+								416,
+								394
 							]
 						],
 						"settings":
@@ -1483,10 +2212,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 792.0,
+						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

@@ -112,7 +112,7 @@ class AuthController extends \yii\rest\ActiveController
 
             } else {
                 $models['status'] = AuthToken::TOKEN_WRONG;
-                $models['error'] = $auth->errorList();
+                $models['error'] = $auth->firstError();
             }
         }
         else
@@ -213,8 +213,7 @@ class AuthController extends \yii\rest\ActiveController
         else
         {
             $models['status'] = 500;
-            $models['error'] = 'Erro ao salvar informações';
-            $models['errorLog'] = $register->errorList();
+            $models['error'] = $register->firstError();
         }
 
 		echo RestUtils::sendResult($models['status'], $models);
