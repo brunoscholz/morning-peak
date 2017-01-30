@@ -11,6 +11,7 @@ use common\models\User;
 class ResetPasswordForm extends Model
 {
     public $password;
+    public $confirmPassword;
 
     /**
      * @var \common\models\User
@@ -44,8 +45,33 @@ class ResetPasswordForm extends Model
     public function rules()
     {
         return [
-            //['password', 'required'],
-            ['password', 'string', 'min' => 8],
+            [['password', 'confirmPassword'], 'required'],
+            [['password', 'confirmPassword'], 'string', 'min' => 8, 'max' => 60],
+            [['password'], 'validatePassword'],
+            [['confirmPassword'], 'checkNewPassword'],
+        ];
+    }
+
+    public function validatePassword($attribute, $params)
+    {
+        // ^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d,.;:]).+$
+        // (?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$
+        if (preg_match('/^(?=.*\d).*$/', !$this->$attribute)) {
+            $this->addError($attribute, 'Senha incorreta.');
+        }
+    }
+
+    public function checkNewPassword($attribute, $params)
+    {
+        if($this->password != $this->$attribute)
+            $this->addError($attribute, 'As senhas não conferem');
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'password' => 'Nova Senha',
+            'confirmPassword' => 'Confirmar Senha',
         ];
     }
 

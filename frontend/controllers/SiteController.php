@@ -233,23 +233,26 @@ class SiteController extends Controller
     /**
      * Resets password.
      *
-     * @param string $token
+     * @param string $key
      * @return mixed
      * @throws BadRequestHttpException
      */
-    public function actionResetPassword($token)
+    public function actionResetPassword($key)
     {
+        $this->layout = "@app/views/layouts/main-login";
         try {
-            $model = new ResetPasswordForm($token);
+            $model = new ResetPasswordForm($key);
+            if($model->load(Yii::$app->request->post()) && $model->validate()) {
+                if ($model->resetPassword()) {
+                    Yii::$app->session->setFlash('success', 'Nova senha salva com sucesso.');
+                }
+                else {
+                    Yii::$app->session->setFlash('error', 'Algo deu errado!!');
+                }
+            }
         } catch (InvalidParamException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
-
-        //$model->load(Yii::$app->request->post()) && $model->validate() && 
-        if ($model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password was saved.');
-
-            return $this->goHome();
+            //throw new BadRequestHttpException($e->getMessage());
+            Yii::$app->session->setFlash('error', 'Parece que esse token expirou!!');
         }
 
         return $this->render('resetPassword', [

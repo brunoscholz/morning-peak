@@ -243,11 +243,11 @@ class AuthController extends \yii\rest\ActiveController
             $user->resetToken = hash('sha256', $authenticator);
             $user->save();
             //$user->requiresNewPassword = 1;
-            $data['username'] = $user->name;
+            $data['username'] = $user->buyer->name;
             $data['key'] = $user->resetKey.base64_encode($authenticator);
             $data['disclaimer'] = 'Em caso de dúvidas, envie um email para contato@ondetem-gn.com.br';
 
-            $mail = \Yii::$app->mailer->compose('passwordResetToken-html', [
+            $mail = \Yii::$app->mailerc->compose('passwordResetToken-html', [
                 'data' => $data
             ])
                 ->setFrom('contato@ondetem-gn.com.br')
@@ -313,8 +313,40 @@ class AuthController extends \yii\rest\ActiveController
      */
     public function actionLogout($id)
     {
-        echo RestUtils::generateId();
+        $buyers = Buyer::find()
+            ->where(['like binary', 'pictureId', '4899oxUh7aJvOZFwNir5s'])
+            ->all();
+
+        $sellers = Seller::find()
+            ->where(['like binary', 'pictureId', '4899oxUh7aJvOZFwNir5s'])
+            ->all();
+
+        $i = 0;
+        foreach ($buyers as $buyer) {
+            $pic = new Picture();
+            $pic->pictureId = RestUtils::generateId();
+            $pic->save();
+            $buyer->pictureId = $pic->pictureId;
+            $buyer->save();
+            echo $i++ . "\n";
+        }
+        var_dump(count($buyers));
+
+        $i = 0;
+        foreach ($sellers as $seller) {
+            $pic = new Picture();
+            $pic->pictureId = RestUtils::generateId();
+            $pic->save();
+            $seller->pictureId = $pic->pictureId;
+            $seller->save();
+            echo $i++ . "\n";
+        }
+        var_dump(count($sellers));
+
         die();
+
+
+        echo RestUtils::generateId();
         $pass = '1234abcd';
         $salt = 'ICrs4QDfroMNZT7xozyFE9l2vmUHlZzRlaISuRhAejoLznDnM6PwhDFyUsmwLCdN';
         $hash = md5($salt . $pass);
