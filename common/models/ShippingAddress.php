@@ -8,12 +8,19 @@ use Yii;
  * This is the model class for table "{{%shipping_address}}".
  *
  * @property string $shippingAddressId
- * @property string $adress
+ * @property string $address
+ * @property string $streetNumber
+ * @property string $formattedAddress
  * @property string $city
  * @property string $neighborhood
  * @property string $state
  * @property string $postCode
  * @property string $country
+ * @property double $latitude
+ * @property double $longitude
+ * @property string $status
+ *
+ * @property Buyer[] $buyers
  */
 class ShippingAddress extends \yii\db\ActiveRecord
 {
@@ -31,12 +38,15 @@ class ShippingAddress extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['shippingAddressId', 'adress', 'city', 'neighborhood', 'state', 'postCode', 'country'], 'required'],
+            [['shippingAddressId', 'address', 'streetNumber', 'formattedAddress', 'city', 'neighborhood', 'state', 'postCode', 'country', 'latitude', 'longitude'], 'required'],
+            [['latitude', 'longitude'], 'number'],
             [['shippingAddressId'], 'string', 'max' => 21],
-            [['adress', 'country'], 'string', 'max' => 100],
+            [['address', 'formattedAddress', 'country'], 'string', 'max' => 100],
+            [['streetNumber'], 'string', 'max' => 6],
             [['city', 'neighborhood'], 'string', 'max' => 60],
             [['state'], 'string', 'max' => 2],
             [['postCode'], 'string', 'max' => 15],
+            [['status'], 'string', 'max' => 3],
         ];
     }
 
@@ -48,16 +58,29 @@ class ShippingAddress extends \yii\db\ActiveRecord
         return [
             'shippingAddressId' => 'Shipping Address ID',
             'address' => 'Endereço',
+            'streetNumber' => 'Número',
+            'formattedAddress' => 'Endereço Formatado',
             'city' => 'Cidade',
             'neighborhood' => 'Bairro',
-            'state' => 'State',
+            'state' => 'UF',
             'postCode' => 'CEP',
             'country' => 'País',
+            'latitude' => 'Latitude',
+            'longitude' => 'Longitude',
+            'status' => 'Status',
         ];
     }
 
-    public function getFullAddress($wc = false)
+    public function getFullAddress()
     {
-        return $this->address .', '. $this->neighborhood .' - '. $this->city .'/'. $this->state;
+        return $this->address . ', ' . $this->streetNumber;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBuyers()
+    {
+        return $this->hasMany(Buyer::className(), ['shippingAddressId' => 'shippingAddressId']);
     }
 }

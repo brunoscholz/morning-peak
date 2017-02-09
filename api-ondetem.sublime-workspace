@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"mo",
+				"resetModel"
+			],
+			[
+				"confi",
+				"confirmPassword"
+			],
+			[
+				"buyer",
+				"buyers"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"whi",
+				"width"
+			],
+			[
+				"size",
+				"sizeArray"
+			],
+			[
+				"common",
+				"commonError"
+			],
+			[
+				"pro",
+				"profileForm"
+			],
+			[
 				"Seller",
 				"SellerRegister"
 			],
@@ -292,10 +324,6 @@
 				"offerId"
 			],
 			[
-				"buyer",
-				"buyerId"
-			],
-			[
 				"IAC",
 				"IActionReference"
 			],
@@ -370,10 +398,6 @@
 			[
 				"lice",
 				"license"
-			],
-			[
-				"mo",
-				"modules"
 			],
 			[
 				"Licen",
@@ -490,30 +514,6 @@
 			[
 				"var",
 				"var_dump"
-			],
-			[
-				"see",
-				"sellersChunks"
-			],
-			[
-				"backg",
-				"background-position"
-			],
-			[
-				"too",
-				"totalFollowers"
-			],
-			[
-				"item",
-				"itemPicked"
-			],
-			[
-				"offe",
-				"offerForm"
-			],
-			[
-				"billing",
-				"billingAddressId"
 			]
 		]
 	},
@@ -550,7 +550,8 @@
 			"file": "frontend/views/site/resetPassword.php",
 			"settings":
 			{
-				"buffer_size": 850,
+				"buffer_size": 1989,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -567,7 +568,16 @@
 			"file": "frontend/controllers/SiteController.php",
 			"settings":
 			{
-				"buffer_size": 7349,
+				"buffer_size": 7619,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "frontend/models/ResetPasswordForm.php",
+			"settings":
+			{
+				"buffer_size": 2348,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -596,15 +606,6 @@
 			{
 				"buffer_size": 37203,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "frontend/models/ResetPasswordForm.php",
-			"settings":
-			{
-				"buffer_size": 1470,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
 			}
 		},
 		{
@@ -664,16 +665,17 @@
 			"file": "api/modules/v1/controllers/AuthController.php",
 			"settings":
 			{
-				"buffer_size": 11733,
+				"buffer_size": 12650,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "Seller[name]:Nova Empresa\nSeller[about]:Nada aqui...\nSeller[email]:brunoscholz@yahoo.de\nSeller[website]:\nSeller[phone]:4132223322\nSeller[cellphone]:41998785665\nSeller[hours]:\nSeller[status]:PAY\nSeller[license]:2\nBillingAddress[address]:Av Companhias, 87\nBillingAddress[city]:Curitiba\nBillingAddress[state]:PR\nBillingAddress[postCode]:\nBillingAddress[country]:Brasil (BRA)\nPicture[cover]:assets/img/generic-cover.jpg\nPicture[thumbnail]:assets/img/generic-avatar.png\nsalesman:zZN6prD6rzxEhg8sDQz1j\nv:1.4.4\n\nSeller[name]:Teste Onde tem\nSeller[about]:Mais um cadastro de teste\nSeller[email]:bruno@ondetem-gn.com.br\nSeller[website]:\nSeller[phone]:4136666666\nSeller[cellphone]:41999899999\nSeller[hours]:\nSeller[status]:PAY\nBillingAddress[address]:Rua A, 2\nBillingAddress[city]:Curitiba\nBillingAddress[neighborhood]:\nBillingAddress[state]:PR\nBillingAddress[postCode]:\nBillingAddress[country]:Brasil (BRA)\nPicture[cover]:assets/img/generic-cover.jpg\nPicture[thumbnail]:assets/img/generic-avatar.png\nsalesman:zZN6prD6rzxEhg8sDQz1j\nv:1.4.4",
+			"file": "api/modules/v1/models/AuthModel.php",
 			"settings":
 			{
-				"buffer_size": 1029,
+				"buffer_size": 14322,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -682,15 +684,6 @@
 			"settings":
 			{
 				"buffer_size": 14979,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "api/modules/v1/models/AuthModel.php",
-			"settings":
-			{
-				"buffer_size": 14322,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -713,21 +706,99 @@
 			}
 		},
 		{
-			"file": "backend/controllers/UserController.php",
-			"settings":
-			{
-				"buffer_size": 10052,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "api/modules/v1/controllers/SearchController.php",
 			"settings":
 			{
 				"buffer_size": 4194,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "backend/views/dashboard/index.php",
+			"settings":
+			{
+				"buffer_size": 9234,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/controllers/UserController.php",
+			"settings":
+			{
+				"buffer_size": 9985,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/views/buyer/index.php",
+			"settings":
+			{
+				"buffer_size": 1604,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "common/views/profiles/user-profile.php",
+			"settings":
+			{
+				"buffer_size": 8314,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/models/Picture.php",
+			"settings":
+			{
+				"buffer_size": 5692,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "common/models/Transaction.php",
+			"settings":
+			{
+				"buffer_size": 4648,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/controllers/BuyerController.php",
+			"settings":
+			{
+				"buffer_size": 5050,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "backend/controllers/CategoryController.php",
+			"settings":
+			{
+				"buffer_size": 5496,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/views/category/_form.php",
+			"settings":
+			{
+				"buffer_size": 1765,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/models/OfferSearch.php",
+			"settings":
+			{
+				"buffer_size": 1726,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -785,14 +856,6 @@
 			}
 		},
 		{
-			"file": "frontend/config/bootstrap.php",
-			"settings":
-			{
-				"buffer_size": 6,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "frontend/config/main.php",
 			"settings":
 			{
@@ -808,10 +871,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 380.0,
-		"last_filter": "",
+		"height": 150.0,
+		"last_filter": "Package Control: in",
 		"selected_items":
 		[
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
 			[
 				"lore",
 				"Snippet: Lorem ipsum"
@@ -821,7 +888,7 @@
 				"Snippet: Lorem ipsum"
 			]
 		],
-		"width": 472.0
+		"width": 392.0
 	},
 	"console":
 	{
@@ -845,15 +912,52 @@
 	],
 	"file_history":
 	[
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/layouts/main-login.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/layouts/content.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/layouts/main.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/layouts/main.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/layouts/main-login.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/site/login.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/models/PasswordResetRequestForm.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/main-local.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/main-local.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/BuyerController.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/composer/autoload_real.php",
+		"/C/Users/bruno_000/AppData/Local/Temp/fz3temp-1/installed.json",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/composer/installed.json",
+		"/C/Users/bruno_000/AppData/Local/Temp/fz3temp-1/autoload.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/autoload.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/yiisoft/extensions.php",
+		"/C/Users/bruno_000/AppData/Local/Temp/fz3temp-1/extensions.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/models/form/ProfileForm.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/user/_form.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/main.php",
+		"/D/word/readme.txt",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/params.php",
+		"/C/wamp/www/AdminBack/AdminLTE/Docs.txt",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/bootstrap.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/environments/index.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/LICENSE.md",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/requirements.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/README.md",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/composer.lock",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/composer.json",
+		"/C/wamp/www/AdminBack/AdminLTE/conf/readme.txt",
+		"/C/wamp/www/AdminBack/AdminLTE/cat1",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/models/BuyerSearch.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/controllers/OfferController.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/buyer/view.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/controllers/BuyerController.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/offer/index.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/components/Utils.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/category/index.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/seller/index.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/web/.htaccess",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/test-local.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/test.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/params.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/main-local.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/main.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/params-local.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/bootstrap.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/main-local.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/BillingAddress.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Seller.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Picture.php",
@@ -867,10 +971,8 @@
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/site/_download.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/offer/view.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/models/Subscription.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/models/PasswordResetRequestForm.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/SocialAccount.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/AuthToken.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/components/Utils.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/UserController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/models/User.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/User.php",
@@ -900,7 +1002,6 @@
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/components/Controller.php",
 		"/C/Users/bruno_000/AppData/Local/Temp/fz3temp-1/SearchController.php",
 		"/C/Users/bruno_000/AppData/Local/Temp/fz3temp-1/SellerController.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/controllers/OfferController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/models/OfferSearch.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/ReviewModel.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/ReviewFact.php",
@@ -911,7 +1012,6 @@
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/CommentFactController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/FavoriteFactController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/CategoryController.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/BuyerController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/AuthTokenController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/controllers/ActionRelationshipController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/SellerRegister.php",
@@ -939,40 +1039,7 @@
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/LicenseType.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/LicenseType.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/License.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/License.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Item.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Item.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Geography.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Geography.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/FollowFact.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/FavoriteFact.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Date.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Date.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/CommentFact.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Comment.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Comment.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Category.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Category.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Buyer.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/BillingAddress.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/AuthToken.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/AssetToken.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/AssetToken.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/ActionRelationship.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/ActionReference.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/ActionReference.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/yiisoft/yii2/widgets/ActiveForm.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/yiisoft/yii2/base/Controller.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/vendor/yiisoft/yii2/base/Model.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/components/BaseModel.php",
-		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/sign-tabs/signin.ts",
-		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/review-detail/review-detail.html",
-		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/review-detail/review-detail.ts",
-		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/sign-tabs/sign-tabs.html",
-		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/product-detail/product-detail.scss",
-		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/product-detail/product-options.ts",
-		"/C/Users/bruno_000/Documents/Bruno/Work/Ondetem/app_final/src/pages/product-detail/product-options.html",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/layouts/main.php"
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/License.php"
 	],
 	"find":
 	{
@@ -990,6 +1057,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"token",
+			"ondetem-gn",
+			"4899oxUh7aJvOZFwNir5s",
+			"createBuyer",
+			"Utils",
+			"imagine",
+			"THUMB",
+			"COVER",
+			"params",
+			"loadAll",
+			"scenario",
+			"hidden",
+			"bruno",
+			"`bruno",
+			"brunoscholz",
+			"checkPassword",
 			"terms",
 			"actionId",
 			"createLicense",
@@ -1101,23 +1184,7 @@
 			"sellers",
 			"FORNE",
 			"PRODUTO(S)?",
-			"CADASTRADA(S)?",
-			"CADASTRO",
-			"EMPRESA(S)?",
-			"PROUTO(S)?",
-			"SERVIÇO(S)?",
-			"SERVIÇOS",
-			"USUÁRIO(S)?",
-			"TERMO(S)?",
-			"GUIA DE NEGÓCIOS",
-			"“ONDE TEM?”",
-			"anunciante",
-			"anunciantte",
-			"CADASTRO",
-			"CADASTRADA(S)?",
-			"EMPRESA(S)?",
-			"USUÁRIO(S)?",
-			"SERVIÇO(S)?"
+			"CADASTRADA(S)?"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1263,7 +1330,7 @@
 	"groups":
 	[
 		{
-			"selected": 31,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -1279,7 +1346,7 @@
 						"selection":
 						[
 							[
-								0,
+								4972,
 								4972
 							]
 						],
@@ -1289,10 +1356,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 720.0,
+						"translation.y": 864.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 26,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
@@ -1319,7 +1386,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2186.0,
+						"translation.y": 2232.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 10,
@@ -1350,7 +1417,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 25,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
@@ -1359,15 +1426,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 850,
+						"buffer_size": 1989,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								709,
+								709
 							]
 						],
 						"settings":
@@ -1377,10 +1444,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 144.0,
+						"translation.y": 225.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 27,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -1410,7 +1477,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 31,
 					"type": "text"
 				},
 				{
@@ -1419,15 +1486,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7349,
+						"buffer_size": 7619,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7154,
-								7154
+								6448,
+								6448
 							]
 						],
 						"settings":
@@ -1437,14 +1504,44 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4310.0,
+						"translation.y": 4221.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 6,
+					"file": "frontend/models/ResetPasswordForm.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2348,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1123,
+								1138
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 272.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
 					"file": "frontend/views/site/_publish-story.php",
 					"semi_transient": false,
 					"settings":
@@ -1470,11 +1567,11 @@
 						"translation.y": 864.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 8,
 					"file": "frontend/web/css/site.css",
 					"semi_transient": false,
 					"settings":
@@ -1500,11 +1597,11 @@
 						"translation.y": 3240.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 30,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 9,
 					"file": "frontend/themes/grape/css/style.css",
 					"semi_transient": false,
 					"settings":
@@ -1530,37 +1627,7 @@
 						"translation.y": 10296.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "frontend/models/ResetPasswordForm.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1470,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1081,
-								1081
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 648.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 19,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -1576,8 +1643,8 @@
 						"selection":
 						[
 							[
-								2887,
-								2685
+								2928,
+								3063
 							]
 						],
 						"settings":
@@ -1587,10 +1654,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": -0.0,
-						"translation.y": 1412.0,
+						"translation.y": 1700.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -1620,7 +1687,7 @@
 						"translation.y": 1440.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 23,
+					"stack_index": 34,
 					"type": "text"
 				},
 				{
@@ -1650,7 +1717,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 32,
 					"type": "text"
 				},
 				{
@@ -1680,7 +1747,7 @@
 						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 29,
 					"type": "text"
 				},
 				{
@@ -1710,7 +1777,7 @@
 						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 22,
+					"stack_index": 33,
 					"type": "text"
 				},
 				{
@@ -1738,7 +1805,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7775.0,
+						"translation.y": 4231.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 21,
@@ -1750,15 +1817,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11733,
+						"buffer_size": 12650,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5775,
-								5775
+								8186,
+								8186
 							]
 						],
 						"settings":
@@ -1768,37 +1835,40 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3349.0,
+						"translation.y": 4184.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
 					"buffer": 17,
+					"file": "api/modules/v1/models/AuthModel.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1029,
+						"buffer_size": 14322,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								174,
-								174
+								2115,
+								2631
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1196.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -1828,41 +1898,11 @@
 						"translation.y": 8630.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
 					"buffer": 19,
-					"file": "api/modules/v1/models/AuthModel.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 14322,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1612,
-								1612
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2762.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 20,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1884,14 +1924,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4501.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 22,
 					"type": "text"
 				},
 				{
-					"buffer": 21,
+					"buffer": 20,
 					"file": "api/modules/v1/models/UserForm.php",
 					"semi_transient": false,
 					"settings":
@@ -1903,8 +1943,8 @@
 						"selection":
 						[
 							[
-								1840,
-								1768
+								286,
+								261
 							]
 						],
 						"settings":
@@ -1914,44 +1954,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 800.0,
+						"translation.y": 288.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 22,
-					"file": "backend/controllers/UserController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10052,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3948,
-								4129
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 4104.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 23,
+					"buffer": 21,
 					"file": "api/modules/v1/controllers/SearchController.php",
 					"semi_transient": false,
 					"settings":
@@ -1973,15 +1983,315 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
+						"translation.x": 0.0,
 						"translation.y": 1430.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 24,
+					"stack_index": 27,
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "backend/views/dashboard/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								297,
+								297
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 23,
+					"file": "backend/controllers/UserController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9985,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8469,
+								8562
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 34.0,
+						"translation.y": 4058.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
 					"buffer": 24,
+					"file": "backend/views/buyer/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1604,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								682,
+								682
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 25,
+					"file": "common/views/profiles/user-profile.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8314,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8009,
+								8014
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2991.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 26,
+					"file": "common/models/Picture.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5692,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4068,
+								4068
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1944.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 27,
+					"file": "common/models/Transaction.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4648,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								825,
+								1129
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 432.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 25,
+					"type": "text"
+				},
+				{
+					"buffer": 28,
+					"file": "backend/controllers/BuyerController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5050,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3619,
+								3619
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1944.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 29,
+					"file": "backend/controllers/CategoryController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5496,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2993,
+								2993
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1736.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 30,
+					"file": "backend/views/category/_form.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1765,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 288.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 31,
+					"file": "backend/models/OfferSearch.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1726,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 216.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 26,
+					"type": "text"
+				},
+				{
+					"buffer": 32,
 					"file": "api/modules/v1/controllers/ReviewFactController.php",
 					"semi_transient": false,
 					"settings":
@@ -2007,11 +2317,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 30,
+					"stack_index": 37,
 					"type": "text"
 				},
 				{
-					"buffer": 25,
+					"buffer": 33,
 					"file": "api/modules/v1/controllers/FollowFactController.php",
 					"semi_transient": false,
 					"settings":
@@ -2037,11 +2347,11 @@
 						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 28,
 					"type": "text"
 				},
 				{
-					"buffer": 26,
+					"buffer": 34,
 					"file": "api/modules/v1/controllers/FavoriteFactController.php",
 					"semi_transient": false,
 					"settings":
@@ -2067,11 +2377,11 @@
 						"translation.y": 864.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 31,
+					"stack_index": 38,
 					"type": "text"
 				},
 				{
-					"buffer": 27,
+					"buffer": 35,
 					"file": "api/modules/v1/models/ReviewModel.php",
 					"semi_transient": false,
 					"settings":
@@ -2097,11 +2407,11 @@
 						"translation.y": 674.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 28,
+					"stack_index": 35,
 					"type": "text"
 				},
 				{
-					"buffer": 28,
+					"buffer": 36,
 					"file": "api/modules/v1/models/FavoriteModel.php",
 					"semi_transient": false,
 					"settings":
@@ -2127,11 +2437,11 @@
 						"translation.y": 548.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 29,
+					"stack_index": 36,
 					"type": "text"
 				},
 				{
-					"buffer": 29,
+					"buffer": 37,
 					"file": "api/modules/v1/models/FollowModel.php",
 					"semi_transient": false,
 					"settings":
@@ -2153,43 +2463,15 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
+						"translation.x": 0.0,
 						"translation.y": 1916.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
-					"buffer": 30,
-					"file": "frontend/config/bootstrap.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 31,
+					"buffer": 38,
 					"file": "frontend/config/main.php",
 					"semi_transient": false,
 					"settings":
@@ -2215,7 +2497,7 @@
 						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 8,
 					"type": "text"
 				}
 			]

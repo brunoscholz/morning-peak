@@ -313,7 +313,7 @@ class AuthController extends \yii\rest\ActiveController
      */
     public function actionLogout($id)
     {
-        $buyers = Buyer::find()
+        /*$buyers = Buyer::find()
             ->where(['like binary', 'pictureId', '4899oxUh7aJvOZFwNir5s'])
             ->all();
 
@@ -343,14 +343,15 @@ class AuthController extends \yii\rest\ActiveController
         }
         var_dump(count($sellers));
 
-        die();
+        die();*/
 
 
         echo RestUtils::generateId();
-        $pass = '1234abcd';
+        $pass = 'amanda17';
         $salt = 'ICrs4QDfroMNZT7xozyFE9l2vmUHlZzRlaISuRhAejoLznDnM6PwhDFyUsmwLCdN';
         $hash = md5($salt . $pass);
-        //var_dump($hash);
+        var_dump($hash);
+        die();
 
         $genAuthenticator = RestUtils::getToken(33);
         $genSelector = base64_encode(RestUtils::getToken(9));

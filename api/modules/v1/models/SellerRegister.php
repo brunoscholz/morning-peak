@@ -452,11 +452,15 @@ class SellerRegister extends Model
         $address = new BillingAddress(); //['scenario' => 'register']
         $address->billingAddressId = RestUtils::generateId();
         $address->address = $params['address'];
+        $address->streetNumber = $params['streetNumber'];
+        $address->formattedAddress = $params['formattedAddress'];
         $address->city = $params['city'];
-        $address->neighborhood = 'NA';
+        $address->neighborhood = $params['neighborhood'];
         $address->state = $params['state'];
         $address->postCode = '0';
-        $address->country = 'Brasil (BRA)';
+        $address->latitude = $params['latitude'];
+        $address->longitude = $params['longitude'];
+        $address->country = $params['country'];
 
         return $address;
     }
