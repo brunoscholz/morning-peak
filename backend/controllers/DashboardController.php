@@ -20,6 +20,17 @@ class DashboardController extends BaseController
 {
 	public function behaviors()
     {
+        /*
+        return [
+            'acl' => [
+                'class' => \humhub\components\behaviors\AccessControl::className(),
+                'guestAllowedActions' => [
+                    'index',
+                    'stream'
+                ]
+            ]
+        ];
+        */
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -55,6 +66,11 @@ class DashboardController extends BaseController
         //$auth = Yii::$app->authManager;
         //var_dump(Yii::$app->user->can('updateOwnProfile'));
 
+        return $this->render('index');
+    }
+
+    public function actionNotify()
+    {
         // $message was just created by the logged in user, and sent to $recipient_id
         /*Notification::notify(Notification::KEY_NEW_MESSAGE, $recipient_id, $message->id);
 
@@ -64,11 +80,6 @@ class DashboardController extends BaseController
         Notification::error(Notification::KEY_NO_DISK_SPACE, '1234acanidqo1');
         */
 
-        return $this->render('index');
-    }
-
-    public function actionNotify()
-    {
         Notification::notify(Notification::KEY_OFFER_TRADED, Yii::$app->user->identity->userId, 'TDh7O1NJPqfCgoECYnEau');
     }
 

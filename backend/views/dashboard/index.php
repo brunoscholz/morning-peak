@@ -23,8 +23,8 @@ $myImages = Url::to('@web/img/');
       'icon' => 'fa-building',
       'header' => Count($currentUser->sellers),
       'text' => 'Empresas cadastradas',
-      'footerUrl' => '',
-      'footerText' => '',
+      'footerUrl' => Url::to(['sellers/seller/view-all', 'id' => $currentUser->userId]),
+      'footerText' => 'ver todas ',
     ]) ?>
   </div><!-- ./col -->
 
@@ -42,7 +42,7 @@ $myImages = Url::to('@web/img/');
       'header' => $tOff . ' ',
       'text' => 'Ofertas',
       'footerUrl' => '',
-      'footerText' => '',
+      'footerText' => 'ver todas ',
     ]) ?>
   </div><!-- ./col -->
 
@@ -54,7 +54,7 @@ $myImages = Url::to('@web/img/');
       'header' => $tFlw . ' ',
       'text' => 'Seguidores',
       'footerUrl' => '',
-      'footerText' => '',
+      'footerText' => 'ver todos',
     ]) ?>
   </div><!-- ./col -->
 
@@ -127,7 +127,7 @@ $myImages = Url::to('@web/img/');
           </div>
         <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
           <ul class="nav nav-stacked">
-            <li><?= Html::a('<b>Gerenciar</b>', ['seller/view', 'id' => $seller->sellerId]) ?></li>
+            <li><?= Html::a('<b>Gerenciar</b>', ['sellers/seller/view', 'id' => $seller->sellerId]) ?></li>
           </ul>
         <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
 

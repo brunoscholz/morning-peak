@@ -109,14 +109,14 @@ $this->params['breadcrumbs'][] = ['label' => $model['name']];
 
           <div class="active tab-pane" id="newoffer">
             <?php
-              $offerForm = new \backend\models\form\OfferForm();
+              $offerForm = new \backend\modules\offers\models\form\OfferForm();
               $offerForm->offer = new \common\models\Offer();
-              echo $this->render('/offer/_createform', ['model' => $offerForm, 'seller' => $model]);
+              echo $this->render('@backend/modules/offers/views/offer/_createform', ['model' => $offerForm, 'seller' => $model]);
             ?>
           </div><!-- /.tab-pane -->
 
           <div class="tab-pane" id="offers">
-            <?= $this->render('/offer/list', ['model' => $model->offers]) ?>
+            <?= $this->render('@backend/modules/offers/views/offer/list', ['model' => $model->offers]) ?>
           </div>
 
           <div class="tab-pane" id="settings">

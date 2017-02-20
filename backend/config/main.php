@@ -31,9 +31,38 @@ return [
                 return \Yii::$app->user->identity->role;
             },
         ],
-        /*'dashboard' => [
-            'class' => 'backend\modules\dashboard\Module',
-        ],*/
+
+        'buyers' => [
+            'class' => 'backend\modules\buyers\BuyerModule',
+        ],
+        'categories' => [
+            'class' => 'backend\modules\categories\CategoryModule',
+        ],
+        'chat' => [
+            'class' => 'backend\modules\chat\ChatModule',
+        ],
+        'favorites' => [
+            'class' => 'backend\modules\favorites\FavoriteModule',
+        ],
+        'follows' => [
+            'class' => 'backend\modules\follows\FollowModule',
+        ],
+        'items' => [
+            'class' => 'backend\modules\items\ItemModule',
+        ],
+        'offers' => [
+            'class' => 'backend\modules\offers\OfferModule',
+        ],
+        'pictures' => [
+            'class' => 'backend\modules\pictures\PictureModule',
+        ],
+        'reviews' => [
+            'class' => 'backend\modules\reviews\ReviewModule',
+            //'reviewClass' => 'backend\modules\review\models\ReviewFact',
+        ],
+        'sellers' => [
+            'class' => 'backend\modules\sellers\SellerModule',
+        ],
     ],
     'defaultRoute' => 'dashboard/index',
     'components' => [

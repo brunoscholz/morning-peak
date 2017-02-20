@@ -172,7 +172,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->buyer['name']];
           </div><!-- /.tab-pane -->
 
           <div class="active tab-pane" id="offers">
-            <?= $this->render('/offer/list', ['model' => $model->buyer->favorites]) ?>
+            <?= $this->render('@backend/modules/offers/views/offer/list', ['model' => $model->buyer->favorites]) ?>
           </div>
 
           <div class="tab-pane" id="settings">
@@ -180,7 +180,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->buyer['name']];
               $profileForm = new \backend\models\form\ProfileForm();
               $profileForm->user = \backend\models\User::findOne($model->userId);
             ?>
-            <?= $this->render('/user/_form', [
+            <?= $this->render('@backend/views/user/_form', [
               'model' => $profileForm,
             ]) ?>
           </div><!-- /.tab-pane -->

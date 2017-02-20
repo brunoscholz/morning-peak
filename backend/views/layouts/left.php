@@ -44,7 +44,7 @@ use backend\components\Utils;
                         'url' => ['#'],
                         'items' => [
                             // filter by selected seller
-                            ['label' => 'Ver Todas', 'icon' => 'fa fa-eye', 'url' => ['/offer'], 'visible' => Yii::$app->user->can('vendor')],
+                            ['label' => 'Ver Todas', 'icon' => 'fa fa-eye', 'url' => ['/offers'], 'visible' => Yii::$app->user->can('vendor')],
                             //['label' => 'Catálogos', 'icon' => 'fa fa-eye', 'url' => ['/offer']],
                             //['label' => 'Nova Oferta', 'icon' => 'fa fa-cart-plus', 'url' => ['/offer/create'], 'visible' => Yii::$app->user->can('vendor')],
                         ],
@@ -54,15 +54,15 @@ use backend\components\Utils;
                         'icon' => 'fa  fa-th',
                         'url' => ['#'],
                         'items' => [
-                            ['label' => 'Ver Todas', 'icon' => 'fa fa-eye', 'url' => ['/category'], 'visible' => Yii::$app->user->can('user')],
-                            ['label' => 'Sugerir Nova', 'icon' => 'fa fa-plus-circle', 'url' => ['/category/sugest'], 'visible' => Yii::$app->user->can('user')],
-                            ['label' => 'Nova Categoria', 'icon' => 'fa fa-plus', 'url' => ['/category/create'], 'visible' => Yii::$app->user->can('admin')],
+                            ['label' => 'Ver Todas', 'icon' => 'fa fa-eye', 'url' => ['/categories'], 'visible' => Yii::$app->user->can('user')],
+                            ['label' => 'Sugerir Nova', 'icon' => 'fa fa-plus-circle', 'url' => ['/categories/category/sugest'], 'visible' => Yii::$app->user->can('user')],
+                            ['label' => 'Nova Categoria', 'icon' => 'fa fa-plus', 'url' => ['/categories/category/create'], 'visible' => Yii::$app->user->can('admin')],
                         ],
                     ],
                     [
                         'label' => 'Itens',
                         'icon' => 'fa  fa-shopping-basket',
-                        'url' => ['/item'],
+                        'url' => ['/items'],
                         'visible' => Yii::$app->user->can('vendor'),
                     ],
                     [
@@ -71,8 +71,8 @@ use backend\components\Utils;
                         'url' => ['#'],
                         'visible' => Yii::$app->user->can('admin'),
                         'items' => [
-                            ['label' => 'Ver Todos', 'icon' => 'fa fa-eye', 'url' => ['/seller']],
-                            ['label' => 'Cadastrar', 'icon' => 'fa fa-user-plus', 'url' => ['/seller/create']],
+                            ['label' => 'Ver Todos', 'icon' => 'fa fa-eye', 'url' => ['/sellers']],
+                            ['label' => 'Cadastrar', 'icon' => 'fa fa-user-plus', 'url' => ['/sellers/seller/create']],
                         ],
                     ],
                     [
@@ -81,10 +81,10 @@ use backend\components\Utils;
                         'url' => ['#'],
                         'visible' => Yii::$app->user->can('admin'),
                         'items' => [
-                            ['label' => 'Administradores', 'icon' => 'fa  fa-eye', 'url' => ['/buyer/role-index', 'role' => 'administrator']],
-                            ['label' => 'Vendedores', 'icon' => 'fa  fa-eye', 'url' => ['/buyer/role-index', 'role' => 'salesman']],
-                            ['label' => 'Usuários', 'icon' => 'fa  fa-eye', 'url' => ['/buyer']],
-                            ['label' => 'Cadastrar', 'icon' => 'fa fa-user-plus', 'url' => ['/user/create']],
+                            ['label' => 'Administradores', 'icon' => 'fa  fa-eye', 'url' => ['/buyers/buyer/role-index', 'role' => 'administrator']],
+                            ['label' => 'Vendedores', 'icon' => 'fa  fa-eye', 'url' => ['/buyers/buyer/role-index', 'role' => 'salesman']],
+                            ['label' => 'Usuários', 'icon' => 'fa  fa-eye', 'url' => ['/buyers']],
+                            ['label' => 'Cadastrar', 'icon' => 'fa fa-user-plus', 'url' => ['/users/create']],
                         ],
                     ],
 
