@@ -203,7 +203,7 @@ class AuthController extends \yii\rest\ActiveController
         {
             try { $mail->send(); }
             catch(\Swift_SwiftException $exception) {
-                $models['mailerror'] = 'Can sent mail due to the following exception '. $exception;
+                $models['error'] = 'Can sent mail due to the following exception '. $exception;
             }
             finally {
                 $models['status'] = 200;

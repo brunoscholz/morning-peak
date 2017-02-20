@@ -31,6 +31,9 @@ return [
                 return \Yii::$app->user->identity->role;
             },
         ],
+        /*'dashboard' => [
+            'class' => 'backend\modules\dashboard\Module',
+        ],*/
     ],
     'defaultRoute' => 'dashboard/index',
     'components' => [

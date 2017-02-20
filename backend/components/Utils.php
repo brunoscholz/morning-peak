@@ -110,6 +110,9 @@ class Utils {
 
     public static function truncate($string, $limit)
     {
-        return substr($string, 0, strrpos($string, ' ', $limit - strlen($string)));
+        $newLimit = min($limit, strlen($string));
+        //$adjustedLimit = max(0, $newLimit - strlen($string));
+
+        return substr($string, 0, strrpos($string, ' ', $newLimit - strlen($string)));
     }
 }

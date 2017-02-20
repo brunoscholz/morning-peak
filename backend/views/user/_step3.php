@@ -16,7 +16,7 @@ $myImages = Url::to('@web/img/');
 $thumb = Utils::safePicture($model->user->buyer->picture, 'thumbnail');
 $cover = Utils::safePicture($model->user->buyer->picture, 'cover');
 
-if($model->user->status == "PEN" && ($model->user->password == '' || $model->user->salt == '')):
+//if($model->user->status == "PEN" && ($model->user->password == '' || $model->user->salt == '')):
 ?>
 
 <div class="row">
@@ -154,5 +154,3 @@ if($model->user->status == "PEN" && ($model->user->password == '' || $model->use
         <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
     </div>
 </div>
-
-<?php endif; ?>

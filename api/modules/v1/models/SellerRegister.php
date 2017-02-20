@@ -412,6 +412,12 @@ class SellerRegister extends Model
         $buyer->createdAt = date('Y-m-d\TH:i:s');
         $buyer->status = "INC";
 
+        $pic = new Picture();
+        $pic->pictureId = RestUtils::generateId();
+        $pic->save();
+
+        $buyer->pictureId = $pic->pictureId;
+
         //$this->_buyer = $buyer;
         return $buyer;
     }
@@ -452,6 +458,18 @@ class SellerRegister extends Model
         $address = new BillingAddress(); //['scenario' => 'register']
         $address->billingAddressId = RestUtils::generateId();
         $address->address = $params['address'];
+        $address->city = $params['city'];
+        $address->neighborhood = 'NA';
+        $address->state = $params['state'];
+        $address->postCode = '0';
+        $address->latitude = 0;
+        $address->longitude = 0;
+        $address->country = 'Brasil (BR)';
+
+        // waiting for map ready!
+        /*$address = new BillingAddress(); //['scenario' => 'register']
+        $address->billingAddressId = RestUtils::generateId();
+        $address->address = $params['address'];
         $address->streetNumber = $params['streetNumber'];
         $address->formattedAddress = $params['formattedAddress'];
         $address->city = $params['city'];
@@ -460,7 +478,7 @@ class SellerRegister extends Model
         $address->postCode = '0';
         $address->latitude = $params['latitude'];
         $address->longitude = $params['longitude'];
-        $address->country = $params['country'];
+        $address->country = $params['country'];*/
 
         return $address;
     }

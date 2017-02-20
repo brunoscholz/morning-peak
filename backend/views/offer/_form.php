@@ -16,10 +16,11 @@ use yii\web\JsExpression;
 /* @var $form yii\widgets\ActiveForm */
 $myImages = Url::to('@web/img/');
 $cover = $myImages . '/generic-cover.jpg';
+
 ?>
 
 <div class="offer-form">
-    <?php $form = ActiveForm::begin(['action' => ['offer/update', 'id' => $model->offerId], 'options' => ['enctype' => 'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(['action' => ['offer/update', 'id' => $model->offer->offerId], 'options' => ['enctype' => 'multipart/form-data']]); ?>
     <div class="row">
         <div class="col-md-4">
 
@@ -87,21 +88,21 @@ $cover = $myImages . '/generic-cover.jpg';
 
             <!-- $form->field($model, 'shippingId')->textInput(['maxlength' => true]) -->
 
-            <?= $form->field($model, 'pricePerUnit')->textInput() ?>
+            <?= $form->field($model->offer, 'pricePerUnit')->textInput() ?>
 
-            <?= $form->field($model, 'discountPerUnit')->textInput() ?>
+            <?= $form->field($model->offer, 'discountPerUnit')->textInput() ?>
 
-            <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model->offer, 'description')->textInput(['maxlength' => true]) ?>
 
             <?php // $form->field($model->offer, 'keywords')->textarea(['rows' => 3]) ?>
 
             <!-- $form->field($model, 'itemCondition')->textInput(['maxlength' => true]) -->
             <?php $dataConditions = ['NEW'=>'Novo', 'USD'=>'Usado (Menos de 1 ano)', 'US1'=>'Usado (Mais de 1 Ano)', 'REM'=>'Remanufaturado', 'DMG'=>'Danificado']; ?>
-            <?= $form->field($model, 'itemCondition')->dropDownList(
+            <?= $form->field($model->offer, 'itemCondition')->dropDownList(
                 $dataConditions
             ) ?>
 
-            <?= $form->field($model, 'isGift')->checkBox(['selected' => $model->isGift]) ?>
+            <?= $form->field($model->offer, 'isGift')->checkBox(['selected' => $model->offer->isGift]) ?>
 
             <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
                 <?= Html::submitButton('Salvar', ['class' => 'btn btn-primary']) ?>

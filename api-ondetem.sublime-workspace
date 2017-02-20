@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"offer",
+				"offerForm"
+			],
+			[
+				"lon",
+				"longitude"
+			],
+			[
+				"coun",
+				"country"
+			],
+			[
 				"mo",
 				"resetModel"
 			],
@@ -320,10 +332,6 @@
 				"_reviewFact"
 			],
 			[
-				"offer",
-				"offerId"
-			],
-			[
 				"IAC",
 				"IActionReference"
 			],
@@ -506,14 +514,6 @@
 			[
 				"com",
 				"company"
-			],
-			[
-				"div",
-				"divItem"
-			],
-			[
-				"var",
-				"var_dump"
 			]
 		]
 	},
@@ -626,6 +626,59 @@
 			}
 		},
 		{
+			"file": "backend/controllers/SellerController.php",
+			"settings":
+			{
+				"buffer_size": 4645,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/views/profiles/seller-profile.php",
+			"settings":
+			{
+				"buffer_size": 4927,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/models/form/OfferForm.php",
+			"settings":
+			{
+				"buffer_size": 4778,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/controllers/OfferController.php",
+			"settings":
+			{
+				"buffer_size": 4019,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/views/offer/_form.php",
+			"settings":
+			{
+				"buffer_size": 4900,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/views/buyer/index.php",
+			"settings":
+			{
+				"buffer_size": 1604,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "common/mail/sellerActivationKey-html.php",
 			"settings":
 			{
@@ -665,7 +718,25 @@
 			"file": "api/modules/v1/controllers/AuthController.php",
 			"settings":
 			{
-				"buffer_size": 12650,
+				"buffer_size": 12663,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "api/modules/v1/models/SellerRegister.php",
+			"settings":
+			{
+				"buffer_size": 15864,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/models/BillingAddress.php",
+			"settings":
+			{
+				"buffer_size": 2483,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -675,15 +746,6 @@
 			"settings":
 			{
 				"buffer_size": 14322,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "api/modules/v1/models/SellerRegister.php",
-			"settings":
-			{
-				"buffer_size": 14979,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -715,30 +777,12 @@
 			}
 		},
 		{
-			"file": "backend/views/dashboard/index.php",
-			"settings":
-			{
-				"buffer_size": 9234,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "backend/controllers/UserController.php",
 			"settings":
 			{
 				"buffer_size": 9985,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "backend/views/buyer/index.php",
-			"settings":
-			{
-				"buffer_size": 1604,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
 			}
 		},
 		{
@@ -912,6 +956,19 @@
 	],
 	"file_history":
 	[
+		"/C/wamp/bin/apache/apache2.4.9/conf/extra/httpd-vhosts.conf",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/offer/_createform.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/offer/_form-item.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/seller/index.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/seller/view.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/user/_register.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/user/_step3.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/user/register.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/components/Utils.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/dashboard/index.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/BillingAddress.php",
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/ShippingAddress.php",
+		"/C/Users/bruno_000/Downloads/oction_ondetem(4).sql",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/layouts/main-login.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/layouts/content.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/views/layouts/main.php",
@@ -949,16 +1006,13 @@
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/buyer/view.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/controllers/BuyerController.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/offer/index.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/components/Utils.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/category/index.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/backend/views/seller/index.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/web/.htaccess",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/test-local.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/test.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/frontend/config/params.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/params-local.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/config/bootstrap.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/BillingAddress.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Seller.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Picture.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Buyer.php",
@@ -1018,7 +1072,6 @@
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/User.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Transaction.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/SocialAccount.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/ShippingAddress.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/ShippingAddress.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Shipping.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Shipping.php",
@@ -1030,16 +1083,7 @@
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/ReferenceTransaction.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/ReferenceTransaction.php",
 		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Policy.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Policy.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/PaymentLookup.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/PaymentLookup.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Offer.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Loyalty.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/Loyalty.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/LicenseType.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/LicenseType.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/common/models/License.php",
-		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/License.php"
+		"/C/wamp/www/AdminBack/AdminLTE/ondetem/api/modules/v1/models/Policy.php"
 	],
 	"find":
 	{
@@ -1057,6 +1101,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"offerId",
+			"createOffer",
+			"offerId",
+			"createBuyer",
+			"errorList",
+			"();\n",
 			"token",
 			"ondetem-gn",
 			"4899oxUh7aJvOZFwNir5s",
@@ -1178,13 +1228,7 @@
 			"container",
 			"getToken",
 			"createAuthToken",
-			"$myImages",
-			"push",
-			"class=\"section\"",
-			"sellers",
-			"FORNE",
-			"PRODUTO(S)?",
-			"CADASTRADA(S)?"
+			"$myImages"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1330,7 +1374,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 14,
 			"sheets":
 			[
 				{
@@ -1359,7 +1403,7 @@
 						"translation.y": 864.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 28,
 					"type": "text"
 				},
 				{
@@ -1389,7 +1433,7 @@
 						"translation.y": 2232.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
@@ -1417,7 +1461,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 19,
+					"stack_index": 27,
 					"type": "text"
 				},
 				{
@@ -1447,7 +1491,7 @@
 						"translation.y": 225.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
@@ -1477,7 +1521,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 31,
+					"stack_index": 37,
 					"type": "text"
 				},
 				{
@@ -1507,7 +1551,7 @@
 						"translation.y": 4221.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
@@ -1537,7 +1581,7 @@
 						"translation.y": 272.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -1567,7 +1611,7 @@
 						"translation.y": 864.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 24,
+					"stack_index": 31,
 					"type": "text"
 				},
 				{
@@ -1597,7 +1641,7 @@
 						"translation.y": 3240.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 30,
+					"stack_index": 36,
 					"type": "text"
 				},
 				{
@@ -1627,7 +1671,7 @@
 						"translation.y": 10296.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
@@ -1653,11 +1697,11 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
+						"translation.x": 0.0,
 						"translation.y": 1700.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -1687,11 +1731,191 @@
 						"translation.y": 1440.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 34,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
 					"buffer": 12,
+					"file": "backend/controllers/SellerController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4645,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 864.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "common/views/profiles/seller-profile.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4927,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1728.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "backend/models/form/OfferForm.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4778,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1696,
+								1696
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1231.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "backend/controllers/OfferController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4019,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2240,
+								2240
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1080.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "backend/views/offer/_form.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4900,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4507,
+								4507
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1440.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "backend/views/buyer/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1604,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								132,
+								103
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 360.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
 					"file": "common/mail/sellerActivationKey-html.php",
 					"semi_transient": false,
 					"settings":
@@ -1717,11 +1941,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 32,
+					"stack_index": 38,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 19,
 					"file": "common/mail/newUser-html.php",
 					"semi_transient": false,
 					"settings":
@@ -1747,11 +1971,11 @@
 						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 29,
+					"stack_index": 35,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 20,
 					"file": "api/modules/v2/controllers/OfferController.php",
 					"semi_transient": false,
 					"settings":
@@ -1777,11 +2001,11 @@
 						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 33,
+					"stack_index": 39,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 21,
 					"file": "api/components/RestUtils.php",
 					"semi_transient": false,
 					"settings":
@@ -1808,24 +2032,24 @@
 						"translation.y": 4231.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 21,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 22,
 					"file": "api/modules/v1/controllers/AuthController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12650,
+						"buffer_size": 12663,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8186,
-								8186
+								5752,
+								5752
 							]
 						],
 						"settings":
@@ -1835,14 +2059,74 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4184.0,
+						"translation.y": 3248.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 23,
+					"file": "api/modules/v1/models/SellerRegister.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15864,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13201,
+								13201
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 8133.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"file": "common/models/BillingAddress.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2483,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 648.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 25,
 					"file": "api/modules/v1/models/AuthModel.php",
 					"semi_transient": false,
 					"settings":
@@ -1868,41 +2152,11 @@
 						"translation.y": 1196.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 18,
-					"file": "api/modules/v1/models/SellerRegister.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 14979,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								14096,
-								14104
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 8630.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 19,
+					"buffer": 26,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1927,11 +2181,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 22,
+					"stack_index": 29,
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 27,
 					"file": "api/modules/v1/models/UserForm.php",
 					"semi_transient": false,
 					"settings":
@@ -1957,11 +2211,11 @@
 						"translation.y": 288.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 21,
 					"type": "text"
 				},
 				{
-					"buffer": 21,
+					"buffer": 28,
 					"file": "api/modules/v1/controllers/SearchController.php",
 					"semi_transient": false,
 					"settings":
@@ -1987,41 +2241,11 @@
 						"translation.y": 1430.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 27,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 22,
-					"file": "backend/views/dashboard/index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9234,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								297,
-								297
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 23,
+					"buffer": 29,
 					"file": "backend/controllers/UserController.php",
 					"semi_transient": false,
 					"settings":
@@ -2047,41 +2271,11 @@
 						"translation.y": 4058.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 24,
-					"file": "backend/views/buyer/index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1604,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								682,
-								682
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 25,
+					"buffer": 30,
 					"file": "common/views/profiles/user-profile.php",
 					"semi_transient": false,
 					"settings":
@@ -2107,11 +2301,11 @@
 						"translation.y": 2991.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 26,
 					"type": "text"
 				},
 				{
-					"buffer": 26,
+					"buffer": 31,
 					"file": "common/models/Picture.php",
 					"semi_transient": false,
 					"settings":
@@ -2137,11 +2331,11 @@
 						"translation.y": 1944.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 25,
 					"type": "text"
 				},
 				{
-					"buffer": 27,
+					"buffer": 32,
 					"file": "common/models/Transaction.php",
 					"semi_transient": false,
 					"settings":
@@ -2167,11 +2361,11 @@
 						"translation.y": 432.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 25,
+					"stack_index": 32,
 					"type": "text"
 				},
 				{
-					"buffer": 28,
+					"buffer": 33,
 					"file": "backend/controllers/BuyerController.php",
 					"semi_transient": false,
 					"settings":
@@ -2197,11 +2391,11 @@
 						"translation.y": 1944.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
-					"buffer": 29,
+					"buffer": 34,
 					"file": "backend/controllers/CategoryController.php",
 					"semi_transient": false,
 					"settings":
@@ -2227,11 +2421,11 @@
 						"translation.y": 1736.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 22,
 					"type": "text"
 				},
 				{
-					"buffer": 30,
+					"buffer": 35,
 					"file": "backend/views/category/_form.php",
 					"semi_transient": false,
 					"settings":
@@ -2257,11 +2451,11 @@
 						"translation.y": 288.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
-					"buffer": 31,
+					"buffer": 36,
 					"file": "backend/models/OfferSearch.php",
 					"semi_transient": false,
 					"settings":
@@ -2287,11 +2481,11 @@
 						"translation.y": 216.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 26,
+					"stack_index": 33,
 					"type": "text"
 				},
 				{
-					"buffer": 32,
+					"buffer": 37,
 					"file": "api/modules/v1/controllers/ReviewFactController.php",
 					"semi_transient": false,
 					"settings":
@@ -2317,11 +2511,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 37,
+					"stack_index": 42,
 					"type": "text"
 				},
 				{
-					"buffer": 33,
+					"buffer": 38,
 					"file": "api/modules/v1/controllers/FollowFactController.php",
 					"semi_transient": false,
 					"settings":
@@ -2347,11 +2541,11 @@
 						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 28,
+					"stack_index": 34,
 					"type": "text"
 				},
 				{
-					"buffer": 34,
+					"buffer": 39,
 					"file": "api/modules/v1/controllers/FavoriteFactController.php",
 					"semi_transient": false,
 					"settings":
@@ -2377,11 +2571,11 @@
 						"translation.y": 864.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 38,
+					"stack_index": 43,
 					"type": "text"
 				},
 				{
-					"buffer": 35,
+					"buffer": 40,
 					"file": "api/modules/v1/models/ReviewModel.php",
 					"semi_transient": false,
 					"settings":
@@ -2407,11 +2601,11 @@
 						"translation.y": 674.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 35,
+					"stack_index": 40,
 					"type": "text"
 				},
 				{
-					"buffer": 36,
+					"buffer": 41,
 					"file": "api/modules/v1/models/FavoriteModel.php",
 					"semi_transient": false,
 					"settings":
@@ -2437,11 +2631,11 @@
 						"translation.y": 548.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 36,
+					"stack_index": 41,
 					"type": "text"
 				},
 				{
-					"buffer": 37,
+					"buffer": 42,
 					"file": "api/modules/v1/models/FollowModel.php",
 					"semi_transient": false,
 					"settings":
@@ -2467,11 +2661,11 @@
 						"translation.y": 1916.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 23,
+					"stack_index": 30,
 					"type": "text"
 				},
 				{
-					"buffer": 38,
+					"buffer": 43,
 					"file": "frontend/config/main.php",
 					"semi_transient": false,
 					"settings":
@@ -2497,7 +2691,7 @@
 						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 19,
 					"type": "text"
 				}
 			]

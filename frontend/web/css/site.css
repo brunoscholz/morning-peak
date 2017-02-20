@@ -119,10 +119,6 @@ a.desc:after {
     outline: none;
 }
 
-section.terms .section p {
-    text-align: justify;
-}
-
 .offerview-section {
     position: relative;
     padding: 120px 0;
@@ -194,4 +190,37 @@ section.terms .section p {
 
 .large-logo img {
     height:60px;
+}
+
+/*
+========================================================================
+# - Terms and Policy
+------------------------------------------------------------------------
+*/
+section.terms .section p {
+    text-align: justify;
+}
+
+section.terms h2#title {
+    color: #000;
+}
+
+section.terms .logo-title img {
+    width: 80%;
+}
+
+section.terms .toc-wrapper {
+    width: 25%;
+}
+
+section.terms .toc-wrapper ul li a {
+    /*color: #000;*/
+}
+section.terms .toc-wrapper ul li a.active {
+    color: #34b483;
+}
+
+span.brand {
+    color: #34b483;
+    font-weight: bold;
 }

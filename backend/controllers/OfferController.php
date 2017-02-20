@@ -78,7 +78,7 @@ class OfferController extends Controller
             $offerForm->picture->status = 'ATV';
 
             if($offerForm->save()) {
-                Yii::$app->getSession()->setFlash('success', 'Empresa cadastrada com sucesso.');
+                Yii::$app->getSession()->setFlash('success', 'Oferta cadastrada com sucesso.');
                 return $this->redirect(['offer/view', 'id' => $offerForm->offer->offerId]);
             }
         }

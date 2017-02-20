@@ -74,8 +74,7 @@ class OfferForm extends Model
         }
 
     	$this->offer->pictureId = $this->picture->pictureId;
-        if(!$this->itemPicked)
-            $this->offer->itemId = $this->item->itemId;
+        $this->offer->itemId = $this->item->itemId;
         //$this->offer->sellerId = $this->seller->sellerId;
         if (!$this->offer->save()) {
             $transaction->rollBack();
@@ -117,6 +116,7 @@ class OfferForm extends Model
                 $this->_item = new Item();
                 $this->_item->itemId = Utils::generateId();
                 $this->_item->loadDefaultValues();
+                $this->_item->status = 'ACT';
             } else {
                 $this->_item = $this->_offer->item;
             }

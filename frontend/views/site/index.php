@@ -7,7 +7,7 @@ use frontend\assets\GrapeAsset;
 
 $bundle = GrapeAsset::register($this);
 
-$this->title = 'OndeTem?!';
+$this->title = 'Onde tem?!';
 ?>
     <!-- header start -->
     <?= $this->render('_header', [

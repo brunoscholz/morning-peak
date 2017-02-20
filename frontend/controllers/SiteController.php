@@ -267,12 +267,12 @@ class SiteController extends Controller
         return $this->render('_publish-story', ['model' => $offer]);
     }
 
-    public function actionPolicyPrint()
+    public function actionPolicy()
     {
         return $this->render('_policy');
     }
 
-    public function actionTermsPrint()
+    public function actionTerms()
     {
         return $this->render('_terms');
     }

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use \machour\yii2\adminlte\widgets\GridView;
 use yii\helpers\ArrayHelper;
+use backend\components\Utils;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -32,7 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 'name',
                 'email:email',
-                'about',
+                'name',
+                [
+                  'attribute'=>'about',
+                  'format'=>'html',
+                  'value' => function($data) {
+                      return Utils::truncate($data->about, 30) . '...';
+                  }
+                ],
                 'website:url',
                 'hours',
                 'phone',
