@@ -71,6 +71,13 @@ class FollowFact extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function findById($id)
+    {
+        return static::find()
+            ->where(['like binary', 'followFactId', $id])
+            ->one();
+    }
+
     public static function findByType($typ)
     {
         return static::find()

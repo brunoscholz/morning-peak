@@ -27,19 +27,52 @@ class FollowFactController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        $data = RestUtils::getQuery(\Yii::$app->request->get(), FollowFact::find());
+        $params = \Yii::$app->request->get();
+        $q = (array)json_decode($params['q'], true);
+        $data = FollowFact::find();
+
+        //$data = RestUtils::getQuery(\Yii::$app->request->get(), FavoriteFact::find());
+
+        $profile = "buyer";
+        if(isset($q['profile']) && !empty($q['profile']))
+            $profile = $q['profile'];
+
+        // buyer or seller Id
+        $id = "";
+        if(isset($q['userId']) && !empty($q['userId']))
+            $id = isset($q['userId']['test']) ? $q['userId']['value'] : $q['userId'];
+
+        if($profile == "buyer") {
+            $data->orWhere(['like binary', 'userId', $id]);
+            $data->orWhere(['like binary', 'buyerId', $id]);
+        } else {
+            // return just followers
+            $data->orWhere(['like binary', 'sellerId', $id]);
+        }
+
+        $data->orderBy("userId DESC");
 
         $models = array('status'=>200,'count'=>0);
         $modelsArray = array();
 
+        $followers = [];
+        $following = [];
         foreach ($data->each() as $model)
         {
             $temp = RestUtils::loadQueryIntoVar($model);
-            $modelsArray[] = $temp;
+            if ($profile == "buyer") {
+                if ($temp["userId"] == $id)
+                    $following[] = $temp;
+                else
+                    $followers[] = $temp;
+            } else {
+                $followers[] = $temp;
+            }
         }
 
-        $models['data'] = $modelsArray;
-        $models['count'] = count($modelsArray);
+        $models['data']["followers"] = $followers;
+        $models['data']["following"] = $following;
+        $models['count'] = count($followers) + count($following);
 
         echo RestUtils::sendResult($models['status'], $models);
     }
@@ -49,7 +82,7 @@ class FollowFactController extends \yii\rest\ActiveController
         $models = array('status'=>200,'count'=>0);
 
         $follow = new FollowModel();
-        $follow->loadAll($params);
+        //$follow->loadAll($params);
 
         if($follow->loadAll($params) && $follow->save()) {
             //$follow->save();
@@ -61,6 +94,17 @@ class FollowFactController extends \yii\rest\ActiveController
         }
 
         echo RestUtils::sendResult($models['status'], $models);
+    }
+
+    public function actionRemove($id) {
+        $params = \Yii::$app->request->post();
+        $models = array('status'=>200,'count'=>0);
+
+        $fav = FollowFact::findById($id);
+
+        var_dump($fav);
+        var_dump($params);
+        die();
     }
 
     public function behaviors() {

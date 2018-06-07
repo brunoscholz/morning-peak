@@ -94,6 +94,20 @@ class ReviewFact extends \yii\db\ActiveRecord
     public function getUpdated_at() { return $this->_updated_at; }
     public function setUpdated_at($t) { $this->_updated_at = $t; }
 
+    public static function findById($id)
+    {
+        return static::find()
+            ->where(['like binary', 'reviewFactId', $id])
+            ->one();
+    }
+
+    public static function findByType($typ)
+    {
+        return static::find()
+            ->where(['like', 'actionreference.actionType', $typ])
+            ->one();
+    }
+
     public function getCommentFacts() {}
 
     public function getComments()

@@ -155,6 +155,11 @@ class Offer extends \yii\db\ActiveRecord
         return $this->hasMany(ReviewFact::className(), ['offerId' => 'offerId']);
     }
 
+    public function getVoucherFacts()
+    {
+        return $this->hasMany(VoucherFact::className(), ['offerId' => 'offerId']);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

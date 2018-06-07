@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Buyer */
 
-$this->title = 'Create Buyer';
-$this->params['breadcrumbs'][] = ['label' => 'Buyers', 'url' => ['index']];
+$this->title = 'Criar Usuário';
+$this->params['breadcrumbs'][] = ['label' => 'Usuários', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="buyer-create">
@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'picture' => $picture,
     ]) ?>
 
 </div>

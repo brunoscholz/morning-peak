@@ -13,7 +13,7 @@ use Yii;
  * @property string $favoriteFactId
  * @property string $commentFactId
  * @property string $reviewFactId
- * @property string $loyaltyId
+ * @property string $transactionId
  */
 class ActionRelationship extends \yii\db\ActiveRecord
 {
@@ -39,11 +39,11 @@ class ActionRelationship extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['actionRelationshipId', 'actionReferenceId', 'loyaltyId'], 'required'],
+            [['actionRelationshipId', 'actionReferenceId', 'transactionId'], 'required'],
             [['actionReferenceId'], 'integer'],
-            [['actionRelationshipId', 'favoriteFactId', 'followFactId', 'commentFactId', 'reviewFactId', 'loyaltyId'], 'string', 'max' => 21],
+            [['actionRelationshipId', 'favoriteFactId', 'followFactId', 'commentFactId', 'reviewFactId', 'transactionId'], 'string', 'max' => 21],
             [['actionReferenceId'], 'exist', 'skipOnError' => true, 'targetClass' => Actionreference::className(), 'targetAttribute' => ['actionReferenceId' => 'actionReferenceId']],
-            [['loyaltyId'], 'exist', 'skipOnError' => true, 'targetClass' => Loyalty::className(), 'targetAttribute' => ['loyaltyId' => 'loyaltyId']],
+            [['transactionId'], 'exist', 'skipOnError' => true, 'targetClass' => Transaction::className(), 'targetAttribute' => ['transactionId' => 'transactionId']],
             [['followFactId'], 'exist', 'skipOnError' => true, 'targetClass' => FollowFact::className(), 'targetAttribute' => ['followFactId' => 'followFactId']],
             [['commentFactId'], 'exist', 'skipOnError' => true, 'targetClass' => CommentFact::className(), 'targetAttribute' => ['commentFactId' => 'commentFactId']],
             [['reviewFactId'], 'exist', 'skipOnError' => true, 'targetClass' => ReviewFact::className(), 'targetAttribute' => ['reviewFactId' => 'reviewFactId']],
@@ -67,17 +67,45 @@ class ActionRelationship extends \yii\db\ActiveRecord
             'actionRelationshipId' => 'Action Relationship ID',
             'actionReferenceId' => 'Action Reference ID',
             'followFactId' => 'Follow ID',
+            'favoriteFactId' => 'Favorite ID',
             'commentFactId' => 'Comment ID',
             'reviewFactId' => 'Review ID',
-            'favoriteFactId' => 'Favorite ID',
-            'loyaltyId' => 'Loyalty ID',
+            'transactionId' => 'Transaction ID',
         ];
     }
 
-    public function getLoyalty()
+    public static function findById($id)
     {
-        return $this->hasOne(Loyalty::className(), ['loyaltyId' => 'loyaltyId'])
-            ->with(['buyer', 'transaction']);
+        return static::find()
+            ->where(['like binary', 'actionRelationshipId', $id])
+            ->one();
+    }
+
+    public static function findByModelId($model, $id, $typ = '')
+    {
+        $query = static::find();
+
+        $query->where(['like binary', $model.'Id', $id]);
+
+        if (!empty($typ)) {
+            $query->andFilterWhere(['=', 'actionReferenceId', $typ]);
+        }
+
+        //var_dump($query->createCommand()->rawsql);
+
+        return $query->one();
+    }
+
+    public static function findByType($typ)
+    {
+        return static::find()
+            ->where(['like', 'actionreference.actionType', $typ])
+            ->one();
+    }
+
+    public function getTransaction()
+    {
+        return $this->hasOne(Transaction::className(), ['transactionId' => 'transactionId']);
     }
 
     public function getReviewFact()

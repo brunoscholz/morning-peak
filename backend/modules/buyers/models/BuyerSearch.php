@@ -41,10 +41,19 @@ class BuyerSearch extends Buyer
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        if(isset($params['role'])) {
+            $query->join('JOIN', 'tbl_user', 'tbl_user.buyerId = tbl_buyer.buyerId');
+            $query->andFilterWhere(['tbl_user.role' => $params['role']]);
+        }
+
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
-        $query->andFilterWhere(['like', 'name', $this->name]);
+
+        $query->andFilterWhere(['like', 'tbl_buyer.name', $this->name]);
+        $query->andFilterWhere(['like', 'tbl_buyer.email', $this->email]);
+
         return $dataProvider;
     }
 }

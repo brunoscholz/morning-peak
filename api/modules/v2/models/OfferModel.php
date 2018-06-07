@@ -24,7 +24,6 @@ class OfferModel extends SearchForm
     public function rules()
     {
         return \yii\helpers\ArrayHelper::merge(parent::rules(), [
-            // HERE PUT YOUR VALIDATION RULES
             [['itemId', 'item', 'sellerId', 'description', 'itemCondition', 'status', 'pricePerUnit', 'discountPerUnit'], 'safe'],
         ]);
     }

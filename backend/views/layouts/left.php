@@ -39,6 +39,17 @@ use backend\components\Utils;
                     ['label' => 'Menu OndeTem', 'options' => ['class' => 'header']],
                     ['label' => 'Painel', 'icon' => 'fa fa-dashboard', 'url' => ['/dashboard']],
                     [
+                        'label' => 'Moedas',
+                        'icon' => 'fa  fa-money',
+                        'url' => ['#'],
+                        'items' => [
+                            ['label' => 'Transações', 'icon' => 'fa fa-list-ul', 'url' => ['/transactions'], 'visible' => Yii::$app->user->can('user')],
+                            ['label' => 'Fidelidade', 'icon' => 'fa fa-list-ul', 'url' => ['/loyalty'], 'visible' => Yii::$app->user->can('user')],
+                            ['label' => 'Ranking', 'icon' => 'fa fa-list-ul', 'url' => ['/ranking'], 'visible' => Yii::$app->user->can('user')],
+                            //['label' => 'Nova Categoria', 'icon' => 'fa fa-plus', 'url' => ['/categories/category/create'], 'visible' => Yii::$app->user->can('admin')],
+                        ],
+                    ],
+                    [
                         'label' => 'Ofertas',
                         'icon' => 'fa fa-shopping-bag',
                         'url' => ['#'],
@@ -84,7 +95,7 @@ use backend\components\Utils;
                             ['label' => 'Administradores', 'icon' => 'fa  fa-eye', 'url' => ['/buyers/buyer/role-index', 'role' => 'administrator']],
                             ['label' => 'Vendedores', 'icon' => 'fa  fa-eye', 'url' => ['/buyers/buyer/role-index', 'role' => 'salesman']],
                             ['label' => 'Usuários', 'icon' => 'fa  fa-eye', 'url' => ['/buyers']],
-                            ['label' => 'Cadastrar', 'icon' => 'fa fa-user-plus', 'url' => ['/users/create']],
+                            ['label' => 'Cadastrar', 'icon' => 'fa fa-user-plus', 'url' => ['/user/create']],
                         ],
                     ],
 

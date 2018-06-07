@@ -110,6 +110,10 @@ a.desc:after {
     }
 }
 
+.content-wrapper {
+  background-color: #ecf0f5;
+}
+
 .nav > li > form > button.logout:focus,
 .nav > li > form > button.logout:hover {
     text-decoration: none;

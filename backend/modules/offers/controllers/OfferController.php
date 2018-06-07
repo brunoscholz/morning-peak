@@ -3,6 +3,7 @@
 namespace backend\modules\offers\controllers;
 
 use Yii;
+use common\models\User;
 use common\models\Offer;
 use backend\modules\offers\models\OfferSearch;
 use backend\modules\offers\models\form\OfferForm;
@@ -10,6 +11,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+//use yii\helpers\ArrayHelper;
 
 /**
  * OfferController implements the CRUD actions for Offer model.
@@ -54,6 +56,32 @@ class OfferController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Displays all Offer models for a given user.
+     * @param string $id
+     * @return mixed
+     */
+    public function actionViewAll($id)
+    {
+        $loggedUser = Yii::$app->user->identity;
+        $user = User::findById($id);
+
+        if(($user->userId !== $loggedUser->userId) && Yii::$app->user->can('admin')) {
+            $loggedUser = $user;
+        }
+
+        $searchModel = new OfferSearch();
+        $dataProvider = $searchModel->search([]);
+
+        foreach ($loggedUser->sellers as $seller)
+            $dataProvider->query->orWhere(['like binary', 'sellerId', $seller->sellerId]);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

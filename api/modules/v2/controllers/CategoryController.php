@@ -4,6 +4,7 @@ namespace api\modules\v2\controllers;
 
 use yii\db\Query;
 use api\modules\v2\models\Category;
+use api\components\SearchForm;
 use common\models\Category as CategoryModel;
 use api\components\RestUtils;
 
@@ -26,6 +27,12 @@ class CategoryController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
+        $cat = new SearchForm();
+        $q = $cat->buildQuery(['modelClass'=>'common\models\Category', 'where' => ['name'=>'Cutelaria']]);
+
+        var_dump($q->all());
+        die();
+
         $params = \Yii::$app->request->get();
         $data = RestUtils::getQueryParams($params, $this->modelClass);
 

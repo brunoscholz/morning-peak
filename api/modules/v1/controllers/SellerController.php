@@ -53,7 +53,53 @@ class SellerController extends \yii\rest\ActiveController
 
     public function actionCatalog($id)
     {
-        $models = ['status'=>200, 'count'=>0];
+        $models = array('status'=>200,'count'=>0);
+        $modelsArray = array();
+
+        $query = Offer::find();
+        $query->joinWith([
+            'item'
+        ]);
+
+        $query->andFilterWhere(['like binary', 'sellerId', $id]);
+        $data = $query;
+
+        foreach ($data->each() as $model)
+        {
+            $temp = RestUtils::loadQueryIntoVar($model);
+            $revs = RestUtils::loadQueryIntoVar($model->reviews);
+
+            $i = 0;
+            $sum = 0;
+            $newReviews = array();
+            foreach ($revs as $review)
+            {
+                $rate = $review['rating'];
+                $rating = array();
+                $rating['grade'] = $rate - floor($rate/100) * 100;
+
+                $rating['attendance'] = floor(floor($rate/100)/10);
+                $rating['price'] = floor($rate/100) - $rating['attendance']*10;
+
+                $review['rating'] = $rating;
+                unset($review['offer']);
+                $newReviews[] = $review;
+                $sum += $rating['grade'];
+                $i++;
+            }
+            // let rate = this.rating + this.attendance * 1000 + this.price * 100;
+            // let decimal = rate - (Math.floor(rate / 100) * 100);
+            // return decimal;
+
+            $temp['reviews'] = $newReviews;
+            $temp['avgRating'] = ['qtd' => $i, 'avg' => ($i > 0) ? $sum / $i : 0];
+            $modelsArray[] = $temp;
+        }
+
+        $models['data'] = $modelsArray;
+        $models['count'] = count($modelsArray);
+
+        /*$models = ['status'=>200, 'count'=>0];
         $seller = Seller::findOne($id);
 
         $modelsArray = [];
@@ -64,10 +110,7 @@ class SellerController extends \yii\rest\ActiveController
             //unset($temp['seller']);
             $temp['seller'] = null;
             $modelsArray[] = $temp;
-        }
-
-        $models['data'] = $modelsArray;
-        $models['count'] = count($modelsArray);
+        }*/
 
         echo RestUtils::sendResult($models['status'], $models);
     }

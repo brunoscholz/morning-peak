@@ -10,7 +10,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
-    'name' => 'OndeTem?!',
+    'name' => 'Onde tem?!',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -62,6 +62,9 @@ return [
         ],
         'sellers' => [
             'class' => 'backend\modules\sellers\SellerModule',
+        ],
+        'transactions' => [
+            'class' => 'backend\modules\transactions\TransactionModule',
         ],
     ],
     'defaultRoute' => 'dashboard/index',

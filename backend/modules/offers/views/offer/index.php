@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use \machour\yii2\adminlte\widgets\GridView;
 use yii\helpers\ArrayHelper;
+use common\components\widgets\RelatedList;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -12,6 +13,18 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="offer-index">
 
+    <div class="block">
+        <div class="well text-center">
+            <div id="w0" class="action-toolbar btn-toolbar">
+                <div id="w1" class="btn-group">
+                    <?= Html::a('<i class="fa fa-plus"></i> Criar Oferta', ['create'], ['class' => 'btn btn-default']) ?>
+                    <?php // Html::a('<i class="fa fa-cog"></i> Settings', ['dashboard/notify'], ['class' => 'btn btn-default']) ?> 
+                    <?php //Html::a('Criar Oferta', ['dashboard/notify'], ['class' => 'btn btn-sm btn-success btn-flat pull-right']) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <?= \machour\yii2\adminlte\widgets\Box::begin([
       'type' => 'box-success',
       'color' => '',
@@ -19,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
       'header' => [
         'title' => $this->title . ' ...',
         'class' => 'with-border',
-        'tools' => '{collapse}',
+        'tools' => '',
       ],
     ]); ?>
     <?= GridView::widget([
@@ -62,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //'filter' => Html::activeDropDownList($searchModel, 'sellerId', ArrayHelper::map(\common\models\Seller::find()->asArray()->all(), 'sellerId', 'name'),['class'=>'form-control','prompt' => 'Selecione uma empresa']),
                 'filter' => ["0"=>"Gratis", "10"=>"até $10", "20"=>"até $20", "50"=>"até $50", "100"=>"até $100", "200"=>"até $200", "201"=>"mais que $200"],
             ],
-            [
+            /*[
                 'attribute' => 'discountPerUnit',
                 'label' => 'Desconto',
                 'value' => function ($data) {
@@ -71,19 +84,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter' => ["10"=>"até 10%", "20"=>"até 20%", "30"=>"até 30%", "40"=>"até 40%", "50"=>"até 50%", "60"=>"até 60%", "70"=>"até 70%"],
                 //'filter' => Html::activeDropDownList($searchModel, 'sellerId', ArrayHelper::map(\common\models\Seller::find()->asArray()->all(), 'sellerId', 'name'),['class'=>'form-control','prompt' => 'Selecione uma empresa']),
+            ],*/
+            [
+                'attribute' => 'voucherFacts',
+                'label' => 'Cupons',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return RelatedList::widget([
+                        'models' => $model->voucherFacts,
+                        'viewRoute' => '/offer/view',
+                    ]);
+                },
             ],
-            'keywords:ntext',
+            'keywords:ntext', // pill for tags?
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
     <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
-        <?= Html::a('Criar Oferta', ['create'], ['class' => 'btn btn-sm btn-success btn-flat pull-right']) ?>
     <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
-
-    <p>
-        <?= Html::a('Criar Oferta', ['dashboard/notify'], ['class' => 'btn btn-sm btn-success btn-flat pull-right']) ?>
-    </p>
-
 </div>

@@ -7,6 +7,9 @@ use backend\models\User;
 use common\models\Seller;
 use backend\modules\sellers\models\SellerSearch;
 use backend\modules\sellers\models\form\CompanyForm;
+
+use backend\modules\offers\models\OfferSearch;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -56,8 +59,11 @@ class SellerController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new OfferSearch();
+        $offerProvider = $searchModel->search(['OfferSearch' => ['sellerId' => $id]]);
         return $this->render('@common/views/profiles/seller-profile', [
             'model' => $this->findModel($id),
+            'offerProvider' => $offerProvider,
         ]);
     }
 

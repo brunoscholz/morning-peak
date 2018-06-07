@@ -10,7 +10,6 @@ use common\models\ActionReference;
 use common\models\FollowFact;
 
 use common\models\AssetToken;
-use common\models\Loyalty;
 use common\models\Transaction;
 use common\models\ActionRelationship;
 use api\components\RestUtils;
@@ -18,47 +17,33 @@ use yii\base\Model;
 
 class FollowModel extends Model
 {
-    //private $_user;
+    private $_author;
     private $_buyer;
     private $_seller;
     private $_actionReference;
     private $_followFact;
     private $_transaction;
-    private $_loyalty;
     private $_actionRelationship;
 
     public function rules()
     {
         return [
-            [['ActionReference', 'FollowFact', 'Transaction', 'Loyalty', 'ActionRelationship'], 'required'], //'Offer', 'Buyer', 'Seller',
+            [['ActionReference', 'FollowFact', 'Transaction', 'ActionRelationship'], 'required'], //'Offer', 'Buyer', 'Seller',
         ];
     }
 
     public function afterValidate()
     {
         $error = false;
-        /*if(!$this->offer->validate()) {
-            $error = true;
-        }*/
-        /*if(!$this->actionReference->validate()) {
-            $error = true;
-        }*/
+
         if(!$this->followFact->validate()) {
             $error = true;
         }
 
-        /*if(!$this->seller->validate()) {
-            $error = true;
-        }
-        if(!$this->buyer->validate()) {
-            $error = true;
-        }*/
         if(!$this->transaction->validate()) {
             $error = true;
         }
-        if(!$this->loyalty->validate()) {
-            $error = true;
-        }
+
         if(!$this->actionRelationship->validate()) {
             $error = true;
         }
@@ -80,23 +65,20 @@ class FollowModel extends Model
 
             $this->followFact->save();
 
-            $this->transaction->recipientId = User::findByBuyerId($this->followFact->userId)->userId;
+            $this->transaction->recipientId = $this->author->userId;
             $this->transaction->tokenId = AssetToken::findByCode('COIN')->tokenId;
             $this->transaction->senderId = 'zZN6prD6rzxEhg8sDQz1j'; // robot for token creation
             $this->transaction->type = $this->followFact->actionReferenceId;
-            $this->transaction->amount = Transaction::FOLLOW_AMOUNT;
-            $this->transaction->signature = User::findByBuyerId($this->followFact->userId)->validation_key;
+
+            $target = (is_null($this->followFact->buyerId) ? $this->seller : $this->buyer);
+            $multi = 1;// RestUtils::GetGifted($target) ? Transaction::GIFTED_MULTIPLIER : 1;
+            $this->transaction->amount = Transaction::FOLLOW_AMOUNT * $multi;
+            $this->transaction->signature = $this->author->validation_key;
             $this->transaction->save();
 
-            $this->loyalty->userId = User::findByBuyerId($this->followFact->userId)->userId;
-            $this->loyalty->actionReferenceId = ActionReference::findByType('follow')->actionReferenceId;
-            $this->loyalty->transactionId = $this->transaction->transactionId;
-            $this->loyalty->points = $this->transaction->amount;
-            $this->loyalty->save();
-
             $this->actionRelationship->actionReferenceId = $this->followFact->actionReferenceId;
+            $this->actionRelationship->transactionId = $this->transaction->transactionId;
             $this->actionRelationship->followFactId = $this->followFact->followFactId;
-            $this->actionRelationship->loyaltyId = $this->loyalty->loyaltyId;
             $this->actionRelationship->save();
 
             $tx->commit();
@@ -113,37 +95,31 @@ class FollowModel extends Model
         if(is_null($params) || empty($params))
             return false;
         
-        //Somikchan naked
+        if(!empty($params['FollowFact']['buyerId']) && !is_null($params['FollowFact']['buyerId']))
+            $this->buyer = Buyer::findById($params['FollowFact']['buyerId']);
+
+        if(!empty($params['FollowFact']['sellerId']) && !is_null($params['FollowFact']['sellerId']))
+            $this->seller = Seller::findById($params['FollowFact']['sellerId']);
         
+        if(!empty($params['FollowFact']['userId']) && !is_null($params['FollowFact']['userId']))
+            $this->author = User::findByBuyerId($params['FollowFact']['userId']);
+
+
         // update/edit?
         $this->followFact = new FollowFact(['scenario' => 'register']);
-        $this->actionReference = $params['FollowFact']['action'];
-        unset($params['FollowFact']['action']);
-
-        var_dump($this->actionReference);
+        $this->actionReference = 'follow';
 
         $this->followFact->load($params);
         $this->followFact->followFactId = RestUtils::generateId();
-        $this->followFact->sellerId = (empty($params['FollowFact']['sellerId'] || is_null($params['FollowFact']['sellerId'])) ? null : $params['FollowFact']['sellerId']);
-        $this->followFact->buyerId = (empty($params['FollowFact']['buyerId'] || is_null($params['FollowFact']['buyerId'])) ? null : $params['FollowFact']['buyerId']);
+        $this->followFact->userId = $this->author->buyer->buyerId;
+        $this->followFact->sellerId = (empty($params['FollowFact']['sellerId']) ? null : $this->seller->sellerId);
+        $this->followFact->buyerId = (empty($params['FollowFact']['buyerId']) ? null : $this->buyer->buyerId);
         $this->followFact->actionReferenceId = $this->actionReference->actionReferenceId;
         $this->followFact->date = date('Y-m-d\Th:i:s');
         $this->followFact->status = 'ACT';
 
         $this->transaction = $this->createTransaction();
-        $this->loyalty = $this->createLoyalty();
         $this->actionRelationship = $this->createRelation();
-
-        /*if(!empty($params['offerId']) && !is_null($params['offerId']))
-            $this->offer = Offer::findById($params['offerId']);
-        else
-            return false;
-
-        if(!empty($params['buyerId']) && !is_null($params['buyerId']))
-            $this->buyer = Buyer::findById($params['buyerId']);
-
-        if(!empty($params['sellerId']) && !is_null($params['sellerId']))
-            $this->seller = Seller::findById($params['sellerId']);*/
 
         return true;
     }
@@ -170,6 +146,19 @@ class FollowModel extends Model
     public function setActionReference($ref)
     {
         return $this->_actionReference = ActionReference::findByType($ref);
+    }
+
+    public function getAuthor()
+    {
+        return $this->_author;
+    }
+
+    public function setAuthor($buyer)
+    {
+        if($buyer instanceof User) {
+            $this->_author = $buyer;
+        }
+        // error 
     }
 
     public function getBuyer()
@@ -211,20 +200,6 @@ class FollowModel extends Model
         }
     }
 
-    public function getLoyalty()
-    {
-        return $this->_loyalty;
-    }
-
-    public function setLoyalty($loyal)
-    {
-        if($loyal instanceof Loyalty) {
-            $this->_loyalty = $loyal;
-        } else if (is_array($loyal)) {
-            
-        }
-    }
-
     public function getActionRelationship()
     {
         return $this->_actionRelationship;
@@ -255,7 +230,6 @@ class FollowModel extends Model
             //'Offer' => $this->offer,
             'FollowFact' => $this->followFact,
             'Transaction' => $this->transaction,
-            'Loyalty' => $this->loyalty,
             'ActionRelationship' => $this->actionRelationship,
         ];
     }
@@ -274,17 +248,6 @@ class FollowModel extends Model
         //$tx->senderId = 'zZN6prD6rzxEhg8sDQz1j'; // robot for token creation
 
         return $tx;
-    }
-
-    protected function createLoyalty()
-    {
-        $loyal = new Loyalty(['scenario' => 'register']);
-        $loyal->loyaltyId = RestUtils::generateId();
-        $loyal->ruleId = "Seguir ";
-        $loyal->points = 1;
-        $loyal->status = 'PEN';
-
-        return $loyal;
     }
 
     protected function createRelation()

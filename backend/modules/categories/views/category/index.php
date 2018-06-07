@@ -13,6 +13,17 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
 
+  <div class="block">
+    <div class="well text-center">
+      <div id="w0" class="action-toolbar btn-toolbar">
+        <div id="w1" class="btn-group">
+          <?= Html::a('<i class="fa fa-plus"></i> Criar Categoria', ['create'], ['class' => 'btn btn-default']) ?>
+          <?= Html::a('<i class="fa fa-plus"></i> Sugerir Categoria', ['sugest'], ['class' => 'btn btn-default']) ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <?= \machour\yii2\adminlte\widgets\Box::begin([
       'type' => 'box-primary',
       'color' => '',
@@ -40,8 +51,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ]); ?>
 
       <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
-        <?= Html::a('Criar Categoria', ['create'], ['class' => 'btn btn-sm btn-success btn-flat pull-right']) ?>
-        <?= Html::a('Sugerir Categoria', ['sugest'], ['class' => 'btn btn-sm btn-info btn-flat pull-right']) ?>
     <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
 
 </div>

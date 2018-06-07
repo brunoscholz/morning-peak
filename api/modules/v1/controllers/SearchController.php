@@ -51,6 +51,7 @@ class SearchController extends \yii\rest\ActiveController
         {
             $temp = RestUtils::loadQueryIntoVar($offer);
             $revs = RestUtils::loadQueryIntoVar($offer->reviews);
+            $vouc = RestUtils::loadQueryIntoVar($offer->voucherFacts);
 
             $i = 0;
             $sum = 0;
@@ -71,6 +72,14 @@ class SearchController extends \yii\rest\ActiveController
                 $i++;
             }
 
+            $vouchers = array();
+            foreach ($vouc as $voucherFact)
+            {
+                unset($voucherFact['offer']);
+                $vouchers[] = $voucherFact;
+            }
+
+            $temp['vouchers'] = $vouchers;
             $temp['reviews'] = $newReviews;
             $temp['avgRating'] = ['qtd' => $i, 'avg' => ($i > 0) ? $sum / $i : 0];
             $offers[] = $temp;

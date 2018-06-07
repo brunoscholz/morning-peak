@@ -13,6 +13,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="buyer-index">
 
+  <div class="block">
+    <div class="well text-center">
+      <div id="w0" class="action-toolbar btn-toolbar">
+        <div id="w1" class="btn-group">
+          <?= Html::a('<i class="fa fa-plus"></i> Criar Usuário', ['/user/create'], ['class' => 'btn btn-default']) ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <?= \machour\yii2\adminlte\widgets\Box::begin([
       'type' => 'box-primary',
       'color' => '',
@@ -46,12 +56,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 // 'title',
                 // 'website',
 
-                ['class' => 'yii\grid\ActionColumn'],
+                [
+                  'class' => 'yii\grid\ActionColumn',
+                  'template' => '{view} {update} {changestatus}',
+                  'buttons' => [
+                    'changestatus' => function ($url) {
+                      return Html::a(
+                        '<i class="glyphicon glyphicon-remove"></span>',
+                        $url, 
+                        [
+                          'title' => 'Deactivate',
+                          'data-pjax' => '0',
+                        ]
+                      );
+                    },
+                  ],
+                ],
             ],
         ]); ?>
 
-      <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
-        <?= Html::a('Criar Empresa', ['create'], ['class' => 'btn btn-sm btn-success btn-flat pull-right']) ?>
     <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
         
 </div>

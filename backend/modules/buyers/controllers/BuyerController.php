@@ -5,12 +5,14 @@ namespace backend\modules\buyers\controllers;
 use Yii;
 use common\models\User;
 use common\models\Buyer;
+use common\models\Picture;
 use backend\modules\buyers\models\BuyerSearch;
 use backend\modules\buyers\models\form\ProfileForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use base\AppAdaptor;
 
 /**
  * BuyerController implements the CRUD actions for Buyer model.
@@ -39,7 +41,7 @@ class BuyerController extends Controller
     public function actionIndex()
     {
         $searchModel = new BuyerSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(AppAdaptor::app()->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -49,12 +51,7 @@ class BuyerController extends Controller
     public function actionRoleIndex($role)
     {
         $searchModel = new BuyerSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        $dataProvider->query
-            ->join('JOIN', 'tbl_user', 'tbl_user.buyerId = tbl_buyer.buyerId')  
-            ->where(['tbl_user.role' => $role]);
-
+        $dataProvider = $searchModel->search(AppAdaptor::app()->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -84,24 +81,22 @@ class BuyerController extends Controller
     public function actionCreate()
     {
         $model = new Buyer();
+        $picModel = new \common\models\Picture();
+        $loggedUser = AppAdaptor::app()->user->identity;
 
-        $loggedUser = Yii::$app->user->identity;
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if ($model->load(AppAdaptor::app()->request->post()) && $model->validate()) {
             $model->buyerId = \backend\models\User::generateId();
             $model->userId = $loggedUser->userId;
-            $model->status = 'ATV';
+            $model->status = 'ACT';
             // dob select from Date model
             
-            // $model->sku = \backend\models\User::getToken(12);
-
-            $picModel = new \backend\models\Picture();
+            $picModel = new \common\models\Picture();
             $picModel->pictureId = \backend\models\User::generateId();
             $model->pictureId = $picModel->pictureId;
 
             $picModel->imageCover = UploadedFile::getInstance($model, 'imageCover');
             $picModel->imageThumb = UploadedFile::getInstance($model, 'imageThumb');
-            $picModel->status = 'ATV';
+            $picModel->status = 'ACT';
 
 
             if ($picModel->upload()) {
@@ -111,13 +106,12 @@ class BuyerController extends Controller
 
             if($model->save() && $picModel->save())
                 return $this->redirect(['view', 'id' => $model->buyerId]);
-
-
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
         }
+
+        return $this->render('create', [
+            'model' => $model,
+            'picture' => $picModel,
+        ]);
     }
 
     /**
@@ -130,7 +124,7 @@ class BuyerController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(AppAdaptor::app()->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->buyerId]);
         } else {
             return $this->render('update', [

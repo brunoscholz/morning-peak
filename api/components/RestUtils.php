@@ -289,17 +289,36 @@ class RestUtils
     {
         //$query = Loyalty::find();
         $query->joinWith([
-            'transaction',
             'token'
         ]);
-        $query->where('tbl_transaction.recipientId not like tbl_transaction.senderId');
+        $query->where('recipientId not like senderId');
         $query->andWhere(['like', 'tbl_asset_token.name', $token]);
         $query->select([
-            "sum(case when tbl_transaction.senderId LIKE BINARY '".$id."' then tbl_transaction.amount else 0 end) as TotalRed",
-            "sum(case when tbl_transaction.recipientId LIKE BINARY '".$id."' then tbl_transaction.amount else 0 end) as TotalBlue"
+            "sum(case when senderId LIKE BINARY '".$id."' then amount else 0 end) as TotalRed",
+            "sum(case when recipientId LIKE BINARY '".$id."' then amount else 0 end) as TotalBlue"
         ]);
         return $query->createCommand()->queryOne();
     }
+
+    /*public static function GetGifted($target)
+    {
+        if($target instanceof \common\models\Offer) {
+            return self::_findGifted($target->seller->offers);
+        } elseif ($target instanceof \common\models\Seller) {
+            return self::_findGifted($target->offers);
+        }
+
+        return false;
+    }
+
+    static function _findGifted($offers)
+    {
+        foreach ($offers as $offer) {
+            if ($offer->isGift)
+                return true;
+        }
+        return false;
+    }*/
 
     /**
      * Create a reponse header

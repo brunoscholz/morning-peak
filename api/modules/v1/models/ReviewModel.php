@@ -12,7 +12,6 @@ use common\models\ReviewFact;
 use common\models\Review;
 
 use common\models\AssetToken;
-use common\models\Loyalty;
 use common\models\Transaction;
 use common\models\ActionRelationship;
 use api\components\RestUtils;
@@ -27,25 +26,19 @@ class ReviewModel extends Model
     private $_reviewFact;
     private $_review;
     private $_transaction;
-    private $_loyalty;
     private $_actionRelationship;
 
     public function rules()
     {
         return [
-            [['ActionReference', 'ReviewFact', 'Review', 'Transaction', 'Loyalty', 'ActionRelationship'], 'required'], //'Offer', 'Buyer', 'Seller',
+            [['ActionReference', 'ReviewFact', 'Review', 'Transaction', 'ActionRelationship'], 'required'], //'Offer', 'Buyer', 'Seller',
         ];
     }
 
     public function afterValidate()
     {
         $error = false;
-        /*if(!$this->offer->validate()) {
-            $error = true;
-        }*/
-        /*if(!$this->actionReference->validate()) {
-            $error = true;
-        }*/
+
         if(!$this->reviewFact->validate()) {
             $error = true;
         }
@@ -53,18 +46,10 @@ class ReviewModel extends Model
             $error = true;
         }
 
-        /*if(!$this->seller->validate()) {
-            $error = true;
-        }
-        if(!$this->buyer->validate()) {
-            $error = true;
-        }*/
         if(!$this->transaction->validate()) {
             $error = true;
         }
-        if(!$this->loyalty->validate()) {
-            $error = true;
-        }
+
         if(!$this->actionRelationship->validate()) {
             $error = true;
         }
@@ -96,19 +81,17 @@ class ReviewModel extends Model
             $this->transaction->tokenId = AssetToken::findByCode('COIN')->tokenId;
             $this->transaction->senderId = 'zZN6prD6rzxEhg8sDQz1j'; // robot for token creation
             $this->transaction->type = $this->reviewFact->actionReferenceId;
-            $this->transaction->amount = Transaction::REVIEW_AMOUNT;
+
+            $target = (is_null($this->reviewFact->offerId) ? $this->seller : $this->offer);
+            $multi = 1; // = RestUtils::GetGifted($target) ? Transaction::GIFTED_MULTIPLIER : 1;
+            $this->transaction->amount = Transaction::REVIEW_AMOUNT * $multi;
+
             $this->transaction->signature = User::findByBuyerId($this->reviewFact->buyerId)->validation_key;
             $this->transaction->save();
 
-            $this->loyalty->userId = User::findByBuyerId($this->reviewFact->buyerId)->userId;
-            $this->loyalty->actionReferenceId = ActionReference::findByType('addReview')->actionReferenceId;
-            $this->loyalty->transactionId = $this->transaction->transactionId;
-            $this->loyalty->points = $this->transaction->amount;
-            $this->loyalty->save();
-
             $this->actionRelationship->actionReferenceId = $this->reviewFact->actionReferenceId;
+            $this->actionRelationship->transactionId = $this->transaction->transactionId;
             $this->actionRelationship->reviewFactId = $this->reviewFact->reviewFactId;
-            $this->actionRelationship->loyaltyId = $this->loyalty->loyaltyId;
             $this->actionRelationship->save();
 
             $tx->commit();
@@ -125,38 +108,34 @@ class ReviewModel extends Model
         if(is_null($params) || empty($params))
             return false;
 
+        //$this->offer = User::findByBuyerId($params['ReviewFact']['offerId']);
+        if(!empty($params['ReviewFact']['buyerId']) && !is_null($params['ReviewFact']['buyerId']))
+            $this->buyer = Buyer::findById($params['ReviewFact']['buyerId']);
+
+        if(!empty($params['ReviewFact']['sellerId']) && !is_null($params['ReviewFact']['sellerId']))
+            $this->seller = Seller::findById($params['ReviewFact']['sellerId']);
+        
+        if(!empty($params['ReviewFact']['offerId']) && !is_null($params['ReviewFact']['offerId']))
+            $this->offer = Offer::findById($params['ReviewFact']['offerId']);
+
         // update/edit?
         $this->reviewFact = new ReviewFact(['scenario' => 'register']);
         $this->review = new Review();
-        $this->actionReference = $params['ReviewFact']['action'];
+        $this->actionReference = 'addReview';
 
         $this->reviewFact->load($params);
         $this->review->load($params);
-
         $this->review->reviewId = RestUtils::generateId();
 
         $this->reviewFact->reviewFactId = RestUtils::generateId();
         $this->reviewFact->actionReferenceId = $this->actionReference->actionReferenceId;
-        $this->reviewFact->sellerId = (empty($this->reviewFact->sellerId) ? null : $this->reviewFact->sellerId);
+        $this->reviewFact->sellerId = (empty($params['ReviewFact']['sellerId']) ? null : $this->reviewFact->sellerId);
+        $this->reviewFact->offerId = (empty($params['ReviewFact']['offerId']) ? null : $this->reviewFact->offerId);
         $this->reviewFact->date = date('Y-m-d\Th:i:s');
         $this->reviewFact->status = 'ACT';
 
         $this->transaction = $this->createTransaction();
-        $this->loyalty = $this->createLoyalty();
         $this->actionRelationship = $this->createRelation();
-
-        //$this->offer = Offer::findById($this->reviewFact->offerId);
-
-        /*if(!empty($params['offerId']) && !is_null($params['offerId']))
-            $this->offer = Offer::findById($params['offerId']);
-        else
-            return false;
-
-        if(!empty($params['buyerId']) && !is_null($params['buyerId']))
-            $this->buyer = Buyer::findById($params['buyerId']);
-
-        if(!empty($params['sellerId']) && !is_null($params['sellerId']))
-            $this->seller = Seller::findById($params['sellerId']);*/
 
         return true;
     }
@@ -244,20 +223,6 @@ class ReviewModel extends Model
         if($tx instanceof Transaction) {
             $this->_transaction = $tx;
         } else if (is_array($tx)) {
-            
-        }
-    }
-
-    public function getLoyalty()
-    {
-        return $this->_loyalty;
-    }
-
-    public function setLoyalty($loyal)
-    {
-        if($loyal instanceof Loyalty) {
-            $this->_loyalty = $loyal;
-        } else if (is_array($loyal)) {
             
         }
     }

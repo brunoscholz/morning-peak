@@ -31,17 +31,17 @@ $myImages = Url::to('@web/img/');
   <div class="col-lg-3 col-xs-6">
     <!-- small box -->
     <?php
-      $tFlw = ArrayHelper::map($currentUser->sellers,'sellerId', function($model, $defaultValue) { return count($model->followers); });
       $tOff = ArrayHelper::map($currentUser->sellers,'sellerId', function($model, $defaultValue) { return count($model->offers); });
-      $tFlw = array_sum($tFlw);
       $tOff = array_sum($tOff);
+      $tFlw = ArrayHelper::map($currentUser->sellers,'sellerId', function($model, $defaultValue) { return count($model->followers); });
+      $tFlw = array_sum($tFlw);
     ?>
     <?= \machour\yii2\adminlte\widgets\SmallBox::widget([
       'color' => 'bg-yellow',
       'icon' => 'fa-shopping-bag',
       'header' => $tOff . ' ',
       'text' => 'Ofertas',
-      'footerUrl' => '',
+      'footerUrl' => Url::to(['offers/offer/view-all', 'id' => $currentUser->userId]),
       'footerText' => 'ver todas ',
     ]) ?>
   </div><!-- ./col -->
@@ -54,7 +54,7 @@ $myImages = Url::to('@web/img/');
       'header' => $tFlw . ' ',
       'text' => 'Seguidores',
       'footerUrl' => '',
-      'footerText' => 'ver todos',
+      'footerText' => ' ',
     ]) ?>
   </div><!-- ./col -->
 
@@ -91,17 +91,23 @@ $myImages = Url::to('@web/img/');
           ],
           'body' => [
             'class' => 'box-profile',
+            'bg-image' => $seller->picture->cover,
           ],
         ]); ?>
           <?= Html::img($seller->picture->thumbnail, ['class' => 'profile-user-img img-responsive img-circle', 'alt' => 'User Image']) ?>
           <h3 class="profile-username text-center"><?= $seller->name ?></h3>
           <p class="text-muted text-center"><?= $seller->email ?></p>
           <!-- Html::a('Seguir', ['create'], ['class' => 'btn btn-primary btn-block']) -->
-          <div class="row">
+          <div class="row" style="background-color: white;">
             <div class="col-sm-4 border-right">
               <div class="description-block">
-                <h5 class="description-header">Nenhum</h5>
-                <span class="description-text">Brinde</span>
+                <?php
+                  $gifts = array_reduce($seller->offers, function($sum, $item) {
+                    return $sum + count($item->voucherFacts);
+                  }, 0);
+                ?>
+                <h5 class="description-header"><?= ($gifts == 0) ? 'Nenhum' : $gifts ?></h5>
+                <span class="description-text"><?= ($gifts > 1) ? 'CUPONS' : 'CUPOM' ?></span>
               </div>
               <!-- /.description-block -->
             </div>
@@ -171,7 +177,7 @@ $myImages = Url::to('@web/img/');
 
     <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
       <div class="row text-center">
-        <a href="javascript::" class="uppercase">Ver Todos</a>
+        <!-- <a href="javascript::" class="uppercase">Ver Todos</a> -->
       </div><!-- /.row -->
     <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
   </section>
@@ -210,7 +216,7 @@ $myImages = Url::to('@web/img/');
       </table>
     </div><!-- /.table-responsive -->
     <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
-        <a href="javascript::;" class="btn btn-sm btn-info btn-flat pull-left">Criar Brinde</a>
+        <!-- <a href="javascript::;" class="btn btn-sm btn-info btn-flat pull-left">Criar Brinde</a> -->
         <a href="javascript::;" class="btn btn-sm btn-default btn-flat pull-right">Ver Todos</a>
     <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
   </section>
@@ -248,7 +254,7 @@ $myImages = Url::to('@web/img/');
           <div class="product-info">
             <?= Html::a(
               $off->item->title . '<span class="label label-warning pull-right">R$ '.$off->pricePerUnit .'</span>',
-              ['offer/view', 'id' => $off->offerId],
+              ['offers/offer/view', 'id' => $off->offerId],
               ['class' => 'product-title']
             ) ?>
             <span class="product-description">
@@ -260,7 +266,7 @@ $myImages = Url::to('@web/img/');
     </ul>
     <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
         <div class="row text-center">
-          <a href="javascript::;" class="uppercase">Ver Todas</a>
+          <a href="<?= Url::to(['offers/offer/view-all', 'id' => $currentUser->userId]) ?>" class="uppercase">Ver Todas</a>
         </div><!-- /.row -->
     <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
   </section>

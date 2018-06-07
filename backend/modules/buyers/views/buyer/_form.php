@@ -8,17 +8,17 @@ use kartik\file\FileInput;
 /* @var $model backend\models\Buyer */
 /* @var $form yii\widgets\ActiveForm */
 
-$thumb = $model->picture->thumbnail;
+$thumb = $picture->thumbnail;
 ?>
 
 <div class="buyer-form">
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model->picture, 'imageCover')->fileInput() ?>
+    <?= $form->field($picture, 'imageCover')->fileInput() ?>
 
     <div class="form-group kv-avatar center-block" style="width:280px">
-        <?= $form->field($model->picture, 'imageThumb')->widget(FileInput::classname(), [
+        <?= $form->field($picture, 'imageThumb')->widget(FileInput::classname(), [
             'pluginOptions' => [
                 'resizeImages' => true,
                 //'initialPreview' => "<img src='$thumb' class='file-preview-image' alt='Avatar' title='Avatar'>",

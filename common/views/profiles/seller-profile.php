@@ -1,10 +1,18 @@
 <?php
 
+use base\AppAdaptor;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use backend\components\Utils;
+use common\components\widgets\OfferListView;
 
-$directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/bower') . '/adminlte/dist';
+use yii\grid\GridView;
+use yii\data\ActiveDataProvider;
+
+//var_dump(Yii::getAlias('@base'));
+
+$directoryAsset = AppAdaptor::app()->assetManager->getPublishedUrl('@vendor/bower') . '/adminlte/dist';
 
 $this->title = $model['name'];
 //$this->params['breadcrumbs'][] = ['label' => 'Dashboard', 'url' => ['index']];
@@ -14,8 +22,53 @@ $this->params['breadcrumbs'][] = ['label' => $model['name']];
 
 <div class="seller-view">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-9">
+      <div class="row">    
+        <div class="col-md-12">
+          <?= \machour\yii2\adminlte\widgets\Box::begin([
+            'type' => 'box-primary',
+            'color' => '',
+            'noPadding' => false,
+            'header' => [
+              'title' => 'Nova Oferta',
+              'class' => 'with-border',
+              'tools' => '',
+            ],
+          ]); ?>
+          <?php
+            $offerForm = new \backend\modules\offers\models\form\OfferForm();
+            $offerForm->offer = new \common\models\Offer();
+            echo $this->render('@backend/modules/offers/views/offer/_createform', ['model' => $offerForm, 'seller' => $model]);
+          ?>
+          <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
+        </div>
 
+        <div class="col-md-12">
+          <?php
+
+            /*echo GridView::widget([
+              'dataProvider' => $offerProvider,
+            ]);*/
+
+            echo OfferListView::widget([
+              'dataProvider' => $offerProvider,
+              'config' => [
+                'header' => [
+                  'title' => 'Catálogo',
+                ],
+              ],
+            ]);
+
+            /*<div class="tab-pane" id="offers">
+              <?= $this->render('@backend/modules/offers/views/offer/list', ['model' => $model->offers]) ?>
+            </div>*/
+
+          ?>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
       <!-- Profile Image -->
       <?= \machour\yii2\adminlte\widgets\Box::begin([
         'type' => 'box-widget',
@@ -80,6 +133,38 @@ $this->params['breadcrumbs'][] = ['label' => $model['name']];
         <strong><i class="fa fa-map-marker margin-r-5"></i> Endereço</strong>
         <p class="text-muted"><?= $model->billingAddress->getFullAddress() ?></p>
       <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
+      
+      <!-- Options Box -->
+      <?= \machour\yii2\adminlte\widgets\Box::begin([
+        'type' => 'box-secondary',
+        'color' => '',
+        'noPadding' => false,
+        'header' => [
+          'title' => 'Ferramentas',
+          'class' => 'with-border',
+          'tools' => '',
+        ],
+      ]); ?>
+        <strong><i class="fa fa-book margin-r-5"></i>  Ofertas</strong>
+        <div class="row text-center">
+          <?= Html::a('<b>Criar Nova</b>', ['seller/view', 'id' => 0], ['class'=>'btn btn-sm btn-default btn-flat']) ?>
+        </div><!-- /.row -->
+        <hr>
+        <strong><i class="fa fa-book margin-r-5"></i>  Perfil</strong>
+        <div class="row text-center">
+          <?= Html::a('<b>Editar Perfil</b>', ['seller/view', 'id' => 0], ['class'=>'btn btn-sm btn-default btn-flat']) ?>
+        </div><!-- /.row -->
+        <hr>
+        <strong><i class="fa fa-map-marker margin-r-5"></i> Cupons</strong>
+        <p class="text-muted">
+          Cupons de desconto ajudam seu negócio...
+        </p>
+        <div class="row text-center">
+          <?= Html::a('<b>Criar Cupom</b>', ['seller/view', 'id' => 0], ['class'=>'btn btn-sm btn-default btn-flat']) ?>
+          <?= Html::a('<b>Ver Cupons</b>', ['seller/view', 'id' => 0], ['class'=>'btn btn-sm btn-default btn-flat']) ?>
+        </div><!-- /.row -->
+      <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
+
       <!-- 
       <hr>
       <strong><i class="fa fa-pencil margin-r-5"></i> Categorias</strong>
@@ -95,38 +180,6 @@ $this->params['breadcrumbs'][] = ['label' => $model['name']];
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
       -->
     </div>
-
-    <div class="col-md-9">
-      <div class="nav-tabs-custom">
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#newoffer" data-toggle="tab">Nova Oferta</a></li>
-          <!-- <li><a href="#activity" data-toggle="tab">Atividade</a></li>
-          <li><a href="#timeline" data-toggle="tab">Timeline</a></li> -->
-          <li><a href="#offers" data-toggle="tab">Catálogo</a></li>
-          <!-- <li><a href="#settings" data-toggle="tab">Configurações</a></li> -->
-        </ul>
-        <div class="tab-content">
-
-          <div class="active tab-pane" id="newoffer">
-            <?php
-              $offerForm = new \backend\modules\offers\models\form\OfferForm();
-              $offerForm->offer = new \common\models\Offer();
-              echo $this->render('@backend/modules/offers/views/offer/_createform', ['model' => $offerForm, 'seller' => $model]);
-            ?>
-          </div><!-- /.tab-pane -->
-
-          <div class="tab-pane" id="offers">
-            <?= $this->render('@backend/modules/offers/views/offer/list', ['model' => $model->offers]) ?>
-          </div>
-
-          <div class="tab-pane" id="settings">
-
-          </div>
-          <!-- /.tab-pane -->
-
-        </div><!-- /.tab-content -->
-      </div><!-- /.nav-tabs-custom -->
-    </div><!-- /.col -->
   </div><!-- /.row -->
 
 </div>

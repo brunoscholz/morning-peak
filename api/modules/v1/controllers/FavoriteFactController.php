@@ -8,6 +8,9 @@ use common\models\FavoriteFact;
 use common\models\ActionReference;
 use api\components\RestUtils;
 
+use api\modules\v1\models\ShareModel;
+use api\modules\v1\models\CheckinModel;
+
 /**
  * FavoriteFactController API (extends \yii\rest\ActiveController)
  * FavoriteFactController is responsible for present the list of offers followed by an user
@@ -21,7 +24,7 @@ class FavoriteFactController extends \yii\rest\ActiveController
     public function actions()
     {
         $actions = parent::actions();
-        unset($actions['index'], $actions['create'], $actions['delete']);
+        unset($actions['index'], $actions['create'], $actions['delete'], $actions['update']);
         return $actions;
     }
 
@@ -49,7 +52,8 @@ class FavoriteFactController extends \yii\rest\ActiveController
         echo RestUtils::sendResult($models['status'], $models);
     }
 
-    public function actionCreate() {
+    public function actionCreate()
+    {
         $params = \Yii::$app->request->post();
         $models = array('status'=>200,'count'=>0);
 
@@ -66,6 +70,71 @@ class FavoriteFactController extends \yii\rest\ActiveController
         }
 
         //$models['count'] = count($modelsArray);
+
+        echo RestUtils::sendResult($models['status'], $models);
+    }
+
+    public function actionRemove($id)
+    {
+        $params = \Yii::$app->request->post();
+        $models = array('status'=>200,'count'=>0);
+
+        $fav = new FavoriteModel();
+        $fav->favoriteFact = FavoriteFact::findById($id);
+        $fav->loadAll($params, 'remove');
+
+        var_dump($fav);
+        die();
+
+        if($fav->loadAll($params) && $fav->save()) {
+            //$fav->save();
+            $models['data'] = RestUtils::loadQueryIntoVar($fav->favoriteFact);
+            $models['credit'] = $fav->transaction->amount;
+        } else {
+            $models['status'] = 403;
+            $models['error'] = $fav->errorList();
+        }
+
+        //$models['count'] = count($modelsArray);
+
+        echo RestUtils::sendResult($models['status'], $models);
+    }
+
+    public function actionShare()
+    {
+        $params = \Yii::$app->request->post();
+        $models = array('status'=>200,'count'=>0);
+
+        $share = new ShareModel();
+        //$share->loadAll($params);
+
+        if($share->loadAll($params) && $share->save()) {
+            //$share->save();
+            $models['data'] = []; //RestUtils::loadQueryIntoVar($fav->favoriteFact);
+            $models['credit'] = $share->transaction->amount;
+        } else {
+            $models['status'] = 403;
+            $models['error'] = $share->errorList();
+        }
+
+        echo RestUtils::sendResult($models['status'], $models);
+    }
+
+    public function actionCheckin()
+    {
+        $params = \Yii::$app->request->post();
+        $models = array('status'=>200,'count'=>0);
+
+        $check = new CheckinModel();
+        //$check->loadAll($params);
+
+        if($check->loadAll($params) && $check->save()) {
+            $models['data'] = []; //RestUtils::loadQueryIntoVar($check->favoriteFact);
+            $models['credit'] = $check->transaction->amount;
+        } else {
+            $models['status'] = 403;
+            $models['error'] = $check->errorList();
+        }
 
         echo RestUtils::sendResult($models['status'], $models);
     }

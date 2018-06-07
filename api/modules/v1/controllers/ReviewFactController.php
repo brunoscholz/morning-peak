@@ -96,6 +96,17 @@ class ReviewFactController extends \yii\rest\ActiveController
         echo RestUtils::sendResult($models['status'], $models);
     }
 
+    public function actionRemove($id) {
+        $params = \Yii::$app->request->post();
+        $models = array('status'=>200,'count'=>0);
+
+        $fav = ReviewFact::findById($id);
+
+        var_dump($fav);
+        var_dump($params);
+        die();
+    }
+
     public function behaviors() {
         return
         [

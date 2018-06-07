@@ -67,7 +67,8 @@ return [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
         ],
-    ],
+    ]
+    /*,
     'Heroku' => [
         'path' => 'heroku',
         'setWritable' => [
@@ -86,5 +87,5 @@ return [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
         ],
-    ],
+    ],*/
 ];

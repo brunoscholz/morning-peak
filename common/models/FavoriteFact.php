@@ -68,6 +68,20 @@ class FavoriteFact extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function findById($id)
+    {
+        return static::find()
+            ->where(['like binary', 'favoriteFactId', $id])
+            ->one();
+    }
+
+    public static function findByType($typ)
+    {
+        return static::find()
+            ->where(['like', 'actionreference.actionType', $typ])
+            ->one();
+    }
+
     public function getBuyer()
     {
         return $this->hasOne(Buyer::className(), ['buyerId' => 'buyerId']);

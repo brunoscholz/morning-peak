@@ -21,9 +21,9 @@ class User extends \yii\db\ActiveRecord
     const USER_EXISTS = '401';
 
     const STATUS_ACTIVE = 'ACT';
-    const STATUS_NOT_VERIFIED = 'PEN';
-    const STATUS_BANNED = 'BAN';
     const STATUS_REMOVED = 'REM';
+    const STATUS_BANNED = 'BAN';
+    const STATUS_NOT_VERIFIED = 'PEN';
 
     public static $statusArray = [
         self::STATUS_ACTIVE,

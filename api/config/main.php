@@ -59,17 +59,15 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/relationship',
-                    'tokens' => [
-                        '{id}' => '<relationshipId:\\w+>',
+                    'extraPatterns' => [
+                        'GET vouchers/<id:\w+>' => 'vouchers',
+                        'POST buy-voucher' => 'buy-voucher',
+                        'POST consume-voucher' => 'consume-voucher',
                     ],
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/transaction',
-                ],
-                [
-                    'class' => 'yii\rest\UrlRule',
-                    'controller' => 'v1/loyalty',
                     'pluralize' => false,
                     'extraPatterns' => [
                         'GET balance' => 'balance'
@@ -82,6 +80,11 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/offer',
+                    'extraPatterns' => [
+                        'GET sale' => 'sale',
+                        //'GET gifts' => 'gifts',
+                        'GET vouchers' => 'vouchers',
+                    ],
                     'tokens' => [
                         '{id}' => '<offerId:\\w+>',
                     ],
@@ -109,18 +112,32 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/follow-fact',
+                    'extraPatterns' => [
+                        'POST remove/<id:\w+>' => 'remove',
+                    ],
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/favorite-fact',
+                    'extraPatterns' => [
+                        'POST remove/<id:\w+>' => 'remove',
+                        'POST share' => 'share',
+                        'POST checkin' => 'checkin',
+                    ],
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/comment-fact',
+                    'extraPatterns' => [
+                        'POST remove/<id:\w+>' => 'remove',
+                    ],
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/review-fact',
+                    'extraPatterns' => [
+                        'POST remove/<id:\w+>' => 'remove',
+                    ],
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
@@ -131,7 +148,7 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/auth',
                     'pluralize' => false,
-                    'only' => ['signup', 'signin', 'logout', 'forgot-password', 'settings', 'seller-register', 'social-connect'],
+                    'only' => ['myinfo', 'signup', 'signin', 'logout', 'forgot-password', 'settings', 'seller-register', 'social-connect'],
                     'extraPatterns' => [
                         'POST signin' => 'signin',
                         'POST signup' => 'signup',

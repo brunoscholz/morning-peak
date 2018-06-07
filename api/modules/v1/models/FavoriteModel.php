@@ -5,12 +5,11 @@ namespace api\modules\v1\models;
 use Yii;
 use common\models\User;
 use common\models\Buyer;
-use common\models\Seller;
+use common\models\Offer;
 use common\models\ActionReference;
 use common\models\FavoriteFact;
 
 use common\models\AssetToken;
-use common\models\Loyalty;
 use common\models\Transaction;
 use common\models\ActionRelationship;
 use api\components\RestUtils;
@@ -20,45 +19,30 @@ class FavoriteModel extends Model
 {
     //private $_user;
     private $_buyer;
-    private $_seller;
+    private $_offer;
     private $_actionReference;
     private $_favoriteFact;
     private $_transaction;
-    private $_loyalty;
     private $_actionRelationship;
 
     public function rules()
     {
         return [
-            [['ActionReference', 'FavoriteFact', 'Transaction', 'Loyalty', 'ActionRelationship'], 'required'], //'Offer', 'Buyer', 'Seller',
+            [['ActionReference', 'FavoriteFact', 'Transaction', 'ActionRelationship'], 'required'], //'Offer', 'Buyer', 'Seller',
         ];
     }
 
     public function afterValidate()
     {
         $error = false;
-        /*if(!$this->offer->validate()) {
-            $error = true;
-        }*/
-        /*if(!$this->actionReference->validate()) {
-            $error = true;
-        }*/
         if(!$this->favoriteFact->validate()) {
             $error = true;
         }
 
-        /*if(!$this->seller->validate()) {
-            $error = true;
-        }
-        if(!$this->buyer->validate()) {
-            $error = true;
-        }*/
         if(!$this->transaction->validate()) {
             $error = true;
         }
-        if(!$this->loyalty->validate()) {
-            $error = true;
-        }
+
         if(!$this->actionRelationship->validate()) {
             $error = true;
         }
@@ -84,19 +68,15 @@ class FavoriteModel extends Model
             $this->transaction->tokenId = AssetToken::findByCode('COIN')->tokenId;
             $this->transaction->senderId = 'zZN6prD6rzxEhg8sDQz1j'; // robot for token creation
             $this->transaction->type = $this->favoriteFact->actionReferenceId;
-            $this->transaction->amount = Transaction::FAVORITE_AMOUNT;
+            
+            $multi = 1; // = RestUtils::GetGifted($this->offer) ? Transaction::GIFTED_MULTIPLIER : 1;
+            $this->transaction->amount = Transaction::FAVORITE_AMOUNT * $multi;
             $this->transaction->signature = User::findByBuyerId($this->favoriteFact->buyerId)->validation_key;
             $this->transaction->save();
 
-            $this->loyalty->userId = User::findByBuyerId($this->favoriteFact->buyerId)->userId;
-            $this->loyalty->actionReferenceId = ActionReference::findByType('follow')->actionReferenceId;
-            $this->loyalty->transactionId = $this->transaction->transactionId;
-            $this->loyalty->points = $this->transaction->amount;
-            $this->loyalty->save();
-
             $this->actionRelationship->actionReferenceId = $this->favoriteFact->actionReferenceId;
+            $this->actionRelationship->transactionId = $this->transaction->transactionId;
             $this->actionRelationship->favoriteFactId = $this->favoriteFact->favoriteFactId;
-            $this->actionRelationship->loyaltyId = $this->loyalty->loyaltyId;
             $this->actionRelationship->save();
 
             $tx->commit();
@@ -108,38 +88,99 @@ class FavoriteModel extends Model
         }
     }
 
-    public function loadAll($params)
+    public function remove()
+    {
+        if(!$this->validate()) {
+            return false;
+        }
+
+        try {
+            $tx = Yii::$app->db->beginTransaction();
+
+            $this->favoriteFact->save();
+
+            $this->transaction->recipientId = 'zZN6prD6rzxEhg8sDQz1j';
+            $this->transaction->tokenId = AssetToken::findByCode('COIN')->tokenId;
+            $this->transaction->senderId = User::findByBuyerId($this->favoriteFact->buyerId)->userId;
+            $this->transaction->type = $this->favoriteFact->actionReferenceId;
+            
+            $multi = 1; // = RestUtils::GetGifted($this->offer) ? Transaction::GIFTED_MULTIPLIER : 1;
+            $this->transaction->amount = Transaction::FAVORITE_AMOUNT * $multi;
+            $this->transaction->signature = User::findByBuyerId($this->favoriteFact->buyerId)->validation_key;
+            $this->transaction->save();
+
+            /*$this->actionRelationship->actionReferenceId = $this->favoriteFact->actionReferenceId;
+            $this->actionRelationship->transactionId = $this->transaction->transactionId;
+            $this->actionRelationship->favoriteFactId = $this->favoriteFact->favoriteFactId;
+            $this->actionRelationship->save();*/
+
+            $tx->commit();
+            return true;
+
+        } catch(Exception $e) {
+            $tx->rollBack();
+            return false;
+        }
+    }
+
+    public function loadAll($params, $scene = 'register')
     {
         if(is_null($params) || empty($params))
             return false;
 
+        if(!empty($params['FavoriteFact']['buyerId']) && !is_null($params['FavoriteFact']['buyerId']))
+            $this->buyer = Buyer::findById($params['FavoriteFact']['buyerId']);
+
+        if(!empty($params['FavoriteFact']['offerId']) && !is_null($params['FavoriteFact']['offerId']))
+            $this->offer = Offer::findById($params['FavoriteFact']['offerId']);
+
         // update/edit?
-        $this->favoriteFact = new FavoriteFact(['scenario' => 'register']);
-        $this->actionReference = $params['FavoriteFact']['action'];
-        unset($params['FavoriteFact']['action']);
+        if ($scene == 'register') {
+            $this->favoriteFact = new FavoriteFact(['scenario' => 'register']);
+            $this->actionReference = $params['FavoriteFact']['action'];
+            unset($params['FavoriteFact']['action']);
 
-        $this->favoriteFact->load($params);
-        $this->favoriteFact->favoriteFactId = RestUtils::generateId();
-        // $this->favoriteFact->offerId = $params['FavoriteFact']['offerId'];
-        // $this->favoriteFact->buyerId = $params['FavoriteFact']['buyerId'];
-        $this->favoriteFact->actionReferenceId = $this->actionReference->actionReferenceId;
-        $this->favoriteFact->date = date('Y-m-d\Th:i:s');
-        $this->favoriteFact->status = 'ACT';
+            $this->favoriteFact->load($params);
+            $this->favoriteFact->favoriteFactId = RestUtils::generateId();
+            $this->favoriteFact->offerId = $this->offer->offerId;
+            $this->favoriteFact->buyerId = $this->buyer->buyerId;
+            $this->favoriteFact->actionReferenceId = $this->actionReference->actionReferenceId;
+            $this->favoriteFact->date = date('Y-m-d\Th:i:s');
+            $this->favoriteFact->status = 'ACT';
 
-        $this->transaction = $this->createTransaction();
-        $this->loyalty = $this->createLoyalty();
-        $this->actionRelationship = $this->createRelation();
+            $this->transaction = $this->createTransaction();
+            $this->actionRelationship = $this->createRelation();
+        } else {
+            if(!$this->favoriteFact)
+                return false;
+            
+            $this->actionReference = $params['FavoriteFact']['action'];
 
-        /*if(!empty($params['offerId']) && !is_null($params['offerId']))
-            $this->offer = Offer::findById($params['offerId']);
-        else
-            return false;
+            // change status on favoriteFact for $id
+            $this->favoriteFact->actionReferenceId = $this->actionReference->actionReferenceId;
+            $this->favoriteFact->date = date('Y-m-d\Th:i:s');
+            $this->favoriteFact->status = 'REM';
 
-        if(!empty($params['buyerId']) && !is_null($params['buyerId']))
-            $this->buyer = Buyer::findById($params['buyerId']);
+            $this->actionRelationship = $this->loadRelation();
+            $tx = $this->loadTransaction();
 
-        if(!empty($params['sellerId']) && !is_null($params['sellerId']))
-            $this->seller = Seller::findById($params['sellerId']);*/
+            /*var_dump($this->actionRelationship->actionRelationshipId);
+            var_dump($tx->transactionId);*/
+
+            // check if transaction is old enough or remove the coins!
+            $today = date_create(date('d-m-Y',time()));
+            $exp = date('d-m-Y',strtotime($tx->timestamp)); //query result form database
+            $date2=date_create($exp);
+            $diff=date_diff($today,$date2);
+
+            if ($diff->format("%R%a") < -30) {
+                // remove coins
+                // create opposite transaction
+                $this->transaction = $this->createTransaction();
+            } else {
+                $this->transaction = $tx;
+            }
+        }
 
         return true;
     }
@@ -181,15 +222,15 @@ class FavoriteModel extends Model
         // error 
     }
 
-    public function getSeller()
+    public function getOffer()
     {
-        return $this->_seller;
+        return $this->_offer;
     }
 
-    public function setSeller($seller)
+    public function setOffer($offer)
     {
-        if($seller instanceof Seller) {
-            $this->_seller = $seller;
+        if($offer instanceof Offer) {
+            $this->_offer = $offer;
         }
     }
 
@@ -203,20 +244,6 @@ class FavoriteModel extends Model
         if($tx instanceof Transaction) {
             $this->_transaction = $tx;
         } else if (is_array($tx)) {
-            
-        }
-    }
-
-    public function getLoyalty()
-    {
-        return $this->_loyalty;
-    }
-
-    public function setLoyalty($loyal)
-    {
-        if($loyal instanceof Loyalty) {
-            $this->_loyalty = $loyal;
-        } else if (is_array($loyal)) {
             
         }
     }
@@ -251,7 +278,6 @@ class FavoriteModel extends Model
             //'Offer' => $this->offer,
             'FavoriteFact' => $this->favoriteFact,
             'Transaction' => $this->transaction,
-            'Loyalty' => $this->loyalty,
             'ActionRelationship' => $this->actionRelationship,
         ];
     }
@@ -272,17 +298,6 @@ class FavoriteModel extends Model
         return $tx;
     }
 
-    protected function createLoyalty()
-    {
-        $loyal = new Loyalty(['scenario' => 'register']);
-        $loyal->loyaltyId = RestUtils::generateId();
-        $loyal->ruleId = "Seguir ";
-        $loyal->points = 1;
-        $loyal->status = 'PEN';
-
-        return $loyal;
-    }
-
     protected function createRelation()
     {
         $rel = new ActionRelationship(['scenario' => 'register']);
@@ -290,5 +305,15 @@ class FavoriteModel extends Model
         //$rel->dateId = date('Y-m-d\TH:i:s');
 
         return $rel;
+    }
+
+    protected function loadRelation()
+    {
+        return ActionRelationship::findByModelId('favoriteFact', $this->_favoriteFact->favoriteFactId, 19);
+    }
+
+    protected function loadTransaction()
+    {
+        return Transaction::findById($this->_actionRelationship->transactionId);
     }
 }

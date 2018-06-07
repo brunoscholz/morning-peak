@@ -8,6 +8,9 @@ use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\data\Sort;
 
+/**
+ * SearchForm extends the base model for the purpose of find items and facilitate queries
+ */
 class SearchForm extends Model
 {
 	/**

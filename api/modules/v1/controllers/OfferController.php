@@ -4,6 +4,8 @@ namespace api\modules\v1\controllers;
 
 use yii\db\Query;
 use common\models\Offer;
+use common\models\Voucher;
+use common\models\VoucherFact;
 use api\modules\v1\models\OfferModel;
 use api\components\RestUtils;
 use yii\helpers\ArrayHelper;
@@ -52,6 +54,66 @@ class OfferController extends \yii\rest\ActiveController
         {
             $temp = RestUtils::loadQueryIntoVar($model);
             $revs = RestUtils::loadQueryIntoVar($model->reviews);
+            $vouc = RestUtils::loadQueryIntoVar($model->voucherFacts);
+
+            $i = 0;
+            $sum = 0;
+            $newReviews = array();
+            foreach ($revs as $review)
+            {
+                $rate = $review['rating'];
+                $rating = array();
+                $rating['grade'] = $rate - floor($rate/100) * 100;
+
+                $rating['attendance'] = floor(floor($rate/100)/10);
+                $rating['price'] = floor($rate/100) - $rating['attendance']*10;
+
+                $review['rating'] = $rating;
+                unset($review['offer']);
+                $newReviews[] = $review;
+                $sum += $rating['grade'];
+                $i++;
+            }
+            // let rate = this.rating + this.attendance * 1000 + this.price * 100;
+            // let decimal = rate - (Math.floor(rate / 100) * 100);
+            // return decimal;
+
+            $vouchers = array();
+            foreach ($vouc as $voucherFact)
+            {
+                unset($voucherFact['offer']);
+                $vouchers[] = $voucherFact;
+            }
+
+            $temp['vouchers'] = $vouchers;
+            $temp['reviews'] = $newReviews;
+            $temp['avgRating'] = ['qtd' => $i, 'avg' => ($i > 0) ? $sum / $i : 0];
+            $modelsArray[] = $temp;
+        }
+
+        $models['data'] = $modelsArray;
+        $models['count'] = count($modelsArray);
+
+        echo RestUtils::sendResult($models['status'], $models);
+    }
+
+    public function actionSale()
+    {
+        $models = array('status'=>200,'count'=>0);
+        $modelsArray = array();
+
+        $query = Offer::find();
+        $query->joinWith([
+            'item'
+        ]);
+
+        $query->andFilterWhere(['>', 'discountPerUnit', 0]);
+        $data = $query;
+
+        foreach ($data->each() as $model)
+        {
+            $temp = RestUtils::loadQueryIntoVar($model);
+            $revs = RestUtils::loadQueryIntoVar($model->reviews);
 
             $i = 0;
             $sum = 0;
@@ -84,6 +146,78 @@ class OfferController extends \yii\rest\ActiveController
         $models['count'] = count($modelsArray);
 
         echo RestUtils::sendResult($models['status'], $models);
+    }
+
+    public function actionVouchers()
+    {
+        $models = array('status'=>200,'count'=>0);
+        $modelsArray = array();
+
+        $query = VoucherFact::find();
+
+        $query->andFilterWhere(['<>', 'offerId', 'NULL']);
+        // not expired
+        //$query->andFilterWhere(['<>', 'offerId', 'NULL']);
+        $data = $query;
+
+        foreach ($data->each() as $model)
+        {
+            $temp = RestUtils::loadQueryIntoVar($model);
+
+            $revs = RestUtils::loadQueryIntoVar($model->offer->reviews);
+
+            $i = 0;
+            $sum = 0;
+            $newReviews = array();
+            foreach ($revs as $review)
+            {
+                $rate = $review['rating'];
+                $rating = array();
+                $rating['grade'] = $rate - floor($rate/100) * 100;
+
+                $rating['attendance'] = floor(floor($rate/100)/10);
+                $rating['price'] = floor($rate/100) - $rating['attendance']*10;
+
+                $review['rating'] = $rating;
+                unset($review['offer']);
+                $newReviews[] = $review;
+                $sum += $rating['grade'];
+                $i++;
+            }
+            // let rate = this.rating + this.attendance * 1000 + this.price * 100;
+            // let decimal = rate - (Math.floor(rate / 100) * 100);
+            // return decimal;
+
+            $temp['offer']['reviews'] = $newReviews;
+            $temp['offer']['avgRating'] = ['qtd' => $i, 'avg' => ($i > 0) ? $sum / $i : 0];
+            $modelsArray[] = $temp;
+        }
+
+        $models['data'] = $modelsArray;
+        $models['count'] = count($modelsArray);
+
+        echo RestUtils::sendResult($models['status'], $models);
+    }
+
+    public function actionCatalog($id)
+    {
+        /*$models = ['status'=>200, 'count'=>0];
+        $seller = Seller::findOne($id);
+
+        $modelsArray = [];
+        foreach ($seller->offers as $model)
+        {
+            $temp = RestUtils::loadQueryIntoVar($model);
+            $pic = $temp['picture'];
+            //unset($temp['seller']);
+            $temp['seller'] = null;
+            $modelsArray[] = $temp;
+        }
+
+        $models['data'] = $modelsArray;
+        $models['count'] = count($modelsArray);
+
+        echo RestUtils::sendResult($models['status'], $models);*/
     }
 
     public function behaviors() {

@@ -51,6 +51,11 @@ class AuthController extends \yii\rest\ActiveController
         return $actions;
     }
 
+    public function actionMyinfo()
+    {
+
+    }
+
     /**
      * POST /auth/signin
      * If token is received, it is verified against authToken table and if not expired, returns ok to login
@@ -73,7 +78,7 @@ class AuthController extends \yii\rest\ActiveController
             if($auth->validateAuth() && $auth->authenticate()) {
                 $models['status'] = 200;
                 $models['data'] = [$this->fetchUser($auth->user)];
-                $models['token'] = $auth->token;
+                $models['data']['token'] = $auth->token;
 
             } else {
                 $models['status'] = AuthToken::TOKEN_WRONG;
@@ -107,7 +112,7 @@ class AuthController extends \yii\rest\ActiveController
             if($auth->register()) {
                 $models['status'] = 200;
                 $models['data'] = [$this->fetchUser($auth->user)];
-                $models['token'] = $auth->token;
+                $models['data']['token'] = $auth->token;
                 //$auth->sendEmail();
 
             } else {
@@ -318,7 +323,7 @@ class AuthController extends \yii\rest\ActiveController
             ->all();
 
         $sellers = Seller::find()
-            ->where(['like binary', 'pictureId', '4899oxUh7aJvOZFwNir5s'])
+            ->where(['like binary', 'ipctureId', '4899oxUh7aJvOZFwNir5s'])
             ->all();
 
         $i = 0;
@@ -346,9 +351,13 @@ class AuthController extends \yii\rest\ActiveController
         die();*/
 
 
+        //for ($x = 0; $x < 242; $x++)
         echo RestUtils::generateId();
-        $pass = 'amanda17';
-        $salt = 'ICrs4QDfroMNZT7xozyFE9l2vmUHlZzRlaISuRhAejoLznDnM6PwhDFyUsmwLCdN';
+        die();
+
+        //878764eddb203c2ec2bba15673f44041
+        $pass = 'abcd1234';
+        $salt = 'oC7RoQQqo7wbERnMvnH7SSSEhjrXy55k5DcCl4aCLBlAxUlE8pQx592a176YjBYV';
         $hash = md5($salt . $pass);
         var_dump($hash);
         die();

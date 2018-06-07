@@ -16,24 +16,39 @@ $cover = $model->picture->cover;
 if (strpos($cover, 'generic-cover') !== false) {
   $cover = $myImages . '/generic-cover.jpg';
 }
+
+//$subTotal = number_format($model->pricePerUnit, 2, ',', '.');
+//$total = ($totalDiscount == 0) ? '-' : 'R$ ' . number_format($totalDiscount, 2, ',', '.')
+$totalDiscount = ($model->pricePerUnit * $model->discountPerUnit/100);
+$totalPrice = $model->pricePerUnit - $totalDiscount;
+//number_format($totalPrice, 2, ',', '.')
+//$coinPrice = ($model->isGift) ? $model->coinPrice : 0;
+
 ?>
 
   <div class="offer-view">
     <div class="invoice" style="margin:0;">
-      <!-- title row -->
-      <div class="row">
-        <div class="col-xs-12">
-          <h2 class="page-header">
-            <i class="fa fa-globe"></i> <?= $this->title ?>
-            <small class="pull-right">postada em: <?= Utils::dateToString($model->createdAt) ?></small>
-          </h2>
-        </div>
-        <!-- /.col -->
-      </div>
+      
       <!-- info row -->
       <div class="row invoice-info">
         <div class="col-xs-4">
             <?= Html::img($cover, ['alt' => 'Item', 'width'=>'100%']) ?>
+        </div>
+        <!-- /.col -->
+
+        <!-- title row -->
+        <div class="col-xs-8 page-header">
+          <h2>
+            <?= $model->item->title ?>
+          </h2>
+          <p><?= $model->description ?></p>
+        </div>
+        <div class="col-xs-8 page-header">
+          <p class="lead">
+            R$ <?= number_format($totalPrice, 2, ',', '.') ?>
+            <?= ($model->isGift) ? ' <i class="fa fa-exchange"></i> COIN ' . number_format($model->coinPrice, 2, ',', '.') : '' ?>
+          </p>
+          <!-- <small class="pull-right">postada em: <?= Utils::dateToString($model->createdAt) ?></small> -->
         </div>
         <!-- /.col -->
         <div class="col-sm-4">
@@ -69,15 +84,13 @@ if (strpos($cover, 'generic-cover') !== false) {
               </tr> -->
               <tr>
                 <th>Desconto:</th>
-                <?php $totalDiscount = ($model->pricePerUnit * $model->discountPerUnit/100); ?>
-                <td><?= ($totalDiscount == 0) ? '-' : 'R$ ' . number_format($totalDiscount, 2, ',', '.') ?></td>
+                <td><?= ($totalDiscount == 0) ? '--' : 'R$ ' . number_format($totalDiscount, 2, ',', '.') ?></td>
                 <td></td>
               </tr>
               <tr>
                 <th>Total:</th>
-                <?php $totalPrice = $model->pricePerUnit - $totalDiscount; ?>
                 <td>R$ <?= number_format($totalPrice, 2, ',', '.') ?></td>
-                <td>COIN 3000</td>
+                <td><?= ($model->isGift) ? 'COIN ' . number_format($model->coinPrice, 2, ',', '.') : '--' ?></td>
               </tr>
             </table>
           </div>
@@ -90,10 +103,7 @@ if (strpos($cover, 'generic-cover') !== false) {
       <div class="row">
         <!-- accepted payments column -->
         <div class="col-xs-4">
-          <p class="lead">Descrição</p>
-          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-            <?= $model->description ?>
-          </p>
+          
         </div>
         <!-- /.col -->
         <div class="col-xs-4">

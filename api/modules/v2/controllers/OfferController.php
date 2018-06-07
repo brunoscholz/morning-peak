@@ -71,7 +71,7 @@ class OfferController extends Controller
                 $sum += $rating['grade'];
                 $i++;
             }
-            // let rate = this.rating + this.attendance * 1000 + this.price * 100;
+            // let rate = this.rating + this.attendance * 100 + this.price * 10;
             // let decimal = rate - (Math.floor(rate / 100) * 100);
             // return decimal;
 

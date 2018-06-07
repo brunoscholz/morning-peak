@@ -36,7 +36,10 @@ class CategoryController extends \yii\rest\ActiveController
             $modelsArray[] = $temp;
         }
 
+        $input = ["encanador", "restaurante", "sapatos", "maquiagem", "website"];
+
         $models['data'] = $modelsArray;
+        $models['randCat'] = $input[array_rand($input)];
         $models['count'] = count($modelsArray);
 
         echo RestUtils::sendResult($models['status'], $models);

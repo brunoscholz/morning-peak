@@ -13,6 +13,15 @@ $this->title = 'Empresas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="seller-index">
+  <div class="block">
+    <div class="well text-center">
+      <div id="w0" class="action-toolbar btn-toolbar">
+        <div id="w1" class="btn-group">
+          <?= Html::a('<i class="fa fa-plus"></i> Criar Empresa', ['create'], ['class' => 'btn btn-default']) ?>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <?= \machour\yii2\adminlte\widgets\Box::begin([
       'type' => 'box-primary',
@@ -21,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
       'header' => [
         'title' => $this->title,
         'class' => 'with-border',
-        'tools' => '{collapse}',
+        'tools' => '',
       ],
     ]); ?>
 
@@ -33,7 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 'name',
                 'email:email',
-                'name',
                 [
                   'attribute'=>'about',
                   'format'=>'html',
@@ -51,7 +59,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ]); ?>
 
       <?= \machour\yii2\adminlte\widgets\Box::footer(); ?>
-        <?= Html::a('Criar Empresa', ['create'], ['class' => 'btn btn-sm btn-success btn-flat pull-right']) ?>
     <?= \machour\yii2\adminlte\widgets\Box::end(); ?>
 
 </div>

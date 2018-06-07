@@ -49,6 +49,8 @@ class SellerSearch extends Seller
             return $dataProvider;
         }
         $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'email', $this->email]);
+        $query->andFilterWhere(['like', 'website', $this->website]);
         return $dataProvider;
     }
 }

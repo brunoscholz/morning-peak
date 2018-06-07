@@ -37,8 +37,12 @@ class Transaction extends \yii\db\ActiveRecord
     const SHARE_AMOUNT = 50;
     const CHECKIN_AMOUNT = 100;
 
+    const GIFTED_MULTIPLIER = 2;
+
     public static $amountArray = [
         self::VIEW_AMOUNT,
+        self::FAVORITE_AMOUNT,
+        self::FOLLOW_AMOUNT,
         self::COMMENT_AMOUNT,
         self::REVIEW_AMOUNT,
         self::SHARE_AMOUNT,
@@ -122,6 +126,13 @@ class Transaction extends \yii\db\ActiveRecord
 
     public function getUpdated_at() { return $this->_updated_at; }
     public function setUpdated_at($t) { $this->_updated_at = $t; }
+
+    public static function findById($id)
+    {
+        return static::find()
+            ->where(['like binary', 'transactionId', $id])
+            ->one();
+    }
 
     /**
      * @method getToken()
